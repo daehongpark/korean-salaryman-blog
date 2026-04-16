@@ -657,10 +657,16 @@ async function toggleStatus(filename, newStatus) {
   try {
     const post = allPosts.find(p => p.filename === filename);
     if (!post) throw new Error('글을 찾을 수 없습니다.');
-    const updated = {...post, status: newStatus};
-    delete updated.filename; delete updated.sha;
+
+    // 항상 최신 SHA를 GitHub에서 직접 가져오기
+    const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
+    const freshSha = freshFile.sha;
+    const freshContent = decodeURIComponent(escape(atob(freshFile.content.replace(/\n/g,''))));
+    const freshJson = JSON.parse(freshContent);
+
+    const updated = {...freshJson, status: newStatus};
     const content = JSON.stringify(updated, null, 2);
-    await ghPut(`${POSTS_PATH}/${filename}`, content, post.sha,
+    await ghPut(`${POSTS_PATH}/${filename}`, content, freshSha,
       `${newStatus === 'published' ? '발행' : '임시저장'}: ${post.title}`);
     const label = newStatus === 'published' ? '발행' : '임시저장';
     showToast(`"${label}"으로 변경되었습니다.`, 'success');
@@ -711,7 +717,6 @@ function openEdit(filename) {
 
 async function savePost() {
   const filename = document.getElementById('editFilename').value;
-  const sha      = document.getElementById('editSha').value;
   const post     = allPosts.find(p => p.filename === filename);
   if (!post) return;
   const tags = document.getElementById('editTags').value.split(',').map(t=>t.trim()).filter(t=>t);
@@ -727,7 +732,9 @@ async function savePost() {
   delete updated.filename; delete updated.sha;
   showLoading(true);
   try {
-    await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), sha, `수정: ${updated.title}`);
+    // 항상 최신 SHA를 GitHub에서 직접 가져오기
+    const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
+    await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha, `수정: ${updated.title}`);
     closeModal('editModal');
     showToast('저장되었습니다!', 'success');
     await loadPosts();
@@ -752,7 +759,9 @@ async function confirmDelete() {
   showLoading(true);
   closeModal('deleteModal');
   try {
-    await ghDelete(`${POSTS_PATH}/${deleteTarget}`, post.sha, `삭제: ${post.title}`);
+    // 항상 최신 SHA를 GitHub에서 직접 가져오기
+    const freshFile = await ghGet(`${POSTS_PATH}/${deleteTarget}`);
+    await ghDelete(`${POSTS_PATH}/${deleteTarget}`, freshFile.sha, `삭제: ${post.title}`);
     showToast('삭제되었습니다.', 'info');
     await loadPosts();
   } catch(e) {
