@@ -30,9 +30,6 @@ jobs:
           echo "AUTO_PUBLISH=${{ secrets.AUTO_PUBLISH }}" >> .env
           echo "POSTS_PER_DAY=3" >> .env
 
-      - name: automation.py 복사
-        run: cp blog-automation/automation.py automation.py
-
       - name: 글 자동 생성 실행
         run: python automation.py
 
@@ -40,6 +37,6 @@ jobs:
         run: |
           git config user.name "자동 글 생성"
           git config user.email "pride93d@gmail.com"
-          git add korean-salaryman-blog/posts/
+          git add posts/
           git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d')"
           git push
