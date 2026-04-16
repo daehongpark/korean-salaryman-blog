@@ -369,16 +369,25 @@ except Exception as _e:
 
 
 def get_keywords_for_today_with_trends():
+    import random
     base = get_keywords_for_today()
     if not TREND_CRAWLER_AVAILABLE:
         return base
     try:
-        return get_keywords_with_trends(
-            base_pool=base,
+        base_keywords = [item["keyword"] for item in base]
+        merged_keywords = get_keywords_with_trends(
+            base_pool=base_keywords,
             top_n_trend=30,
             max_total=50,
             trending_ratio=0.5,
         )
+        categories = list(KEYWORD_POOL.keys())
+        keyword_to_cat = {item["keyword"]: item["category"] for item in base}
+        result = []
+        for kw in merged_keywords[:POSTS_PER_DAY]:
+            cat = keyword_to_cat.get(kw, random.choice(categories))
+            result.append({"category": cat, "keyword": kw})
+        return result if result else base
     except Exception as _e:
         print(f"[WARN] 트렌드 병합 실패 → 기존 키워드 사용: {_e}")
         return base
@@ -388,6 +397,8 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) > 1 and sys.argv[1] == "--schedule":
+        # 스케줄러 모드: python automation.py --schedule
         run_scheduler()
     else:
+        # 즉시 실행 모드: python automation.py
         run_daily()
