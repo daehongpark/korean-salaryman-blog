@@ -1,0 +1,20 @@
+# ────────────────────────────────────────
+# 직장인 수익일기 - 트렌드 크롤러용 추가 의존성
+# (기존 automation.py 가 쓰던 패키지는 별도 유지하세요)
+# 설치:
+#   pip install -r requirements.txt
+# ────────────────────────────────────────
+
+# Google Trends 크롤링
+pytrends>=4.9.2
+
+# HTTP 요청 (네이버 DataLab)
+requests>=2.31.0
+
+# HTML 파싱 (있으면 더 정확, 없어도 정규식 폴백 작동)
+beautifulsoup4>=4.12.0
+lxml>=4.9.3
+
+# pytrends 내부 의존성 (버전 호환성 이슈 예방)
+pandas>=2.0.0
+urllib3>=1.26.0
