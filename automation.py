@@ -297,7 +297,7 @@ def run_daily():
     print(f"  글 저장 위치: {POSTS_DIR}")
     print(f"{'='*52}")
 
-    keywords = get_keywords_for_today()
+    keywords = get_keywords_for_today_with_trends()
 
     success_count = 0
     for i, item in enumerate(keywords, 1):
@@ -368,3 +368,41 @@ if __name__ == "__main__":
     else:
         # 즉시 실행 모드: python automation.py
         run_daily()
+# ======================================================
+# [ADDED] 트렌드 키워드 크롤링 확장 - 2026.04 추가
+# 기존 코드는 수정하지 않고 기능만 추가합니다.
+# ======================================================
+try:
+    from trend_crawler import get_keywords_with_trends
+    TREND_CRAWLER_AVAILABLE = True
+except Exception as _e:
+    TREND_CRAWLER_AVAILABLE = False
+    print(f"[WARN] trend_crawler import 실패 → 기존 KEYWORD_POOL 사용: {_e}")
+def get_keywords_for_today_with_trends():
+    """
+    기존 get_keywords_for_today() 를 감싸는 래퍼 함수.
+    - 트렌드 크롤링 성공 → 기존 키워드풀 + 실시간 트렌드 병합
+    - 트렌드 크롤링 실패 → 기존 get_keywords_for_today() 그대로 반환
+    """
+    base = get_keywords_for_today()  # ← 기존 함수 그대로 호출
+    if not TREND_CRAWLER_AVAILABLE:
+        return base
+    try:
+        return get_keywords_with_trends(
+            base_pool=base,
+            top_n_trend=30,     # 트렌드에서 가져올 최대 개수
+            max_total=50,       # 최종 병합 후 최대 개수
+            trending_ratio=0.5, # 트렌드:기존풀 = 5:5
+        )
+    except Exception as _e:
+        print(f"[WARN] 트렌드 병합 실패 → 기존 키워드 사용: {_e}")
+        return base
+# ======================================================
+# [USAGE]
+# 이후 실제로 포스팅 생성할 때:
+#     keywords = get_keywords_for_today_with_trends()
+# 를 사용하시면 됩니다.
+#
+# 기존 get_keywords_for_today() 를 호출하던 곳을 그대로 두셔도
+# 동작에는 영향이 없습니다 (선택 사항).
+# ======================================================
