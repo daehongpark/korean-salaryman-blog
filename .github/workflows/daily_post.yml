@@ -1,0 +1,45 @@
+name: 매일 자동 글 생성
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 한국시간 오전 9시 (UTC 0시)
+  workflow_dispatch:      # 수동 실행 버튼
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Python 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 패키지 설치
+        run: pip install requests python-dotenv
+
+      - name: .env 파일 생성
+        run: |
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+          echo "BLOG_TITLE=${{ secrets.BLOG_TITLE }}" >> .env
+          echo "AUTO_PUBLISH=${{ secrets.AUTO_PUBLISH }}" >> .env
+          echo "POSTS_PER_DAY=3" >> .env
+
+      - name: automation.py 복사
+        run: cp blog-automation/automation.py automation.py
+
+      - name: 글 자동 생성 실행
+        run: python automation.py
+
+      - name: GitHub에 자동 업로드
+        run: |
+          git config user.name "자동 글 생성"
+          git config user.email "pride93d@gmail.com"
+          git add korean-salaryman-blog/posts/
+          git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d')"
+          git push
