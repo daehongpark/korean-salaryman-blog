@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="평범한 직장인이 부업과 자기계발로 경제적 자유를 향해 나아가는 과정을 솔직하게 기록합니다.">
+<meta name="keywords" content="직장인 부업, 에드센스, 자기계발, 경제적 자유, N잡러, 재테크, 블로그 수익">
+<title>직장인 수익일기 — Korean Salaryman</title>
+<meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI" />
+<meta name="naver-site-verification" content="ad5bce9f4de14cbe7ccf111ca46b1114e52a25ff" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;
+  --bg:#f8f7f4;
+  --bg2:#f0ede8;
+  --navy:#1a2640;
+  --navy2:#253352;
+  --point:#c17f3e;
+  --point-light:#f5ead8;
+  --point2:#2d6a4f;
+  --text1:#1a1a1a;
+  --text2:#444444;
+  --text3:#888888;
+  --border:#e8e4de;
+  --border2:#d4cfc8;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8.5px;color:var(--text3);letter-spacing:0.2em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-sub{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:background 0.15s;}
+.btn-sub:hover{background:var(--navy2);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu a:hover{background:var(--bg);color:var(--navy);}
+.mobile-menu .btn-sub{margin-top:8px;justify-content:center;border-radius:8px;}
+
+.hero{background:var(--navy);padding:72px 24px 80px;position:relative;overflow:hidden;}
+.hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;}
+.hero-glow{position:absolute;right:-200px;top:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
+.hero-glow2{position:absolute;left:-150px;bottom:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(45,106,79,0.1),transparent 65%);}
+.hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;}
+.hero-eyebrow-line{width:28px;height:1px;background:var(--point);}
+.hero-eyebrow span{font-size:11px;color:var(--point);letter-spacing:0.25em;font-weight:600;}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:44px;font-weight:700;color:var(--white);line-height:1.25;letter-spacing:-0.02em;margin-bottom:20px;}
+.hero h1 em{color:var(--point);font-style:normal;}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.85;font-weight:300;margin-bottom:36px;}
+.hero-author{display:flex;align-items:center;gap:14px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1);}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:var(--point);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--white);flex-shrink:0;}
+.author-name{font-size:14px;font-weight:600;color:var(--white);}
+.author-desc{font-size:12px;color:rgba(255,255,255,0.45);margin-top:2px;}
+.hero-stats{display:flex;gap:32px;margin-top:32px;}
+.hero-stat-num{font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;color:var(--white);}
+.hero-stat-num em{font-size:13px;font-weight:400;color:var(--point);font-style:normal;}
+.hero-stat-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-top:2px;}
+
+.cat-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:90;}
+.cat-inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto;scrollbar-width:none;}
+.cat-inner::-webkit-scrollbar{display:none;}
+.cat-item{padding:14px 18px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s;}
+.cat-item:hover{color:var(--navy);}
+.cat-item.active{color:var(--navy);border-bottom-color:var(--point);font-weight:700;}
+
+.layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 300px;gap:52px;}
+
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sec-label-text{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.2em;}
+.sec-label-line{flex:1;height:1px;background:var(--border);}
+
+.featured{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:36px;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;text-decoration:none;display:block;color:inherit;}
+.featured:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07);transform:translateY(-2px);}
+.feat-img{height:200px;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px 28px;}
+.feat-img-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:48px 48px;}
+.feat-img-glow{position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.2),transparent 65%);}
+.feat-tag{position:relative;z-index:1;display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:0.1em;}
+.feat-body{padding:28px 32px;}
+.feat-cat{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:10px;}
+.feat-body h2{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:700;color:var(--text1);line-height:1.5;margin-bottom:12px;}
+.feat-body p{font-size:14px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:22px;}
+.feat-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border);}
+.feat-meta{font-size:12px;color:var(--text3);}
+.read-more{font-size:12px;font-weight:700;color:var(--navy);transition:color 0.15s;}
+.read-more:hover{color:var(--point);}
+
+.post-list{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;}
+.post-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:all 0.15s;text-decoration:none;color:inherit;}
+.post-card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(0,0,0,0.06);transform:translateY(-1px);}
+.post-body{flex:1;min-width:0;}
+.post-cat-badge{font-size:10px;font-weight:700;color:var(--point);letter-spacing:0.1em;margin-bottom:6px;display:block;}
+.post-card h3{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--text1);line-height:1.55;margin-bottom:8px;}
+.post-meta-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text3);}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--border2);}
+.post-thumb{width:72px;height:72px;border-radius:10px;background:var(--navy);flex-shrink:0;border:1px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.post-thumb-inner{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:12px 12px;}
+.post-thumb-glow{position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.3),transparent 65%);}
+
+.empty-state{text-align:center;padding:60px 24px;color:var(--text3);}
+.empty-state-icon{font-size:48px;margin-bottom:16px;opacity:0.4;}
+.empty-state h3{font-size:16px;color:var(--text2);margin-bottom:8px;}
+.empty-state p{font-size:14px;}
+
+.ch-wrap{display:flex;flex-direction:column;gap:12px;}
+.ch-card{border-radius:14px;padding:22px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.15s;}
+.ch-card:hover{transform:translateY(-2px);}
+.ch-active{background:var(--navy);}
+.ch-done{background:var(--bg2);border:1px solid var(--border);}
+.ch-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:0.08em;margin-bottom:12px;}
+.ch-active .ch-badge{background:var(--point);color:var(--white);}
+.ch-done .ch-badge{background:var(--point2);color:var(--white);}
+.ch-card h3{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700;line-height:1.5;margin-bottom:8px;}
+.ch-active h3{color:var(--white);}
+.ch-done h3{color:var(--text1);}
+.ch-card p{font-size:12px;line-height:1.7;font-weight:300;}
+.ch-active p{color:rgba(255,255,255,0.55);}
+.ch-done p{color:var(--text3);}
+.ch-prog{margin-top:16px;}
+.ch-prog-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;}
+.ch-active .ch-prog-row{color:rgba(255,255,255,0.5);}
+.ch-done .ch-prog-row{color:var(--text3);}
+.ch-bar{height:3px;border-radius:2px;}
+.ch-active .ch-bar{background:rgba(255,255,255,0.15);}
+.ch-done .ch-bar{background:var(--border);}
+.ch-fill{height:100%;border-radius:2px;}
+.ch-active .ch-fill{background:var(--point);}
+.ch-done .ch-fill{background:var(--point2);}
+
+.sidebar{display:flex;flex-direction:column;gap:20px;}
+.widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.wg-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.wg-top h3{font-size:12px;font-weight:700;color:var(--text1);letter-spacing:0.08em;}
+.wg-top span{font-size:11px;color:var(--text3);}
+.wg-body{padding:16px 18px;}
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;background:var(--bg);color:var(--text2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-weight:500;}
+.inc-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
+.inc-row:last-child{border-bottom:none;}
+.inc-left{display:flex;align-items:center;gap:8px;}
+.inc-dot{width:6px;height:6px;border-radius:50%;}
+.inc-name{font-size:13px;color:var(--text2);}
+.inc-val{font-size:13px;font-weight:700;color:var(--text1);}
+.inc-total{background:var(--bg);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+.inc-total-label{font-size:12px;font-weight:600;color:var(--point);}
+.inc-total-val{font-size:15px;font-weight:700;color:var(--navy);}
+.nl-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
+.nl-input{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;margin-bottom:8px;}
+.nl-input:focus{border-color:var(--navy);background:var(--white);}
+.nl-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nl-btn:hover{background:var(--navy2);}
+.pop-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);}
+.pop-item:last-child{border-bottom:none;}
+.pop-num{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--border2);min-width:22px;line-height:1;}
+.pop-title{font-size:12.5px;color:var(--text1);font-weight:500;line-height:1.55;cursor:pointer;transition:color 0.15s;}
+.pop-title:hover{color:var(--point);}
+.pop-views{font-size:10px;color:var(--text3);margin-top:3px;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:11px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 11px;border-radius:20px;cursor:pointer;font-weight:500;transition:all 0.15s;}
+.tag:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+footer{background:var(--navy);padding:48px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7;}
+.ft-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.ft-links{display:flex;gap:16px;}
+.ft-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.15s;}
+.ft-links a:hover{color:rgba(255,255,255,0.8);}
+.ft-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-feat{height:320px;border-radius:16px;margin-bottom:36px;}
+.skel-card{height:90px;border-radius:12px;margin-bottom:10px;}
+
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .mobile-menu.open{display:flex!important;}
+  .hd{padding:0 16px;}
+  .hero{padding:48px 16px 60px;}
+  .hero h1{font-size:30px;}
+  .hero-desc{font-size:14px;}
+  .hero-stats{gap:20px;}
+  .hero-stat-num{font-size:22px;}
+  .cat-inner{padding:0 12px;}
+  .cat-item{padding:12px 14px;font-size:12px;}
+  .layout{grid-template-columns:1fr!important;padding:28px 16px;gap:32px;}
+  .feat-body{padding:20px 20px;}
+  .feat-body h2{font-size:18px;}
+  .post-card{padding:16px;}
+  .post-thumb{width:60px;height:60px;}
+  .ft{flex-direction:column;align-items:flex-start;gap:24px;}
+  .ft-right{align-items:flex-start;}
+  .ft-links{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <a href="index.html" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <div class="desktop-nav">
+      <a href="#" data-cat="부업 방법">부업 방법</a>
+      <a href="#" data-cat="책 추천">책 추천</a>
+      <a href="#" data-cat="자기계발">자기계발</a>
+      <a href="#" data-cat="수익 공개">수익 공개</a>
+      <a href="#" data-cat="챌린지">챌린지</a>
+      <div class="nav-divider"></div>
+      <a href="#newsletter" class="btn-sub">구독하기</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" data-cat="부업 방법" onclick="filterByNav(this)">부업 방법</a>
+  <a href="#" data-cat="책 추천" onclick="filterByNav(this)">책 추천</a>
+  <a href="#" data-cat="자기계발" onclick="filterByNav(this)">자기계발</a>
+  <a href="#" data-cat="수익 공개" onclick="filterByNav(this)">수익 공개</a>
+  <a href="#" data-cat="챌린지" onclick="filterByNav(this)">챌린지</a>
+  <a href="#newsletter" class="btn-sub">구독하기</a>
+</div>
+
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>SINCE 2022 · 직장인의 현실적인 부업 이야기</span>
+    </div>
+    <h1>퇴근 후에도<br><em>돈이 들어오는 삶</em>을<br>만들어가고 있습니다</h1>
+    <p class="hero-desc">평범한 직장인이 에드센스, 부업, 자기계발로 경제적 자유를 향해 나아가는 과정을 솔직하게 기록합니다. 화려한 성공담이 아닌, 진짜 현실을 나눕니다.</p>
+    <div class="hero-author">
+      <div class="author-avatar">박</div>
+      <div>
+        <div class="author-name">박대홍 · 직장인 N잡러</div>
+        <div class="author-desc">에드센스 2년차 · 부업 월 38만원 달성</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num" id="statPosts">—<em>편</em></div>
+        <div class="hero-stat-label">발행 글</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">4.1<em>만</em></div>
+        <div class="hero-stat-label">월 방문자</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">38<em>만원</em></div>
+        <div class="hero-stat-label">이달 수익</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cat-wrap">
+  <div class="cat-inner">
+    <div class="cat-item active" data-cat="전체">전체</div>
+    <div class="cat-item" data-cat="부업 방법">부업 방법</div>
+    <div class="cat-item" data-cat="책 추천">책 추천</div>
+    <div class="cat-item" data-cat="블로그">블로그</div>
+    <div class="cat-item" data-cat="자기계발">자기계발</div>
+    <div class="cat-item" data-cat="수익 공개">수익 공개</div>
+    <div class="cat-item" data-cat="재테크">재테크</div>
+    <div class="cat-item" data-cat="챌린지">챌린지 🔥</div>
+  </div>
+</div>
+
+<div class="layout">
+  <main id="mainContent">
+    <!-- 로딩 스켈레톤 -->
+    <div id="skeleton">
+      <div class="skeleton skel-feat"></div>
+      <div class="skeleton skel-card"></div>
+      <div class="skeleton skel-card"></div>
+      <div class="skeleton skel-card"></div>
+    </div>
+    <!-- 동적 콘텐츠 -->
+    <div id="dynamicContent" style="display:none"></div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <div class="wg-top"><h3>ABOUT</h3></div>
+      <div class="wg-body">
+        <p class="about-msg">안녕하세요, 평범한 직장인입니다. 퇴근 후 블로그와 부업으로 경제적 자유를 향해 나아가고 있어요. 화려하지 않아도, 꾸준히 하면 된다는 걸 보여드리고 싶습니다.</p>
+        <div class="chips">
+          <span class="chip">N잡러</span>
+          <span class="chip">에드센스 2년차</span>
+          <span class="chip">부업 월 38만원</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>이달의 수익</h3><span>2025년 1월</span></div>
+      <div class="wg-body">
+        <div class="inc-row">
+          <div class="inc-left"><div class="inc-dot" style="background:#3b6cf4"></div><span class="inc-name">에드센스</span></div>
+          <span class="inc-val">₩ 218,400</span>
+        </div>
+        <div class="inc-row">
+          <div class="inc-left"><div class="inc-dot" style="background:var(--point)"></div><span class="inc-name">제휴마케팅</span></div>
+          <span class="inc-val">₩ 87,000</span>
+        </div>
+        <div class="inc-row">
+          <div class="inc-left"><div class="inc-dot" style="background:var(--point2)"></div><span class="inc-name">기타 부업</span></div>
+          <span class="inc-val">₩ 74,600</span>
+        </div>
+        <div class="inc-total">
+          <span class="inc-total-label">이달 합계</span>
+          <span class="inc-total-val">₩ 380,000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget" id="newsletter">
+      <div class="wg-top"><h3>뉴스레터</h3></div>
+      <div class="wg-body">
+        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 이메일로 받아보세요. 무료입니다.</p>
+        <input class="nl-input" type="email" placeholder="이메일 주소 입력">
+        <button class="nl-btn">무료로 구독하기</button>
+      </div>
+    </div>
+
+    <div class="widget" id="popularWidget">
+      <div class="wg-top"><h3>최근 발행 글</h3></div>
+      <div class="wg-body" id="popularList">
+        <p style="font-size:13px;color:var(--text3);">글을 불러오는 중...</p>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>태그</h3></div>
+      <div class="wg-body">
+        <div class="tags" id="tagList">
+          <span class="tag" onclick="filterByTag('에드센스')">에드센스</span>
+          <span class="tag" onclick="filterByTag('직장인부업')">직장인부업</span>
+          <span class="tag" onclick="filterByTag('경제적자유')">경제적자유</span>
+          <span class="tag" onclick="filterByTag('N잡러')">N잡러</span>
+          <span class="tag" onclick="filterByTag('블로그수익')">블로그수익</span>
+          <span class="tag" onclick="filterByTag('재테크')">재테크</span>
+          <span class="tag" onclick="filterByTag('자기계발')">자기계발</span>
+          <span class="tag" onclick="filterByTag('SEO')">SEO</span>
+          <span class="tag" onclick="filterByTag('챌린지')">챌린지</span>
+          <span class="tag" onclick="filterByTag('책추천')">책추천</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">평범한 직장인의 경제적 자유 프로젝트.<br>SINCE 2022 · koreansalaryman.com</p>
+    </div>
+    <div class="ft-right">
+      <div class="ft-links">
+        <a href="#">개인정보처리방침</a>
+        <a href="#">문의하기</a>
+        <a href="#">애드센스 공개</a>
+      </div>
+      <div class="ft-copy">© 2025 Korean Salaryman. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── 전역 상태 ─────────────────────────────────────────
+let allPosts = [];
+let currentCat = '전체';
+
+// ── 유틸 함수 ─────────────────────────────────────────
+function formatDate(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function readTime(content) {
+  return Math.max(1, Math.ceil(content.length / 500)) + '분';
+}
+
+function goToPost(filename) {
+  window.location.href = `post.html?id=${encodeURIComponent(filename)}`;
+}
+
+// ── 렌더링 ─────────────────────────────────────────────
+function renderPosts(posts) {
+  const container = document.getElementById('dynamicContent');
+  document.getElementById('skeleton').style.display = 'none';
+  container.style.display = 'block';
+
+  if (posts.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📝</div>
+        <h3>아직 발행된 글이 없습니다</h3>
+        <p>곧 새로운 글로 찾아오겠습니다.</p>
+      </div>`;
+    return;
+  }
+
+  let html = '';
+
+  // ── Featured (첫 번째 글) ──────────────────────────
+  const feat = posts[0];
+  html += `
+    <div class="sec-label">
+      <span class="sec-label-text">FEATURED</span>
+      <div class="sec-label-line"></div>
+    </div>
+    <a class="featured" href="post.html?id=${encodeURIComponent(feat.filename)}" onclick="">
+      <div class="feat-img">
+        <div class="feat-img-pattern"></div>
+        <div class="feat-img-glow"></div>
+        <span class="feat-tag">최신 글</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-cat">${feat.category}</div>
+        <h2>${feat.title}</h2>
+        <p>${feat.summary ? feat.summary.split('\n')[0].slice(0, 120) + (feat.summary.length > 120 ? '...' : '') : ''}</p>
+        <div class="feat-footer">
+          <span class="feat-meta">${formatDate(feat.created_at)} · 읽는 시간 ${readTime(feat.summary || '')}</span>
+          <span class="read-more">자세히 읽기 →</span>
+        </div>
+      </div>
+    </a>`;
+
+  // ── Recent Posts (나머지 글들) ─────────────────────
+  if (posts.length > 1) {
+    html += `
+      <div class="sec-label">
+        <span class="sec-label-text">RECENT POSTS</span>
+        <div class="sec-label-line"></div>
+      </div>
+      <div class="post-list">`;
+
+    for (let i = 1; i < posts.length; i++) {
+      const p = posts[i];
+      html += `
+        <a class="post-card" href="post.html?id=${encodeURIComponent(p.filename)}">
+          <div class="post-body">
+            <span class="post-cat-badge">${p.category}</span>
+            <h3>${p.title}</h3>
+            <div class="post-meta-row">
+              <span>${formatDate(p.created_at)}</span>
+              <div class="dot"></div>
+              <span>${readTime(p.summary || '')}</span>
+            </div>
+          </div>
+          <div class="post-thumb">
+            <div class="post-thumb-inner"></div>
+            <div class="post-thumb-glow"></div>
+          </div>
+        </a>`;
+    }
+    html += `</div>`;
+  }
+
+  // ── Challenge 섹션 (고정) ──────────────────────────
+  html += `
+    <div class="sec-label">
+      <span class="sec-label-text">CHALLENGE</span>
+      <div class="sec-label-line"></div>
+    </div>
+    <div class="ch-wrap">
+      <div class="ch-card ch-active">
+        <div class="ch-badge">🔥 진행중</div>
+        <h3>30일 블로그 글쓰기 챌린지 — 매일 1편씩 발행하기</h3>
+        <p>하루도 빠짐없이 30일 동안 블로그 글을 발행합니다. 함께 도전하고 싶은 분은 댓글로 참여해주세요.</p>
+        <div class="ch-prog">
+          <div class="ch-prog-row"><span>진행률</span><span>Day 18 / 30</span></div>
+          <div class="ch-bar"><div class="ch-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+      <div class="ch-card ch-done">
+        <div class="ch-badge">✓ 완료</div>
+        <h3>90일 수익화 챌린지 — 에드센스 월 10만원 달성</h3>
+        <p>3개월 동안 에드센스 월 10만원을 목표로 한 챌린지. 132% 초과 달성했습니다.</p>
+        <div class="ch-prog">
+          <div class="ch-prog-row"><span>달성률</span><span>132% 초과 달성 🎉</span></div>
+          <div class="ch-bar"><div class="ch-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>`;
+
+  container.innerHTML = html;
+}
+
+// ── 인기 글 사이드바 업데이트 ──────────────────────────
+function renderPopular(posts) {
+  const list = document.getElementById('popularList');
+  const top5 = posts.slice(0, 5);
+  if (top5.length === 0) {
+    list.innerHTML = '<p style="font-size:13px;color:var(--text3);">발행된 글이 없습니다.</p>';
+    return;
+  }
+  list.innerHTML = top5.map((p, i) => `
+    <div class="pop-item">
+      <div class="pop-num">0${i+1}</div>
+      <div>
+        <div class="pop-title" onclick="goToPost('${p.filename}')">${p.title}</div>
+        <div class="pop-views">${formatDate(p.created_at)}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── 카테고리 필터 ──────────────────────────────────────
+function applyFilter(cat) {
+  currentCat = cat;
+  // 카테고리 탭 활성화
+  document.querySelectorAll('.cat-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.cat === cat);
+  });
+  // 글 필터링
+  const filtered = cat === '전체'
+    ? allPosts
+    : allPosts.filter(p => p.category === cat);
+  renderPosts(filtered);
+}
+
+function filterByNav(el) {
+  const cat = el.dataset.cat;
+  if (cat) applyFilter(cat);
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+function filterByTag(tag) {
+  // 태그 필터: 태그에 해당 텍스트 포함한 글만 표시
+  const filtered = allPosts.filter(p =>
+    p.tags && p.tags.some(t => t.includes(tag) || tag.includes(t.replace(/\s/g,'')))
+  );
+  renderPosts(filtered.length ? filtered : allPosts);
+}
+
+// ── 메인: manifest.json 로드 ───────────────────────────
+fetch('./posts/manifest.json')
+  .then(r => {
+    if (!r.ok) throw new Error('manifest.json 로드 실패');
+    return r.json();
+  })
+  .then(posts => {
+    // published 글만, 최신순 정렬
+    allPosts = posts
+      .filter(p => p.status === 'published')
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    // 통계 업데이트
+    document.getElementById('statPosts').innerHTML = `${allPosts.length}<em>편</em>`;
+
+    renderPosts(allPosts);
+    renderPopular(allPosts);
+  })
+  .catch(err => {
+    console.warn('manifest.json 로드 실패:', err);
+    document.getElementById('skeleton').style.display = 'none';
+    document.getElementById('dynamicContent').style.display = 'block';
+    document.getElementById('dynamicContent').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📂</div>
+        <h3>글을 불러올 수 없습니다</h3>
+        <p>posts/manifest.json 파일을 확인해주세요.</p>
+      </div>`;
+  });
+
+// ── 카테고리 탭 클릭 이벤트 ───────────────────────────
+document.querySelectorAll('.cat-item').forEach(el => {
+  el.addEventListener('click', function() {
+    applyFilter(this.dataset.cat);
+  });
+});
+
+// 네비 카테고리 링크
+document.querySelectorAll('.desktop-nav a[data-cat]').forEach(el => {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    applyFilter(this.dataset.cat);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+});
+
+// ── 햄버거 메뉴 ───────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+</script>
+</body>
+</html>

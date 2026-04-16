@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>직장인 수익일기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;
+  --bg:#f8f7f4;
+  --bg2:#f0ede8;
+  --navy:#1a2640;
+  --navy2:#253352;
+  --point:#c17f3e;
+  --point-light:#f5ead8;
+  --point2:#2d6a4f;
+  --text1:#1a1a1a;
+  --text2:#444444;
+  --text3:#888888;
+  --border:#e8e4de;
+  --border2:#d4cfc8;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* ── Header ─────────────────────────────────────── */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8.5px;color:var(--text3);letter-spacing:0.2em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-sub{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:background 0.15s;}
+.btn-sub:hover{background:var(--navy2);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu a:hover{background:var(--bg);color:var(--navy);}
+.mobile-menu .btn-sub{margin-top:8px;justify-content:center;border-radius:8px;}
+
+/* ── Post Hero ───────────────────────────────────── */
+.post-hero{background:var(--navy);padding:56px 24px 64px;position:relative;overflow:hidden;}
+.post-hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;}
+.post-hero-glow{position:absolute;right:-200px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
+.post-hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.post-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.post-breadcrumb a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.15s;}
+.post-breadcrumb a:hover{color:rgba(255,255,255,0.8);}
+.post-breadcrumb span{font-size:12px;color:rgba(255,255,255,0.25);}
+.post-cat-pill{display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 14px;border-radius:4px;letter-spacing:0.15em;margin-bottom:16px;}
+.post-hero h1{font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;color:var(--white);line-height:1.35;letter-spacing:-0.02em;margin-bottom:20px;}
+.post-hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.post-hero-author{display:flex;align-items:center;gap:10px;}
+.post-author-avatar{width:32px;height:32px;border-radius:50%;background:var(--point);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;color:var(--white);}
+.post-author-name{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500;}
+.post-meta-divider{width:1px;height:12px;background:rgba(255,255,255,0.15);}
+.post-meta-info{font-size:12px;color:rgba(255,255,255,0.4);}
+
+/* ── Layout ──────────────────────────────────────── */
+.post-layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 280px;gap:52px;}
+
+/* ── Article ─────────────────────────────────────── */
+.article-wrap{min-width:0;}
+.article-summary{background:var(--point-light);border:1px solid rgba(193,127,62,0.2);border-radius:12px;padding:20px 24px;margin-bottom:40px;}
+.article-summary-label{font-size:10px;font-weight:700;color:var(--point);letter-spacing:0.2em;margin-bottom:8px;}
+.article-summary p{font-size:14px;color:var(--text2);line-height:1.85;font-weight:400;}
+.article-body{color:var(--text1);font-size:16px;line-height:1.95;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);}
+.article-body p:first-child{font-size:17px;color:var(--text1);font-weight:400;}
+.article-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
+.article-tag{font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:20px;font-weight:500;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;margin-top:40px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.15s;}
+.back-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+/* ── Sidebar ─────────────────────────────────────── */
+.sidebar{display:flex;flex-direction:column;gap:20px;}
+.widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.wg-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.wg-top h3{font-size:12px;font-weight:700;color:var(--text1);letter-spacing:0.08em;}
+.wg-body{padding:16px 18px;}
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;background:var(--bg);color:var(--text2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-weight:500;}
+.nl-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
+.nl-input{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;margin-bottom:8px;}
+.nl-input:focus{border-color:var(--navy);background:var(--white);}
+.nl-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nl-btn:hover{background:var(--navy2);}
+.rel-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);text-decoration:none;}
+.rel-item:last-child{border-bottom:none;}
+.rel-dot{width:6px;height:6px;border-radius:50%;background:var(--point);flex-shrink:0;margin-top:7px;}
+.rel-title{font-size:12.5px;color:var(--text1);font-weight:500;line-height:1.55;transition:color 0.15s;}
+.rel-title:hover{color:var(--point);}
+.rel-cat{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{background:var(--navy);padding:48px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7;}
+.ft-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.ft-links{display:flex;gap:16px;}
+.ft-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.15s;}
+.ft-links a:hover{color:rgba(255,255,255,0.8);}
+.ft-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ── Skeleton / Error ────────────────────────────── */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.error-box{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:60px 40px;text-align:center;}
+.error-box h2{font-size:20px;color:var(--text1);margin-bottom:12px;}
+.error-box p{font-size:14px;color:var(--text3);margin-bottom:24px;}
+
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .mobile-menu.open{display:flex!important;}
+  .hd{padding:0 16px;}
+  .post-hero{padding:40px 16px 52px;}
+  .post-hero h1{font-size:24px;}
+  .post-layout{grid-template-columns:1fr!important;padding:28px 16px;gap:32px;}
+  .article-body{font-size:15px;}
+  .ft{flex-direction:column;align-items:flex-start;gap:24px;}
+  .ft-right{align-items:flex-start;}
+  .ft-links{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <a href="index.html" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <div class="desktop-nav">
+      <a href="index.html?cat=부업 방법">부업 방법</a>
+      <a href="index.html?cat=책 추천">책 추천</a>
+      <a href="index.html?cat=자기계발">자기계발</a>
+      <a href="index.html?cat=수익 공개">수익 공개</a>
+      <a href="index.html?cat=챌린지">챌린지</a>
+      <div class="nav-divider"></div>
+      <a href="index.html#newsletter" class="btn-sub">구독하기</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">전체 글</a>
+  <a href="index.html">부업 방법</a>
+  <a href="index.html">자기계발</a>
+  <a href="index.html">수익 공개</a>
+  <a href="index.html#newsletter" class="btn-sub">구독하기</a>
+</div>
+
+<!-- 포스트 헤더 (JS로 채워짐) -->
+<div id="postHero" class="post-hero" style="display:none">
+  <div class="post-hero-texture"></div>
+  <div class="post-hero-glow"></div>
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="index.html">홈</a>
+      <span>›</span>
+      <span id="heroCat"></span>
+    </div>
+    <div id="heroCatPill" class="post-cat-pill"></div>
+    <h1 id="heroTitle"></h1>
+    <div class="post-hero-meta">
+      <div class="post-hero-author">
+        <div class="post-author-avatar">박</div>
+        <span class="post-author-name">박대홍</span>
+      </div>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroDate"></span>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroReadTime"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 스켈레톤 로딩 -->
+<div id="loadingSkeleton" style="max-width:1080px;margin:40px auto;padding:0 24px;">
+  <div class="skeleton" style="height:200px;margin-bottom:20px;border-radius:12px;"></div>
+  <div class="skeleton" style="height:24px;width:60%;margin-bottom:12px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;width:80%;"></div>
+</div>
+
+<!-- 포스트 본문 -->
+<div id="postLayout" class="post-layout" style="display:none">
+  <article class="article-wrap">
+    <div class="article-summary" id="articleSummary"></div>
+    <div class="article-body" id="articleBody"></div>
+    <div class="article-tags" id="articleTags"></div>
+    <a href="index.html" class="back-btn">← 목록으로 돌아가기</a>
+  </article>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <div class="wg-top"><h3>ABOUT</h3></div>
+      <div class="wg-body">
+        <p class="about-msg">평범한 직장인이 에드센스, 부업, 자기계발로 경제적 자유를 향해 나아가고 있어요.</p>
+        <div class="chips">
+          <span class="chip">N잡러</span>
+          <span class="chip">에드센스 2년차</span>
+          <span class="chip">부업 월 38만원</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>뉴스레터</h3></div>
+      <div class="wg-body">
+        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 받아보세요.</p>
+        <input class="nl-input" type="email" placeholder="이메일 주소 입력">
+        <button class="nl-btn">무료로 구독하기</button>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>같은 카테고리 글</h3></div>
+      <div class="wg-body" id="relatedPosts">
+        <p style="font-size:13px;color:var(--text3);">불러오는 중...</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- 에러 상태 -->
+<div id="errorBox" style="max-width:760px;margin:60px auto;padding:0 24px;display:none">
+  <div class="error-box">
+    <h2>글을 찾을 수 없습니다</h2>
+    <p>요청한 글이 존재하지 않거나 삭제되었습니다.</p>
+    <a href="index.html" class="back-btn">← 홈으로 돌아가기</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">평범한 직장인의 경제적 자유 프로젝트.<br>SINCE 2022 · koreansalaryman.com</p>
+    </div>
+    <div class="ft-right">
+      <div class="ft-links">
+        <a href="#">개인정보처리방침</a>
+        <a href="#">문의하기</a>
+        <a href="#">애드센스 공개</a>
+      </div>
+      <div class="ft-copy">© 2025 Korean Salaryman. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+}
+
+function readTime(content) {
+  return Math.max(1, Math.ceil(content.length / 500)) + '분';
+}
+
+// 본문 텍스트를 HTML 단락으로 변환
+function textToHtml(text) {
+  return text
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(p => p.length > 0)
+    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
+// URL 파라미터에서 포스트 ID 추출
+const params = new URLSearchParams(window.location.search);
+const postId = params.get('id');
+
+if (!postId) {
+  document.getElementById('loadingSkeleton').style.display = 'none';
+  document.getElementById('errorBox').style.display = 'block';
+} else {
+  // 포스트 JSON 로드
+  fetch(`./posts/${encodeURIComponent(postId)}`)
+    .then(r => {
+      if (!r.ok) throw new Error('포스트 없음');
+      return r.json();
+    })
+    .then(post => {
+      // 메타 태그 업데이트
+      document.title = `${post.title} — 직장인 수익일기`;
+
+      // 히어로 섹션 채우기
+      document.getElementById('heroCat').textContent = post.category;
+      document.getElementById('heroCatPill').textContent = post.category;
+      document.getElementById('heroTitle').textContent = post.title;
+      document.getElementById('heroDate').textContent = formatDate(post.created_at);
+      document.getElementById('heroReadTime').textContent = '읽는 시간 ' + readTime(post.content || '');
+
+      // 요약
+      if (post.summary) {
+        document.getElementById('articleSummary').innerHTML = `
+          <div class="article-summary-label">SUMMARY</div>
+          <p>${post.summary.replace(/\n/g, '<br>')}</p>`;
+      } else {
+        document.getElementById('articleSummary').style.display = 'none';
+      }
+
+      // 본문
+      document.getElementById('articleBody').innerHTML = textToHtml(post.content || '');
+
+      // 태그
+      const tags = post.tags || [];
+      document.getElementById('articleTags').innerHTML = tags
+        .map(t => `<span class="article-tag">${t}</span>`)
+        .join('');
+
+      // 로딩 숨기고 콘텐츠 표시
+      document.getElementById('loadingSkeleton').style.display = 'none';
+      document.getElementById('postHero').style.display = 'block';
+      document.getElementById('postLayout').style.display = 'grid';
+
+      // 관련 글 로드 (같은 카테고리)
+      return fetch('./posts/manifest.json');
+    })
+    .then(r => r.json())
+    .then(manifest => {
+      const currentCat = document.getElementById('heroCat').textContent;
+      const related = manifest
+        .filter(p => p.status === 'published' && p.filename !== postId && p.category === currentCat)
+        .slice(0, 4);
+
+      const relBox = document.getElementById('relatedPosts');
+      if (related.length === 0) {
+        relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
+      } else {
+        relBox.innerHTML = related.map(p => `
+          <a class="rel-item" href="post.html?id=${encodeURIComponent(p.filename)}">
+            <div class="rel-dot"></div>
+            <div>
+              <div class="rel-title">${p.title}</div>
+              <div class="rel-cat">${formatDate(p.created_at)}</div>
+            </div>
+          </a>`).join('');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById('loadingSkeleton').style.display = 'none';
+      document.getElementById('errorBox').style.display = 'block';
+    });
+}
+</script>
+</body>
+</html>
