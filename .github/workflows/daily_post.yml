@@ -29,9 +29,15 @@ jobs:
           echo "BLOG_TITLE=${{ secrets.BLOG_TITLE }}" >> .env
           echo "AUTO_PUBLISH=${{ secrets.AUTO_PUBLISH }}" >> .env
           echo "POSTS_PER_DAY=3" >> .env
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
 
       - name: 글 자동 생성 실행
         run: python automation.py
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
 
       - name: GitHub에 자동 업로드
         run: |
