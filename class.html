@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="직장인 수익일기 강의 및 상품. 블로그 대행 노하우를 직접 배워보세요.">
+<title>강의 — 직장인 수익일기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;--bg:#f8f7f4;--bg2:#f0ede8;
+  --navy:#1a2640;--navy2:#253352;--navy3:#0f1824;
+  --point:#c17f3e;--point2:#d4924e;--point-light:#f5ead8;
+  --green:#2d6a4f;--green-light:#d8f0e5;
+  --text1:#1a1a1a;--text2:#444444;--text3:#888888;
+  --border:#e8e4de;--border2:#d4cfc8;--gold:#c8a96e;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8px;color:var(--text3);letter-spacing:0.25em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.desktop-nav a.active{color:var(--point);font-weight:700;}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-cta{display:inline-flex;align-items:center;gap:6px;background:var(--point);color:var(--white);font-size:12px;font-weight:700;padding:8px 18px;border-radius:6px;text-decoration:none;transition:all 0.15s;}
+.btn-cta:hover{background:var(--point2);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu.open{display:flex!important;}
+.mobile-menu .btn-cta{margin-top:8px;justify-content:center;border-radius:8px;}
+footer{background:var(--navy3);padding:52px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;max-width:220px;}
+.ft-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.15em;margin-bottom:14px;}
+.ft-col a{display:block;font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;margin-bottom:8px;transition:color 0.15s;}
+.ft-col a:hover{color:rgba(255,255,255,0.7);}
+.ft-bottom{max-width:1080px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.2);}
+.page-hero{background:var(--navy3);padding:56px 24px;position:relative;overflow:hidden;}
+.page-hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
+.page-hero-glow{position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
+.page-hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+.page-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(193,127,62,0.15);border:1px solid rgba(193,127,62,0.3);padding:5px 14px;border-radius:100px;margin-bottom:20px;}
+.page-hero-badge span{font-size:10px;color:var(--gold);letter-spacing:0.2em;font-weight:600;}
+.page-hero h1{font-family:'Noto Serif KR',serif;font-size:36px;font-weight:900;color:var(--white);line-height:1.3;letter-spacing:-0.02em;margin-bottom:12px;}
+.page-hero h1 em{color:var(--point);font-style:normal;}
+.page-hero p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.85;max-width:560px;}
+.container{max-width:1080px;margin:0 auto;padding:52px 24px;}
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sec-label-text{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.2em;}
+.sec-label-line{flex:1;height:1px;background:var(--border);}
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .ft{grid-template-columns:1fr!important;gap:28px;}
+  .ft-bottom{flex-direction:column;gap:8px;}
+  .container{padding:32px 16px;}
+  .page-hero{padding:40px 16px;}
+  .page-hero h1{font-size:26px;}
+}
+
+.class-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px;}
+.class-thumb{height:180px;background:linear-gradient(135deg,var(--navy),var(--navy2));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.class-thumb-pattern{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:24px 24px;}
+.class-thumb-glow{position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.25),transparent 65%);}
+.class-thumb-text{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--white);text-align:center;line-height:1.4;position:relative;z-index:1;padding:24px;}
+.class-thumb-text em{color:var(--point);font-style:normal;}
+.class-body{padding:24px 28px;}
+.class-tag{display:inline-block;background:var(--point-light);color:var(--point);font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:0.1em;margin-bottom:12px;}
+.class-body h2{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.4;}
+.class-body p{font-size:13px;color:var(--text2);line-height:1.85;margin-bottom:16px;font-weight:300;}
+.class-features{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.class-feature{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);}
+.class-feature::before{content:'✓';color:var(--green);font-weight:700;}
+.class-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border);}
+.class-price{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);}
+.class-price span{font-size:12px;color:var(--text3);font-weight:400;font-family:'Noto Sans KR',sans-serif;margin-left:4px;}
+.btn-class{background:var(--navy);color:var(--white);border:none;padding:12px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;text-decoration:none;display:inline-block;}
+.btn-class:hover{background:var(--navy2);}
+.btn-class.disabled{background:var(--border2);color:var(--text3);cursor:not-allowed;}
+.coming-soon{background:var(--bg2);border:2px dashed var(--border2);border-radius:16px;padding:48px 24px;text-align:center;margin-bottom:20px;}
+.coming-soon h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--text2);margin-bottom:8px;}
+.coming-soon p{font-size:13px;color:var(--text3);line-height:1.7;}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <a href="index.html" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <nav class="desktop-nav">
+      <a href="index.html">부업 방법</a>
+      <a href="challenge.html">챌린지</a>
+      <a href="income.html">수익 공개</a>
+      <a href="about.html">소개</a>
+      <a href="class.html" class="active">강의</a>
+      <div class="nav-divider"></div>
+      <a href="#newsletter" class="btn-cta">무료 구독</a>
+    </nav>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">부업 방법</a>
+  <a href="challenge.html">챌린지</a>
+  <a href="income.html">수익 공개</a>
+  <a href="about.html">소개</a>
+  <a href="class.html">강의</a>
+  <a href="#newsletter" class="btn-cta">무료 구독</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-texture"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-badge"><span>CLASS & PRODUCT</span></div>
+    <h1>직접 해보고<br><em>검증된 것만 알려드립니다</em></h1>
+    <p>화려한 이론이 아닙니다. 직장을 다니면서 직접 월 500만원을 만든<br>현실적인 방법을 그대로 전달합니다.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div style="max-width:720px;">
+
+    <div class="sec-label"><span class="sec-label-text">OPEN CLASS</span><div class="sec-label-line"></div></div>
+
+    <!-- 강의 카드 -->
+    <div class="class-card">
+      <div class="class-thumb">
+        <div class="class-thumb-pattern"></div>
+        <div class="class-thumb-glow"></div>
+        <div class="class-thumb-text">퇴근 후 1시간,<br><em>블로그 대행으로<br>월 100만원 만들기</em></div>
+      </div>
+      <div class="class-body">
+        <span class="class-tag">BESTSELLER</span>
+        <h2>블로그 대행 A to Z — 직장인 실전 수익화</h2>
+        <p>블로그 대행이 무엇인지 모르는 완전 초보부터, 첫 고객 계약, 시스템화까지. 제가 5년간 직접 운영하며 만든 구조를 그대로 전달합니다.</p>
+        <div class="class-features">
+          <div class="class-feature">고객 찾는 법부터 계약까지 단계별 가이드</div>
+          <div class="class-feature">원고 작가 섭외 및 관리 방법</div>
+          <div class="class-feature">상위노출 키워드 전략</div>
+          <div class="class-feature">월 100만원 구조 만드는 법</div>
+          <div class="class-feature">수강 후 1:1 질문 가능</div>
+        </div>
+        <div class="class-footer">
+          <div>
+            <div class="class-price">준비 중 <span>오픈 예정</span></div>
+          </div>
+          <a class="btn-class disabled">오픈 예정</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label" style="margin-top:40px;"><span class="sec-label-text">COMING SOON</span><div class="sec-label-line"></div></div>
+
+    <div class="coming-soon">
+      <h3>더 많은 강의가 준비 중입니다</h3>
+      <p>재테크 기초, 에드센스 수익화, 직장인 투자 입문 등<br>다양한 강의를 준비하고 있습니다.<br>뉴스레터를 구독하시면 오픈 소식을 가장 먼저 받아보실 수 있어요.</p>
+      <a href="#newsletter" style="display:inline-block;margin-top:16px;background:var(--navy);color:var(--white);padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;">오픈 알림 받기 →</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">월급만으론 부족한 직장인에게.<br>부업·재테크·투자·자기계발까지<br>직장인이 진짜 필요한 정보를 나눕니다.</p>
+    </div>
+    <div class="ft-col">
+      <h4>페이지</h4>
+      <a href="index.html">홈</a>
+      <a href="about.html">소개</a>
+      <a href="challenge.html">챌린지</a>
+      <a href="income.html">수익 공개</a>
+      <a href="class.html">강의</a>
+    </div>
+    <div class="ft-col">
+      <h4>카테고리</h4>
+      <a href="index.html">부업 방법</a>
+      <a href="index.html">재테크·투자</a>
+      <a href="index.html">자기계발</a>
+      <a href="index.html">독서·책 추천</a>
+      <a href="admin.html">관리자</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 직장인 수익일기 · 박대홍</span>
+    <span>koreansalaryman.com</span>
+  </div>
+</footer>
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+</script>
+</body>
+</html>

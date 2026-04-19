@@ -60,13 +60,13 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
 .hero-glow{position:absolute;right:-150px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.15),transparent 65%);}
 .hero-glow2{position:absolute;left:-100px;bottom:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(45,106,79,0.08),transparent 65%);}
-.hero-inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(193,127,62,0.15);border:1px solid rgba(193,127,62,0.3);padding:6px 16px;border-radius:100px;margin-bottom:28px;}
 .hero-badge span{font-size:11px;color:var(--gold);letter-spacing:0.2em;font-weight:600;}
 .hero h1{font-family:'Noto Serif KR',serif;font-size:46px;font-weight:900;color:var(--white);line-height:1.2;letter-spacing:-0.03em;margin-bottom:10px;}
 .hero h1 em{color:var(--point);font-style:normal;display:block;}
 .hero-sub{font-size:18px;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:20px;line-height:1.5;}
-.hero-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.9;font-weight:300;margin-bottom:40px;max-width:560px;}
+.hero-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.9;font-weight:300;margin-bottom:40px;max-width:560px;text-align:left;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px;}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--point);color:var(--white);font-size:14px;font-weight:700;padding:14px 28px;border-radius:8px;text-decoration:none;transition:all 0.2s;letter-spacing:0.02em;}
 .btn-primary:hover{background:var(--point2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(193,127,62,0.3);}
@@ -413,13 +413,13 @@ footer{background:var(--navy3);padding:52px 24px;}
       <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
     </a>
     <nav class="desktop-nav">
-      <a href="#" data-cat="부업 방법">부업 방법</a>
-      <a href="#" data-cat="블로그">블로그 대행</a>
-      <a href="#" data-cat="자기계발">자기계발</a>
-      <a href="#" data-cat="수익 공개">수익 공개</a>
-      <a href="#" data-cat="재테크">재테크</a>
-      <a href="#" data-cat="챌린지">챌린지</a>
-      <a href="#" data-cat="책 추천">독서</a>
+      <a href="index.html" data-cat="부업 방법">부업 방법</a>
+      <a href="index.html" data-cat="블로그">블로그 대행</a>
+      <a href="index.html" data-cat="자기계발">자기계발</a>
+      <a href="income.html">수익 공개</a>
+      <a href="index.html" data-cat="재테크">재테크</a>
+      <a href="challenge.html">챌린지</a>
+      <a href="about.html">소개</a>
       <div class="nav-divider"></div>
       <a href="#newsletter" class="btn-cta">무료 구독</a>
     </nav>
@@ -430,12 +430,13 @@ footer{background:var(--navy3);padding:52px 24px;}
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#" data-cat="부업 방법" onclick="filterByNav(this)">부업 방법</a>
-  <a href="#" data-cat="블로그" onclick="filterByNav(this)">블로그 대행</a>
-  <a href="#" data-cat="자기계발" onclick="filterByNav(this)">자기계발</a>
-  <a href="#" data-cat="수익 공개" onclick="filterByNav(this)">수익 공개</a>
-  <a href="#" data-cat="재테크" onclick="filterByNav(this)">재테크</a>
-  <a href="#" data-cat="챌린지" onclick="filterByNav(this)">챌린지</a>
+  <a href="index.html" data-cat="부업 방법" onclick="filterByNav(this)">부업 방법</a>
+  <a href="index.html" data-cat="블로그" onclick="filterByNav(this)">블로그 대행</a>
+  <a href="index.html" data-cat="자기계발" onclick="filterByNav(this)">자기계발</a>
+  <a href="income.html">수익 공개</a>
+  <a href="index.html" data-cat="재테크" onclick="filterByNav(this)">재테크</a>
+  <a href="challenge.html">챌린지</a>
+  <a href="about.html">소개</a>
   <a href="#newsletter" class="btn-cta">무료 구독</a>
 </div>
 
@@ -748,16 +749,19 @@ footer{background:var(--navy3);padding:52px 24px;}
     </div>
     <div class="ft-col">
       <h4>카테고리</h4>
-      <a href="#" data-cat="부업 방법">부업 방법</a>
-      <a href="#" data-cat="블로그">블로그 대행</a>
+      <a href="index.html" data-cat="부업 방법">부업 방법</a>
+      <a href="index.html" data-cat="블로그">블로그 대행</a>
       <a href="#" data-cat="자기계발">자기계발</a>
       <a href="#" data-cat="수익 공개">수익 공개</a>
       <a href="#" data-cat="재테크">재테크</a>
       <a href="#" data-cat="챌린지">챌린지</a>
     </div>
     <div class="ft-col">
-      <h4>바로가기</h4>
-      <a href="#newsletter">뉴스레터 구독</a>
+      <h4>페이지</h4>
+      <a href="about.html">소개</a>
+      <a href="challenge.html">챌린지</a>
+      <a href="income.html">수익 공개</a>
+      <a href="class.html">강의</a>
       <a href="admin.html">관리자</a>
     </div>
   </div>
