@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="평범한 직장인이 부업과 자기계발로 경제적 자유를 향해 나아가는 과정을 솔직하게 기록합니다.">
-<meta name="keywords" content="직장인 부업, 에드센스, 자기계발, 경제적 자유, N잡러, 재테크, 블로그 수익">
-<title>직장인 수익일기 — Korean Salaryman</title>
+<meta name="description" content="호주 힐튼 쉐프 출신 직장인이 블로그 대행으로 월 300만원을 버는 법. 퇴근 후 1시간으로 내 삶을 바꾸는 현실적인 부업 이야기.">
+<meta name="keywords" content="직장인 부업, 블로그 대행, 블로그 수익, 부업 방법, 경제적 자유, 직장인 재테크">
+<title>직장인 수익일기 — 버티는 삶 말고, 내가 설계하는 삶</title>
 <meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI" />
 <meta name="naver-site-verification" content="ad5bce9f4de14cbe7ccf111ca46b1114e52a25ff" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -18,57 +18,72 @@
   --bg2:#f0ede8;
   --navy:#1a2640;
   --navy2:#253352;
+  --navy3:#0f1824;
   --point:#c17f3e;
+  --point2:#d4924e;
   --point-light:#f5ead8;
-  --point2:#2d6a4f;
+  --green:#2d6a4f;
+  --green-light:#d8f0e5;
   --text1:#1a1a1a;
   --text2:#444444;
   --text3:#888888;
   --border:#e8e4de;
   --border2:#d4cfc8;
+  --gold:#c8a96e;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
+/* ── 헤더 ── */
 header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
 .hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
 .logo{display:flex;flex-direction:column;text-decoration:none;}
 .logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
 .logo-kr span{color:var(--point);}
-.logo-en{font-size:8.5px;color:var(--text3);letter-spacing:0.2em;margin-top:1px;}
+.logo-en{font-size:8px;color:var(--text3);letter-spacing:0.25em;margin-top:1px;}
 .desktop-nav{display:flex;align-items:center;gap:2px;}
 .desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
 .desktop-nav a:hover{color:var(--navy);background:var(--bg);}
 .nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
-.btn-sub{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:background 0.15s;}
-.btn-sub:hover{background:var(--navy2);}
+.btn-cta{display:inline-flex;align-items:center;gap:6px;background:var(--point);color:var(--white);font-size:12px;font-weight:700;padding:8px 18px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:all 0.15s;}
+.btn-cta:hover{background:var(--point2);transform:translateY(-1px);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
 .hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
 .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
 .mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
 .mobile-menu a:hover{background:var(--bg);color:var(--navy);}
-.mobile-menu .btn-sub{margin-top:8px;justify-content:center;border-radius:8px;}
+.mobile-menu .btn-cta{margin-top:8px;justify-content:center;border-radius:8px;}
+.mobile-menu.open{display:flex!important;}
 
-.hero{background:var(--navy);padding:72px 24px 80px;position:relative;overflow:hidden;}
-.hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;}
-.hero-glow{position:absolute;right:-200px;top:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
-.hero-glow2{position:absolute;left:-150px;bottom:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(45,106,79,0.1),transparent 65%);}
-.hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;}
-.hero-eyebrow-line{width:28px;height:1px;background:var(--point);}
-.hero-eyebrow span{font-size:11px;color:var(--point);letter-spacing:0.25em;font-weight:600;}
-.hero h1{font-family:'Noto Serif KR',serif;font-size:44px;font-weight:700;color:var(--white);line-height:1.25;letter-spacing:-0.02em;margin-bottom:20px;}
-.hero h1 em{color:var(--point);font-style:normal;}
-.hero-desc{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.85;font-weight:300;margin-bottom:36px;}
-.hero-author{display:flex;align-items:center;gap:14px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1);}
-.author-avatar{width:44px;height:44px;border-radius:50%;background:var(--point);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--white);flex-shrink:0;}
-.author-name{font-size:14px;font-weight:600;color:var(--white);}
-.author-desc{font-size:12px;color:rgba(255,255,255,0.45);margin-top:2px;}
-.hero-stats{display:flex;gap:32px;margin-top:32px;}
-.hero-stat-num{font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;color:var(--white);}
-.hero-stat-num em{font-size:13px;font-weight:400;color:var(--point);font-style:normal;}
-.hero-stat-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;margin-top:2px;}
+/* ── 히어로 ── */
+.hero{background:var(--navy3);padding:80px 24px 88px;position:relative;overflow:hidden;}
+.hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
+.hero-glow{position:absolute;right:-150px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.15),transparent 65%);}
+.hero-glow2{position:absolute;left:-100px;bottom:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(45,106,79,0.08),transparent 65%);}
+.hero-inner{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(193,127,62,0.15);border:1px solid rgba(193,127,62,0.3);padding:6px 16px;border-radius:100px;margin-bottom:28px;}
+.hero-badge span{font-size:11px;color:var(--gold);letter-spacing:0.2em;font-weight:600;}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:46px;font-weight:900;color:var(--white);line-height:1.2;letter-spacing:-0.03em;margin-bottom:10px;}
+.hero h1 em{color:var(--point);font-style:normal;display:block;}
+.hero-sub{font-size:18px;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:20px;line-height:1.5;}
+.hero-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.9;font-weight:300;margin-bottom:40px;max-width:560px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--point);color:var(--white);font-size:14px;font-weight:700;padding:14px 28px;border-radius:8px;text-decoration:none;transition:all 0.2s;letter-spacing:0.02em;}
+.btn-primary:hover{background:var(--point2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(193,127,62,0.3);}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);font-size:14px;font-weight:600;padding:14px 24px;border-radius:8px;text-decoration:none;border:1px solid rgba(255,255,255,0.15);transition:all 0.2s;}
+.btn-secondary:hover{background:rgba(255,255,255,0.12);color:var(--white);}
+.hero-divider{height:1px;background:rgba(255,255,255,0.08);margin-bottom:40px;}
+.hero-profile{display:flex;align-items:center;gap:16px;margin-bottom:40px;}
+.profile-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--point),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);flex-shrink:0;border:2px solid rgba(193,127,62,0.4);}
+.profile-name{font-size:15px;font-weight:700;color:var(--white);}
+.profile-desc{font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;line-height:1.5;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;}
+.stat-item{background:rgba(255,255,255,0.04);padding:20px;text-align:center;}
+.stat-num{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:700;color:var(--white);}
+.stat-num em{font-size:13px;color:var(--point);font-style:normal;font-weight:600;}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;letter-spacing:0.05em;}
 
+/* ── 카테고리 탭 ── */
 .cat-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:90;}
 .cat-inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto;scrollbar-width:none;}
 .cat-inner::-webkit-scrollbar{display:none;}
@@ -76,27 +91,26 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .cat-item:hover{color:var(--navy);}
 .cat-item.active{color:var(--navy);border-bottom-color:var(--point);font-weight:700;}
 
+/* ── 레이아웃 ── */
 .layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 300px;gap:52px;}
 
+/* ── 섹션 레이블 ── */
 .sec-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
 .sec-label-text{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.2em;}
 .sec-label-line{flex:1;height:1px;background:var(--border);}
 
-.featured{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:36px;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;text-decoration:none;display:block;color:inherit;}
-.featured:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07);transform:translateY(-2px);}
-.feat-img{height:200px;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px 28px;}
-.feat-img-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:48px 48px;}
-.feat-img-glow{position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.2),transparent 65%);}
-.feat-tag{position:relative;z-index:1;display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:0.1em;}
-.feat-body{padding:28px 32px;}
-.feat-cat{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:10px;}
-.feat-body h2{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:700;color:var(--text1);line-height:1.5;margin-bottom:12px;}
-.feat-body p{font-size:14px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:22px;}
-.feat-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border);}
-.feat-meta{font-size:12px;color:var(--text3);}
-.read-more{font-size:12px;font-weight:700;color:var(--navy);transition:color 0.15s;}
-.read-more:hover{color:var(--point);}
+/* ── 스토리 배너 ── */
+.story-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);border-radius:16px;padding:32px 36px;margin-bottom:36px;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block;transition:transform 0.2s;}
+.story-banner:hover{transform:translateY(-2px);}
+.story-banner-glow{position:absolute;right:-60px;top:-60px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.2),transparent 65%);}
+.story-tag{display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:0.1em;margin-bottom:16px;position:relative;z-index:1;}
+.story-banner h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.5;margin-bottom:10px;position:relative;z-index:1;}
+.story-banner p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.85;position:relative;z-index:1;margin-bottom:20px;}
+.story-banner-footer{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);}
+.story-meta{font-size:12px;color:rgba(255,255,255,0.4);}
+.story-arrow{font-size:12px;font-weight:700;color:var(--point);}
 
+/* ── 글 카드 ── */
 .post-list{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;}
 .post-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 22px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:all 0.15s;text-decoration:none;color:inherit;}
 .post-card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(0,0,0,0.06);transform:translateY(-1px);}
@@ -109,11 +123,36 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .post-thumb-inner{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:12px 12px;}
 .post-thumb-glow{position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.3),transparent 65%);}
 
-.empty-state{text-align:center;padding:60px 24px;color:var(--text3);}
-.empty-state-icon{font-size:48px;margin-bottom:16px;opacity:0.4;}
-.empty-state h3{font-size:16px;color:var(--text2);margin-bottom:8px;}
-.empty-state p{font-size:14px;}
+/* ── 수익 인증 섹션 ── */
+.income-section{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:36px;}
+.income-head{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:20px 24px;display:flex;align-items:center;justify-content:space-between;}
+.income-head h3{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--white);}
+.income-head span{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.05em;}
+.income-body{padding:20px 24px;}
+.income-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.income-row:last-child{border-bottom:none;}
+.income-left{display:flex;align-items:center;gap:10px;}
+.income-dot{width:8px;height:8px;border-radius:50%;}
+.income-name{font-size:13px;color:var(--text2);font-weight:500;}
+.income-val{font-size:14px;font-weight:700;color:var(--text1);}
+.income-total{background:linear-gradient(135deg,var(--point-light),#fde8c8);border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+.income-total-label{font-size:13px;font-weight:700;color:var(--point);}
+.income-total-val{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);}
+.income-note{font-size:11px;color:var(--text3);margin-top:10px;text-align:center;}
 
+/* ── 후기 섹션 ── */
+.review-section{margin-bottom:36px;}
+.review-grid{display:flex;flex-direction:column;gap:10px;}
+.review-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.review-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--white);flex-shrink:0;}
+.review-name{font-size:13px;font-weight:700;color:var(--text1);}
+.review-type{font-size:11px;color:var(--text3);margin-top:2px;}
+.review-text{font-size:13px;color:var(--text2);line-height:1.8;font-weight:300;}
+.review-text strong{color:var(--point);font-weight:700;}
+.review-stars{color:var(--gold);font-size:12px;margin-left:auto;}
+
+/* ── 챌린지 섹션 ── */
 .ch-wrap{display:flex;flex-direction:column;gap:12px;}
 .ch-card{border-radius:14px;padding:22px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.15s;}
 .ch-card:hover{transform:translateY(-2px);}
@@ -121,7 +160,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .ch-done{background:var(--bg2);border:1px solid var(--border);}
 .ch-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:0.08em;margin-bottom:12px;}
 .ch-active .ch-badge{background:var(--point);color:var(--white);}
-.ch-done .ch-badge{background:var(--point2);color:var(--white);}
+.ch-done .ch-badge{background:var(--green);color:var(--white);}
 .ch-card h3{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700;line-height:1.5;margin-bottom:8px;}
 .ch-active h3{color:var(--white);}
 .ch-done h3{color:var(--text1);}
@@ -137,8 +176,15 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .ch-done .ch-bar{background:var(--border);}
 .ch-fill{height:100%;border-radius:2px;}
 .ch-active .ch-fill{background:var(--point);}
-.ch-done .ch-fill{background:var(--point2);}
+.ch-done .ch-fill{background:var(--green);}
 
+/* ── 빈 상태 ── */
+.empty-state{text-align:center;padding:60px 24px;color:var(--text3);}
+.empty-state-icon{font-size:48px;margin-bottom:16px;opacity:0.4;}
+.empty-state h3{font-size:16px;color:var(--text2);margin-bottom:8px;}
+.empty-state p{font-size:14px;}
+
+/* ── 사이드바 ── */
 .sidebar{display:flex;flex-direction:column;gap:20px;}
 .widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
 .wg-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
@@ -148,66 +194,213 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
 .chips{display:flex;flex-wrap:wrap;gap:6px;}
 .chip{font-size:11px;background:var(--bg);color:var(--text2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-weight:500;}
-.inc-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
-.inc-row:last-child{border-bottom:none;}
-.inc-left{display:flex;align-items:center;gap:8px;}
-.inc-dot{width:6px;height:6px;border-radius:50%;}
-.inc-name{font-size:13px;color:var(--text2);}
-.inc-val{font-size:13px;font-weight:700;color:var(--text1);}
-.inc-total{background:var(--bg);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
-.inc-total-label{font-size:12px;font-weight:600;color:var(--point);}
-.inc-total-val{font-size:15px;font-weight:700;color:var(--navy);}
+
+/* ── 뉴스레터 ── */
 .nl-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
 .nl-input{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;margin-bottom:8px;}
 .nl-input:focus{border-color:var(--navy);background:var(--white);}
 .nl-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
 .nl-btn:hover{background:var(--navy2);}
+
+/* ── 인기 글 ── */
 .pop-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);}
 .pop-item:last-child{border-bottom:none;}
 .pop-num{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--border2);min-width:22px;line-height:1;}
 .pop-title{font-size:12.5px;color:var(--text1);font-weight:500;line-height:1.55;cursor:pointer;transition:color 0.15s;}
 .pop-title:hover{color:var(--point);}
 .pop-views{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ── 로드맵 위젯 ── */
+.roadmap-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.roadmap-item:last-child{border-bottom:none;}
+.roadmap-step{width:24px;height:24px;border-radius:50%;background:var(--point);color:var(--white);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.roadmap-step.done{background:var(--green);}
+.roadmap-title{font-size:12px;font-weight:600;color:var(--text1);margin-bottom:3px;}
+.roadmap-desc{font-size:11px;color:var(--text3);line-height:1.5;}
+
+/* ── 태그 ── */
 .tags{display:flex;flex-wrap:wrap;gap:6px;}
 .tag{font-size:11px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 11px;border-radius:20px;cursor:pointer;font-weight:500;transition:all 0.15s;}
 .tag:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
 
-footer{background:var(--navy);padding:48px 24px;}
-.ft{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
-.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
-.ft-logo span{color:var(--point);}
-.ft-tagline{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7;}
-.ft-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
-.ft-links{display:flex;gap:16px;}
-.ft-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.15s;}
-.ft-links a:hover{color:rgba(255,255,255,0.8);}
-.ft-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+/* ── 스켈레톤 ── */
 
+
+.info-row-card{
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:20px 16px;
+  cursor:pointer;
+  transition:background 0.15s;
+  position:relative;
+  background:var(--white);
+}
+.info-row-card:hover{background:var(--bg);}
+.info-row-bar{
+  width:3px;
+  height:36px;
+  border-radius:2px;
+  flex-shrink:0;
+  margin-right:14px;
+}
+.info-row-body{flex:1;min-width:0;}
+.info-row-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.info-row-desc{
+  font-size:10px;
+  color:var(--text3);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.info-row-arrow{
+  font-size:13px;
+  color:var(--border2);
+  flex-shrink:0;
+  margin-left:8px;
+  transition:color 0.15s;
+}
+.info-row-card:hover .info-row-arrow{color:var(--point);}
+@media(max-width:768px){
+  .info-row-card{border-left:none!important;border-top:1px solid var(--border);}
+  section > div > div[style*="repeat(5"]{grid-template-columns:1fr!important;}
+}
+.info-card{
+  text-align:center;
+  padding:24px 12px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  cursor:pointer;
+  transition:all 0.2s;
+  background:var(--white);
+}
+.info-card:hover{
+  border-color:var(--point);
+  background:var(--point-light);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(193,127,62,0.12);
+}
+.info-icon-wrap{
+  width:48px;
+  height:48px;
+  margin:0 auto 14px;
+  background:var(--navy);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#c17f3e;
+  transition:all 0.2s;
+}
+.info-card:hover .info-icon-wrap{
+  background:var(--navy2);
+}
+.info-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:6px;
+  letter-spacing:-0.01em;
+}
+.info-desc{
+  font-size:11px;
+  color:var(--text3);
+  line-height:1.65;
+}
+@media(max-width:768px){
+  
+.info-row-card{
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:20px 16px;
+  cursor:pointer;
+  transition:background 0.15s;
+  position:relative;
+  background:var(--white);
+}
+.info-row-card:hover{background:var(--bg);}
+.info-row-bar{
+  width:3px;
+  height:36px;
+  border-radius:2px;
+  flex-shrink:0;
+  margin-right:14px;
+}
+.info-row-body{flex:1;min-width:0;}
+.info-row-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.info-row-desc{
+  font-size:10px;
+  color:var(--text3);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.info-row-arrow{
+  font-size:13px;
+  color:var(--border2);
+  flex-shrink:0;
+  margin-left:8px;
+  transition:color 0.15s;
+}
+.info-row-card:hover .info-row-arrow{color:var(--point);}
+@media(max-width:768px){
+  .info-row-card{border-left:none!important;border-top:1px solid var(--border);}
+  section > div > div[style*="repeat(5"]{grid-template-columns:1fr!important;}
+}
+.info-card{padding:18px 8px;}
+  section > div > div[style*="repeat(5"]{grid-template-columns:repeat(3,1fr)!important;}
+}
 .skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:6px;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skel-feat{height:320px;border-radius:16px;margin-bottom:36px;}
+.skel-feat{height:220px;border-radius:16px;margin-bottom:36px;}
 .skel-card{height:90px;border-radius:12px;margin-bottom:10px;}
 
+/* ── 푸터 ── */
+footer{background:var(--navy3);padding:52px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;max-width:220px;}
+.ft-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.15em;margin-bottom:14px;}
+.ft-col a{display:block;font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;margin-bottom:8px;transition:color 0.15s;}
+.ft-col a:hover{color:rgba(255,255,255,0.7);}
+.ft-bottom{max-width:1080px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,0.2);}
+
+/* ── 반응형 ── */
 @media(max-width:768px){
+  section > div > div[style*="grid-template-columns:repeat(5"]{grid-template-columns:repeat(2,1fr)!important;}
+  section > div > div[style*="grid-template-columns:repeat(5"] > div:last-child{grid-column:1/-1;}
   .desktop-nav{display:none!important;}
   .hamburger{display:flex!important;}
-  .mobile-menu.open{display:flex!important;}
   .hd{padding:0 16px;}
-  .hero{padding:48px 16px 60px;}
-  .hero h1{font-size:30px;}
-  .hero-desc{font-size:14px;}
-  .hero-stats{gap:20px;}
-  .hero-stat-num{font-size:22px;}
+  .hero{padding:52px 16px 64px;}
+  .hero h1{font-size:32px;}
+  .hero-sub{font-size:16px;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-secondary{justify-content:center;}
   .cat-inner{padding:0 12px;}
   .cat-item{padding:12px 14px;font-size:12px;}
   .layout{grid-template-columns:1fr!important;padding:28px 16px;gap:32px;}
-  .feat-body{padding:20px 20px;}
-  .feat-body h2{font-size:18px;}
-  .post-card{padding:16px;}
-  .post-thumb{width:60px;height:60px;}
-  .ft{flex-direction:column;align-items:flex-start;gap:24px;}
-  .ft-right{align-items:flex-start;}
-  .ft-links{flex-wrap:wrap;}
+  .ft{grid-template-columns:1fr!important;gap:32px;}
+  .ft-bottom{flex-direction:column;gap:8px;text-align:center;}
 }
 </style>
 </head>
@@ -215,19 +408,21 @@ footer{background:var(--navy);padding:48px 24px;}
 
 <header>
   <div class="hd">
-    <a href="index.html" class="logo">
+    <a href="/" class="logo">
       <div class="logo-kr">직장인 <span>수익일기</span></div>
       <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
     </a>
-    <div class="desktop-nav">
+    <nav class="desktop-nav">
       <a href="#" data-cat="부업 방법">부업 방법</a>
-      <a href="#" data-cat="책 추천">책 추천</a>
+      <a href="#" data-cat="블로그">블로그 대행</a>
       <a href="#" data-cat="자기계발">자기계발</a>
       <a href="#" data-cat="수익 공개">수익 공개</a>
+      <a href="#" data-cat="재테크">재테크</a>
       <a href="#" data-cat="챌린지">챌린지</a>
+      <a href="#" data-cat="책 추천">독서</a>
       <div class="nav-divider"></div>
-      <a href="#newsletter" class="btn-sub">구독하기</a>
-    </div>
+      <a href="#newsletter" class="btn-cta">무료 구독</a>
+    </nav>
     <button class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -236,64 +431,137 @@ footer{background:var(--navy);padding:48px 24px;}
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#" data-cat="부업 방법" onclick="filterByNav(this)">부업 방법</a>
-  <a href="#" data-cat="책 추천" onclick="filterByNav(this)">책 추천</a>
+  <a href="#" data-cat="블로그" onclick="filterByNav(this)">블로그 대행</a>
   <a href="#" data-cat="자기계발" onclick="filterByNav(this)">자기계발</a>
   <a href="#" data-cat="수익 공개" onclick="filterByNav(this)">수익 공개</a>
+  <a href="#" data-cat="재테크" onclick="filterByNav(this)">재테크</a>
   <a href="#" data-cat="챌린지" onclick="filterByNav(this)">챌린지</a>
-  <a href="#newsletter" class="btn-sub">구독하기</a>
+  <a href="#newsletter" class="btn-cta">무료 구독</a>
 </div>
 
+<!-- 히어로 -->
 <section class="hero">
   <div class="hero-texture"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      <span>SINCE 2022 · 직장인의 현실적인 부업 이야기</span>
+    <div class="hero-badge">
+      <span>해외 호텔 경영 · 조리 전공 · 블로그 대행 · 직장인 성장기록</span>
     </div>
-    <h1>퇴근 후에도<br><em>돈이 들어오는 삶</em>을<br>만들어가고 있습니다</h1>
-    <p class="hero-desc">평범한 직장인이 에드센스, 부업, 자기계발로 경제적 자유를 향해 나아가는 과정을 솔직하게 기록합니다. 화려한 성공담이 아닌, 진짜 현실을 나눕니다.</p>
-    <div class="hero-author">
-      <div class="author-avatar">박</div>
+    <h1><span style="font-size:0.62em;font-weight:600;color:rgba(255,255,255,0.75);letter-spacing:0.01em;display:block;margin-bottom:6px;">월급만으론 부족한 직장인에게,</span><em>퇴근 후 1시간으로<br>내 삶을 바꾸는 법</em></h1>
+    <p class="hero-sub">퇴근 후 1시간으로 월 500만원을 만든 직장인의 진짜 이야기</p>
+    <p class="hero-desc">
+      호주에서 영주권까지 포기하고 돌아와,<br>
+      2년간 월급을 전부 날리며 실패한 남자.<br>
+      블로그 대행, 각종 다양한 부업 시도.<br>
+      화려한 성공담이 아닌, 진짜 현실을 나눕니다.
+    </p>
+    <div class="hero-btns">
+      <a href="#posts" class="btn-primary">글 읽어보기 →</a>
+      <a href="#story" class="btn-secondary">내 이야기 보기</a>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-profile">
+      <div class="profile-avatar">박</div>
       <div>
-        <div class="author-name">박대홍 · 직장인 N잡러</div>
-        <div class="author-desc">에드센스 2년차 · 부업 월 38만원 달성</div>
+        <div class="profile-name">박대홍 · 블로그 마케팅 대행사 대표</div>
+        <div class="profile-desc">전 호주 호텔경영·조리 전공 · 직장인 6년차 · 블로그 대행 5년차<br>수강생 다수 월 100만원+ 달성 · 현재 월 매출 500만원+</div>
       </div>
     </div>
     <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num" id="statPosts">—<em>편</em></div>
-        <div class="hero-stat-label">발행 글</div>
+      <div class="stat-item">
+        <div class="stat-num" id="statPosts">—<em>편</em></div>
+        <div class="stat-label">발행 글</div>
       </div>
-      <div>
-        <div class="hero-stat-num">4.1<em>만</em></div>
-        <div class="hero-stat-label">월 방문자</div>
+      <div class="stat-item">
+        <div class="stat-num">500<em>만원+</em></div>
+        <div class="stat-label">월 부업 수익</div>
       </div>
-      <div>
-        <div class="hero-stat-num">38<em>만원</em></div>
-        <div class="hero-stat-label">이달 수익</div>
+      <div class="stat-item">
+        <div class="stat-num">150<em>만원+</em></div>
+        <div class="stat-label">강의 월 수익</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5<em>년차</em></div>
+        <div class="stat-label">블로그 대행 운영</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 카테고리 탭 -->
 <div class="cat-wrap">
   <div class="cat-inner">
     <div class="cat-item active" data-cat="전체">전체</div>
     <div class="cat-item" data-cat="부업 방법">부업 방법</div>
-    <div class="cat-item" data-cat="책 추천">책 추천</div>
-    <div class="cat-item" data-cat="블로그">블로그</div>
+    <div class="cat-item" data-cat="블로그">블로그 대행</div>
     <div class="cat-item" data-cat="자기계발">자기계발</div>
-    <div class="cat-item" data-cat="수익 공개">수익 공개</div>
     <div class="cat-item" data-cat="재테크">재테크</div>
+    <div class="cat-item" data-cat="책 추천">책 추천</div>
+    <div class="cat-item" data-cat="수익 공개">수익 공개</div>
     <div class="cat-item" data-cat="챌린지">챌린지 🔥</div>
   </div>
 </div>
 
-<div class="layout">
+
+<!-- 정보 카테고리 소개 섹션 -->
+<section style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 24px;">
+  <div style="max-width:1080px;margin:0 auto;">
+    <p style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.25em;text-align:center;margin-bottom:28px;">WHAT YOU CAN LEARN HERE</p>
+    <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+
+      <div class="info-row-card" onclick="applyFilter('부업 방법');window.scrollTo({top:document.getElementById('posts').offsetTop,behavior:'smooth'})">
+        <div class="info-row-bar" style="background:#c17f3e;"></div>
+        <div class="info-row-body">
+          <div class="info-row-title">부업·수익화</div>
+          <div class="info-row-desc">블로그 대행 · 다양한 부업 방법</div>
+        </div>
+        <div class="info-row-arrow">→</div>
+      </div>
+
+      <div class="info-row-card" style="border-top:1px solid var(--border);" onclick="applyFilter('재테크');window.scrollTo({top:document.getElementById('posts').offsetTop,behavior:'smooth'})">
+        <div class="info-row-bar" style="background:#3b6cf4;"></div>
+        <div class="info-row-body">
+          <div class="info-row-title">재테크·투자</div>
+          <div class="info-row-desc">ETF · 주식 · 월급 관리법</div>
+        </div>
+        <div class="info-row-arrow">→</div>
+      </div>
+
+      <div class="info-row-card" style="border-top:1px solid var(--border);" onclick="applyFilter('자기계발');window.scrollTo({top:document.getElementById('posts').offsetTop,behavior:'smooth'})">
+        <div class="info-row-bar" style="background:#2d6a4f;"></div>
+        <div class="info-row-body">
+          <div class="info-row-title">자기계발</div>
+          <div class="info-row-desc">루틴 · 생산성 · 목표 설정법</div>
+        </div>
+        <div class="info-row-arrow">→</div>
+      </div>
+
+      <div class="info-row-card" style="border-top:1px solid var(--border);" onclick="applyFilter('책 추천');window.scrollTo({top:document.getElementById('posts').offsetTop,behavior:'smooth'})">
+        <div class="info-row-bar" style="background:#b7870b;"></div>
+        <div class="info-row-body">
+          <div class="info-row-title">독서·책 추천</div>
+          <div class="info-row-desc">직장인 필독서 · 돈 버는 독서법</div>
+        </div>
+        <div class="info-row-arrow">→</div>
+      </div>
+
+      <div class="info-row-card" style="border-top:1px solid var(--border);" onclick="applyFilter('수익 공개');window.scrollTo({top:document.getElementById('posts').offsetTop,behavior:'smooth'})">
+        <div class="info-row-bar" style="background:#c0392b;"></div>
+        <div class="info-row-body">
+          <div class="info-row-title">수익 공개</div>
+          <div class="info-row-desc">월수익 인증 · 현실 후기</div>
+        </div>
+        <div class="info-row-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="layout" id="posts">
   <main id="mainContent">
-    <!-- 로딩 스켈레톤 -->
+    <!-- 스켈레톤 -->
     <div id="skeleton">
       <div class="skeleton skel-feat"></div>
       <div class="skeleton skel-card"></div>
@@ -305,73 +573,170 @@ footer{background:var(--navy);padding:48px 24px;}
   </main>
 
   <aside class="sidebar">
+
+    <!-- ABOUT -->
     <div class="widget">
       <div class="wg-top"><h3>ABOUT</h3></div>
       <div class="wg-body">
-        <p class="about-msg">안녕하세요, 평범한 직장인입니다. 퇴근 후 블로그와 부업으로 경제적 자유를 향해 나아가고 있어요. 화려하지 않아도, 꾸준히 하면 된다는 걸 보여드리고 싶습니다.</p>
+        <p class="about-msg">안녕하세요, 박대홍입니다. 호주에서 호텔경영·조리를 전공하고 돌아온 뒤, 수많은 실패 끝에 블로그 대행으로 월 500만원+ 부업 수익을 만들었습니다. 부업·재테크·투자·자기계발까지 직장인이 진짜 필요한 정보를 나눕니다.</p>
         <div class="chips">
-          <span class="chip">N잡러</span>
-          <span class="chip">에드센스 2년차</span>
-          <span class="chip">부업 월 38만원</span>
+          <span class="chip">블로그 대행 대표</span>
+          <span class="chip">직장인 6년차</span>
+          <span class="chip">월 500만원+ 부업</span>
+          <span class="chip">재테크·투자</span>
+          <span class="chip">자기계발</span>
         </div>
       </div>
     </div>
 
+    <!-- 이달의 수익 -->
+    <div class="income-section">
+      <div class="income-head">
+        <h3>이달의 수익 현황</h3>
+        <span id="incomeMonth">2026년 4월</span>
+      </div>
+      <div class="income-body">
+        <div class="income-row">
+          <div class="income-left">
+            <div class="income-dot" style="background:#3b6cf4"></div>
+            <span class="income-name">블로그 대행</span>
+          </div>
+          <span class="income-val">₩ 3,500,000+</span>
+        </div>
+        <div class="income-row">
+          <div class="income-left">
+            <div class="income-dot" style="background:var(--point)"></div>
+            <span class="income-name">강의 수익</span>
+          </div>
+          <span class="income-val">₩ 1,500,000+</span>
+        </div>
+        <div class="income-row">
+          <div class="income-left">
+            <div class="income-dot" style="background:var(--green)"></div>
+            <span class="income-name">에드센스 (목표 중)</span>
+          </div>
+          <span class="income-val">진행 중</span>
+        </div>
+        <div class="income-total">
+          <span class="income-total-label">부업 합계</span>
+          <span class="income-total-val">₩ 5,000,000+</span>
+        </div>
+        <p class="income-note">* 직장 월급 별도 · 매달 업데이트</p>
+      </div>
+    </div>
+
+    <!-- 부업 로드맵 -->
     <div class="widget">
-      <div class="wg-top"><h3>이달의 수익</h3><span>2025년 1월</span></div>
+      <div class="wg-top"><h3>나의 부업 로드맵</h3></div>
       <div class="wg-body">
-        <div class="inc-row">
-          <div class="inc-left"><div class="inc-dot" style="background:#3b6cf4"></div><span class="inc-name">에드센스</span></div>
-          <span class="inc-val">₩ 218,400</span>
+        <div class="roadmap-item">
+          <div class="roadmap-step done">✓</div>
+          <div>
+            <div class="roadmap-title">블로그 대행 시작</div>
+            <div class="roadmap-desc">첫 고객 계약 · 월 20만원 → 300만원</div>
+          </div>
         </div>
-        <div class="inc-row">
-          <div class="inc-left"><div class="inc-dot" style="background:var(--point)"></div><span class="inc-name">제휴마케팅</span></div>
-          <span class="inc-val">₩ 87,000</span>
+        <div class="roadmap-item">
+          <div class="roadmap-step done">✓</div>
+          <div>
+            <div class="roadmap-title">강의 런칭</div>
+            <div class="roadmap-desc">블로그 대행 노하우 공유 · 월 150만원</div>
+          </div>
         </div>
-        <div class="inc-row">
-          <div class="inc-left"><div class="inc-dot" style="background:var(--point2)"></div><span class="inc-name">기타 부업</span></div>
-          <span class="inc-val">₩ 74,600</span>
+        <div class="roadmap-item">
+          <div class="roadmap-step">3</div>
+          <div>
+            <div class="roadmap-title">에드센스 월 100만원</div>
+            <div class="roadmap-desc">이 블로그로 도전 중 · 함께 지켜봐주세요</div>
+          </div>
         </div>
-        <div class="inc-total">
-          <span class="inc-total-label">이달 합계</span>
-          <span class="inc-total-val">₩ 380,000</span>
+        <div class="roadmap-item">
+          <div class="roadmap-step">4</div>
+          <div>
+            <div class="roadmap-title">경제적 자유</div>
+            <div class="roadmap-desc">월급 없이도 살 수 있는 구조 완성</div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- 수강생 후기 -->
+    <div class="widget">
+      <div class="wg-top"><h3>수강생 및 고객 후기</h3></div>
+      <div class="wg-body" style="padding:12px 18px;">
+        <div class="review-grid">
+          <div class="review-card" style="border:none;padding:12px 0;border-bottom:1px solid var(--border);">
+            <div class="review-top">
+              <div class="review-avatar" style="width:30px;height:30px;font-size:11px;">김</div>
+              <div>
+                <div class="review-name" style="font-size:12px;">김○○님</div>
+                <div class="review-type">블로그 대행 수강생</div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"수강 후 <strong>첫 달에 고객 2명 계약</strong>했어요. 너무 바빠져서 본업에 지장 생길 정도예요 😅"</p>
+          </div>
+          <div class="review-card" style="border:none;padding:12px 0;border-bottom:1px solid var(--border);">
+            <div class="review-top">
+              <div class="review-avatar" style="width:30px;height:30px;font-size:11px;">이</div>
+              <div>
+                <div class="review-name" style="font-size:12px;">이○○님</div>
+                <div class="review-type">블로그 대행 고객사</div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"블로그 보고 <strong>문의가 확실히 늘었어요.</strong> 다른 업체랑 차원이 달라서 올해도 계속 맡길게요."</p>
+          </div>
+          <div class="review-card" style="border:none;padding:12px 0;">
+            <div class="review-top">
+              <div class="review-avatar" style="width:30px;height:30px;font-size:11px;">박</div>
+              <div>
+                <div class="review-name" style="font-size:12px;">박○○님</div>
+                <div class="review-type">강의 수강생</div>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"강의 듣고 <strong>3개월 만에 월 100만원</strong> 달성했습니다. 진짜 될 줄 몰랐어요."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 뉴스레터 -->
     <div class="widget" id="newsletter">
-      <div class="wg-top"><h3>뉴스레터</h3></div>
+      <div class="wg-top"><h3>무료 뉴스레터</h3></div>
       <div class="wg-body">
-        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 이메일로 받아보세요. 무료입니다.</p>
+        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 이메일로 받아보세요. 블로그 대행 시작법 PDF 무료 증정!</p>
         <input class="nl-input" type="email" placeholder="이메일 주소 입력">
-        <button class="nl-btn">무료로 구독하기</button>
+        <button class="nl-btn" onclick="handleSubscribe()">무료로 구독하기 →</button>
       </div>
     </div>
 
-    <div class="widget" id="popularWidget">
-      <div class="wg-top"><h3>최근 발행 글</h3></div>
+    <!-- 인기 글 -->
+    <div class="widget">
+      <div class="wg-top"><h3>인기 글</h3><span>조회순</span></div>
       <div class="wg-body" id="popularList">
         <p style="font-size:13px;color:var(--text3);">글을 불러오는 중...</p>
       </div>
     </div>
 
+    <!-- 태그 -->
     <div class="widget">
       <div class="wg-top"><h3>태그</h3></div>
       <div class="wg-body">
-        <div class="tags" id="tagList">
-          <span class="tag" onclick="filterByTag('에드센스')">에드센스</span>
-          <span class="tag" onclick="filterByTag('직장인부업')">직장인부업</span>
-          <span class="tag" onclick="filterByTag('경제적자유')">경제적자유</span>
-          <span class="tag" onclick="filterByTag('N잡러')">N잡러</span>
-          <span class="tag" onclick="filterByTag('블로그수익')">블로그수익</span>
+        <div class="tags">
+          <span class="tag" onclick="filterByTag('블로그대행')">블로그대행</span>
+          <span class="tag" onclick="filterByTag('부업')">부업</span>
           <span class="tag" onclick="filterByTag('재테크')">재테크</span>
+          <span class="tag" onclick="filterByTag('직장인')">직장인</span>
+          <span class="tag" onclick="filterByTag('에드센스')">에드센스</span>
+          <span class="tag" onclick="filterByTag('수익인증')">수익인증</span>
+          <span class="tag" onclick="filterByTag('경제적자유')">경제적자유</span>
           <span class="tag" onclick="filterByTag('자기계발')">자기계발</span>
-          <span class="tag" onclick="filterByTag('SEO')">SEO</span>
-          <span class="tag" onclick="filterByTag('챌린지')">챌린지</span>
-          <span class="tag" onclick="filterByTag('책추천')">책추천</span>
         </div>
       </div>
     </div>
+
   </aside>
 </div>
 
@@ -379,39 +744,50 @@ footer{background:var(--navy);padding:48px 24px;}
   <div class="ft">
     <div>
       <div class="ft-logo">직장인 <span>수익일기</span></div>
-      <p class="ft-tagline">평범한 직장인의 경제적 자유 프로젝트.<br>SINCE 2022 · koreansalaryman.com</p>
+      <p class="ft-tagline">월급만으론 부족한 직장인에게.<br>부업·재테크·투자·자기계발까지<br>직장인이 진짜 필요한 정보를 나눕니다.</p>
     </div>
-    <div class="ft-right">
-      <div class="ft-links">
-        <a href="#">개인정보처리방침</a>
-        <a href="#">문의하기</a>
-        <a href="#">애드센스 공개</a>
-      </div>
-      <div class="ft-copy">© 2025 Korean Salaryman. All rights reserved.</div>
+    <div class="ft-col">
+      <h4>카테고리</h4>
+      <a href="#" data-cat="부업 방법">부업 방법</a>
+      <a href="#" data-cat="블로그">블로그 대행</a>
+      <a href="#" data-cat="자기계발">자기계발</a>
+      <a href="#" data-cat="수익 공개">수익 공개</a>
+      <a href="#" data-cat="재테크">재테크</a>
+      <a href="#" data-cat="챌린지">챌린지</a>
     </div>
+    <div class="ft-col">
+      <h4>바로가기</h4>
+      <a href="#newsletter">뉴스레터 구독</a>
+      <a href="admin.html">관리자</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 직장인 수익일기 · 박대홍</span>
+    <span>koreansalaryman.com</span>
   </div>
 </footer>
 
 <script>
-// ── 전역 상태 ─────────────────────────────────────────
+// ── 전역 상태 ──
 let allPosts = [];
 let currentCat = '전체';
 
-// ── 유틸 함수 ─────────────────────────────────────────
+// ── 날짜 포맷 ──
 function formatDate(iso) {
-  const d = new Date(iso);
-  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  if (!iso) return '—';
+  return iso.slice(0,10).replace(/-/g,'.');
+}
+function readTime(text) {
+  const words = (text||'').length;
+  return Math.max(1, Math.round(words / 500)) + '분 읽기';
 }
 
-function readTime(content) {
-  return Math.max(1, Math.ceil(content.length / 500)) + '분';
-}
-
+// ── 글 이동 ──
 function goToPost(filename) {
-  window.location.href = `post.html?id=${encodeURIComponent(filename)}`;
+  window.location.href = `post.html?id=${filename}`;
 }
 
-// ── 렌더링 ─────────────────────────────────────────────
+// ── 글 렌더링 ──
 function renderPosts(posts) {
   const container = document.getElementById('dynamicContent');
   document.getElementById('skeleton').style.display = 'none';
@@ -420,71 +796,58 @@ function renderPosts(posts) {
   if (posts.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state-icon">📝</div>
-        <h3>아직 발행된 글이 없습니다</h3>
-        <p>곧 새로운 글로 찾아오겠습니다.</p>
+        <div class="empty-state-icon">📭</div>
+        <h3>해당하는 글이 없습니다</h3>
+        <p>다른 카테고리를 선택해보세요.</p>
       </div>`;
     return;
   }
 
   let html = '';
 
-  // ── Featured (첫 번째 글) ──────────────────────────
-  const feat = posts[0];
+  // ── 상단 스토리 배너 (항상 고정) ──
   html += `
-    <div class="sec-label">
-      <span class="sec-label-text">FEATURED</span>
-      <div class="sec-label-line"></div>
-    </div>
-    <a class="featured" href="post.html?id=${encodeURIComponent(feat.filename)}" onclick="">
-      <div class="feat-img">
-        <div class="feat-img-pattern"></div>
-        <div class="feat-img-glow"></div>
-        <span class="feat-tag">최신 글</span>
-      </div>
-      <div class="feat-body">
-        <div class="feat-cat">${feat.category}</div>
-        <h2>${feat.title}</h2>
-        <p>${feat.summary ? feat.summary.split('\n')[0].slice(0, 120) + (feat.summary.length > 120 ? '...' : '') : ''}</p>
-        <div class="feat-footer">
-          <span class="feat-meta">${formatDate(feat.created_at)} · 읽는 시간 ${readTime(feat.summary || '')}</span>
-          <span class="read-more">자세히 읽기 →</span>
-        </div>
+    <a href="#" class="story-banner" id="story">
+      <div class="story-banner-glow"></div>
+      <div class="story-tag">✦ MY STORY</div>
+      <h2>호주 힐튼 쉐프가 영주권 버리고<br>한국에 돌아온 이유</h2>
+      <p>승승장구하던 호주 생활, 영주권 제의까지 받았지만 "재미가 없었다".<br>
+      귀국 후 2년간 월급을 전부 날리며 실패를 반복하다 찾은 단 하나의 답.</p>
+      <div class="story-banner-footer">
+        <span class="story-meta">박대홍의 부업 시작기 · 필독</span>
+        <span class="story-arrow">읽어보기 →</span>
       </div>
     </a>`;
 
-  // ── Recent Posts (나머지 글들) ─────────────────────
-  if (posts.length > 1) {
+  // ── 발행된 글 목록 ──
+  html += `
+    <div class="sec-label">
+      <span class="sec-label-text">LATEST POSTS</span>
+      <div class="sec-label-line"></div>
+    </div>
+    <div class="post-list">`;
+
+  posts.forEach(p => {
     html += `
-      <div class="sec-label">
-        <span class="sec-label-text">RECENT POSTS</span>
-        <div class="sec-label-line"></div>
-      </div>
-      <div class="post-list">`;
-
-    for (let i = 1; i < posts.length; i++) {
-      const p = posts[i];
-      html += `
-        <a class="post-card" href="post.html?id=${encodeURIComponent(p.filename)}">
-          <div class="post-body">
-            <span class="post-cat-badge">${p.category}</span>
-            <h3>${p.title}</h3>
-            <div class="post-meta-row">
-              <span>${formatDate(p.created_at)}</span>
-              <div class="dot"></div>
-              <span>${readTime(p.summary || '')}</span>
-            </div>
+      <a class="post-card" onclick="goToPost('${p.filename}')" href="post.html?id=${p.filename}">
+        <div class="post-body">
+          <span class="post-cat-badge">${p.category||''}</span>
+          <h3>${p.title||''}</h3>
+          <div class="post-meta-row">
+            <span>${formatDate(p.created_at)}</span>
+            <div class="dot"></div>
+            <span>${readTime(p.summary||'')}</span>
           </div>
-          <div class="post-thumb">
-            <div class="post-thumb-inner"></div>
-            <div class="post-thumb-glow"></div>
-          </div>
-        </a>`;
-    }
-    html += `</div>`;
-  }
+        </div>
+        <div class="post-thumb">
+          <div class="post-thumb-inner"></div>
+          <div class="post-thumb-glow"></div>
+        </div>
+      </a>`;
+  });
+  html += `</div>`;
 
-  // ── Challenge 섹션 (고정) ──────────────────────────
+  // ── 챌린지 섹션 ──
   html += `
     <div class="sec-label">
       <span class="sec-label-text">CHALLENGE</span>
@@ -493,19 +856,19 @@ function renderPosts(posts) {
     <div class="ch-wrap">
       <div class="ch-card ch-active">
         <div class="ch-badge">🔥 진행중</div>
-        <h3>30일 블로그 글쓰기 챌린지 — 매일 1편씩 발행하기</h3>
-        <p>하루도 빠짐없이 30일 동안 블로그 글을 발행합니다. 함께 도전하고 싶은 분은 댓글로 참여해주세요.</p>
+        <h3>에드센스 월 100만원 챌린지 — 이 블로그로 직접 증명한다</h3>
+        <p>블로그 대행으로 월 300만원을 만든 내가, 이번엔 에드센스로 월 100만원을 목표로 도전합니다. 과정을 전부 공개합니다.</p>
         <div class="ch-prog">
-          <div class="ch-prog-row"><span>진행률</span><span>Day 18 / 30</span></div>
-          <div class="ch-bar"><div class="ch-fill" style="width:60%"></div></div>
+          <div class="ch-prog-row"><span>진행률</span><span>글 쌓는 중...</span></div>
+          <div class="ch-bar"><div class="ch-fill" style="width:20%"></div></div>
         </div>
       </div>
       <div class="ch-card ch-done">
         <div class="ch-badge">✓ 완료</div>
-        <h3>90일 수익화 챌린지 — 에드센스 월 10만원 달성</h3>
-        <p>3개월 동안 에드센스 월 10만원을 목표로 한 챌린지. 132% 초과 달성했습니다.</p>
+        <h3>블로그 대행 월 300만원 달성 — 퇴근 후 1시간의 기적</h3>
+        <p>처음 시작할 때 목표는 월 20만원이었습니다. 지금은 월 300만원+ 매출을 만드는 구조가 완성되었습니다.</p>
         <div class="ch-prog">
-          <div class="ch-prog-row"><span>달성률</span><span>132% 초과 달성 🎉</span></div>
+          <div class="ch-prog-row"><span>달성률</span><span>1500% 초과 달성 🎉</span></div>
           <div class="ch-bar"><div class="ch-fill" style="width:100%"></div></div>
         </div>
       </div>
@@ -514,15 +877,15 @@ function renderPosts(posts) {
   container.innerHTML = html;
 }
 
-// ── 인기 글 사이드바 업데이트 ──────────────────────────
+// ── 인기 글 렌더링 ──
 function renderPopular(posts) {
   const list = document.getElementById('popularList');
-  const top5 = posts.slice(0, 5);
+  const top5 = posts.slice(0,5);
   if (top5.length === 0) {
     list.innerHTML = '<p style="font-size:13px;color:var(--text3);">발행된 글이 없습니다.</p>';
     return;
   }
-  list.innerHTML = top5.map((p, i) => `
+  list.innerHTML = top5.map((p,i) => `
     <div class="pop-item">
       <div class="pop-num">0${i+1}</div>
       <div>
@@ -532,14 +895,12 @@ function renderPopular(posts) {
     </div>`).join('');
 }
 
-// ── 카테고리 필터 ──────────────────────────────────────
+// ── 카테고리 필터 ──
 function applyFilter(cat) {
   currentCat = cat;
-  // 카테고리 탭 활성화
   document.querySelectorAll('.cat-item').forEach(el => {
     el.classList.toggle('active', el.dataset.cat === cat);
   });
-  // 글 필터링
   const filtered = cat === '전체'
     ? allPosts
     : allPosts.filter(p => p.category === cat);
@@ -553,28 +914,39 @@ function filterByNav(el) {
 }
 
 function filterByTag(tag) {
-  // 태그 필터: 태그에 해당 텍스트 포함한 글만 표시
   const filtered = allPosts.filter(p =>
     p.tags && p.tags.some(t => t.includes(tag) || tag.includes(t.replace(/\s/g,'')))
   );
   renderPosts(filtered.length ? filtered : allPosts);
 }
 
-// ── 메인: manifest.json 로드 ───────────────────────────
+// ── 뉴스레터 구독 ──
+function handleSubscribe() {
+  const input = document.querySelector('.nl-input');
+  if (!input.value || !input.value.includes('@')) {
+    alert('올바른 이메일 주소를 입력해주세요.');
+    return;
+  }
+  alert('구독 신청 감사합니다! 블로그 대행 시작법 PDF를 보내드릴게요 😊');
+  input.value = '';
+}
+
+// ── 이달 수익 날짜 업데이트 ──
+const now = new Date();
+document.getElementById('incomeMonth').textContent =
+  `${now.getFullYear()}년 ${now.getMonth()+1}월`;
+
+// ── manifest.json 로드 ──
 fetch('./posts/manifest.json')
   .then(r => {
     if (!r.ok) throw new Error('manifest.json 로드 실패');
     return r.json();
   })
   .then(posts => {
-    // published 글만, 최신순 정렬
     allPosts = posts
       .filter(p => p.status === 'published')
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
-    // 통계 업데이트
+      .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
     document.getElementById('statPosts').innerHTML = `${allPosts.length}<em>편</em>`;
-
     renderPosts(allPosts);
     renderPopular(allPosts);
   })
@@ -582,31 +954,35 @@ fetch('./posts/manifest.json')
     console.warn('manifest.json 로드 실패:', err);
     document.getElementById('skeleton').style.display = 'none';
     document.getElementById('dynamicContent').style.display = 'block';
-    document.getElementById('dynamicContent').innerHTML = `
-      <div class="empty-state">
-        <div class="empty-state-icon">📂</div>
-        <h3>글을 불러올 수 없습니다</h3>
-        <p>posts/manifest.json 파일을 확인해주세요.</p>
-      </div>`;
+    renderPosts([]);
   });
 
-// ── 카테고리 탭 클릭 이벤트 ───────────────────────────
+// ── 카테고리 탭 클릭 ──
 document.querySelectorAll('.cat-item').forEach(el => {
   el.addEventListener('click', function() {
     applyFilter(this.dataset.cat);
   });
 });
 
-// 네비 카테고리 링크
+// ── 네비 카테고리 링크 ──
 document.querySelectorAll('.desktop-nav a[data-cat]').forEach(el => {
   el.addEventListener('click', function(e) {
     e.preventDefault();
     applyFilter(this.dataset.cat);
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top:0,behavior:'smooth'});
   });
 });
 
-// ── 햄버거 메뉴 ───────────────────────────────────────
+// 푸터 카테고리 링크
+document.querySelectorAll('footer a[data-cat]').forEach(el => {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    applyFilter(this.dataset.cat);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// ── 햄버거 ──
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
