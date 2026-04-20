@@ -334,7 +334,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 <!-- 편집 모달 -->
 <div class="modal-overlay" id="editModal" style="align-items:flex-start;overflow-y:auto;padding:20px 20px 40px;">
-  <div class="modal" style="max-width:860px;width:100%;margin:20px auto;position:relative;">
+  <div class="modal" style="max-width:860px;width:100%;margin:20px auto;position:relative;" onclick="event.stopPropagation();">
     <div class="modal-head" style="position:sticky;top:0;z-index:10;background:var(--white);border-radius:12px 12px 0 0;">
       <span class="modal-title" id="editModalTitle">✏️ 새 글 쓰기</span>
       <div style="display:flex;gap:8px;align-items:center;">
@@ -1004,7 +1004,10 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') ['previewModal','editModal','deleteModal','settingsModal'].forEach(closeModal);
 });
 document.querySelectorAll('.modal-overlay').forEach(el => {
-  el.addEventListener('click', e => { if (e.target === el) closeModal(el.id); });
+  el.addEventListener('click', e => {
+    if (el.id === 'editModal') return; // 편집 모달은 오버레이 클릭으로 닫지 않음
+    if (e.target === el) closeModal(el.id);
+  });
 });
 
 // ── 토스트 & 로딩 ────────────────────────────────────
