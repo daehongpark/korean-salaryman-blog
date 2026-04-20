@@ -488,12 +488,7 @@ footer{background:var(--navy3);padding:52px 24px;}
 <div class="cat-wrap">
   <div class="cat-inner">
     <div class="cat-item active" data-cat="전체">전체</div>
-    <div class="cat-item" data-cat="부업 방법">부업</div>
-    <div class="cat-item" data-cat="자기계발">자기계발</div>
-    <div class="cat-item" data-cat="재테크">재테크</div>
-    <div class="cat-item" data-cat="책 추천">책 추천</div>
-    <div class="cat-item" data-cat="수익 공개">수익 공개</div>
-    <div class="cat-item" data-cat="챌린지">챌린지 🔥</div>
+    <div id="dynamicCatTabs"></div>
   </div>
 </div>
 
@@ -949,6 +944,34 @@ fetch('./posts/manifest.json')
       .filter(p => p.status === 'published')
       .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
     document.getElementById('statPosts').innerHTML = `${allPosts.length}<em>편</em>`;
+
+    // 카테고리 탭 자동 생성 (실제 글 데이터 기반)
+    // 블로그 카테고리 글을 부업 방법으로 통합 처리
+    allPosts.forEach(p => {
+      if (p.category === '블로그') p.category = '부업 방법';
+    });
+
+    const catOrder = ['부업 방법','자기계발','재테크','책 추천','수익 공개','챌린지'];
+    const catLabels = {
+      '부업 방법':'부업', '자기계발':'자기계발',
+      '재테크':'재테크', '책 추천':'책 추천',
+      '수익 공개':'수익 공개', '챌린지':'챌린지 🔥'
+    };
+    const existingCats = [...new Set(allPosts.map(p => p.category).filter(Boolean))];
+    const orderedCats = [
+      ...catOrder.filter(c => existingCats.includes(c)),
+      ...existingCats.filter(c => !catOrder.includes(c))
+    ];
+    const tabContainer = document.getElementById('dynamicCatTabs');
+    if (tabContainer) {
+      tabContainer.innerHTML = orderedCats.map(cat =>
+        `<div class="cat-item" data-cat="${cat}">${catLabels[cat] || cat}</div>`
+      ).join('');
+      tabContainer.querySelectorAll('.cat-item').forEach(el => {
+        el.addEventListener('click', function() { applyFilter(this.dataset.cat); });
+      });
+    }
+
     renderPosts(allPosts);
     renderPopular(allPosts);
   })
