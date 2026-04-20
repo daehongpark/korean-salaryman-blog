@@ -932,7 +932,7 @@ function openEdit(filename) {
   openModal('editModal');
 }
 
-async function savePost() {
+async function savePost(statusOverride) {
   const filename = document.getElementById('editFilename').value;
   const post     = allPosts.find(p => p.filename === filename);
   if (!post) return;
