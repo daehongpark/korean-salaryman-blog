@@ -946,16 +946,12 @@ fetch('./posts/manifest.json')
     document.getElementById('statPosts').innerHTML = `${allPosts.length}<em>편</em>`;
 
     // 카테고리 탭 자동 생성 (실제 글 데이터 기반)
-    // 블로그 카테고리 글을 부업 방법으로 통합 처리
-    allPosts.forEach(p => {
-      if (p.category === '블로그') p.category = '부업 방법';
-    });
-
-    const catOrder = ['부업 방법','자기계발','재테크','책 추천','수익 공개','챌린지'];
+    const catOrder = ['부업 방법','블로그','자기계발','재테크','책 추천','수익 공개','챌린지'];
     const catLabels = {
-      '부업 방법':'부업', '자기계발':'자기계발',
-      '재테크':'재테크', '책 추천':'책 추천',
-      '수익 공개':'수익 공개', '챌린지':'챌린지 🔥'
+      '부업 방법':'부업', '블로그':'블로그',
+      '자기계발':'자기계발', '재테크':'재테크',
+      '책 추천':'책 추천', '수익 공개':'수익 공개',
+      '챌린지':'챌린지 🔥'
     };
     const existingCats = [...new Set(allPosts.map(p => p.category).filter(Boolean))];
     const orderedCats = [
