@@ -453,7 +453,7 @@ footer{background:var(--navy3);padding:52px 24px;}
     </p>
     <div class="hero-btns">
       <a href="about.html" class="btn-primary">내 이야기 보기 →</a>
-      <a href="about.html" class="btn-secondary">내 이야기 보기</a>
+      <a href="#posts" class="btn-secondary">글 읽어보기</a>
     </div>
     <div class="hero-divider"></div>
     <div class="hero-profile">
@@ -488,8 +488,7 @@ footer{background:var(--navy3);padding:52px 24px;}
 <div class="cat-wrap">
   <div class="cat-inner">
     <div class="cat-item active" data-cat="전체">전체</div>
-    <div class="cat-item" data-cat="부업 방법">부업 방법</div>
-    <div class="cat-item" data-cat="블로그">블로그 대행</div>
+    <div class="cat-item" data-cat="부업 방법">부업</div>
     <div class="cat-item" data-cat="자기계발">자기계발</div>
     <div class="cat-item" data-cat="재테크">재테크</div>
     <div class="cat-item" data-cat="책 추천">책 추천</div>
@@ -803,19 +802,24 @@ function renderPosts(posts) {
 
   let html = '';
 
-  // ── 상단 스토리 배너 (항상 고정) ──
-  html += `
-    <a href="#" class="story-banner" id="story">
-      <div class="story-banner-glow"></div>
-      <div class="story-tag">✦ MY STORY</div>
-      <h2>호주 힐튼 쉐프가 영주권 버리고<br>한국에 돌아온 이유</h2>
-      <p>승승장구하던 호주 생활, 영주권 제의까지 받았지만 "재미가 없었다".<br>
-      귀국 후 2년간 월급을 전부 날리며 실패를 반복하다 찾은 단 하나의 답.</p>
-      <div class="story-banner-footer">
-        <span class="story-meta">박대홍의 부업 시작기 · 필독</span>
-        <span class="story-arrow">읽어보기 →</span>
-      </div>
-    </a>`;
+  // ── 상단 대표글 배너 (관리자에서 설정) ──
+  const featuredId = localStorage.getItem('featured_post');
+  const featuredPost = featuredId ? allPosts.find(p => p.filename === featuredId) : null;
+  const bannerPost = featuredPost || allPosts[0]; // 대표글 없으면 최신글
+
+  if (bannerPost) {
+    html += `
+      <a href="post.html?id=${bannerPost.filename}" class="story-banner" id="story">
+        <div class="story-banner-glow"></div>
+        <div class="story-tag">✦ ${bannerPost.category || 'FEATURED'}</div>
+        <h2>${bannerPost.title}</h2>
+        <p>${bannerPost.summary ? bannerPost.summary.slice(0,80)+'...' : '지금 읽어보세요.'}</p>
+        <div class="story-banner-footer">
+          <span class="story-meta">${formatDate(bannerPost.created_at)} · ${readTime(bannerPost.summary||'')}</span>
+          <span class="story-arrow">읽어보기 →</span>
+        </div>
+      </a>`;
+  }
 
   // ── 발행된 글 목록 ──
   html += `
