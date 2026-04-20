@@ -177,6 +177,15 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .toast.info{background:var(--navy);color:var(--white);}
 
 /* ── 로딩 */
+.tb-btn{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:4px 8px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text2);transition:all 0.15s;}
+.tb-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+#richEditor h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:24px 0 12px;line-height:1.4;}
+#richEditor h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:20px 0 10px;line-height:1.4;}
+#richEditor blockquote{border-left:4px solid var(--point);padding:12px 20px;background:var(--point-light);border-radius:0 8px 8px 0;margin:16px 0;font-style:italic;color:var(--text2);}
+#richEditor hr{border:none;border-top:2px solid var(--border);margin:24px 0;}
+#richEditor a{color:var(--point);text-decoration:underline;}
+#richEditor ul,#richEditor ol{padding-left:24px;margin:12px 0;}
+#richEditor li{margin-bottom:6px;}
 .loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,0.7);z-index:400;align-items:center;justify-content:center;}
 .loading-overlay.show{display:flex;}
 .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin 0.7s linear infinite;}
@@ -263,6 +272,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     <main class="admin-main">
       <div class="stat-grid">
         <div class="stat-card"><div class="stat-label">전체 글</div><div class="stat-val" id="statTotal">—</div></div>
+        <div class="stat-card" style="cursor:pointer;" onclick="document.querySelector('[style*=featured]')?.scrollIntoView({behavior:'smooth'})">
+          <div class="stat-label">대표글</div>
+          <div class="stat-val" id="statFeatured" style="font-size:13px;color:var(--point);">확인 중...</div>
+        </div>
         <div class="stat-card"><div class="stat-label">발행됨</div><div class="stat-val green" id="statPub">—</div></div>
         <div class="stat-card"><div class="stat-label">임시저장</div><div class="stat-val yellow" id="statDraft">—</div></div>
         <div class="stat-card"><div class="stat-label">오늘 생성</div><div class="stat-val orange" id="statToday">—</div></div>
@@ -319,51 +332,90 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 </div>
 
 <!-- 편집 모달 -->
-<div class="modal-overlay" id="editModal">
-  <div class="modal">
+<div class="modal-overlay" id="editModal" style="align-items:flex-start;overflow-y:auto;padding:20px;">
+  <div class="modal" style="max-width:860px;width:100%;margin:auto;">
     <div class="modal-head">
-      <span class="modal-title">글 수정</span>
-      <button class="modal-close" onclick="closeModal('editModal')">✕</button>
+      <span class="modal-title" id="editModalTitle">✏️ 새 글 쓰기</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button onclick="savePost('draft')" style="background:var(--bg2);color:var(--text2);border:1px solid var(--border);padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">임시저장</button>
+        <button onclick="savePost('published')" style="background:var(--navy);color:var(--white);border:none;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">발행하기 🚀</button>
+        <button class="modal-close" onclick="closeModal('editModal')">✕</button>
+      </div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="padding:24px;">
       <input type="hidden" id="editFilename">
       <input type="hidden" id="editSha">
-      <div class="form-row">
+
+      <!-- 제목 -->
+      <div class="form-group" style="margin-bottom:16px;">
+        <input class="form-input" type="text" id="editTitle" placeholder="제목을 입력하세요"
+          style="font-size:20px;font-weight:700;padding:14px 16px;border-radius:10px;border:2px solid var(--border);">
+      </div>
+
+      <!-- 카테고리 + 태그 -->
+      <div class="form-row" style="margin-bottom:16px;">
         <div class="form-group">
           <label class="form-label">카테고리</label>
           <select class="form-select" id="editCategory">
-            <option>부업 방법</option><option>블로그</option><option>자기계발</option>
-            <option>재테크</option><option>책 추천</option><option>수익 공개</option><option>챌린지</option>
+            <option>부업 방법</option>
+            <option>블로그</option>
+            <option>자기계발</option>
+            <option>재테크</option>
+            <option>책 추천</option>
+            <option>수익 공개</option>
+            <option>챌린지</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label">상태</label>
-          <select class="form-select" id="editStatus">
-            <option value="draft">임시저장</option>
-            <option value="published">발행</option>
-          </select>
+          <label class="form-label">태그 (쉼표로 구분)</label>
+          <input class="form-input" type="text" id="editTags" placeholder="직장인, 부업, 블로그대행">
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">제목</label>
-        <input class="form-input" type="text" id="editTitle" placeholder="글 제목">
-      </div>
-      <div class="form-group">
-        <label class="form-label">요약 (2문장)</label>
-        <textarea class="form-textarea" id="editSummary" style="min-height:80px;" placeholder="핵심 요약을 입력하세요."></textarea>
-      </div>
-      <div class="form-group">
+
+      <!-- 에디터 툴바 -->
+      <div class="form-group" style="margin-bottom:6px;">
         <label class="form-label">본문</label>
-        <textarea class="form-textarea" id="editContent" placeholder="본문을 입력하세요."></textarea>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;padding:8px 10px;background:var(--bg);border:1.5px solid var(--border);border-bottom:none;border-radius:8px 8px 0 0;">
+          <button class="tb-btn" onclick="editorCmd('bold')" title="굵게"><b>B</b></button>
+          <button class="tb-btn" onclick="editorCmd('italic')" title="기울임"><i>I</i></button>
+          <button class="tb-btn" onclick="editorCmd('underline')" title="밑줄"><u>U</u></button>
+          <div style="width:1px;background:var(--border);margin:2px 4px;"></div>
+          <button class="tb-btn" onclick="insertHeading(2)" title="H2 제목">H2</button>
+          <button class="tb-btn" onclick="insertHeading(3)" title="H3 소제목">H3</button>
+          <div style="width:1px;background:var(--border);margin:2px 4px;"></div>
+          <button class="tb-btn" onclick="editorCmd('insertUnorderedList')" title="목록">• 목록</button>
+          <button class="tb-btn" onclick="editorCmd('insertOrderedList')" title="번호 목록">1. 목록</button>
+          <div style="width:1px;background:var(--border);margin:2px 4px;"></div>
+          <button class="tb-btn" onclick="insertQuote()" title="인용구">❝ 인용</button>
+          <button class="tb-btn" onclick="insertDivider()" title="구분선">— 구분선</button>
+          <div style="width:1px;background:var(--border);margin:2px 4px;"></div>
+          <button class="tb-btn" onclick="insertLink()" title="링크">🔗 링크</button>
+          <div style="flex:1;"></div>
+          <button class="tb-btn" onclick="togglePreviewMode()" id="previewToggleBtn" style="background:var(--navy);color:var(--white);border-color:var(--navy);">👁 미리보기</button>
+        </div>
+        <!-- 에디터 영역 -->
+        <div id="richEditor"
+          contenteditable="true"
+          spellcheck="false"
+          style="min-height:400px;padding:20px;border:1.5px solid var(--border);border-radius:0 0 8px 8px;background:var(--white);font-size:15px;line-height:1.9;color:var(--text1);outline:none;font-family:'Noto Sans KR',sans-serif;">
+        </div>
+        <!-- 미리보기 영역 -->
+        <div id="editorPreview"
+          style="display:none;min-height:400px;padding:20px;border:1.5px solid var(--border);border-radius:0 0 8px 8px;background:var(--white);">
+        </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">태그 (쉼표로 구분)</label>
-        <input class="form-input" type="text" id="editTags" placeholder="직장인, 부업, 경제적자유">
+
+      <!-- 요약 -->
+      <div class="form-group" style="margin-top:16px;">
+        <label class="form-label">요약 <span style="font-weight:400;color:var(--text3);">(검색/카드에 표시 · 2~3문장)</span></label>
+        <textarea class="form-textarea" id="editSummary" style="min-height:72px;" placeholder="이 글을 2~3문장으로 요약해주세요."></textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:6px;">
+          <button onclick="autoSummary()" style="font-size:11px;color:var(--point);background:none;border:none;cursor:pointer;font-family:inherit;">✨ AI 자동 요약</button>
+        </div>
       </div>
-    </div>
-    <div class="modal-foot">
-      <button class="cancel-btn" onclick="closeModal('editModal')">취소</button>
-      <button class="save-btn" onclick="savePost()">저장하기</button>
+
+      <!-- 글자수 -->
+      <div style="font-size:11px;color:var(--text3);text-align:right;margin-top:8px;" id="charCount">0자</div>
     </div>
   </div>
 </div>
@@ -580,6 +632,13 @@ function updateStats() {
   const today = new Date().toISOString().slice(0,10);
   const todayCount = allPosts.filter(p => p.created_at && p.created_at.startsWith(today)).length;
   document.getElementById('statTotal').textContent = total;
+  // 대표글 현황
+  const featuredId = localStorage.getItem('featured_post');
+  const featuredPost = featuredId ? allPosts.find(p => p.filename === featuredId) : null;
+  const featuredEl = document.getElementById('statFeatured');
+  if (featuredEl) {
+    featuredEl.textContent = featuredPost ? '설정됨 ⭐' : '최신글 자동';
+  }
   document.getElementById('statPub').textContent   = pub;
   document.getElementById('statDraft').textContent = draft;
   document.getElementById('statToday').textContent = todayCount;
@@ -644,12 +703,31 @@ function renderTable(posts) {
         }
         <button class="action-btn btn-edit" onclick="openEdit('${p.filename}')">수정</button>
         <button class="action-btn btn-delete" onclick="openDelete('${p.filename}','${escAttr(p.title)}')">삭제</button>
+        <button class="action-btn" 
+          style="background:${localStorage.getItem('featured_post')===p.filename?'#c17f3e':'#f0ede8'};color:${localStorage.getItem('featured_post')===p.filename?'#fff':'#888'};border:1px solid #e0d8d0;"
+          onclick="setFeatured('${p.filename}','${escAttr(p.title)}')"
+          title="메인 대표글로 설정">
+          ${localStorage.getItem('featured_post')===p.filename?'⭐ 대표글':'☆ 대표글'}
+        </button>
       </div>
     </div>`).join('');
 }
 
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escAttr(s) { return String(s||'').replace(/'/g,"\\'"); }
+
+// ── 대표글 설정 ────────────────────────────────────
+function setFeatured(filename, title) {
+  const current = localStorage.getItem('featured_post');
+  if (current === filename) {
+    localStorage.removeItem('featured_post');
+    showToast('대표글 설정이 해제되었습니다. (최신글이 자동 표시됩니다)');
+  } else {
+    localStorage.setItem('featured_post', filename);
+    showToast(`✅ "${title}" 이(가) 메인 대표글로 설정되었습니다!`);
+  }
+  renderTable(allPosts); // 버튼 상태 갱신
+}
 
 // ── 발행 상태 토글 ────────────────────────────────────
 async function toggleStatus(filename, newStatus) {
@@ -701,6 +779,145 @@ function openPreview(filename) {
 }
 
 // ── 편집 ─────────────────────────────────────────────
+// ── 새 글 쓰기 ────────────────────────────────────
+function openNewPost() {
+  document.getElementById('editModalTitle').textContent = '✏️ 새 글 쓰기';
+  document.getElementById('editFilename').value = '';
+  document.getElementById('editSha').value = '';
+  document.getElementById('editTitle').value = '';
+  document.getElementById('editCategory').value = '부업 방법';
+  document.getElementById('editTags').value = '';
+  document.getElementById('editSummary').value = '';
+  document.getElementById('richEditor').innerHTML = '';
+  document.getElementById('charCount').textContent = '0자';
+  document.getElementById('editModal').style.display = 'flex';
+  document.getElementById('editTitle').focus();
+}
+
+// ── 에디터 툴바 명령 ────────────────────────────────────
+function editorCmd(cmd) {
+  document.getElementById('richEditor').focus();
+  document.execCommand(cmd, false, null);
+  updateCharCount();
+}
+
+function insertHeading(level) {
+  const editor = document.getElementById('richEditor');
+  editor.focus();
+  const sel = window.getSelection();
+  const range = sel.getRangeAt(0);
+  const heading = document.createElement('h' + level);
+  const selectedText = range.toString() || (level === 2 ? '제목을 입력하세요' : '소제목을 입력하세요');
+  heading.textContent = selectedText;
+  range.deleteContents();
+  range.insertNode(heading);
+  range.setStartAfter(heading);
+  range.collapse(true);
+  sel.removeAllRanges();
+  sel.addRange(range);
+  const br = document.createElement('p');
+  br.innerHTML = '<br>';
+  heading.insertAdjacentElement('afterend', br);
+  updateCharCount();
+}
+
+function insertQuote() {
+  const editor = document.getElementById('richEditor');
+  editor.focus();
+  const sel = window.getSelection();
+  const range = sel.getRangeAt(0);
+  const quote = document.createElement('blockquote');
+  quote.textContent = range.toString() || '인용구를 입력하세요';
+  range.deleteContents();
+  range.insertNode(quote);
+  const br = document.createElement('p');
+  br.innerHTML = '<br>';
+  quote.insertAdjacentElement('afterend', br);
+  updateCharCount();
+}
+
+function insertDivider() {
+  const editor = document.getElementById('richEditor');
+  editor.focus();
+  const sel = window.getSelection();
+  const range = sel.getRangeAt(0);
+  const hr = document.createElement('hr');
+  range.insertNode(hr);
+  const br = document.createElement('p');
+  br.innerHTML = '<br>';
+  hr.insertAdjacentElement('afterend', br);
+  updateCharCount();
+}
+
+function insertLink() {
+  const url = prompt('링크 URL을 입력하세요:', 'https://');
+  if (!url) return;
+  const text = prompt('링크 텍스트를 입력하세요:', url);
+  if (!text) return;
+  document.getElementById('richEditor').focus();
+  document.execCommand('createLink', false, url);
+  updateCharCount();
+}
+
+function togglePreviewMode() {
+  const editor = document.getElementById('richEditor');
+  const preview = document.getElementById('editorPreview');
+  const btn = document.getElementById('previewToggleBtn');
+  if (editor.style.display === 'none') {
+    editor.style.display = 'block';
+    preview.style.display = 'none';
+    btn.textContent = '👁 미리보기';
+  } else {
+    preview.innerHTML = `<div class="preview-content">${editor.innerHTML}</div>`;
+    editor.style.display = 'none';
+    preview.style.display = 'block';
+    btn.textContent = '✏️ 편집으로';
+  }
+}
+
+function updateCharCount() {
+  const text = document.getElementById('richEditor').innerText || '';
+  document.getElementById('charCount').textContent = text.length.toLocaleString() + '자';
+}
+
+// AI 자동 요약
+async function autoSummary() {
+  const title = document.getElementById('editTitle').value;
+  const bodyText = document.getElementById('richEditor').innerText || '';
+  if (!bodyText.trim()) { alert('본문을 먼저 입력해주세요.'); return; }
+  const btn = event.target;
+  btn.textContent = '✨ 요약 중...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 200,
+        messages: [{
+          role: 'user',
+          content: `다음 블로그 글을 2~3문장으로 자연스럽게 요약해줘. 요약만 출력해.
+
+제목: ${title}
+
+본문:
+${bodyText.slice(0, 1000)}`
+        }]
+      })
+    });
+    const data = await res.json();
+    const summary = data.content?.[0]?.text || '';
+    if (summary) document.getElementById('editSummary').value = summary;
+  } catch(e) {
+    alert('요약 생성에 실패했습니다. 직접 입력해주세요.');
+  } finally {
+    btn.textContent = '✨ AI 자동 요약';
+    btn.disabled = false;
+  }
+}
+
+// ── 기존 글 편집 ────────────────────────────────────
 function openEdit(filename) {
   const post = allPosts.find(p => p.filename === filename);
   if (!post) return;
@@ -726,7 +943,7 @@ async function savePost() {
     category: document.getElementById('editCategory').value,
     status:   document.getElementById('editStatus').value,
     summary:  document.getElementById('editSummary').value,
-    content:  document.getElementById('editContent').value,
+    content:  document.getElementById('richEditor').innerHTML,
     tags
   };
   delete updated.filename; delete updated.sha;
