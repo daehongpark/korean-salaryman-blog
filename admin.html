@@ -924,7 +924,7 @@ function openEdit(filename) {
   document.getElementById('editSha').value      = post.sha || '';
   document.getElementById('editTitle').value    = post.title || '';
   document.getElementById('editCategory').value = post.category || '자기계발';
-  document.getElementById('editStatus').value   = post.status || 'draft';
+  // status는 발행하기/임시저장 버튼으로 처리
   document.getElementById('editSummary').value  = post.summary || '';
   document.getElementById('editContent').value  = post.content || '';
   document.getElementById('editTags').value     = (post.tags||[]).join(', ');
@@ -940,7 +940,7 @@ async function savePost() {
     ...post,
     title:    document.getElementById('editTitle').value,
     category: document.getElementById('editCategory').value,
-    status:   document.getElementById('editStatus').value,
+    status:   statusOverride || 'published',
     summary:  document.getElementById('editSummary').value,
     content:  document.getElementById('richEditor').innerHTML,
     tags
