@@ -926,7 +926,8 @@ function openEdit(filename) {
   document.getElementById('editCategory').value = post.category || '자기계발';
   // status는 발행하기/임시저장 버튼으로 처리
   document.getElementById('editSummary').value  = post.summary || '';
-  document.getElementById('editContent').value  = post.content || '';
+  document.getElementById('richEditor').innerHTML = (post.content || '').replace(/\n/g, '<br>');
+  updateCharCount();
   document.getElementById('editTags').value     = (post.tags||[]).join(', ');
   openModal('editModal');
 }
