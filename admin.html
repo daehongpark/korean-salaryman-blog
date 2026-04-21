@@ -333,16 +333,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 </div>
 
 <!-- 편집 모달 -->
-<div class="modal-overlay" id="editModal" style="align-items:flex-start;overflow-y:auto;padding:20px 20px 40px;">
-  <div class="modal" style="max-width:860px;width:100%;margin:20px auto;position:relative;" onclick="event.stopPropagation();">
-    <div class="modal-head" style="position:sticky;top:0;z-index:10;background:var(--white);border-radius:12px 12px 0 0;">
+<div class="modal-overlay" id="editModal">
+  <div class="modal" style="max-width:860px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;" onclick="event.stopPropagation();">
+    <div class="modal-head" style="flex-shrink:0;">
       <span class="modal-title" id="editModalTitle">✏️ 새 글 쓰기</span>
       <div style="display:flex;gap:8px;align-items:center;">
-        <button onclick="savePost('draft')" style="background:var(--bg2);color:var(--text2);border:1px solid var(--border);padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">임시저장</button>
-        <button onclick="savePost('published')" style="background:var(--navy);color:var(--white);border:none;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">발행하기 🚀</button>
-        <button class="modal-close" onclick="closeModal('editModal')">✕</button>
+        <button id="btnDraft" style="background:var(--bg2);color:var(--text2);border:1px solid var(--border);padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">임시저장</button>
+        <button id="btnPublish" style="background:var(--navy);color:var(--white);border:none;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">발행하기 🚀</button>
+        <button id="btnCloseEdit" class="modal-close">✕</button>
       </div>
     </div>
+    <div class="modal-body" style="flex:1;overflow-y:auto;padding:24px;">
     <div class="modal-body" style="padding:24px;">
       <input type="hidden" id="editFilename">
       <input type="hidden" id="editSha">
