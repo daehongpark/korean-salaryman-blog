@@ -143,7 +143,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .preview-tag{font-size:11px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:20px;}
 
 /* ── 편집 모달 */
-#editModal .modal{max-width:760px;}
+#editModal .modal{max-width:860px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;}
 .form-group{margin-bottom:18px;}
 .form-label{display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:8px;letter-spacing:0.05em;}
 .form-input,.form-select,.form-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);transition:border 0.15s;background:var(--white);}
@@ -334,7 +334,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 <!-- 편집 모달 -->
 <div class="modal-overlay" id="editModal">
-  <div class="modal" style="max-width:860px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;" onclick="event.stopPropagation();">
+  <div class="modal" style="max-width:860px;width:100%;max-height:90vh;flex-direction:column;overflow:hidden;" onclick="event.stopPropagation();">
     <div class="modal-head" style="flex-shrink:0;">
       <span class="modal-title" id="editModalTitle">✏️ 새 글 쓰기</span>
       <div style="display:flex;gap:8px;align-items:center;">
@@ -791,7 +791,7 @@ function openNewPost() {
   document.getElementById('editSummary').value = '';
   document.getElementById('richEditor').innerHTML = '';
   document.getElementById('charCount').textContent = '0자';
-  document.getElementById('editModal').style.display = 'flex';
+  openModal('editModal');
   document.getElementById('editTitle').focus();
 }
 
