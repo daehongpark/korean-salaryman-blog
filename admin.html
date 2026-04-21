@@ -934,27 +934,58 @@ function openEdit(filename) {
 
 async function savePost(statusOverride) {
   const filename = document.getElementById('editFilename').value;
-  const post     = allPosts.find(p => p.filename === filename);
-  if (!post) return;
+  const isNew = !filename; // 새 글이면 filename이 비어있음
+
   const tags = document.getElementById('editTags').value.split(',').map(t=>t.trim()).filter(t=>t);
-  const updated = {
-    ...post,
-    title:    document.getElementById('editTitle').value,
-    category: document.getElementById('editCategory').value,
-    status:   statusOverride || 'published',
-    summary:  document.getElementById('editSummary').value,
-    content:  document.getElementById('richEditor').innerHTML,
-    tags
-  };
-  delete updated.filename; delete updated.sha;
+  const title = document.getElementById('editTitle').value.trim();
+
+  if (!title) {
+    showToast('제목을 입력해주세요.', 'error');
+    return;
+  }
+
   showLoading(true);
   try {
-    // 항상 최신 SHA를 GitHub에서 직접 가져오기
-    const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
-    await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha, `수정: ${updated.title}`);
-    closeModal('editModal');
-    showToast('저장되었습니다!', 'success');
-    await loadPosts();
+    if (isNew) {
+      // ── 새 글 생성 ──────────────────────────────────
+      const now = new Date();
+      const timestamp = now.toISOString().replace(/[-:T]/g,'').slice(0,15);
+      const newFilename = `post_${timestamp}.json`;
+      const newPost = {
+        title,
+        category: document.getElementById('editCategory').value,
+        keyword:  '',
+        summary:  document.getElementById('editSummary').value,
+        content:  document.getElementById('richEditor').innerHTML,
+        tags,
+        created_at: now.toISOString(),
+        status: statusOverride || 'published'
+      };
+      await ghPut(`${POSTS_PATH}/${newFilename}`, JSON.stringify(newPost, null, 2), null, `새 글: ${title}`);
+      closeModal('editModal');
+      showToast('새 글이 저장되었습니다!', 'success');
+      await loadPosts();
+    } else {
+      // ── 기존 글 수정 ─────────────────────────────────
+      const post = allPosts.find(p => p.filename === filename);
+      if (!post) { showToast('글을 찾을 수 없습니다.', 'error'); return; }
+      const updated = {
+        ...post,
+        title,
+        category: document.getElementById('editCategory').value,
+        status:   statusOverride || 'published',
+        summary:  document.getElementById('editSummary').value,
+        content:  document.getElementById('richEditor').innerHTML,
+        tags
+      };
+      delete updated.filename; delete updated.sha;
+      // 항상 최신 SHA를 GitHub에서 직접 가져오기
+      const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
+      await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha, `수정: ${updated.title}`);
+      closeModal('editModal');
+      showToast('저장되었습니다!', 'success');
+      await loadPosts();
+    }
   } catch(e) {
     showToast('저장 실패: ' + e.message, 'error');
   } finally {
