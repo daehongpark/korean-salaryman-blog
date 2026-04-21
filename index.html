@@ -789,7 +789,7 @@ function goToPost(filename) {
 }
 
 // ── 글 렌더링 ──
-function renderPosts(posts) {
+function renderPosts(posts, cat) {
   const container = document.getElementById('dynamicContent');
   document.getElementById('skeleton').style.display = 'none';
   container.style.display = 'block';
@@ -805,33 +805,60 @@ function renderPosts(posts) {
   }
 
   let html = '';
+  const activeCat = cat || currentCat;
 
-  // ── 상단 대표글 배너 (관리자에서 설정) ──
-  const featuredId = localStorage.getItem('featured_post');
-  const featuredPost = featuredId ? allPosts.find(p => p.filename === featuredId) : null;
-  const bannerPost = featuredPost || allPosts[0]; // 대표글 없으면 최신글
+  if (activeCat === '전체' || !activeCat) {
+    // ── 전체 탭: 대표글 배너 + 글 목록 ──
+    const featuredId = localStorage.getItem('featured_post');
+    const featuredPost = featuredId ? allPosts.find(p => p.filename === featuredId) : null;
+    const bannerPost = featuredPost || allPosts[0];
 
-  if (bannerPost) {
+    if (bannerPost) {
+      html += `
+        <a href="post.html?id=${bannerPost.filename}" class="story-banner" id="story">
+          <div class="story-banner-glow"></div>
+          <div class="story-tag">✦ ${bannerPost.category || 'FEATURED'}</div>
+          <h2>${bannerPost.title}</h2>
+          <p>${bannerPost.summary ? bannerPost.summary.slice(0,80)+'...' : '지금 읽어보세요.'}</p>
+          <div class="story-banner-footer">
+            <span class="story-meta">${formatDate(bannerPost.created_at)} · ${readTime(bannerPost.summary||'')}</span>
+            <span class="story-arrow">읽어보기 →</span>
+          </div>
+        </a>`;
+    }
+
     html += `
-      <a href="post.html?id=${bannerPost.filename}" class="story-banner" id="story">
-        <div class="story-banner-glow"></div>
-        <div class="story-tag">✦ ${bannerPost.category || 'FEATURED'}</div>
-        <h2>${bannerPost.title}</h2>
-        <p>${bannerPost.summary ? bannerPost.summary.slice(0,80)+'...' : '지금 읽어보세요.'}</p>
-        <div class="story-banner-footer">
-          <span class="story-meta">${formatDate(bannerPost.created_at)} · ${readTime(bannerPost.summary||'')}</span>
-          <span class="story-arrow">읽어보기 →</span>
+      <div class="sec-label">
+        <span class="sec-label-text">LATEST POSTS</span>
+        <div class="sec-label-line"></div>
+      </div>
+      <div class="post-list">`;
+  } else {
+    // ── 카테고리 탭: 카테고리 헤더 표시 ──
+    const catColors = {
+      '부업 방법': '#c17f3e', '자기계발': '#2d6a4f', '재테크': '#3b6cf4',
+      '책 추천': '#b7870b', '수익 공개': '#c0392b', '챌린지': '#e74c3c', '블로그': '#6b21a8'
+    };
+    const color = catColors[activeCat] || 'var(--navy)';
+    html += `
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:4px;height:36px;border-radius:3px;background:${color};flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:0.15em;margin-bottom:3px;">CATEGORY</div>
+            <div style="font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);">${activeCat}</div>
+          </div>
         </div>
-      </a>`;
-  }
+        <div style="font-size:13px;color:var(--text3);">글 ${posts.length}편</div>
+      </div>`;
 
-  // ── 발행된 글 목록 ──
-  html += `
-    <div class="sec-label">
-      <span class="sec-label-text">LATEST POSTS</span>
-      <div class="sec-label-line"></div>
-    </div>
-    <div class="post-list">`;
+    html += `
+      <div class="sec-label">
+        <span class="sec-label-text">${activeCat.toUpperCase()}</span>
+        <div class="sec-label-line"></div>
+      </div>
+      <div class="post-list">`;
+  }
 
   posts.forEach(p => {
     html += `
@@ -853,32 +880,34 @@ function renderPosts(posts) {
   });
   html += `</div>`;
 
-  // ── 챌린지 섹션 ──
-  html += `
-    <div class="sec-label">
-      <span class="sec-label-text">CHALLENGE</span>
-      <div class="sec-label-line"></div>
-    </div>
-    <div class="ch-wrap">
-      <div class="ch-card ch-active">
-        <div class="ch-badge">🔥 진행중</div>
-        <h3>에드센스 월 100만원 챌린지 — 이 블로그로 직접 증명한다</h3>
-        <p>블로그 대행으로 월 300만원을 만든 내가, 이번엔 에드센스로 월 100만원을 목표로 도전합니다. 과정을 전부 공개합니다.</p>
-        <div class="ch-prog">
-          <div class="ch-prog-row"><span>진행률</span><span>글 쌓는 중...</span></div>
-          <div class="ch-bar"><div class="ch-fill" style="width:20%"></div></div>
-        </div>
+  // ── 챌린지 섹션 (전체 탭에서만) ──
+  if (activeCat === '전체' || !activeCat) {
+    html += `
+      <div class="sec-label">
+        <span class="sec-label-text">CHALLENGE</span>
+        <div class="sec-label-line"></div>
       </div>
-      <div class="ch-card ch-done">
-        <div class="ch-badge">✓ 완료</div>
-        <h3>블로그 대행 월 300만원 달성 — 퇴근 후 1시간의 기적</h3>
-        <p>처음 시작할 때 목표는 월 20만원이었습니다. 지금은 월 300만원+ 매출을 만드는 구조가 완성되었습니다.</p>
-        <div class="ch-prog">
-          <div class="ch-prog-row"><span>달성률</span><span>1500% 초과 달성 🎉</span></div>
-          <div class="ch-bar"><div class="ch-fill" style="width:100%"></div></div>
+      <div class="ch-wrap">
+        <div class="ch-card ch-active">
+          <div class="ch-badge">🔥 진행중</div>
+          <h3>에드센스 월 100만원 챌린지 — 이 블로그로 직접 증명한다</h3>
+          <p>블로그 대행으로 월 300만원을 만든 내가, 이번엔 에드센스로 월 100만원을 목표로 도전합니다. 과정을 전부 공개합니다.</p>
+          <div class="ch-prog">
+            <div class="ch-prog-row"><span>진행률</span><span>글 쌓는 중...</span></div>
+            <div class="ch-bar"><div class="ch-fill" style="width:20%"></div></div>
+          </div>
         </div>
-      </div>
-    </div>`;
+        <div class="ch-card ch-done">
+          <div class="ch-badge">✓ 완료</div>
+          <h3>블로그 대행 월 300만원 달성 — 퇴근 후 1시간의 기적</h3>
+          <p>처음 시작할 때 목표는 월 20만원이었습니다. 지금은 월 300만원+ 매출을 만드는 구조가 완성되었습니다.</p>
+          <div class="ch-prog">
+            <div class="ch-prog-row"><span>달성률</span><span>1500% 초과 달성 🎉</span></div>
+            <div class="ch-bar"><div class="ch-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>`;
+  }
 
   container.innerHTML = html;
 }
@@ -910,7 +939,14 @@ function applyFilter(cat) {
   const filtered = cat === '전체'
     ? allPosts
     : allPosts.filter(p => p.category === cat);
-  renderPosts(filtered);
+  renderPosts(filtered, cat);
+
+  // 카테고리 탭 눌렀을 때 글 목록으로 부드럽게 스크롤
+  const postsEl = document.getElementById('posts');
+  if (postsEl) {
+    const y = postsEl.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
 }
 
 function filterByNav(el) {
@@ -976,7 +1012,7 @@ fetch('./posts/manifest.json')
       });
     }
 
-    renderPosts(allPosts);
+    renderPosts(allPosts, '전체');
     renderPopular(allPosts);
   })
   .catch(err => {
