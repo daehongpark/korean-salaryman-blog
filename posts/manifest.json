@@ -1,5 +1,68 @@
 [
   {
+    "filename": "post_20260424_015539.json",
+    "title": "직장인 자기계발 방법: 퇴근 후 2시간, 성장 위한 3단계 핵심 전략",
+    "category": "자기계발",
+    "keyword": "직장인 자기계발 방법",
+    "summary": "직장인 자기계발은 퇴근 후 2시간을 확보하고 작은 목표로 꾸준히 실천하며, 실패를 성장의 기회로 삼는 3단계 전략이 중요합니다.\n현실적인 시간 관리와 구체적인 목표 설정, 그리고 지속 가능한 습관 시스템 구축을 통해 장기적인 성장을 이룰 수 있습니다.",
+    "tags": [
+      "직장인 자기계발 방법",
+      "자기계발",
+      "직장인",
+      "부업",
+      "경제적자유"
+    ],
+    "created_at": "2026-04-24T01:55:39.081495",
+    "status": "draft",
+    "has_image": true,
+    "thumbnail": "/posts/thumbnails/thumb_20260424_015536.png",
+    "has_faq": true,
+    "seo_score": 97.0,
+    "monthly_search": 10
+  },
+  {
+    "filename": "post_20260424_015434.json",
+    "title": "블로그 대행 시작하는 법, 직장인 월 50만원 버는 3단계 현실 가이드",
+    "category": "블로그",
+    "keyword": "블로그 대행 시작하는 법",
+    "summary": "블로그 대행은 직장인에게 시간 대비 고효율의 부업 기회이며, 저 박대홍의 3년 경험을 바탕으로 월 50만원 이상을 버는 현실적인 3단계 가이드를 제시합니다.\n전문 분야 설정, 포트폴리오 구축, 클라이언트 발굴 및 시간 관리가 성공의 핵심이니, 지금 바로 실행하여 경제적 자유를 향한 첫 걸음을 떼어보세요.",
+    "tags": [
+      "블로그 대행 시작하는 법",
+      "블로그",
+      "직장인",
+      "부업",
+      "경제적자유"
+    ],
+    "created_at": "2026-04-24T01:54:34.990894",
+    "status": "draft",
+    "has_image": true,
+    "thumbnail": "/posts/thumbnails/thumb_20260424_015432.png",
+    "has_faq": true,
+    "seo_score": 80.0,
+    "monthly_search": 10
+  },
+  {
+    "filename": "post_20260424_015341.json",
+    "title": "스마트스토어 부업 현실, 직장인 3년차가 밝히는 월 50만원 수익 비밀",
+    "category": "부업 방법",
+    "keyword": "스마트스토어 부업 현실",
+    "summary": "직장인 스마트스토어 부업은 환상과 달리 초기 시간 투자와 낮은 마진이라는 현실적 장벽이 존재합니다.\n하지만 재고 부담을 줄이고 틈새시장 공략, 자동화 시스템 구축 등 전략적인 접근을 통해 월 50만원 이상의 꾸준한 수익을 충분히 달성할 수 있습니다.",
+    "tags": [
+      "스마트스토어 부업 현실",
+      "부업 방법",
+      "직장인",
+      "부업",
+      "경제적자유"
+    ],
+    "created_at": "2026-04-24T01:53:41.908572",
+    "status": "draft",
+    "has_image": true,
+    "thumbnail": "/posts/thumbnails/thumb_20260424_015339.png",
+    "has_faq": true,
+    "seo_score": 85.0,
+    "monthly_search": 50
+  },
+  {
     "filename": "post_20260424_012754.json",
     "title": "월급 외 월 23만원, 직장인도 가능한 블로그 수익화 솔직 후기",
     "category": "블로그",
@@ -15,7 +78,10 @@
     "created_at": "2026-04-24T01:27:54.207941",
     "status": "draft",
     "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_012752.png"
+    "thumbnail": "/posts/thumbnails/thumb_20260424_012752.png",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260424_011857.json",
@@ -33,7 +99,10 @@
     "created_at": "2026-04-24T01:18:57.909995",
     "status": "draft",
     "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_011855.png"
+    "thumbnail": "/posts/thumbnails/thumb_20260424_011855.png",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260424_010428.json",
@@ -49,9 +118,12 @@
       "경제적자유"
     ],
     "created_at": "2026-04-24T01:04:28.935774",
-    "status": "draft",
+    "status": "published",
     "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_010428.png"
+    "thumbnail": "/posts/thumbnails/thumb_20260424_010428.png",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260424_005936.json",
@@ -69,7 +141,10 @@
     "created_at": "2026-04-24T00:59:36.850802",
     "status": "draft",
     "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_005936.png"
+    "thumbnail": "/posts/thumbnails/thumb_20260424_005936.png",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260424_005847.json",
@@ -87,7 +162,10 @@
     "created_at": "2026-04-24T00:58:47.561462",
     "status": "draft",
     "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_005847.png"
+    "thumbnail": "/posts/thumbnails/thumb_20260424_005847.png",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260423_012032.json",
@@ -106,7 +184,10 @@
     "created_at": "2026-04-23T01:20:32.042288",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260423_011849.json",
@@ -124,7 +205,10 @@
     "created_at": "2026-04-23T01:18:49.388284",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260423_011802.json",
@@ -142,7 +226,10 @@
     "created_at": "2026-04-23T01:18:02.352080",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260422_011427.json",
@@ -160,7 +247,10 @@
     "created_at": "2026-04-22T01:14:27.133353",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260422_011340.json",
@@ -181,7 +271,10 @@
     "created_at": "2026-04-22T01:13:40.707746",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260422_011249.json",
@@ -201,7 +294,10 @@
     "created_at": "2026-04-22T01:12:49.827449",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260421_011809.json",
@@ -221,7 +317,10 @@
     "created_at": "2026-04-21T01:18:09.238351",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260421_011531.json",
@@ -239,7 +338,10 @@
     "created_at": "2026-04-21T01:15:31.236007",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260421_011441.json",
@@ -257,7 +359,10 @@
     "created_at": "2026-04-21T01:14:41.515523",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260421125136..json",
@@ -271,7 +376,10 @@
     "created_at": "2026-04-21T12:51:36.058Z",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260420_011902.json",
@@ -290,7 +398,10 @@
     "created_at": "2026-04-20T01:19:02.502608",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260420_011818.json",
@@ -311,7 +422,10 @@
     "created_at": "2026-04-20T01:18:18.689795",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260420_011645.json",
@@ -329,7 +443,10 @@
     "created_at": "2026-04-20T01:16:45.029596",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260419_012459.json",
@@ -349,7 +466,10 @@
     "created_at": "2026-04-19T01:24:59.864812",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260419_012219.json",
@@ -370,7 +490,10 @@
     "created_at": "2026-04-19T01:22:19.601711",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260418_011142.json",
@@ -391,7 +514,10 @@
     "created_at": "2026-04-18T01:11:42.054031",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260418_011057.json",
@@ -409,7 +535,10 @@
     "created_at": "2026-04-18T01:10:57.733686",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260418_010811.json",
@@ -428,7 +557,10 @@
     "created_at": "2026-04-18T01:08:11.581113",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260417_011729.json",
@@ -448,7 +580,10 @@
     "created_at": "2026-04-17T01:17:29.743588",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260417_011549.json",
@@ -466,7 +601,10 @@
     "created_at": "2026-04-17T01:15:49.679177",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260417_011459.json",
@@ -485,7 +623,10 @@
     "created_at": "2026-04-17T01:14:59.990599",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260416_165852.json",
@@ -503,7 +644,10 @@
     "created_at": "2026-04-16T16:58:52.721185",
     "status": "draft",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260416_165804.json",
@@ -521,7 +665,10 @@
     "created_at": "2026-04-16T16:58:04.978796",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260416_000341.json",
@@ -539,7 +686,10 @@
     "created_at": "2026-04-16T00:03:41.916142",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260415_235856.json",
@@ -561,7 +711,10 @@
     "created_at": "2026-04-15T23:58:56.007490",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260414_222258.json",
@@ -580,7 +733,10 @@
     "created_at": "2026-04-14T22:22:58.893405",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260414_222006.json",
@@ -598,7 +754,10 @@
     "created_at": "2026-04-14T22:20:06.546929",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260414_205158.json",
@@ -614,6 +773,9 @@
     "created_at": "2026-04-14T20:51:58.195900",
     "status": "published",
     "has_image": false,
-    "thumbnail": ""
+    "thumbnail": "",
+    "has_faq": false,
+    "seo_score": null,
+    "monthly_search": null
   }
 ]
