@@ -31,8 +31,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: 한글 폰트 설치 (썸네일용)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+
       - name: 패키지 설치
-        run: pip install requests python-dotenv
+        run: pip install requests python-dotenv Pillow
 
       - name: .env 파일 생성
         run: |
@@ -40,29 +45,42 @@ jobs:
           AUTO_PUBLISH_VAL="${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}"
           POSTS_PER_DAY_VAL="${{ github.event.inputs.posts_per_day || '3' }}"
 
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}"   >> .env
-          echo "BLOG_TITLE=${{ secrets.BLOG_TITLE }}"           >> .env
-          echo "AUTO_PUBLISH=${AUTO_PUBLISH_VAL}"               >> .env
-          echo "POSTS_PER_DAY=${POSTS_PER_DAY_VAL}"            >> .env
+          # 기본 설정
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}"           >> .env
+          echo "BLOG_TITLE=${{ secrets.BLOG_TITLE }}"                   >> .env
+          echo "AUTO_PUBLISH=${AUTO_PUBLISH_VAL}"                       >> .env
+          echo "POSTS_PER_DAY=${POSTS_PER_DAY_VAL}"                     >> .env
           echo "UNSPLASH_ACCESS_KEY=${{ secrets.UNSPLASH_ACCESS_KEY }}" >> .env
+
+          # 네이버 개발자센터 API (데이터랩, 블로그 검색)
+          echo "NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}"         >> .env
+          echo "NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}" >> .env
+
+          # 네이버 검색광고 API (SEO 월 검색량 - 핵심)
+          echo "NAVER_AD_API_KEY=${{ secrets.NAVER_AD_API_KEY }}"       >> .env
+          echo "NAVER_AD_SECRET_KEY=${{ secrets.NAVER_AD_SECRET_KEY }}" >> .env
+          echo "NAVER_CUSTOMER_ID=${{ secrets.NAVER_CUSTOMER_ID }}"    >> .env
 
           echo "설정 확인:"
           echo "  AUTO_PUBLISH  = ${AUTO_PUBLISH_VAL}"
           echo "  POSTS_PER_DAY = ${POSTS_PER_DAY_VAL}"
-        env:
-          NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
-          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          echo "  검색광고 API  = ${{ secrets.NAVER_AD_API_KEY != '' && 'ON' || 'OFF' }}"
 
       - name: 글 자동 생성 실행
         run: python automation.py
         env:
+          # .env 외에 환경변수로도 전달 (이중 안전장치)
           NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          NAVER_AD_API_KEY:    ${{ secrets.NAVER_AD_API_KEY }}
+          NAVER_AD_SECRET_KEY: ${{ secrets.NAVER_AD_SECRET_KEY }}
+          NAVER_CUSTOMER_ID:   ${{ secrets.NAVER_CUSTOMER_ID }}
 
       - name: GitHub에 자동 업로드
         run: |
           git config user.name  "자동 글 생성"
           git config user.email "pride93d@gmail.com"
+          # posts 폴더 전체 (thumbnails 포함) 추가
           git add posts/
           git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d') [AUTO_PUBLISH=${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}]"
           git push
