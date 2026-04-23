@@ -85,11 +85,41 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 
 /* ── 카테고리 탭 ── */
 .cat-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:90;}
-.cat-inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto;scrollbar-width:none;}
+.cat-inner{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;overflow-x:auto;scrollbar-width:none;gap:2px;}
 .cat-inner::-webkit-scrollbar{display:none;}
-.cat-item{padding:14px 18px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s;}
+.cat-item{display:flex;align-items:center;gap:6px;padding:14px 16px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s;flex-shrink:0;}
 .cat-item:hover{color:var(--navy);}
 .cat-item.active{color:var(--navy);border-bottom-color:var(--point);font-weight:700;}
+.cat-item .cat-icon{font-size:14px;}
+.cat-item .cat-count{font-size:10px;background:var(--bg2);color:var(--text3);padding:1px 6px;border-radius:10px;font-weight:600;}
+.cat-item.active .cat-count{background:var(--point-light);color:var(--point);}
+
+/* ── 카테고리 헤더 배너 ── */
+.cat-header{border-radius:16px;padding:28px 32px;margin-bottom:24px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.cat-header-left{display:flex;align-items:center;gap:20px;position:relative;z-index:1;}
+.cat-header-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.cat-header-title{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:700;margin-bottom:6px;}
+.cat-header-desc{font-size:13px;line-height:1.7;max-width:400px;}
+.cat-header-right{position:relative;z-index:1;text-align:right;flex-shrink:0;}
+.cat-header-count{font-family:'Noto Serif KR',serif;font-size:36px;font-weight:900;line-height:1;}
+.cat-header-count-label{font-size:11px;margin-top:4px;opacity:0.6;}
+.cat-header-glow{position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;}
+.cat-header-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.cat-header-tag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;}
+
+/* ── 글 카드 개선 ── */
+.post-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:all 0.15s;text-decoration:none;color:inherit;}
+.post-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(0,0,0,0.07);transform:translateY(-2px);}
+.post-body{flex:1;min-width:0;}
+.post-cat-badge{font-size:10px;font-weight:700;color:var(--point);letter-spacing:0.1em;margin-bottom:6px;display:block;}
+.post-card h3{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--text1);line-height:1.55;margin-bottom:7px;}
+.post-summary-preview{font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.post-meta-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text3);}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--border2);}
+.post-thumb{width:80px;height:80px;border-radius:10px;background:var(--navy);flex-shrink:0;border:1px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.post-thumb-inner{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:12px 12px;}
+.post-thumb-glow{position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.3),transparent 65%);}
+.post-thumb-emoji{position:relative;z-index:1;font-size:24px;}
 
 /* ── 레이아웃 ── */
 .layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 300px;gap:52px;}
@@ -487,7 +517,10 @@ footer{background:var(--navy3);padding:52px 24px;}
 <!-- 카테고리 탭 -->
 <div class="cat-wrap">
   <div class="cat-inner">
-    <div class="cat-item active" data-cat="전체">전체</div>
+    <div class="cat-item active" data-cat="전체">
+      <span class="cat-icon">📋</span>전체
+      <span class="cat-count" id="countAll">0</span>
+    </div>
     <div id="dynamicCatTabs" style="display:contents;"></div>
   </div>
 </div>
@@ -788,27 +821,41 @@ function goToPost(filename) {
   window.location.href = `post.html?id=${filename}`;
 }
 
+// ── 카테고리 메타 데이터 ──
+const CAT_META = {
+  '전체':    { icon:'📋', color:'#c17f3e', bg:'var(--point-light)',   desc:'모든 글을 최신순으로 보여드립니다.' },
+  '부업 방법':{ icon:'💼', color:'#c17f3e', bg:'#fdf3e7',             desc:'직장인이 퇴근 후 실제로 할 수 있는 부업 방법을 소개합니다. 스마트스토어, 블로그 대행, 쿠팡파트너스까지.', tags:['#N잡','#재택부업','#월100만원'] },
+  '블로그':  { icon:'✍️', color:'#6b21a8', bg:'#f3e8ff',             desc:'블로그로 돈 버는 방법, 에드센스 수익화, SEO 최적화까지 실전 노하우를 공유합니다.', tags:['#에드센스','#SEO','#블로그대행'] },
+  '자기계발':{ icon:'📚', color:'#2d6a4f', bg:'var(--green-light)',   desc:'직장을 다니면서 성장하는 법. 아침 루틴, 독서 습관, 시간 관리까지.', tags:['#루틴','#생산성','#독서'] },
+  '재테크':  { icon:'💰', color:'#3b6cf4', bg:'#eef2ff',             desc:'월급을 굴리는 방법. ETF, 주식, 적금, 청약저축까지 직장인 재테크 실전편.', tags:['#ETF','#주식','#월급관리'] },
+  '책 추천': { icon:'📖', color:'#b7870b', bg:'#fefce8',             desc:'삶을 바꿔준 책들을 핵심만 뽑아 소개합니다. 재테크, 자기계발, 부업 관련 필독서.', tags:['#필독서','#서평','#도서추천'] },
+  '수익 공개':{ icon:'📊', color:'#c0392b', bg:'#fde8e6',            desc:'에드센스, 블로그 대행, 강의 수익을 실수치 그대로 공개합니다. 조작 없음.', tags:['#수익인증','#에드센스','#월수익'] },
+  '챌린지':  { icon:'🔥', color:'#e74c3c', bg:'#fff0ee',             desc:'목표를 세우고 전 과정을 공개합니다. 에드센스 월 100만원, 1일 2포스팅 30일.', tags:['#공개챌린지','#도전기','#인증'] },
+};
+
 // ── 글 렌더링 ──
 function renderPosts(posts, cat) {
   const container = document.getElementById('dynamicContent');
   document.getElementById('skeleton').style.display = 'none';
   container.style.display = 'block';
 
+  const activeCat = cat || currentCat;
+  const meta = CAT_META[activeCat] || CAT_META['전체'];
+
   if (posts.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state-icon">📭</div>
-        <h3>해당하는 글이 없습니다</h3>
-        <p>다른 카테고리를 선택해보세요.</p>
+        <div class="empty-state-icon">${meta.icon}</div>
+        <h3>${activeCat} 카테고리에 아직 글이 없습니다</h3>
+        <p>곧 발행될 예정입니다. 다른 카테고리를 먼저 살펴보세요.</p>
       </div>`;
     return;
   }
 
   let html = '';
-  const activeCat = cat || currentCat;
 
   if (activeCat === '전체' || !activeCat) {
-    // ── 전체 탭: 대표글 배너 + 글 목록 ──
+    // ── 전체 탭 ──────────────────────────────────────────
     const featuredId = localStorage.getItem('featured_post');
     const featuredPost = featuredId ? allPosts.find(p => p.filename === featuredId) : null;
     const bannerPost = featuredPost || allPosts[0];
@@ -819,53 +866,63 @@ function renderPosts(posts, cat) {
           <div class="story-banner-glow"></div>
           <div class="story-tag">✦ ${bannerPost.category || 'FEATURED'}</div>
           <h2>${bannerPost.title}</h2>
-          <p>${bannerPost.summary ? bannerPost.summary.slice(0,80)+'...' : '지금 읽어보세요.'}</p>
+          <p>${bannerPost.summary ? bannerPost.summary.slice(0,90)+'...' : '지금 읽어보세요.'}</p>
           <div class="story-banner-footer">
             <span class="story-meta">${formatDate(bannerPost.created_at)} · ${readTime(bannerPost.summary||'')}</span>
             <span class="story-arrow">읽어보기 →</span>
           </div>
         </a>`;
     }
-
     html += `
       <div class="sec-label">
         <span class="sec-label-text">LATEST POSTS</span>
         <div class="sec-label-line"></div>
       </div>
       <div class="post-list">`;
+
   } else {
-    // ── 카테고리 탭: 카테고리 헤더 표시 ──
-    const catColors = {
-      '부업 방법': '#c17f3e', '자기계발': '#2d6a4f', '재테크': '#3b6cf4',
-      '책 추천': '#b7870b', '수익 공개': '#c0392b', '챌린지': '#e74c3c', '블로그': '#6b21a8'
-    };
-    const color = catColors[activeCat] || 'var(--navy)';
-    html += `
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:4px;height:36px;border-radius:3px;background:${color};flex-shrink:0;"></div>
-          <div>
-            <div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:0.15em;margin-bottom:3px;">CATEGORY</div>
-            <div style="font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);">${activeCat}</div>
-          </div>
-        </div>
-        <div style="font-size:13px;color:var(--text3);">글 ${posts.length}편</div>
-      </div>`;
+    // ── 카테고리 탭 — 풍부한 헤더 ───────────────────────
+    const color = meta.color;
+    const bg    = meta.bg;
+    const tags  = (meta.tags || []).map(t =>
+      `<span class="cat-header-tag" style="background:${color}22;color:${color};">${t}</span>`
+    ).join('');
 
     html += `
+      <div class="cat-header" style="background:${bg};border:1px solid ${color}33;">
+        <div class="cat-header-glow" style="background:radial-gradient(circle,${color}22,transparent 70%);"></div>
+        <div class="cat-header-left">
+          <div class="cat-header-icon" style="background:${color}18;">${meta.icon}</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:${color};letter-spacing:0.15em;margin-bottom:4px;">CATEGORY</div>
+            <div class="cat-header-title" style="color:var(--navy);">${activeCat}</div>
+            <div class="cat-header-desc" style="color:var(--text2);">${meta.desc}</div>
+            ${tags ? `<div class="cat-header-tags">${tags}</div>` : ''}
+          </div>
+        </div>
+        <div class="cat-header-right">
+          <div class="cat-header-count" style="color:${color};">${posts.length}</div>
+          <div class="cat-header-count-label" style="color:var(--text3);">편의 글</div>
+        </div>
+      </div>
       <div class="sec-label">
-        <span class="sec-label-text">${activeCat.toUpperCase()}</span>
+        <span class="sec-label-text" style="color:${color};">${activeCat.toUpperCase()}</span>
         <div class="sec-label-line"></div>
       </div>
       <div class="post-list">`;
   }
 
+  // ── 글 카드 (요약 미리보기 포함) ──
+  const catEmojis = {'부업 방법':'💼','블로그':'✍️','자기계발':'📚','재테크':'💰','책 추천':'📖','수익 공개':'📊','챌린지':'🔥'};
   posts.forEach(p => {
+    const emoji = catEmojis[p.category] || '📝';
+    const summary = p.summary ? p.summary.slice(0, 60) + '...' : '';
     html += `
-      <a class="post-card" onclick="goToPost('${p.filename}')" href="post.html?id=${p.filename}">
+      <a class="post-card" href="post.html?id=${p.filename}">
         <div class="post-body">
           <span class="post-cat-badge">${p.category||''}</span>
           <h3>${p.title||''}</h3>
+          ${summary ? `<div class="post-summary-preview">${summary}</div>` : ''}
           <div class="post-meta-row">
             <span>${formatDate(p.created_at)}</span>
             <div class="dot"></div>
@@ -875,6 +932,7 @@ function renderPosts(posts, cat) {
         <div class="post-thumb">
           <div class="post-thumb-inner"></div>
           <div class="post-thumb-glow"></div>
+          <span class="post-thumb-emoji">${emoji}</span>
         </div>
       </a>`;
   });
@@ -1003,14 +1061,25 @@ fetch('./posts/manifest.json')
       ...existingCats.filter(c => !catOrder.includes(c))
     ];
     const tabContainer = document.getElementById('dynamicCatTabs');
+    const catIcons = {
+      '부업 방법':'💼','블로그':'✍️','자기계발':'📚',
+      '재테크':'💰','책 추천':'📖','수익 공개':'📊','챌린지':'🔥'
+    };
     if (tabContainer) {
-      tabContainer.innerHTML = orderedCats.map(cat =>
-        `<div class="cat-item" data-cat="${cat}">${catLabels[cat] || cat}</div>`
-      ).join('');
+      tabContainer.innerHTML = orderedCats.map(cat => {
+        const count = allPosts.filter(p => p.category === cat).length;
+        const icon = catIcons[cat] || '📝';
+        return `<div class="cat-item" data-cat="${cat}">
+          <span class="cat-icon">${icon}</span>${catLabels[cat] || cat}
+          <span class="cat-count">${count}</span>
+        </div>`;
+      }).join('');
       tabContainer.querySelectorAll('.cat-item').forEach(el => {
         el.addEventListener('click', function() { applyFilter(this.dataset.cat); });
       });
     }
+    // 전체 카운트 업데이트
+    document.getElementById('countAll').textContent = allPosts.length;
 
     renderPosts(allPosts, '전체');
     renderPopular(allPosts);
