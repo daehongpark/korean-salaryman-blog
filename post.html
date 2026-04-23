@@ -88,6 +88,71 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .back-btn{display:inline-flex;align-items:center;gap:8px;margin-top:40px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.15s;}
 .back-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
 
+/* ── 조회수 & 공유 바 ── */
+.post-meta-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.post-view-count{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);}
+.post-view-icon{font-size:14px;}
+.share-btns{display:flex;align-items:center;gap:8px;}
+.share-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:0.08em;margin-right:4px;}
+.share-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;text-decoration:none;}
+.share-btn.kakao{background:#FEE500;color:#3C1E1E;}
+.share-btn.kakao:hover{background:#f5dc00;}
+.share-btn.twitter{background:#1DA1F2;color:#fff;}
+.share-btn.twitter:hover{background:#1a91da;}
+.share-btn.copy{background:var(--bg2);color:var(--text2);}
+.share-btn.copy:hover{background:var(--border2);}
+
+/* ── 댓글 섹션 ── */
+.comments-section{margin-top:52px;padding-top:40px;border-top:2px solid var(--border);}
+.comments-title{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px;}
+.comment-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:32px;}
+.comment-form-row{display:flex;gap:12px;margin-bottom:12px;}
+.comment-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;}
+.comment-input:focus{border-color:var(--navy);background:var(--white);}
+.comment-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);min-height:100px;resize:vertical;transition:border 0.15s;margin-bottom:10px;}
+.comment-textarea:focus{border-color:var(--navy);background:var(--white);}
+.comment-submit{background:var(--navy);color:var(--white);border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.comment-submit:hover{background:var(--navy2);}
+.comment-list{display:flex;flex-direction:column;gap:16px;}
+.comment-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.comment-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.comment-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--white);flex-shrink:0;}
+.comment-name{font-size:13px;font-weight:700;color:var(--text1);}
+.comment-date{font-size:11px;color:var(--text3);margin-left:auto;}
+.comment-text{font-size:13px;color:var(--text2);line-height:1.8;}
+.comment-empty{text-align:center;padding:32px;color:var(--text3);font-size:13px;}
+
+/* ── 타이포그래피 개선 ── */
+.article-body{color:var(--text1);font-size:16px;line-height:2.0;letter-spacing:-0.01em;}
+.article-body>p:first-child{font-size:18px;line-height:1.9;color:var(--text1);font-weight:400;margin-bottom:2em;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);word-break:keep-all;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:44px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:32px 0 14px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:16px 22px;border-radius:0 10px 10px 0;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.85;font-style:italic;}
+.article-body figure{margin:32px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:440px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:8px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0 24px;}
+.article-body li{margin-bottom:10px;color:var(--text2);line-height:1.8;}
+.article-body strong{color:var(--text1);font-weight:700;}
+
+/* ── 이전/다음 글 ── */
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;}
+.post-nav-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:all 0.15s;display:block;}
+.post-nav-item:hover{border-color:var(--point);transform:translateY(-2px);}
+.post-nav-label{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:0.1em;margin-bottom:6px;}
+.post-nav-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* 사이드바 개선 */
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+
+@media(max-width:768px){
+  .post-meta-bar{padding:12px 0;}
+  .share-btns{flex-wrap:wrap;}
+  .comment-form-row{flex-direction:column;}
+  .post-nav{grid-template-columns:1fr;}
+}
+
 /* ── Sidebar ─────────────────────────────────────── */
 .sidebar{display:flex;flex-direction:column;gap:20px;}
 .widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
@@ -213,20 +278,55 @@ footer{background:var(--navy);padding:48px 24px;}
   <article class="article-wrap">
     <div class="article-summary" id="articleSummary"></div>
     <div class="article-body" id="articleBody"></div>
+    <!-- 조회수 & 공유 바 -->
+    <div class="post-meta-bar">
+      <div class="post-view-count">
+        <span class="post-view-icon">👁</span>
+        <span id="viewCount">조회 중...</span>
+      </div>
+      <div class="share-btns">
+        <span class="share-label">공유</span>
+        <button class="share-btn kakao" onclick="shareKakao()">카카오</button>
+        <button class="share-btn twitter" onclick="shareTwitter()">트위터</button>
+        <button class="share-btn copy" onclick="copyLink()">링크 복사</button>
+      </div>
+    </div>
+
     <div class="article-tags" id="articleTags"></div>
+
+    <!-- 이전/다음 글 -->
+    <div class="post-nav" id="postNav"></div>
+
     <a href="index.html" class="back-btn">← 목록으로 돌아가기</a>
+
+    <!-- 댓글 섹션 -->
+    <div class="comments-section">
+      <div class="comments-title">댓글 <span id="commentCount" style="color:var(--point);"></span></div>
+      <div class="comment-form">
+        <div class="comment-form-row">
+          <input class="comment-input" type="text" id="commentName" placeholder="닉네임" maxlength="20">
+          <input class="comment-input" type="password" id="commentPw" placeholder="비밀번호 (삭제용)" maxlength="20">
+        </div>
+        <textarea class="comment-textarea" id="commentText" placeholder="댓글을 남겨주세요. 질문, 경험 공유 모두 환영합니다."></textarea>
+        <button class="comment-submit" onclick="submitComment()">댓글 등록</button>
+      </div>
+      <div class="comment-list" id="commentList">
+        <div class="comment-empty">첫 댓글을 남겨보세요.</div>
+      </div>
+    </div>
   </article>
 
   <aside class="sidebar">
     <div class="widget">
       <div class="wg-top"><h3>ABOUT</h3></div>
       <div class="wg-body">
-        <p class="about-msg">평범한 직장인이 에드센스, 부업, 자기계발로 경제적 자유를 향해 나아가고 있어요.</p>
+        <p class="about-msg">박대홍 · 블로그 대행 5년차. 월 500만원+ 부업 수익을 만든 직장인의 현실 이야기를 씁니다.</p>
         <div class="chips">
-          <span class="chip">N잡러</span>
-          <span class="chip">에드센스 2년차</span>
-          <span class="chip">부업 월 38만원</span>
+          <span class="chip">블로그 대행 대표</span>
+          <span class="chip">직장인 6년차</span>
+          <span class="chip">월 500만원+ 부업</span>
         </div>
+        <a href="about.html" style="display:block;margin-top:12px;text-align:center;font-size:12px;color:var(--point);font-weight:600;text-decoration:none;">더 알아보기 →</a>
       </div>
     </div>
 
@@ -277,6 +377,107 @@ footer{background:var(--navy);padding:48px 24px;}
 <script>
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── 조회수 (localStorage 기반) ──────────────────────────
+function updateViewCount(postId) {
+  const key = 'views_' + postId;
+  const count = (parseInt(localStorage.getItem(key) || '0')) + 1;
+  localStorage.setItem(key, count);
+  document.getElementById('viewCount').textContent = '조회 ' + count.toLocaleString() + '회';
+}
+
+// ── 공유 버튼 ──────────────────────────────────────────
+function shareKakao() {
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://story.kakao.com/share?url=' + url, '_blank', 'width=600,height=500');
+}
+function shareTwitter() {
+  const title = encodeURIComponent(document.title);
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://twitter.com/intent/tweet?text=' + title + '&url=' + url, '_blank', 'width=600,height=400');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.textContent;
+    btn.textContent = '복사됨 ✓';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+  });
+}
+
+// ── 댓글 (localStorage 기반) ──────────────────────────
+function getComments(postId) {
+  try { return JSON.parse(localStorage.getItem('comments_' + postId) || '[]'); } catch(e) { return []; }
+}
+function saveComments(postId, comments) {
+  localStorage.setItem('comments_' + postId, JSON.stringify(comments));
+}
+function renderComments(postId) {
+  const comments = getComments(postId);
+  const list = document.getElementById('commentList');
+  const countEl = document.getElementById('commentCount');
+  countEl.textContent = comments.length > 0 ? comments.length : '';
+  if (comments.length === 0) {
+    list.innerHTML = '<div class="comment-empty">첫 댓글을 남겨보세요.</div>';
+    return;
+  }
+  list.innerHTML = comments.map((c, i) => `
+    <div class="comment-item">
+      <div class="comment-head">
+        <div class="comment-avatar">${c.name[0]}</div>
+        <div class="comment-name">${escHtml(c.name)}</div>
+        <div class="comment-date">${c.date}</div>
+      </div>
+      <div class="comment-text">${escHtml(c.text).replace(/\n/g,'<br>')}</div>
+    </div>`).join('');
+}
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function submitComment() {
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name) { alert('닉네임을 입력해주세요.'); return; }
+  if (!text) { alert('댓글을 입력해주세요.'); return; }
+  const postId = new URLSearchParams(window.location.search).get('id');
+  const comments = getComments(postId);
+  const now = new Date();
+  comments.push({
+    name, text,
+    date: now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0')
+  });
+  saveComments(postId, comments);
+  document.getElementById('commentName').value = '';
+  document.getElementById('commentText').value = '';
+  renderComments(postId);
+}
+
+// ── 이전/다음 글 ──────────────────────────────────────
+function renderPostNav(manifest, currentId) {
+  const published = manifest.filter(p => p.status === 'published');
+  const idx = published.findIndex(p => p.filename === currentId);
+  if (idx === -1) return;
+  const prev = published[idx - 1];
+  const next = published[idx + 1];
+  const nav = document.getElementById('postNav');
+  if (!nav) return;
+  let html = '';
+  if (prev) {
+    html += `<a class="post-nav-item" href="post.html?id=${prev.filename}">
+      <div class="post-nav-label">← 이전 글</div>
+      <div class="post-nav-title">${prev.title}</div>
+    </a>`;
+  } else { html += '<div></div>'; }
+  if (next) {
+    html += `<a class="post-nav-item" href="post.html?id=${next.filename}" style="text-align:right;">
+      <div class="post-nav-label">다음 글 →</div>
+      <div class="post-nav-title">${next.title}</div>
+    </a>`;
+  }
+  nav.innerHTML = html;
 }
 
 function formatDate(iso) {
@@ -351,11 +552,20 @@ if (!postId) {
       document.getElementById('postHero').style.display = 'block';
       document.getElementById('postLayout').style.display = 'grid';
 
+      // 조회수 업데이트
+      updateViewCount(postId);
+
+      // 댓글 렌더링
+      renderComments(postId);
+
       // 관련 글 로드 (같은 카테고리)
       return fetch('./posts/manifest.json');
     })
     .then(r => r.json())
     .then(manifest => {
+      // 이전/다음 글 렌더링
+      renderPostNav(manifest, postId);
+
       const currentCat = document.getElementById('heroCat').textContent;
       const related = manifest
         .filter(p => p.status === 'published' && p.filename !== postId && p.category === currentCat)

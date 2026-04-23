@@ -3,20 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="직장인 수익일기 수익 공개. 블로그 대행, 강의, 에드센스 수익을 매달 투명하게 공개합니다.">
 <title>수익 공개 — 직장인 수익일기</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+<meta name="description" content="블로그 대행, 강의, 에드센스 — 직장인 박대홍의 월별 부업 수익 실수치 공개">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --white:#ffffff;--bg:#f8f7f4;--bg2:#f0ede8;
-  --navy:#1a2640;--navy2:#253352;--navy3:#0f1824;
-  --point:#c17f3e;--point2:#d4924e;--point-light:#f5ead8;
-  --green:#2d6a4f;--green-light:#d8f0e5;
-  --text1:#1a1a1a;--text2:#444444;--text3:#888888;
-  --border:#e8e4de;--border2:#d4cfc8;--gold:#c8a96e;
-}
+:root{--white:#fff;--bg:#f8f7f4;--bg2:#f0ede8;--navy:#1a2640;--navy2:#253352;--navy3:#0f1824;--point:#c17f3e;--point2:#d4924e;--point-light:#f5ead8;--green:#2d6a4f;--green-light:#d8f0e5;--blue:#3b6cf4;--text1:#1a1a1a;--text2:#444;--text3:#888;--border:#e8e4de;--border2:#d4cfc8;--gold:#c8a96e;}
 html{scroll-behavior:smooth;}
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
 header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
@@ -27,75 +20,90 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .logo-en{font-size:8px;color:var(--text3);letter-spacing:0.25em;margin-top:1px;}
 .desktop-nav{display:flex;align-items:center;gap:2px;}
 .desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
-.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
-.desktop-nav a.active{color:var(--point);font-weight:700;}
+.desktop-nav a:hover,.desktop-nav a.active{color:var(--navy);font-weight:700;}
 .nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
-.btn-cta{display:inline-flex;align-items:center;gap:6px;background:var(--point);color:var(--white);font-size:12px;font-weight:700;padding:8px 18px;border-radius:6px;text-decoration:none;transition:all 0.15s;}
+.btn-cta{display:inline-flex;align-items:center;background:var(--point);color:var(--white);font-size:12px;font-weight:700;padding:8px 18px;border-radius:6px;text-decoration:none;transition:all 0.15s;}
 .btn-cta:hover{background:var(--point2);transform:translateY(-1px);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
 .hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
 .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
 .mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
-.mobile-menu.open{display:flex!important;}
 .mobile-menu .btn-cta{margin-top:8px;justify-content:center;border-radius:8px;}
-footer{background:var(--navy3);padding:52px 24px;}
+.mobile-menu.open{display:flex!important;}
+
+.hero{background:var(--navy3);padding:72px 24px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
+.hero-glow{position:absolute;left:-100px;bottom:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(45,106,79,0.12),transparent 65%);}
+.hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;background:rgba(45,106,79,0.2);border:1px solid rgba(45,106,79,0.4);padding:5px 14px;border-radius:100px;margin-bottom:24px;}
+.hero-badge span{font-size:11px;color:#4aad7e;letter-spacing:0.15em;font-weight:600;}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:40px;font-weight:900;color:var(--white);line-height:1.25;letter-spacing:-0.03em;margin-bottom:16px;}
+.hero h1 em{color:#4aad7e;font-style:normal;}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:520px;margin-bottom:36px;}
+.hero-note{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:8px;font-size:12px;color:rgba(255,255,255,0.4);}
+
+.wrap{max-width:1080px;margin:0 auto;padding:52px 24px;}
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.sec-label-text{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.2em;}
+.sec-label-line{flex:1;height:1px;background:var(--border);}
+
+/* 이달 수익 카드 */
+.income-hero{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:20px;padding:36px 40px;margin-bottom:40px;position:relative;overflow:hidden;}
+.income-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.15),transparent 65%);}
+.income-hero-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.2em;margin-bottom:8px;}
+.income-hero-month{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:4px;}
+.income-hero-total{font-family:'Noto Serif KR',serif;font-size:48px;font-weight:900;color:var(--white);letter-spacing:-0.02em;margin-bottom:6px;}
+.income-hero-total em{font-size:20px;color:var(--gold);font-style:normal;margin-left:4px;}
+.income-hero-note{font-size:12px;color:rgba(255,255,255,0.3);}
+.income-breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;margin-top:28px;}
+.income-item{background:rgba(255,255,255,0.04);padding:18px 20px;}
+.income-item-dot{width:8px;height:8px;border-radius:50%;margin-bottom:10px;}
+.income-item-name{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:6px;}
+.income-item-val{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--white);}
+.income-item-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:3px;}
+
+/* 월별 히스토리 */
+.month-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:52px;}
+.month-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 28px;}
+.month-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.month-label{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);}
+.month-total{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--point);}
+.month-rows{display:flex;flex-direction:column;gap:0;}
+.month-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.month-row:last-child{border-bottom:none;}
+.month-row-left{display:flex;align-items:center;gap:10px;}
+.month-row-dot{width:8px;height:8px;border-radius:50%;}
+.month-row-name{font-size:13px;color:var(--text2);font-weight:500;}
+.month-row-val{font-size:14px;font-weight:700;color:var(--text1);}
+.month-row-bar-wrap{margin-top:6px;height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;}
+.month-row-bar{height:100%;border-radius:2px;}
+.tag-wip{display:inline-flex;align-items:center;background:var(--bg2);color:var(--text3);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:0.05em;}
+
+/* 수익 구조 설명 */
+.structure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:52px;}
+.structure-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;}
+.structure-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+.structure-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.structure-desc{font-size:13px;color:var(--text2);line-height:1.75;}
+.structure-amount{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;}
+
+footer{background:var(--navy3);padding:48px 24px;}
 .ft{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
 .ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;}
 .ft-logo span{color:var(--point);}
-.ft-tagline{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;max-width:220px;}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;}
 .ft-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.15em;margin-bottom:14px;}
 .ft-col a{display:block;font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;margin-bottom:8px;transition:color 0.15s;}
 .ft-col a:hover{color:rgba(255,255,255,0.7);}
 .ft-bottom{max-width:1080px;margin:36px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.2);}
-.page-hero{background:var(--navy3);padding:56px 24px;position:relative;overflow:hidden;}
-.page-hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
-.page-hero-glow{position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
-.page-hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1;}
-.page-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(193,127,62,0.15);border:1px solid rgba(193,127,62,0.3);padding:5px 14px;border-radius:100px;margin-bottom:20px;}
-.page-hero-badge span{font-size:10px;color:var(--gold);letter-spacing:0.2em;font-weight:600;}
-.page-hero h1{font-family:'Noto Serif KR',serif;font-size:36px;font-weight:900;color:var(--white);line-height:1.3;letter-spacing:-0.02em;margin-bottom:12px;}
-.page-hero h1 em{color:var(--point);font-style:normal;}
-.page-hero p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.85;max-width:560px;}
-.container{max-width:1080px;margin:0 auto;padding:52px 24px;}
-.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
-.sec-label-text{font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.2em;}
-.sec-label-line{flex:1;height:1px;background:var(--border);}
-@media(max-width:768px){
-  .desktop-nav{display:none!important;}
-  .hamburger{display:flex!important;}
-  .ft{grid-template-columns:1fr!important;gap:28px;}
-  .ft-bottom{flex-direction:column;gap:8px;}
-  .container{padding:32px 16px;}
-  .page-hero{padding:40px 16px;}
-  .page-hero h1{font-size:26px;}
-}
 
-.income-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
-.income-big-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;}
-.income-big-card.highlight{background:linear-gradient(135deg,var(--navy),var(--navy2));border-color:transparent;}
-.income-big-num{font-family:'Noto Serif KR',serif;font-size:30px;font-weight:900;color:var(--navy);margin-bottom:4px;}
-.income-big-num em{font-size:14px;font-weight:600;color:var(--point);font-style:normal;}
-.income-big-card.highlight .income-big-num{color:var(--white);}
-.income-big-card.highlight .income-big-num em{color:var(--gold);}
-.income-big-label{font-size:12px;color:var(--text3);}
-.income-big-card.highlight .income-big-label{color:rgba(255,255,255,0.5);}
-.income-month-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px;}
-.income-month-head{padding:18px 24px;background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.income-month-head h3{font-size:15px;font-weight:700;color:var(--navy);}
-.income-month-head span{font-size:13px;font-weight:700;color:var(--point);}
-.income-month-body{padding:0 24px;}
-.income-row2{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
-.income-row2:last-child{border-bottom:none;}
-.income-row2-left{display:flex;align-items:center;gap:10px;}
-.income-dot2{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.income-name2{font-size:13px;color:var(--text2);}
-.income-val2{font-size:14px;font-weight:700;color:var(--text1);}
-.income-note2{font-size:11px;color:var(--text3);margin-top:4px;text-align:right;}
-.income-disclaimer{background:var(--bg2);border-radius:10px;padding:16px 20px;font-size:12px;color:var(--text3);line-height:1.7;margin-top:24px;}
 @media(max-width:768px){
-  .income-grid{grid-template-columns:1fr;}
-  .income-month-body{padding:0 16px;}
-  .income-month-head{padding:16px;}
+  .desktop-nav{display:none!important;}.hamburger{display:flex!important;}
+  .hero h1{font-size:28px;}.wrap{padding:36px 16px;}
+  .income-hero{padding:24px 20px;}.income-hero-total{font-size:36px;}
+  .income-breakdown{grid-template-columns:1fr;}.structure-grid{grid-template-columns:1fr;}
+  .month-card{padding:18px 16px;}.ft{grid-template-columns:1fr!important;gap:28px;}
+  .ft-bottom{flex-direction:column;gap:8px;}
 }
 </style>
 </head>
@@ -112,131 +120,133 @@ footer{background:var(--navy3);padding:52px 24px;}
       <a href="about.html">소개</a>
       <a href="class.html">강의</a>
       <div class="nav-divider"></div>
-      <a href="#newsletter" class="btn-cta">무료 구독</a>
+      <a href="index.html#newsletter" class="btn-cta">무료 구독</a>
     </nav>
     <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="challenge.html">챌린지</a>
-  <a href="income.html">수익 공개</a>
-  <a href="about.html">소개</a>
-  <a href="class.html">강의</a>
-  <a href="#newsletter" class="btn-cta">무료 구독</a>
+  <a href="challenge.html">챌린지</a><a href="income.html">수익 공개</a>
+  <a href="about.html">소개</a><a href="class.html">강의</a>
+  <a href="index.html#newsletter" class="btn-cta">무료 구독</a>
 </div>
 
-<div class="page-hero">
-  <div class="page-hero-texture"></div>
-  <div class="page-hero-glow"></div>
-  <div class="page-hero-inner">
-    <div class="page-hero-badge"><span>INCOME REPORT</span></div>
-    <h1>수익을 숨기지 않습니다<br><em>전부 공개합니다</em></h1>
-    <p>블로그 대행, 강의, 에드센스 수익을 매달 투명하게 기록합니다.<br>화려하게 포장하지 않고, 있는 그대로 보여드립니다.</p>
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span>INCOME REPORT · 수익 공개</span></div>
+    <h1>월급 외 수익<br><em>전부 공개합니다</em></h1>
+    <p class="hero-desc">부풀리지 않습니다. 줄이지도 않습니다.<br>좋을 때도, 안 좋을 때도 실수치 그대로 공개합니다.</p>
+    <div class="hero-note">직장 월급은 별도 · 부업 수익만 공개 · 매달 업데이트</div>
   </div>
-</div>
+</section>
 
-<div class="container">
-  <div style="max-width:720px;">
+<div class="wrap">
 
-    <div class="sec-label"><span class="sec-label-text">CURRENT STATUS</span><div class="sec-label-line"></div></div>
-
-    <div class="income-grid">
-      <div class="income-big-card highlight">
-        <div class="income-big-num">500<em>만원+</em></div>
-        <div class="income-big-label">월 부업 합계</div>
-      </div>
-      <div class="income-big-card">
-        <div class="income-big-num" style="color:var(--point);">300<em>만원+</em></div>
-        <div class="income-big-label">블로그 대행 월 매출</div>
-      </div>
-      <div class="income-big-card">
-        <div class="income-big-num" style="color:#3b6cf4;">150<em>만원+</em></div>
-        <div class="income-big-label">강의 월 수익</div>
-      </div>
-    </div>
-
-    <div class="sec-label"><span class="sec-label-text">MONTHLY REPORT</span><div class="sec-label-line"></div></div>
-
-    <!-- 2026년 4월 -->
-    <div class="income-month-card">
-      <div class="income-month-head">
-        <h3>2026년 4월</h3>
-        <span>합계: 약 500만원+</span>
-      </div>
-      <div class="income-month-body">
-        <div class="income-row2">
-          <div class="income-row2-left">
-            <div class="income-dot2" style="background:#3b6cf4;"></div>
-            <span class="income-name2">블로그 대행</span>
-          </div>
-          <div style="text-align:right;">
-            <div class="income-val2">₩ 3,500,000+</div>
-            <div class="income-note2">고객사 다수 운영 중</div>
-          </div>
+  <!-- 이달 수익 -->
+  <div class="sec-label"><span class="sec-label-text">THIS MONTH</span><div class="sec-label-line"></div></div>
+  <div class="income-hero">
+    <div style="position:relative;z-index:1;">
+      <div class="income-hero-label">이달의 부업 수익</div>
+      <div class="income-hero-month" id="heroMonth"></div>
+      <div class="income-hero-total">5,000,000<em>원+</em></div>
+      <div class="income-hero-note">* 직장 월급 별도 · 세전 기준 · 매달 업데이트</div>
+      <div class="income-breakdown">
+        <div class="income-item">
+          <div class="income-item-dot" style="background:#3b6cf4;"></div>
+          <div class="income-item-name">블로그 대행</div>
+          <div class="income-item-val">3,500,000<span style="font-size:13px">원+</span></div>
+          <div class="income-item-sub">고객사 다수 운영 중</div>
         </div>
-        <div class="income-row2">
-          <div class="income-row2-left">
-            <div class="income-dot2" style="background:var(--point);"></div>
-            <span class="income-name2">강의 수익</span>
-          </div>
-          <div style="text-align:right;">
-            <div class="income-val2">₩ 1,500,000+</div>
-            <div class="income-note2">블로그 대행 노하우 강의</div>
-          </div>
+        <div class="income-item">
+          <div class="income-item-dot" style="background:var(--point);"></div>
+          <div class="income-item-name">강의 수익</div>
+          <div class="income-item-val">1,500,000<span style="font-size:13px">원+</span></div>
+          <div class="income-item-sub">블로그 대행 강의</div>
         </div>
-        <div class="income-row2">
-          <div class="income-row2-left">
-            <div class="income-dot2" style="background:var(--green);"></div>
-            <span class="income-name2">에드센스</span>
-          </div>
-          <div style="text-align:right;">
-            <div class="income-val2">도전 중</div>
-            <div class="income-note2">목표: 월 50만원</div>
-          </div>
+        <div class="income-item">
+          <div class="income-item-dot" style="background:#4aad7e;"></div>
+          <div class="income-item-name">에드센스</div>
+          <div class="income-item-val">도전 중</div>
+          <div class="income-item-sub">월 100만원 챌린지 진행중</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- 안내 -->
-    <div class="income-disclaimer">
-      📌 수익은 매달 업데이트됩니다. 직장 월급은 포함되지 않은 <strong>부업 수익만</strong> 공개합니다.<br>
-      수익 인증 스크린샷은 개인정보 보호를 위해 일부 가리고 공개합니다.<br>
-      이 수익이 누구나 당장 가능하다는 의미가 아닙니다. 각자의 노력과 상황에 따라 다릅니다.
+  <!-- 수익 구조 -->
+  <div class="sec-label"><span class="sec-label-text">INCOME STRUCTURE</span><div class="sec-label-line"></div></div>
+  <div class="structure-grid" style="margin-bottom:52px;">
+    <div class="structure-card">
+      <div class="structure-icon" style="background:#eef2ff;">💼</div>
+      <div class="structure-title">블로그 대행</div>
+      <div class="structure-desc">기업/개인 블로그 운영 대행. 콘텐츠 기획부터 발행까지 전담. 5년차 노하우로 안정적 고객사 확보.</div>
+      <div class="structure-amount" style="color:#3b6cf4;">₩ 3,500,000<span style="font-size:13px;color:var(--text3);">/월</span></div>
+    </div>
+    <div class="structure-card">
+      <div class="structure-icon" style="background:var(--point-light);">🎓</div>
+      <div class="structure-title">강의 수익</div>
+      <div class="structure-desc">블로그 대행 시작법, 수익화 노하우를 강의로. 수강생 다수가 첫 달 고객 계약 달성.</div>
+      <div class="structure-amount" style="color:var(--point);">₩ 1,500,000<span style="font-size:13px;color:var(--text3);">/월</span></div>
+    </div>
+    <div class="structure-card">
+      <div class="structure-icon" style="background:var(--green-light);">📊</div>
+      <div class="structure-title">에드센스 (도전중)</div>
+      <div class="structure-desc">이 블로그로 에드센스 월 100만원 도전 중. 글 100편 → 승인 신청 → 수익화 목표.</div>
+      <div class="structure-amount" style="color:var(--green);">월 100만원 <span style="font-size:13px;color:var(--text3);">목표</span></div>
+    </div>
+  </div>
+
+  <!-- 월별 히스토리 -->
+  <div class="sec-label"><span class="sec-label-text">MONTHLY HISTORY</span><div class="sec-label-line"></div></div>
+  <div class="month-grid">
+
+    <div class="month-card">
+      <div class="month-head">
+        <div class="month-label">2026년 4월</div>
+        <div class="month-total">5,000,000원+</div>
+      </div>
+      <div class="month-rows">
+        <div class="month-row">
+          <div class="month-row-left"><div class="month-row-dot" style="background:#3b6cf4;"></div><div class="month-row-name">블로그 대행</div></div>
+          <div class="month-row-val">₩ 3,500,000+</div>
+        </div>
+        <div class="month-row">
+          <div class="month-row-left"><div class="month-row-dot" style="background:var(--point);"></div><div class="month-row-name">강의</div></div>
+          <div class="month-row-val">₩ 1,500,000+</div>
+        </div>
+        <div class="month-row">
+          <div class="month-row-left"><div class="month-row-dot" style="background:#4aad7e;"></div><div class="month-row-name">에드센스</div></div>
+          <div class="month-row-val"><span class="tag-wip">도전중</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-card" style="opacity:0.6;">
+      <div class="month-head">
+        <div class="month-label">2026년 3월</div>
+        <div class="month-total" style="color:var(--text3);font-size:14px;">업데이트 예정</div>
+      </div>
+      <div style="font-size:13px;color:var(--text3);">매달 초 전월 수익을 공개합니다.</div>
     </div>
 
   </div>
+
 </div>
 
 <footer>
   <div class="ft">
-    <div>
-      <div class="ft-logo">직장인 <span>수익일기</span></div>
-      <p class="ft-tagline">월급만으론 부족한 직장인에게.<br>부업·재테크·투자·자기계발까지<br>직장인이 진짜 필요한 정보를 나눕니다.</p>
-    </div>
-    <div class="ft-col">
-      <h4>페이지</h4>
-      <a href="index.html">홈</a>
-      <a href="about.html">소개</a>
-      <a href="challenge.html">챌린지</a>
-      <a href="income.html">수익 공개</a>
-      <a href="class.html">강의</a>
-    </div>
-    <div class="ft-col">
-      <h4>카테고리</h4>
-      <a href="index.html">부업 방법</a>
-      <a href="index.html">재테크·투자</a>
-      <a href="index.html">자기계발</a>
-      <a href="index.html">독서·책 추천</a>
-      <a href="admin.html">관리자</a>
-    </div>
+    <div><div class="ft-logo">직장인 <span>수익일기</span></div><p class="ft-tagline">부풀리지도, 줄이지도 않는<br>직장인의 진짜 수익 기록.</p></div>
+    <div class="ft-col"><h4>수익 내역</h4><a href="income.html">이달 수익 공개</a><a href="income.html">월별 히스토리</a><a href="income.html">수익 구조 설명</a></div>
+    <div class="ft-col"><h4>페이지</h4><a href="index.html">홈</a><a href="challenge.html">챌린지</a><a href="about.html">소개</a><a href="class.html">강의</a></div>
   </div>
-  <div class="ft-bottom">
-    <span>© 2026 직장인 수익일기 · 박대홍</span>
-    <span>koreansalaryman.com</span>
-  </div>
+  <div class="ft-bottom"><span>© 2026 직장인 수익일기 · 박대홍</span><span>koreansalaryman.com</span></div>
 </footer>
+
 <script>
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+const now = new Date();
+document.getElementById('heroMonth').textContent = now.getFullYear()+'년 '+(now.getMonth()+1)+'월 기준';
 </script>
 </body>
 </html>
