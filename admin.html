@@ -264,12 +264,22 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="sidebar-item" onclick="setFilter('cat:챌린지',this)"><span class="si-icon">🔥</span> 챌린지</div>
       </div>
       <div class="sidebar-section">
+        <div class="sidebar-label">수익 관리</div>
+        <div class="sidebar-item" id="si-income" onclick="showView('income',this)">
+          <span class="si-icon">💰</span> 수익 편집
+        </div>
+      </div>
+      <div class="sidebar-section">
         <div class="sidebar-label">바로가기</div>
         <div class="sidebar-item" onclick="window.open('/','_blank')"><span class="si-icon">🏠</span> 블로그 홈</div>
+        <div class="sidebar-item" onclick="window.open('/income.html','_blank')"><span class="si-icon">📊</span> 수익 공개 페이지</div>
       </div>
     </nav>
 
     <main class="admin-main">
+
+      <!-- ── 글 관리 뷰 ── -->
+      <div id="view-posts">
 
       <!-- ── 자동화 ON/OFF 배너 ── -->
       <div id="automationBanner" style="border-radius:14px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
@@ -322,6 +332,80 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           <div class="empty-row"><div class="empty-row-icon">⏳</div><p>글을 불러오는 중...</p></div>
         </div>
       </div>
+
+      </div><!-- /view-posts -->
+
+      <!-- ── 수익 관리 뷰 ── -->
+      <div id="view-income" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h2 style="font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:4px;">💰 수익 관리</h2>
+            <p style="font-size:12px;color:var(--text3);">여기서 수정한 내용이 수익 공개 페이지에 즉시 반영됩니다.</p>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button onclick="window.open('/income.html','_blank')"
+              style="background:var(--bg2);color:var(--text2);border:1px solid var(--border);padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">
+              👁 미리보기
+            </button>
+            <button onclick="saveIncome()"
+              style="background:var(--green);color:var(--white);border:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">
+              💾 저장하기
+            </button>
+          </div>
+        </div>
+
+        <!-- 이달 총 수익 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:16px;">THIS MONTH · 이달 총 수익</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;">표시 금액 (예: 5,000,000)</label>
+              <input id="inc-total-amount" class="form-input" type="text" placeholder="5,000,000" style="font-size:16px;font-weight:700;">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;">부가 표시 (예: 원+ / 원)</label>
+              <input id="inc-total-suffix" class="form-input" type="text" placeholder="원+">
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;">하단 안내문</label>
+            <input id="inc-total-note" class="form-input" type="text" placeholder="* 직장 월급 별도 · 세전 기준 · 매달 업데이트">
+          </div>
+        </div>
+
+        <!-- 수익 항목 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;">INCOME ITEMS · 수익 항목</div>
+            <button onclick="addIncomeItem()"
+              style="background:var(--point-light);color:var(--point);border:1px solid rgba(193,127,62,0.3);padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">
+              + 항목 추가
+            </button>
+          </div>
+          <div id="incomeItemList" style="display:flex;flex-direction:column;gap:12px;"></div>
+        </div>
+
+        <!-- 월별 히스토리 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;">MONTHLY HISTORY · 월별 기록</div>
+            <button onclick="addMonthHistory()"
+              style="background:var(--point-light);color:var(--point);border:1px solid rgba(193,127,62,0.3);padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">
+              + 월 추가
+            </button>
+          </div>
+          <div id="monthHistoryList" style="display:flex;flex-direction:column;gap:16px;"></div>
+        </div>
+
+        <!-- 수익 구조 설명 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:16px;">STRUCTURE · 수익 구조 설명</div>
+          <div id="incomeStructureList" style="display:flex;flex-direction:column;gap:12px;"></div>
+          <button onclick="addStructureItem()" style="margin-top:12px;background:var(--bg2);color:var(--text2);border:1px solid var(--border);padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">+ 항목 추가</button>
+        </div>
+
+      </div><!-- /view-income -->
+
     </main>
   </div>
 </div>
@@ -1113,6 +1197,269 @@ function showToast(msg, type='info') {
 }
 function showLoading(v) {
   document.getElementById('loadingOverlay').classList.toggle('show', v);
+}
+
+// ── 뷰 전환 ──────────────────────────────────────────
+function showView(view, el) {
+  document.getElementById('view-posts').style.display  = view === 'posts'  ? '' : 'none';
+  document.getElementById('view-income').style.display = view === 'income' ? '' : 'none';
+  document.querySelectorAll('.sidebar-item').forEach(e => e.classList.remove('active'));
+  if (el) el.classList.add('active');
+  if (view === 'income') renderIncomeEditor();
+}
+
+// ── 수익 데이터 기본값 ────────────────────────────────
+const INCOME_DEFAULT = {
+  total: { amount: '5,000,000', suffix: '원+', note: '* 직장 월급 별도 · 세전 기준 · 매달 업데이트' },
+  items: [
+    { name: '블로그 대행', amount: '3,500,000+', suffix: '원', color: '#3b6cf4', desc: '고객사 다수 운영 중' },
+    { name: '강의 수익',   amount: '1,500,000+', suffix: '원', color: '#c17f3e', desc: '블로그 대행 강의' },
+    { name: '에드센스',    amount: '도전 중',     suffix: '',   color: '#2d6a4f', desc: '월 100만원 챌린지 진행중' },
+  ],
+  months: [
+    {
+      label: '2026년 4월',
+      total: '5,000,000원+',
+      rows: [
+        { name: '블로그 대행', value: '₩ 3,500,000+', color: '#3b6cf4' },
+        { name: '강의',        value: '₩ 1,500,000+', color: '#c17f3e' },
+        { name: '에드센스',    value: '도전중',         color: '#2d6a4f' },
+      ]
+    }
+  ],
+  structure: [
+    { icon: '💼', title: '블로그 대행', desc: '기업/개인 블로그 운영 대행. 콘텐츠 기획부터 발행까지 전담. 5년차 노하우로 안정적 고객사 확보.', amount: '₩ 3,500,000', color: '#3b6cf4', suffix: '/월' },
+    { icon: '🎓', title: '강의 수익',   desc: '블로그 대행 시작법, 수익화 노하우를 강의로. 수강생 다수가 첫 달 고객 계약 달성.', amount: '₩ 1,500,000', color: '#c17f3e', suffix: '/월' },
+    { icon: '📊', title: '에드센스 (도전중)', desc: '이 블로그로 에드센스 월 100만원 도전 중. 글 100편 → 승인 신청 → 수익화 목표.', amount: '월 100만원', color: '#2d6a4f', suffix: ' 목표' },
+  ]
+};
+
+function loadIncomeData() {
+  try { return JSON.parse(localStorage.getItem('incomeData') || 'null') || INCOME_DEFAULT; }
+  catch(e) { return INCOME_DEFAULT; }
+}
+function saveIncome() {
+  const data = collectIncomeData();
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  showToast('수익 데이터가 저장되었습니다! 수익 공개 페이지에 즉시 반영됩니다.', 'success');
+}
+
+// ── 수익 에디터 렌더링 ────────────────────────────────
+function renderIncomeEditor() {
+  const data = loadIncomeData();
+
+  // 총 수익
+  document.getElementById('inc-total-amount').value = data.total.amount || '';
+  document.getElementById('inc-total-suffix').value = data.total.suffix || '';
+  document.getElementById('inc-total-note').value   = data.total.note   || '';
+
+  // 수익 항목
+  renderIncomeItems(data.items || []);
+
+  // 월별 히스토리
+  renderMonthHistory(data.months || []);
+
+  // 수익 구조
+  renderStructure(data.structure || []);
+}
+
+// ── 수익 항목 ────────────────────────────────────────
+function renderIncomeItems(items) {
+  const list = document.getElementById('incomeItemList');
+  list.innerHTML = items.map((item, i) => `
+    <div class="income-edit-row" data-idx="${i}" style="background:var(--bg);border-radius:10px;padding:16px;display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr auto;gap:10px;align-items:center;">
+      <div style="width:16px;height:16px;border-radius:50%;background:${item.color};flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">수익 이름</div>
+        <input class="form-input" style="font-size:13px;padding:7px 10px;" value="${escHtml(item.name)}"
+          onchange="updateItem(${i},'name',this.value)" placeholder="블로그 대행">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">금액</div>
+        <input class="form-input" style="font-size:13px;padding:7px 10px;" value="${escHtml(item.amount)}"
+          onchange="updateItem(${i},'amount',this.value)" placeholder="3,500,000+">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">단위</div>
+        <input class="form-input" style="font-size:13px;padding:7px 10px;" value="${escHtml(item.suffix)}"
+          onchange="updateItem(${i},'suffix',this.value)" placeholder="원">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">설명</div>
+        <input class="form-input" style="font-size:13px;padding:7px 10px;" value="${escHtml(item.desc)}"
+          onchange="updateItem(${i},'desc',this.value)" placeholder="고객사 다수 운영 중">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;">
+        <input type="color" value="${item.color}" onchange="updateItem(${i},'color',this.value)"
+          style="width:32px;height:28px;border:none;border-radius:4px;cursor:pointer;padding:0;">
+        <button onclick="removeItem(${i})" style="background:var(--red-light);color:var(--red);border:none;padding:3px 8px;border-radius:4px;font-size:11px;cursor:pointer;">삭제</button>
+      </div>
+    </div>`).join('');
+}
+
+let _incomeItems = [];
+function updateItem(idx, key, val) {
+  const data = loadIncomeData();
+  if (!data.items[idx]) return;
+  data.items[idx][key] = val;
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  // 색상 도트만 업데이트
+  if (key === 'color') {
+    const rows = document.querySelectorAll('.income-edit-row');
+    if (rows[idx]) rows[idx].querySelector('div[style*="border-radius:50%"]').style.background = val;
+  }
+}
+function removeItem(idx) {
+  const data = loadIncomeData();
+  data.items.splice(idx, 1);
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderIncomeItems(data.items);
+}
+function addIncomeItem() {
+  const data = loadIncomeData();
+  data.items.push({ name: '새 수익 항목', amount: '0', suffix: '원', color: '#888888', desc: '설명을 입력하세요' });
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderIncomeItems(data.items);
+}
+
+// ── 월별 히스토리 ─────────────────────────────────────
+function renderMonthHistory(months) {
+  const list = document.getElementById('monthHistoryList');
+  list.innerHTML = months.map((month, mi) => `
+    <div style="background:var(--bg);border-radius:10px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <input class="form-input" style="font-size:14px;font-weight:700;flex:1;min-width:120px;padding:7px 10px;"
+          value="${escHtml(month.label)}" placeholder="2026년 4월"
+          onchange="updateMonth(${mi},'label',this.value)">
+        <input class="form-input" style="font-size:14px;font-weight:700;flex:1;min-width:120px;padding:7px 10px;color:var(--point);"
+          value="${escHtml(month.total)}" placeholder="5,000,000원+"
+          onchange="updateMonth(${mi},'total',this.value)">
+        <button onclick="removeMonth(${mi})" style="background:var(--red-light);color:var(--red);border:none;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap;">삭제</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;" id="month-rows-${mi}">
+        ${(month.rows || []).map((row, ri) => `
+          <div style="display:grid;grid-template-columns:16px 1fr 1fr auto;gap:8px;align-items:center;background:var(--white);padding:10px 12px;border-radius:8px;border:1px solid var(--border);">
+            <div style="width:10px;height:10px;border-radius:50%;background:${row.color};"></div>
+            <input class="form-input" style="font-size:12px;padding:5px 8px;" value="${escHtml(row.name)}"
+              onchange="updateMonthRow(${mi},${ri},'name',this.value)" placeholder="수익 항목명">
+            <input class="form-input" style="font-size:12px;padding:5px 8px;font-weight:700;" value="${escHtml(row.value)}"
+              onchange="updateMonthRow(${mi},${ri},'value',this.value)" placeholder="₩ 3,500,000+">
+            <div style="display:flex;gap:4px;">
+              <input type="color" value="${row.color}" onchange="updateMonthRow(${mi},${ri},'color',this.value)"
+                style="width:28px;height:26px;border:none;border-radius:4px;cursor:pointer;padding:0;">
+              <button onclick="removeMonthRow(${mi},${ri})" style="background:var(--red-light);color:var(--red);border:none;padding:3px 6px;border-radius:4px;font-size:11px;cursor:pointer;">✕</button>
+            </div>
+          </div>`).join('')}
+      </div>
+      <button onclick="addMonthRow(${mi})" style="margin-top:8px;background:var(--bg2);color:var(--text2);border:1px solid var(--border);padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;">+ 행 추가</button>
+    </div>`).join('');
+}
+
+function updateMonth(mi, key, val) {
+  const data = loadIncomeData();
+  if (data.months[mi]) { data.months[mi][key] = val; localStorage.setItem('incomeData', JSON.stringify(data)); }
+}
+function updateMonthRow(mi, ri, key, val) {
+  const data = loadIncomeData();
+  if (data.months[mi] && data.months[mi].rows[ri]) {
+    data.months[mi].rows[ri][key] = val;
+    localStorage.setItem('incomeData', JSON.stringify(data));
+  }
+}
+function removeMonth(mi) {
+  if (!confirm('이 월 기록을 삭제하시겠습니까?')) return;
+  const data = loadIncomeData();
+  data.months.splice(mi, 1);
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderMonthHistory(data.months);
+}
+function removeMonthRow(mi, ri) {
+  const data = loadIncomeData();
+  data.months[mi].rows.splice(ri, 1);
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderMonthHistory(data.months);
+}
+function addMonthRow(mi) {
+  const data = loadIncomeData();
+  data.months[mi].rows.push({ name: '새 항목', value: '₩ 0', color: '#888888' });
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderMonthHistory(data.months);
+}
+function addMonthHistory() {
+  const data = loadIncomeData();
+  const now  = new Date();
+  data.months.unshift({
+    label: `${now.getFullYear()}년 ${now.getMonth()+1}월`,
+    total: '업데이트 예정',
+    rows: [
+      { name: '블로그 대행', value: '₩ 0', color: '#3b6cf4' },
+      { name: '강의',        value: '₩ 0', color: '#c17f3e' },
+      { name: '에드센스',    value: '₩ 0', color: '#2d6a4f' },
+    ]
+  });
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderMonthHistory(data.months);
+}
+
+// ── 수익 구조 ─────────────────────────────────────────
+function renderStructure(structure) {
+  const list = document.getElementById('incomeStructureList');
+  list.innerHTML = structure.map((s, i) => `
+    <div style="background:var(--bg);border-radius:10px;padding:16px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:start;">
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">아이콘 + 제목</div>
+        <div style="display:flex;gap:6px;">
+          <input class="form-input" style="width:52px;font-size:16px;padding:6px;text-align:center;" value="${escHtml(s.icon)}"
+            onchange="updateStructure(${i},'icon',this.value)">
+          <input class="form-input" style="font-size:13px;padding:7px 10px;flex:1;" value="${escHtml(s.title)}"
+            onchange="updateStructure(${i},'title',this.value)">
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">금액 + 단위</div>
+        <div style="display:flex;gap:6px;">
+          <input class="form-input" style="font-size:13px;padding:7px 10px;flex:1;" value="${escHtml(s.amount)}"
+            onchange="updateStructure(${i},'amount',this.value)" placeholder="₩ 3,500,000">
+          <input class="form-input" style="width:52px;font-size:12px;padding:7px;" value="${escHtml(s.suffix)}"
+            onchange="updateStructure(${i},'suffix',this.value)" placeholder="/월">
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--text3);margin-bottom:4px;">설명</div>
+        <textarea class="form-textarea" style="min-height:64px;font-size:12px;padding:7px 10px;"
+          onchange="updateStructure(${i},'desc',this.value)">${escHtml(s.desc)}</textarea>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;align-items:center;padding-top:18px;">
+        <input type="color" value="${s.color}" onchange="updateStructure(${i},'color',this.value)"
+          style="width:32px;height:28px;border:none;border-radius:4px;cursor:pointer;padding:0;">
+        <button onclick="removeStructure(${i})" style="background:var(--red-light);color:var(--red);border:none;padding:3px 8px;border-radius:4px;font-size:11px;cursor:pointer;">삭제</button>
+      </div>
+    </div>`).join('');
+}
+function updateStructure(i, key, val) {
+  const data = loadIncomeData();
+  if (data.structure[i]) { data.structure[i][key] = val; localStorage.setItem('incomeData', JSON.stringify(data)); }
+}
+function removeStructure(i) {
+  const data = loadIncomeData();
+  data.structure.splice(i, 1);
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderStructure(data.structure);
+}
+function addStructureItem() {
+  const data = loadIncomeData();
+  data.structure.push({ icon: '💡', title: '새 수익 구조', desc: '설명을 입력하세요', amount: '₩ 0', color: '#888888', suffix: '/월' });
+  localStorage.setItem('incomeData', JSON.stringify(data));
+  renderStructure(data.structure);
+}
+
+// ── 데이터 수집 (저장용) ─────────────────────────────
+function collectIncomeData() {
+  const data = loadIncomeData();
+  data.total.amount = document.getElementById('inc-total-amount').value;
+  data.total.suffix = document.getElementById('inc-total-suffix').value;
+  data.total.note   = document.getElementById('inc-total-note').value;
+  return data;
 }
 
 // 페이지 로드 시 자동 로드

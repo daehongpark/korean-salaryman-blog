@@ -174,88 +174,19 @@ footer{background:var(--navy3);padding:48px 24px;}
     <div style="position:relative;z-index:1;">
       <div class="income-hero-label">이달의 부업 수익</div>
       <div class="income-hero-month" id="heroMonth"></div>
-      <div class="income-hero-total">5,000,000<em>원+</em></div>
-      <div class="income-hero-note">* 직장 월급 별도 · 세전 기준 · 매달 업데이트</div>
-      <div class="income-breakdown">
-        <div class="income-item">
-          <div class="income-item-dot" style="background:#3b6cf4;"></div>
-          <div class="income-item-name">블로그 대행</div>
-          <div class="income-item-val">3,500,000<span style="font-size:13px">원+</span></div>
-          <div class="income-item-sub">고객사 다수 운영 중</div>
-        </div>
-        <div class="income-item">
-          <div class="income-item-dot" style="background:var(--point);"></div>
-          <div class="income-item-name">강의 수익</div>
-          <div class="income-item-val">1,500,000<span style="font-size:13px">원+</span></div>
-          <div class="income-item-sub">블로그 대행 강의</div>
-        </div>
-        <div class="income-item">
-          <div class="income-item-dot" style="background:#4aad7e;"></div>
-          <div class="income-item-name">에드센스</div>
-          <div class="income-item-val">도전 중</div>
-          <div class="income-item-sub">월 100만원 챌린지 진행중</div>
-        </div>
-      </div>
+      <div class="income-hero-total" id="incomeTotal">5,000,000<em>원+</em></div>
+      <div class="income-hero-note" id="incomeNote">* 직장 월급 별도 · 세전 기준 · 매달 업데이트</div>
+      <div class="income-breakdown" id="incomeBreakdown"></div>
     </div>
   </div>
 
   <!-- 수익 구조 -->
   <div class="sec-label"><span class="sec-label-text">INCOME STRUCTURE</span><div class="sec-label-line"></div></div>
-  <div class="structure-grid" style="margin-bottom:52px;">
-    <div class="structure-card">
-      <div class="structure-icon" style="background:#eef2ff;">💼</div>
-      <div class="structure-title">블로그 대행</div>
-      <div class="structure-desc">기업/개인 블로그 운영 대행. 콘텐츠 기획부터 발행까지 전담. 5년차 노하우로 안정적 고객사 확보.</div>
-      <div class="structure-amount" style="color:#3b6cf4;">₩ 3,500,000<span style="font-size:13px;color:var(--text3);">/월</span></div>
-    </div>
-    <div class="structure-card">
-      <div class="structure-icon" style="background:var(--point-light);">🎓</div>
-      <div class="structure-title">강의 수익</div>
-      <div class="structure-desc">블로그 대행 시작법, 수익화 노하우를 강의로. 수강생 다수가 첫 달 고객 계약 달성.</div>
-      <div class="structure-amount" style="color:var(--point);">₩ 1,500,000<span style="font-size:13px;color:var(--text3);">/월</span></div>
-    </div>
-    <div class="structure-card">
-      <div class="structure-icon" style="background:var(--green-light);">📊</div>
-      <div class="structure-title">에드센스 (도전중)</div>
-      <div class="structure-desc">이 블로그로 에드센스 월 100만원 도전 중. 글 100편 → 승인 신청 → 수익화 목표.</div>
-      <div class="structure-amount" style="color:var(--green);">월 100만원 <span style="font-size:13px;color:var(--text3);">목표</span></div>
-    </div>
-  </div>
+  <div class="structure-grid" id="incomeStructure" style="margin-bottom:52px;"></div>
 
   <!-- 월별 히스토리 -->
   <div class="sec-label"><span class="sec-label-text">MONTHLY HISTORY</span><div class="sec-label-line"></div></div>
-  <div class="month-grid">
-
-    <div class="month-card">
-      <div class="month-head">
-        <div class="month-label">2026년 4월</div>
-        <div class="month-total">5,000,000원+</div>
-      </div>
-      <div class="month-rows">
-        <div class="month-row">
-          <div class="month-row-left"><div class="month-row-dot" style="background:#3b6cf4;"></div><div class="month-row-name">블로그 대행</div></div>
-          <div class="month-row-val">₩ 3,500,000+</div>
-        </div>
-        <div class="month-row">
-          <div class="month-row-left"><div class="month-row-dot" style="background:var(--point);"></div><div class="month-row-name">강의</div></div>
-          <div class="month-row-val">₩ 1,500,000+</div>
-        </div>
-        <div class="month-row">
-          <div class="month-row-left"><div class="month-row-dot" style="background:#4aad7e;"></div><div class="month-row-name">에드센스</div></div>
-          <div class="month-row-val"><span class="tag-wip">도전중</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="month-card" style="opacity:0.6;">
-      <div class="month-head">
-        <div class="month-label">2026년 3월</div>
-        <div class="month-total" style="color:var(--text3);font-size:14px;">업데이트 예정</div>
-      </div>
-      <div style="font-size:13px;color:var(--text3);">매달 초 전월 수익을 공개합니다.</div>
-    </div>
-
-  </div>
+  <div class="month-grid" id="monthGrid"></div>
 
 </div>
 
@@ -270,8 +201,98 @@ footer{background:var(--navy3);padding:48px 24px;}
 
 <script>
 function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+
+// ── 날짜 표시 ──
 const now = new Date();
 document.getElementById('heroMonth').textContent = now.getFullYear()+'년 '+(now.getMonth()+1)+'월 기준';
+
+// ── 수익 데이터 로드 ──
+const INCOME_DEFAULT = {
+  total: { amount: '5,000,000', suffix: '원+', note: '* 직장 월급 별도 · 세전 기준 · 매달 업데이트' },
+  items: [
+    { name: '블로그 대행', amount: '3,500,000+', suffix: '원', color: '#3b6cf4', desc: '고객사 다수 운영 중' },
+    { name: '강의 수익',   amount: '1,500,000+', suffix: '원', color: '#c17f3e', desc: '블로그 대행 강의' },
+    { name: '에드센스',    amount: '도전 중',     suffix: '',   color: '#2d6a4f', desc: '월 100만원 챌린지 진행중' },
+  ],
+  months: [
+    {
+      label: '2026년 4월', total: '5,000,000원+',
+      rows: [
+        { name: '블로그 대행', value: '₩ 3,500,000+', color: '#3b6cf4' },
+        { name: '강의',        value: '₩ 1,500,000+', color: '#c17f3e' },
+        { name: '에드센스',    value: '도전중',         color: '#2d6a4f' },
+      ]
+    }
+  ],
+  structure: [
+    { icon: '💼', title: '블로그 대행', desc: '기업/개인 블로그 운영 대행. 콘텐츠 기획부터 발행까지 전담. 5년차 노하우로 안정적 고객사 확보.', amount: '₩ 3,500,000', color: '#3b6cf4', suffix: '/월' },
+    { icon: '🎓', title: '강의 수익',   desc: '블로그 대행 시작법, 수익화 노하우를 강의로. 수강생 다수가 첫 달 고객 계약 달성.', amount: '₩ 1,500,000', color: '#c17f3e', suffix: '/월' },
+    { icon: '📊', title: '에드센스 (도전중)', desc: '이 블로그로 에드센스 월 100만원 도전 중. 글 100편 → 승인 신청 → 수익화 목표.', amount: '월 100만원', color: '#2d6a4f', suffix: ' 목표' },
+  ]
+};
+
+function loadIncomeData() {
+  try { return JSON.parse(localStorage.getItem('incomeData') || 'null') || INCOME_DEFAULT; }
+  catch(e) { return INCOME_DEFAULT; }
+}
+
+function renderIncomePage() {
+  const data = loadIncomeData();
+
+  // ── 총 수익 히어로 ──
+  const totalEl = document.getElementById('incomeTotal');
+  if (totalEl) totalEl.innerHTML = data.total.amount + '<em>' + (data.total.suffix||'') + '</em>';
+  const noteEl = document.getElementById('incomeNote');
+  if (noteEl) noteEl.textContent = data.total.note || '';
+
+  // ── 수익 항목 (breakdown) ──
+  const breakdown = document.getElementById('incomeBreakdown');
+  if (breakdown && data.items) {
+    breakdown.innerHTML = data.items.map(item => `
+      <div class="income-item">
+        <div class="income-item-dot" style="background:${item.color};"></div>
+        <div class="income-item-name">${item.name}</div>
+        <div class="income-item-val">${item.amount}<span style="font-size:13px">${item.suffix||''}</span></div>
+        <div class="income-item-sub">${item.desc||''}</div>
+      </div>`).join('');
+  }
+
+  // ── 수익 구조 ──
+  const structure = document.getElementById('incomeStructure');
+  if (structure && data.structure) {
+    structure.innerHTML = data.structure.map(s => `
+      <div class="structure-card">
+        <div class="structure-icon" style="background:${s.color}18;">${s.icon}</div>
+        <div class="structure-title">${s.title}</div>
+        <div class="structure-desc">${s.desc}</div>
+        <div class="structure-amount" style="color:${s.color};">${s.amount}<span style="font-size:13px;color:var(--text3);">${s.suffix||''}</span></div>
+      </div>`).join('');
+  }
+
+  // ── 월별 히스토리 ──
+  const monthGrid = document.getElementById('monthGrid');
+  if (monthGrid && data.months) {
+    monthGrid.innerHTML = data.months.map(month => `
+      <div class="month-card">
+        <div class="month-head">
+          <div class="month-label">${month.label}</div>
+          <div class="month-total">${month.total}</div>
+        </div>
+        <div class="month-rows">
+          ${(month.rows||[]).map(row => `
+            <div class="month-row">
+              <div class="month-row-left">
+                <div class="month-row-dot" style="background:${row.color};"></div>
+                <div class="month-row-name">${row.name}</div>
+              </div>
+              <div class="month-row-val">${row.value}</div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+  }
+}
+
+renderIncomePage();
 </script>
 </body>
 </html>
