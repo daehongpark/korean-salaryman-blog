@@ -120,6 +120,42 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .rule-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
 .rule-desc{font-size:12px;color:var(--text3);line-height:1.7;}
 
+/* ── 새로 추가된 챌린지 자동화 스타일 ── */
+.ch-stat-sub{font-size:10px;color:var(--text3);margin-top:2px;opacity:0.65;}
+.ch-head.navy .ch-stat-sub{color:rgba(255,255,255,0.45);}
+.milestone-badge{display:inline-block;background:rgba(193,127,62,0.2);color:var(--gold);font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;margin-left:8px;letter-spacing:0.05em;}
+.log-text strong.milestone{color:var(--green);}
+.eta-note{font-size:11px;color:var(--text3);margin-top:6px;font-style:italic;}
+
+/* 통계 대시보드 */
+.stats-dashboard{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 32px;margin-bottom:52px;}
+.stats-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.stats-title-text{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);}
+.stats-title-meta{font-size:11px;color:var(--text3);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.stats-box{text-align:center;padding:20px 12px;background:var(--bg);border-radius:12px;border:1px solid var(--border);}
+.stats-box-num{font-family:'Noto Serif KR',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1;}
+.stats-box-num span{font-size:14px;font-weight:500;color:var(--text3);margin-left:2px;}
+.stats-box-label{font-size:11px;color:var(--text3);margin-top:8px;letter-spacing:0.05em;font-weight:600;}
+.stats-box.highlight{background:linear-gradient(135deg,rgba(193,127,62,0.08),rgba(193,127,62,0.02));border-color:rgba(193,127,62,0.25);}
+.stats-box.highlight .stats-box-num{color:var(--point);}
+
+/* 카테고리 분포 바 */
+.category-dist{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+.category-dist-title{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.2em;margin-bottom:14px;}
+.cat-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.cat-name{font-size:12px;color:var(--text2);min-width:80px;font-weight:500;}
+.cat-bar-wrap{flex:1;height:8px;background:var(--bg2);border-radius:4px;overflow:hidden;}
+.cat-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--navy),var(--navy2));}
+.cat-count{font-size:11px;color:var(--text3);min-width:40px;text-align:right;font-variant-numeric:tabular-nums;}
+
+@media(max-width:768px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .stats-box-num{font-size:22px;}
+  .stats-dashboard{padding:20px 18px;}
+  .stats-title{flex-direction:column;align-items:flex-start;gap:4px;}
+}
+
 footer{background:var(--navy3);padding:48px 24px;}
 .ft{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
 .ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;}
@@ -157,6 +193,7 @@ footer{background:var(--navy3);padding:48px 24px;}
       <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
     </a>
     <nav class="desktop-nav">
+      <a href="blog.html">블로그</a>
       <a href="challenge.html" class="active">챌린지</a>
       <a href="income.html">수익 공개</a>
       <a href="about.html">소개</a>
@@ -168,6 +205,7 @@ footer{background:var(--navy3);padding:48px 24px;}
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
+  <a href="blog.html">블로그</a>
   <a href="challenge.html">챌린지</a><a href="income.html">수익 공개</a>
   <a href="about.html">소개</a><a href="class.html">강의</a>
   <a href="index.html#newsletter" class="btn-cta">무료 구독</a>
@@ -183,6 +221,38 @@ footer{background:var(--navy3);padding:48px 24px;}
 </section>
 
 <div class="wrap">
+  <div class="sec-label"><span class="sec-label-text">OVERVIEW · 이번 달 통계</span><div class="sec-label-line"></div></div>
+  <div class="stats-dashboard">
+    <div class="stats-title">
+      <div class="stats-title-text" id="stats-month-title">이번 달 블로그 현황</div>
+      <div class="stats-title-meta" id="stats-updated">—</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stats-box highlight">
+        <div class="stats-box-num" id="stats-total">—<span>편</span></div>
+        <div class="stats-box-label">전체 글 수</div>
+      </div>
+      <div class="stats-box">
+        <div class="stats-box-num" id="stats-month">—<span>편</span></div>
+        <div class="stats-box-label">이번 달 발행</div>
+      </div>
+      <div class="stats-box">
+        <div class="stats-box-num" id="stats-week">—<span>편</span></div>
+        <div class="stats-box-label">최근 7일</div>
+      </div>
+      <div class="stats-box">
+        <div class="stats-box-num" id="stats-seo">—<span>점</span></div>
+        <div class="stats-box-label">평균 SEO 점수</div>
+      </div>
+    </div>
+    <div class="category-dist">
+      <div class="category-dist-title">CATEGORY DISTRIBUTION · 카테고리 분포</div>
+      <div id="category-dist-list">
+        <div style="font-size:12px;color:var(--text3);text-align:center;padding:16px;">데이터 로딩 중...</div>
+      </div>
+    </div>
+  </div>
+
   <div class="sec-label"><span class="sec-label-text">CHALLENGES</span><div class="sec-label-line"></div></div>
   <div class="ch-grid">
 
@@ -192,7 +262,11 @@ footer{background:var(--navy3);padding:48px 24px;}
         <div class="ch-title">에드센스 월 100만원 챌린지</div>
         <div class="ch-desc">블로그 대행으로 월 300만원을 만든 내가, 이번엔 이 블로그 하나로 에드센스 월 100만원을 증명합니다.</div>
         <div class="ch-stats">
-          <div><div class="ch-stat-num" id="postCount">—</div><div class="ch-stat-label">발행 글</div></div>
+          <div>
+            <div class="ch-stat-num" id="ch1-total">—</div>
+            <div class="ch-stat-label">전체 글</div>
+            <div class="ch-stat-sub" id="ch1-breakdown">— 발행 / — 초안</div>
+          </div>
           <div><div class="ch-stat-num">100<span style="font-size:13px">편</span></div><div class="ch-stat-label">목표</div></div>
           <div><div class="ch-stat-num">0<span style="font-size:13px">원</span></div><div class="ch-stat-label">현재 에드센스</div></div>
         </div>
@@ -201,33 +275,48 @@ footer{background:var(--navy3);padding:48px 24px;}
         <div class="prog-wrap">
           <div class="prog-top"><span>글 진행률</span><span id="postProgress">0 / 100편</span></div>
           <div class="prog-bar"><div class="prog-fill orange" id="postBar" style="width:0%"></div></div>
+          <div class="eta-note" id="ch1-eta"></div>
         </div>
         <div class="prog-wrap">
           <div class="prog-top"><span>수익 달성률</span><span>0 / 1,000,000원</span></div>
           <div class="prog-bar"><div class="prog-fill orange" style="width:0%"></div></div>
         </div>
         <div class="sec-label" style="margin-top:24px;margin-bottom:14px;"><span class="sec-label-text">CHALLENGE LOG</span><div class="sec-label-line"></div></div>
-        <div class="log">
+        <div class="log" id="ch1-log">
           <div class="log-item"><div class="log-date">2026.04</div><div class="log-text"><strong>챌린지 시작.</strong> AI 자동화 시스템 구축 완료. 하루 3개 글 자동 생성 → 검토 후 발행 루틴 시작.</div></div>
-          <div class="log-item"><div class="log-date">진행중</div><div class="log-text">글 쌓는 중. 에드센스 승인 신청 전 꾸준히 발행 중.</div></div>
         </div>
       </div>
     </div>
 
     <div class="ch-card">
       <div class="ch-head navy">
-        <div class="ch-badge">🔥 진행중</div>
+        <div class="ch-badge" id="ch2-badge">🔥 진행중</div>
         <div class="ch-title">1일 2포스팅 30일 챌린지</div>
-        <div class="ch-desc">2026년 4월 시작. 하루 2편, 30일간 총 60편 발행. AI 자동화 + 수동 검토로 퀄리티를 지킵니다.</div>
+        <div class="ch-desc">2026년 4월 시작. 하루 2편씩 30일간 총 60편 발행. AI 자동화 + 수동 검토로 퀄리티를 지킵니다.</div>
         <div class="ch-stats">
-          <div><div class="ch-stat-num">2026.04</div><div class="ch-stat-label">시작일</div></div>
-          <div><div class="ch-stat-num">60<span style="font-size:13px">편</span></div><div class="ch-stat-label">30일 목표</div></div>
+          <div>
+            <div class="ch-stat-num" id="ch2-start">—</div>
+            <div class="ch-stat-label">시작일</div>
+          </div>
+          <div>
+            <div class="ch-stat-num" id="ch2-day">—<span style="font-size:13px">일차</span></div>
+            <div class="ch-stat-label">경과</div>
+          </div>
+          <div>
+            <div class="ch-stat-num"><span id="ch2-count">—</span><span style="font-size:13px">/60편</span></div>
+            <div class="ch-stat-label">30일 목표</div>
+          </div>
         </div>
       </div>
       <div class="ch-body">
         <div class="prog-wrap">
-          <div class="prog-top"><span>진행률</span><span>진행중</span></div>
-          <div class="prog-bar"><div class="prog-fill orange" style="width:15%"></div></div>
+          <div class="prog-top"><span>진행률</span><span id="ch2-progress-text">—</span></div>
+          <div class="prog-bar"><div class="prog-fill orange" id="ch2-bar" style="width:0%"></div></div>
+          <div class="eta-note" id="ch2-eta"></div>
+        </div>
+        <div class="sec-label" style="margin-top:24px;margin-bottom:14px;"><span class="sec-label-text">WEEKLY SUMMARY · 주간 기록</span><div class="sec-label-line"></div></div>
+        <div class="log" id="ch2-log">
+          <div class="log-item"><div class="log-date">—</div><div class="log-text">데이터 분석 중...</div></div>
         </div>
       </div>
     </div>
@@ -272,19 +361,290 @@ footer{background:var(--navy3);padding:48px 24px;}
   <div class="ft">
     <div><div class="ft-logo">직장인 <span>수익일기</span></div><p class="ft-tagline">말만 하지 않고 직접 증명합니다.</p></div>
     <div class="ft-col"><h4>챌린지</h4><a href="challenge.html">에드센스 월 100만원</a><a href="challenge.html">1일 2포스팅 30일</a><a href="challenge.html">블로그 대행 300만원 ✓</a></div>
-    <div class="ft-col"><h4>페이지</h4><a href="index.html">홈</a><a href="income.html">수익 공개</a><a href="about.html">소개</a><a href="class.html">강의</a></div>
+    <div class="ft-col"><h4>페이지</h4><a href="index.html">홈</a><a href="blog.html">블로그</a><a href="income.html">수익 공개</a><a href="about.html">소개</a><a href="class.html">강의</a></div>
+    <div class="ft-col"><h4>정책</h4><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a></div>
   </div>
   <div class="ft-bottom"><span>© 2026 직장인 수익일기 · 박대홍</span><span>koreansalaryman.com</span></div>
 </footer>
 
 <script>
 function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
-fetch('./posts/manifest.json').then(r=>r.json()).then(posts=>{
-  const n = posts.filter(p=>p.status==='published').length;
-  document.getElementById('postCount').textContent = n+'편';
-  document.getElementById('postBar').style.width = Math.min(100,n)+'%';
-  document.getElementById('postProgress').textContent = n+' / 100편';
-}).catch(()=>{});
+
+/* ═══════════════════════════════════════════════════════
+ *  챌린지 진행률 자동화 시스템
+ * ═══════════════════════════════════════════════════════ */
+
+(async function initChallengeTracking(){
+  let posts = [];
+  try {
+    const res = await fetch('./posts/manifest.json?t=' + Date.now());
+    if (!res.ok) throw new Error('manifest fetch failed');
+    posts = await res.json();
+  } catch(e){
+    console.warn('[Challenge] manifest 로드 실패', e);
+    return;
+  }
+  if (!Array.isArray(posts) || posts.length === 0){
+    console.warn('[Challenge] 글이 없습니다');
+    return;
+  }
+
+  /* ── 유틸 ────────────────────────────────────────── */
+  const fmtDate = (d) => {
+    if (!d) return '—';
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return `${y}.${m}.${day}`;
+  };
+  const fmtMonth = (d) => `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}`;
+  const daysBetween = (a, b) => Math.floor((b - a) / (1000*60*60*24));
+  const parseDate = (s) => {
+    if (!s) return null;
+    const d = new Date(s);
+    return isNaN(d.getTime()) ? null : d;
+  };
+
+  const now = new Date();
+  const published = posts.filter(p => p.status === 'published');
+  const drafts    = posts.filter(p => p.status === 'draft');
+  const totalCount = posts.length;  // 초안 포함 전체 카운트
+
+  /* ── 발행일 정렬 (오래된 순 → 새 순) ───────────────── */
+  const postsByDate = posts
+    .map(p => ({...p, _date: parseDate(p.created_at)}))
+    .filter(p => p._date)
+    .sort((a,b) => a._date - b._date);
+
+  /* ═══════════════════════════════════════════════════
+   *  1. 이번 달 통계 대시보드
+   * ═══════════════════════════════════════════════════ */
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const weekStart  = new Date(now); weekStart.setDate(weekStart.getDate() - 7);
+  const monthPosts = postsByDate.filter(p => p._date >= monthStart);
+  const weekPosts  = postsByDate.filter(p => p._date >= weekStart);
+
+  document.getElementById('stats-month-title').textContent = fmtMonth(now) + ' 블로그 현황';
+  document.getElementById('stats-updated').textContent = '업데이트: ' + fmtDate(now);
+  document.getElementById('stats-total').innerHTML = totalCount + '<span>편</span>';
+  document.getElementById('stats-month').innerHTML = monthPosts.length + '<span>편</span>';
+  document.getElementById('stats-week').innerHTML = weekPosts.length + '<span>편</span>';
+
+  // 평균 SEO 점수 (null 제외)
+  const seoScores = posts
+    .map(p => p.seo_score)
+    .filter(s => typeof s === 'number' && s > 0);
+  if (seoScores.length > 0){
+    const avg = seoScores.reduce((a,b) => a+b, 0) / seoScores.length;
+    document.getElementById('stats-seo').innerHTML = avg.toFixed(0) + '<span>점</span>';
+  } else {
+    document.getElementById('stats-seo').innerHTML = '—';
+  }
+
+  // 카테고리 분포
+  const catCount = {};
+  posts.forEach(p => {
+    const c = p.category || '기타';
+    catCount[c] = (catCount[c] || 0) + 1;
+  });
+  const catSorted = Object.entries(catCount).sort((a,b) => b[1] - a[1]);
+  const maxCatCount = Math.max(...catSorted.map(([_,n]) => n));
+  const catListHtml = catSorted.map(([name, count]) => {
+    const pct = (count / maxCatCount) * 100;
+    return `<div class="cat-row">
+      <div class="cat-name">${name}</div>
+      <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
+      <div class="cat-count">${count}편</div>
+    </div>`;
+  }).join('');
+  document.getElementById('category-dist-list').innerHTML = catListHtml;
+
+  /* ═══════════════════════════════════════════════════
+   *  2. 챌린지 1: 에드센스 월 100만원 (100편 목표)
+   * ═══════════════════════════════════════════════════ */
+  const CH1_GOAL = 100;
+  const ch1Pct = Math.min(100, (totalCount / CH1_GOAL) * 100);
+
+  document.getElementById('ch1-total').innerHTML = totalCount + '<span style="font-size:13px">편</span>';
+  document.getElementById('ch1-breakdown').textContent = 
+    `발행 ${published.length}편 · 초안 ${drafts.length}편`;
+  document.getElementById('postProgress').textContent = `${totalCount} / ${CH1_GOAL}편`;
+  document.getElementById('postBar').style.width = ch1Pct + '%';
+
+  // 예상 완료일 계산 (최근 7일 속도 기반)
+  if (weekPosts.length >= 3 && totalCount < CH1_GOAL){
+    const dailyRate = weekPosts.length / 7;
+    const remaining = CH1_GOAL - totalCount;
+    const daysToGo = Math.ceil(remaining / dailyRate);
+    const etaDate = new Date(now);
+    etaDate.setDate(etaDate.getDate() + daysToGo);
+    document.getElementById('ch1-eta').textContent = 
+      `💡 최근 7일 속도(${weekPosts.length}편) 기준 예상 완료: ${fmtDate(etaDate)} (약 ${daysToGo}일 후)`;
+  } else if (totalCount >= CH1_GOAL){
+    document.getElementById('ch1-eta').textContent = `🎉 목표 달성! ${totalCount}편 작성 완료`;
+  }
+
+  /* ── 챌린지 1 로그 자동 생성 (주간 요약) ───────────── */
+  const ch1LogEl = document.getElementById('ch1-log');
+  const ch1Logs = [];
+
+  // 시작 로그
+  if (postsByDate.length > 0){
+    const firstDate = postsByDate[0]._date;
+    ch1Logs.push({
+      date: fmtMonth(firstDate),
+      html: `<strong>챌린지 시작.</strong> AI 자동화 시스템 구축 완료. 하루 3개 글 자동 생성 → 검토 후 발행 루틴 시작.`
+    });
+  }
+
+  // 마일스톤 달성 로그
+  const milestones = [10, 30, 50, 75, 100];
+  milestones.forEach(ms => {
+    if (totalCount >= ms && postsByDate[ms-1]){
+      const msDate = postsByDate[ms-1]._date;
+      ch1Logs.push({
+        date: fmtDate(msDate),
+        html: `<strong class="milestone">🎯 ${ms}편 달성!</strong> ${ms === 100 ? '챌린지 완료!' : `목표까지 ${CH1_GOAL - ms}편 남음.`}`
+      });
+    }
+  });
+
+  // 주간 요약 (최근 4주)
+  for (let weekAgo = 0; weekAgo < 4; weekAgo++){
+    const wEnd   = new Date(now); wEnd.setDate(wEnd.getDate() - weekAgo * 7);
+    const wStart = new Date(wEnd); wStart.setDate(wStart.getDate() - 7);
+    const weeklyPosts = postsByDate.filter(p => p._date >= wStart && p._date < wEnd);
+    if (weeklyPosts.length === 0) continue;
+    
+    const weekLabel = weekAgo === 0 ? '이번 주' : `${weekAgo}주 전`;
+    const weeklyPublished = weeklyPosts.filter(p => p.status === 'published').length;
+    const weeklyDraft = weeklyPosts.length - weeklyPublished;
+    
+    let weekText = `<strong>${weekLabel}</strong>: ${weeklyPosts.length}편 생성`;
+    if (weeklyPublished > 0) weekText += ` (${weeklyPublished}편 발행`;
+    if (weeklyDraft > 0) weekText += `${weeklyPublished > 0 ? ', ' : ' ('}${weeklyDraft}편 초안`;
+    if (weeklyPublished > 0 || weeklyDraft > 0) weekText += ')';
+    
+    ch1Logs.push({
+      date: `W-${weekAgo}`,
+      rawDate: wEnd,
+      html: weekText
+    });
+  }
+
+  // 로그 정렬 (최신순)
+  ch1Logs.sort((a,b) => {
+    const da = a.rawDate || parseDate(a.date.replace(/\./g, '-')) || new Date(0);
+    const db = b.rawDate || parseDate(b.date.replace(/\./g, '-')) || new Date(0);
+    return db - da;
+  });
+
+  ch1LogEl.innerHTML = ch1Logs.slice(0, 8).map(log => 
+    `<div class="log-item"><div class="log-date">${log.date}</div><div class="log-text">${log.html}</div></div>`
+  ).join('');
+
+  /* ═══════════════════════════════════════════════════
+   *  3. 챌린지 2: 1일 2포스팅 30일 챌린지
+   * ═══════════════════════════════════════════════════ */
+  const CH2_DURATION = 30; // 30일
+  const CH2_GOAL = 60;     // 60편
+
+  // 시작일 = 가장 오래된 글의 발행일
+  const ch2Start = postsByDate[0]?._date || now;
+  const ch2Day = Math.min(CH2_DURATION, daysBetween(ch2Start, now) + 1);
+  const ch2IsDone = ch2Day >= CH2_DURATION;
+
+  // 기간 내 발행된 글 수 (시작일부터 30일까지)
+  const ch2EndDate = new Date(ch2Start);
+  ch2EndDate.setDate(ch2EndDate.getDate() + CH2_DURATION);
+  const ch2Posts = postsByDate.filter(p => p._date >= ch2Start && p._date <= ch2EndDate);
+  const ch2Count = Math.min(CH2_GOAL, ch2Posts.length);
+  const ch2Pct = Math.min(100, (ch2Count / CH2_GOAL) * 100);
+
+  document.getElementById('ch2-start').textContent = fmtMonth(ch2Start);
+  document.getElementById('ch2-day').innerHTML = ch2Day + '<span style="font-size:13px">일차</span>';
+  document.getElementById('ch2-count').textContent = ch2Count;
+  document.getElementById('ch2-bar').style.width = ch2Pct + '%';
+
+  // 진행률 텍스트
+  if (ch2Count >= CH2_GOAL){
+    document.getElementById('ch2-progress-text').textContent = '🎉 목표 달성!';
+    document.getElementById('ch2-badge').textContent = '✓ 달성 완료';
+  } else if (ch2IsDone){
+    document.getElementById('ch2-progress-text').textContent = `기간 종료 · ${ch2Pct.toFixed(0)}%`;
+    document.getElementById('ch2-badge').textContent = '⏱ 기간 종료';
+  } else {
+    document.getElementById('ch2-progress-text').textContent = `${ch2Pct.toFixed(0)}% (${CH2_DURATION - ch2Day}일 남음)`;
+  }
+
+  // ETA 메시지
+  if (!ch2IsDone && ch2Count < CH2_GOAL){
+    const needed = CH2_GOAL - ch2Count;
+    const daysLeft = CH2_DURATION - ch2Day;
+    if (daysLeft > 0){
+      const paceNeeded = (needed / daysLeft).toFixed(1);
+      const currentPace = ch2Day > 0 ? (ch2Count / ch2Day).toFixed(1) : 0;
+      document.getElementById('ch2-eta').textContent = 
+        `💡 남은 ${daysLeft}일간 ${needed}편 필요 (일 평균 ${paceNeeded}편, 현재 페이스 ${currentPace}편/일)`;
+    }
+  }
+
+  /* ── 챌린지 2 주간 로그 ─────────────────────────── */
+  const ch2LogEl = document.getElementById('ch2-log');
+  const ch2Logs = [];
+
+  // 시작 로그
+  ch2Logs.push({
+    date: fmtDate(ch2Start),
+    html: `<strong>챌린지 시작.</strong> 30일간 총 60편 발행 도전. AI 자동화 + 수동 검토로 퀄리티 관리.`
+  });
+
+  // 주간 누적 요약 (챌린지 내)
+  const weeksInChallenge = Math.min(4, Math.ceil(ch2Day / 7));
+  for (let w = 1; w <= weeksInChallenge; w++){
+    const wStart = new Date(ch2Start); 
+    wStart.setDate(wStart.getDate() + (w-1) * 7);
+    const wEnd = new Date(wStart); 
+    wEnd.setDate(wEnd.getDate() + 7);
+    const cutoff = wEnd > now ? now : wEnd;
+    const weekPosts = postsByDate.filter(p => p._date >= wStart && p._date < cutoff);
+    if (weekPosts.length === 0 && w > 1) continue;
+
+    const targetThisWeek = 14; // 주 14편 (하루 2편 × 7일)
+    const achieved = weekPosts.length;
+    const rate = ((achieved / targetThisWeek) * 100).toFixed(0);
+    
+    let status = '';
+    if (achieved >= targetThisWeek) status = ' ✓ 달성';
+    else if (achieved >= targetThisWeek * 0.7) status = ' 🔸 근접';
+    else status = ' ⚠ 미달';
+
+    ch2Logs.push({
+      date: `W${w}`,
+      html: `<strong>${w}주차</strong>: ${achieved}/${targetThisWeek}편 (${rate}%)${status}`
+    });
+  }
+
+  // 마일스톤 (15편/30편/45편/60편)
+  [15, 30, 45, 60].forEach(ms => {
+    if (ch2Count >= ms && ch2Posts[ms-1]){
+      ch2Logs.push({
+        date: fmtDate(ch2Posts[ms-1]._date),
+        html: `<strong class="milestone">🎯 ${ms}편 달성</strong> (목표의 ${((ms/CH2_GOAL)*100).toFixed(0)}%)`
+      });
+    }
+  });
+
+  // 로그 렌더링 (최대 8개, 최신순)
+  ch2Logs.reverse();
+  ch2LogEl.innerHTML = ch2Logs.slice(0, 8).map(log => 
+    `<div class="log-item"><div class="log-date">${log.date}</div><div class="log-text">${log.html}</div></div>`
+  ).join('');
+
+  console.log('[Challenge] 자동 업데이트 완료', {
+    totalCount, published: published.length, ch1Pct, ch2Count, ch2Pct, ch2Day
+  });
+})();
 </script>
 </body>
 </html>

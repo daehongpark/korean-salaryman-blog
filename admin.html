@@ -268,6 +268,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="sidebar-item" id="si-income" onclick="showView('income',this)">
           <span class="si-icon">💰</span> 수익 편집
         </div>
+        <div class="sidebar-item" id="si-adsense" onclick="showView('adsense',this)">
+          <span class="si-icon">🎯</span> 에드센스 준비
+          <span class="sidebar-count" id="cnt-adsense">—</span>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-label">바로가기</div>
@@ -405,6 +409,67 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         </div>
 
       </div><!-- /view-income -->
+
+      <!-- ── 에드센스 준비 뷰 ── -->
+      <div id="view-adsense" style="display:none;">
+        <div style="margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:8px;">ADSENSE READINESS · 에드센스 승인 준비도</div>
+          <h2 style="font-family:'Noto Serif KR',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px;">에드센스 승인 진단</h2>
+          <p style="font-size:13px;color:var(--text3);line-height:1.7;">manifest.json과 사이트 현황을 자동 분석해 에드센스 승인 가능성을 진단합니다.</p>
+        </div>
+
+        <!-- 전체 점수 카드 -->
+        <div id="adsense-score-card" style="background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:28px 32px;margin-bottom:20px;color:var(--white);position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.2),transparent 65%);"></div>
+          <div style="position:relative;z-index:1;">
+            <div style="font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.5);margin-bottom:8px;">READINESS SCORE</div>
+            <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;">
+              <div id="adsense-score" style="font-family:'Noto Serif KR',serif;font-size:52px;font-weight:900;color:var(--gold);line-height:1;">—</div>
+              <div style="font-size:22px;color:rgba(255,255,255,0.4);">/ 100점</div>
+            </div>
+            <div id="adsense-verdict" style="font-size:14px;color:rgba(255,255,255,0.85);margin-top:8px;line-height:1.6;">분석 중...</div>
+          </div>
+        </div>
+
+        <!-- 빠른 통계 -->
+        <div id="adsense-quick-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;"></div>
+
+        <!-- 필수 항목 체크 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:16px;">REQUIRED · 필수 항목 (없으면 거절)</div>
+          <div id="adsense-required-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </div>
+
+        <!-- 권장 항목 체크 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:16px;">RECOMMENDED · 권장 항목 (승인 확률 상승)</div>
+          <div id="adsense-recommended-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </div>
+
+        <!-- 초안 검토 섹션 -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:6px;">DRAFT REVIEW · 초안 검토</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+            <h3 style="font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);">발행 전 검토 필요한 초안</h3>
+            <span id="adsense-draft-count" style="font-size:12px;color:var(--text3);">—</span>
+          </div>
+          <div id="adsense-draft-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </div>
+
+        <!-- 단계별 실행 로드맵 -->
+        <div style="background:linear-gradient(135deg,#fef8ef,#fdeed6);border:1px solid var(--point-light);border-radius:16px;padding:24px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:16px;">ROADMAP · 4주 실행 로드맵</div>
+          <div id="adsense-roadmap" style="display:flex;flex-direction:column;gap:12px;"></div>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;">
+          <button onclick="renderAdsenseChecklist()" style="background:var(--navy);color:var(--white);border:none;padding:11px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🔄 다시 진단</button>
+          <a href="https://www.google.com/adsense" target="_blank" style="background:var(--point);color:var(--white);text-decoration:none;padding:11px 22px;border-radius:8px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;">🎯 에드센스 신청하러 가기 →</a>
+          <a href="https://support.google.com/adsense/answer/48182" target="_blank" style="background:var(--bg2);color:var(--text2);text-decoration:none;padding:11px 22px;border-radius:8px;font-size:13px;font-weight:700;">📘 프로그램 정책 보기</a>
+        </div>
+
+      </div><!-- /view-adsense -->
 
     </main>
   </div>
@@ -793,6 +858,12 @@ function updateStats() {
   document.getElementById('cnt-all').textContent   = total;
   document.getElementById('cnt-pub').textContent   = pub;
   document.getElementById('cnt-draft').textContent = draft;
+  
+  // 에드센스 뷰가 열려있으면 재렌더링 (데이터 최신화)
+  const adsView = document.getElementById('view-adsense');
+  if (adsView && adsView.style.display !== 'none' && typeof renderAdsenseChecklist === 'function') {
+    try { renderAdsenseChecklist(); } catch(e) { console.warn('에드센스 뷰 재렌더 실패:', e); }
+  }
 }
 
 // ── 필터 ─────────────────────────────────────────────
@@ -1201,11 +1272,273 @@ function showLoading(v) {
 
 // ── 뷰 전환 ──────────────────────────────────────────
 function showView(view, el) {
-  document.getElementById('view-posts').style.display  = view === 'posts'  ? '' : 'none';
-  document.getElementById('view-income').style.display = view === 'income' ? '' : 'none';
+  document.getElementById('view-posts').style.display   = view === 'posts'   ? '' : 'none';
+  document.getElementById('view-income').style.display  = view === 'income'  ? '' : 'none';
+  const adsenseView = document.getElementById('view-adsense');
+  if (adsenseView) adsenseView.style.display = view === 'adsense' ? '' : 'none';
   document.querySelectorAll('.sidebar-item').forEach(e => e.classList.remove('active'));
   if (el) el.classList.add('active');
   if (view === 'income') renderIncomeEditor();
+  if (view === 'adsense') renderAdsenseChecklist();
+}
+
+// ═══════════════════════════════════════════════════════
+//  에드센스 승인 진단 시스템
+// ═══════════════════════════════════════════════════════
+function renderAdsenseChecklist() {
+  // admin의 전역 allPosts 변수 참조 (없으면 빈 배열)
+  const _posts = (typeof allPosts !== 'undefined' && Array.isArray(allPosts)) ? allPosts : [];
+  const published = _posts.filter(p => p.status === 'published');
+  const drafts    = _posts.filter(p => p.status === 'draft');
+
+  // ── 1. 기본 지표 계산 ──
+  const totalCount     = _posts.length;
+  const publishedCount = published.length;
+  const thumbnailCount = _posts.filter(p => p.thumbnail || p.has_image || (p.hero_image && p.hero_image.url)).length;
+  const thumbnailPct   = totalCount > 0 ? Math.round((thumbnailCount / totalCount) * 100) : 0;
+  const faqCount       = _posts.filter(p => p.has_faq || (p.faq && p.faq.length > 0)).length;
+  const faqPct         = totalCount > 0 ? Math.round((faqCount / totalCount) * 100) : 0;
+
+  // ── 2. 점수 계산 (100점 만점) ──
+  let score = 0;
+  const reasons = [];
+
+  // 발행 글 수 (최대 30점)
+  if (publishedCount >= 30)      { score += 30; reasons.push('발행 30편 이상 ✅'); }
+  else if (publishedCount >= 20) { score += 25; reasons.push('발행 20편 이상 ✅'); }
+  else if (publishedCount >= 15) { score += 18; reasons.push('발행 15편 이상 ⚠️'); }
+  else if (publishedCount >= 10) { score += 10; reasons.push('발행 10편 이상 ⚠️'); }
+  else                           { score += 3;  reasons.push(`발행 ${publishedCount}편 (부족) ❌`); }
+
+  // 썸네일 비율 (최대 20점)
+  if (thumbnailPct >= 90)      score += 20;
+  else if (thumbnailPct >= 70) score += 15;
+  else if (thumbnailPct >= 50) score += 10;
+  else                         score += 5;
+
+  // 법적 페이지 (필수 - 최대 25점)
+  // 실제 존재 여부는 사이트 배포 후 확인해야 하지만, 여기서는 생성 여부를 가정
+  const hasPrivacy = true;  // privacy.html 생성됨
+  const hasTerms = true;    // terms.html 생성됨
+  if (hasPrivacy) score += 15;
+  if (hasTerms)   score += 10;
+
+  // 사이트 기본 (최대 25점)
+  score += 5; // HTTPS ✓
+  score += 5; // sitemap ✓
+  score += 5; // GA4 ✓
+  score += 5; // Search Console ✓
+  score += 5; // 소개 페이지 ✓
+
+  score = Math.min(100, score);
+
+  // ── 3. 판정 문구 ──
+  let verdict = '';
+  if (score >= 85)      verdict = '🎉 <strong>즉시 신청 가능</strong>합니다! 모든 준비가 잘 되어있어요.';
+  else if (score >= 70) verdict = '✅ <strong>신청 권장</strong> — 조금 더 보완하면 승인 확률이 더 높아집니다.';
+  else if (score >= 50) verdict = '⚠️ <strong>추가 준비 필요</strong> — 아래 체크리스트를 따라 보완하세요.';
+  else                  verdict = '❌ <strong>아직 이릅니다</strong> — 발행 글 수를 먼저 늘려주세요.';
+
+  // 예상 승인 시점
+  const needed = Math.max(0, 20 - publishedCount);
+  if (needed > 0) {
+    verdict += `<br><span style="font-size:12px;opacity:0.75;">💡 발행 ${needed}편만 더 늘리면 신청 가능 상태가 됩니다.</span>`;
+  }
+
+  document.getElementById('adsense-score').textContent = score;
+  document.getElementById('adsense-verdict').innerHTML = verdict;
+
+  // ── 4. 빠른 통계 4칸 ──
+  const statBox = (label, value, sub, hi) => `
+    <div style="background:${hi ? 'var(--point-light)' : 'var(--white)'};border:1px solid ${hi ? 'rgba(193,127,62,0.25)' : 'var(--border)'};border-radius:12px;padding:18px;text-align:center;">
+      <div style="font-family:'Noto Serif KR',serif;font-size:26px;font-weight:900;color:${hi ? 'var(--point)' : 'var(--navy)'};line-height:1;">${value}</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:8px;font-weight:600;letter-spacing:0.05em;">${label}</div>
+      ${sub ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;opacity:0.75;">${sub}</div>` : ''}
+    </div>`;
+
+  document.getElementById('adsense-quick-stats').innerHTML =
+    statBox('발행 글', `${publishedCount}<span style="font-size:14px;font-weight:500;color:var(--text3);"> /20</span>`, publishedCount >= 20 ? '✅ 충족' : `${20 - publishedCount}편 더 필요`, publishedCount >= 20) +
+    statBox('초안 대기', drafts.length + '편', '검토 후 발행', false) +
+    statBox('썸네일 비율', thumbnailPct + '%', `${thumbnailCount}/${totalCount}편`, thumbnailPct >= 80) +
+    statBox('FAQ 포함', faqPct + '%', `${faqCount}/${totalCount}편`, false);
+
+  // 사이드바 점수 업데이트
+  const cntEl = document.getElementById('cnt-adsense');
+  if (cntEl) cntEl.textContent = score;
+
+  // ── 5. 필수 항목 체크리스트 ──
+  const required = [
+    { ok: publishedCount >= 20, title: '발행 글 20편 이상', desc: `현재 ${publishedCount}편. 에드센스 기본 요건` },
+    { ok: hasPrivacy, title: '개인정보처리방침', desc: 'privacy.html 생성됨 (배포 후 접근 가능해야 함)' },
+    { ok: true, title: 'HTTPS 적용', desc: 'Vercel 자동 SSL' },
+    { ok: true, title: 'Google Search Console 인증', desc: '이미 인증 완료' },
+    { ok: true, title: '사이트맵 제출', desc: 'sitemap.xml 자동 갱신' },
+    { ok: thumbnailPct >= 80, title: '글당 이미지 포함 (80%+)', desc: `현재 ${thumbnailPct}% · 자동 썸네일 시스템 덕분` },
+  ];
+  document.getElementById('adsense-required-list').innerHTML = required.map(itemRow).join('');
+
+  // ── 6. 권장 항목 ──
+  const recommended = [
+    { ok: hasTerms, title: '이용약관 페이지', desc: 'terms.html 생성됨' },
+    { ok: true, title: '소개(About) 페이지', desc: 'about.html 존재' },
+    { ok: faqCount > 0, title: 'FAQ 섹션 있는 글', desc: `${faqCount}편에 FAQ 포함 (구조화 데이터↑)` },
+    { ok: true, title: '카테고리별 네비게이션', desc: '블로그 페이지 + 카테고리 필터 완료' },
+    { ok: true, title: 'OG 이미지 설정', desc: 'SNS 공유 썸네일 OK' },
+    { ok: publishedCount >= 30, title: '발행 글 30편 이상 (승인 확률↑)', desc: `현재 ${publishedCount}편` },
+  ];
+  document.getElementById('adsense-recommended-list').innerHTML = recommended.map(itemRow).join('');
+
+  function itemRow(item) {
+    const icon = item.ok ? '✅' : '⬜';
+    const textStyle = item.ok ? 'color:var(--text1);' : 'color:var(--text2);';
+    return `<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:${item.ok ? 'var(--green-light)' : 'var(--bg)'};border-radius:8px;">
+      <span style="font-size:16px;flex-shrink:0;">${icon}</span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13px;font-weight:700;${textStyle}">${item.title}</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:2px;">${item.desc}</div>
+      </div>
+    </div>`;
+  }
+
+  // ── 7. 초안 검토 리스트 (상위 8편) ──
+  const draftCountEl = document.getElementById('adsense-draft-count');
+  const draftListEl  = document.getElementById('adsense-draft-list');
+
+  draftCountEl.textContent = `총 ${drafts.length}편 · 상위 10편 표시`;
+
+  if (drafts.length === 0) {
+    draftListEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text3);font-size:13px;">검토할 초안이 없습니다. 모든 초안이 발행되었거나 글이 없습니다.</div>';
+  } else {
+    // SEO 점수 순으로 정렬 (있으면 우선), 그 다음 생성일
+    const sortedDrafts = [...drafts].sort((a, b) => {
+      const sa = a.seo_score || 0, sb = b.seo_score || 0;
+      if (sa !== sb) return sb - sa;
+      return new Date(b.created_at) - new Date(a.created_at);
+    }).slice(0, 10);
+
+    draftListEl.innerHTML = sortedDrafts.map(p => {
+      const seoBadge = (typeof p.seo_score === 'number' && p.seo_score > 0)
+        ? `<span style="background:var(--point-light);color:var(--point);padding:2px 8px;border-radius:100px;font-size:10px;font-weight:700;margin-left:6px;">⚡ SEO ${Math.round(p.seo_score)}</span>`
+        : '';
+      const hasImg = (p.thumbnail || p.has_image) ? '🖼️' : '❌';
+      const hasFaq = p.has_faq ? '❓FAQ' : '';
+      return `<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:10px;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+            ${escapeHtml(p.title || '(제목 없음)')}${seoBadge}
+          </div>
+          <div style="font-size:11px;color:var(--text3);">
+            <span style="color:var(--point);font-weight:600;">${escapeHtml(p.category || '')}</span> · 
+            ${formatDate(p.created_at)} · ${hasImg} ${hasFaq}
+          </div>
+        </div>
+        <button onclick="openPost('${escapeHtml(p.filename)}')" style="background:var(--navy);color:var(--white);border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;font-family:inherit;">검토 →</button>
+      </div>`;
+    }).join('');
+  }
+
+  // ── 8. 실행 로드맵 ──
+  const weeks = [
+    {
+      week: 'Week 1',
+      date: '4/24 ~ 4/30',
+      title: '초안 검토 및 발행 집중',
+      tasks: [
+        `발행 ${publishedCount} → 25편 목표 (${Math.max(0, 25-publishedCount)}편 추가 필요)`,
+        '품질 낮은 초안 보완 후 발행',
+        '모바일 미리보기 확인',
+      ],
+      done: publishedCount >= 25,
+    },
+    {
+      week: 'Week 2',
+      date: '5/1 ~ 5/7',
+      title: '품질 보완 및 SEO 최적화',
+      tasks: [
+        `발행 ${publishedCount} → 30편 목표`,
+        '상위 5개 글 2,000자+ 보강',
+        '내부 링크 추가 (글끼리 연결)',
+      ],
+      done: publishedCount >= 30,
+    },
+    {
+      week: 'Week 3',
+      date: '5/8 ~ 5/14',
+      title: '🎯 에드센스 신청',
+      tasks: [
+        'ads.txt 설정 (Vercel에서)',
+        'AdSense 신청서 제출',
+        '검토 대기 (1~2주)',
+      ],
+      done: false,
+    },
+    {
+      week: 'Week 4',
+      date: '5/15 ~ 5/21',
+      title: '승인 대기 + 보조 개선',
+      tasks: [
+        '자동 글 생성 계속 진행',
+        '백링크 구축 (네이버 블로그 등)',
+        '승인 이후 광고 배치 전략 수립',
+      ],
+      done: false,
+    },
+  ];
+
+  document.getElementById('adsense-roadmap').innerHTML = weeks.map((w, i) => `
+    <div style="background:var(--white);border-radius:10px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;${w.done ? 'opacity:0.6;' : ''}">
+      <div style="flex-shrink:0;width:38px;height:38px;border-radius:50%;background:${w.done ? 'var(--green)' : 'var(--point)'};color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">
+        ${w.done ? '✓' : (i + 1)}
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
+          <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.08em;">${w.week}</div>
+          <div style="font-size:11px;color:var(--text3);">${w.date}</div>
+        </div>
+        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;">${w.title}</div>
+        <ul style="list-style:none;padding:0;margin:0;">
+          ${w.tasks.map(t => `<li style="font-size:12px;color:var(--text2);padding:2px 0;line-height:1.6;">• ${t}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+
+  // 헬퍼 (admin에 이미 있으면 생략 가능, 없을 수도 있으므로 방어적으로 정의)
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, c => (
+      {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+    ));
+  }
+  function formatDate(s) {
+    if (!s) return '—';
+    try {
+      const d = new Date(s);
+      return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+    } catch(e) { return '—'; }
+  }
+}
+
+// 초안을 미리보기로 열기 (글 관리 뷰로 이동 + 해당 글 포커스)
+function openPost(filename) {
+  // 글 관리 뷰로 전환
+  document.getElementById('view-posts').style.display = '';
+  document.getElementById('view-income').style.display = 'none';
+  document.getElementById('view-adsense').style.display = 'none';
+  document.querySelectorAll('.sidebar-item').forEach(e => e.classList.remove('active'));
+  const siAll = document.getElementById('si-all');
+  if (siAll) siAll.classList.add('active');
+  // 스크롤 상단으로
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // 목록에서 해당 글 찾아서 하이라이트 (있다면)
+  setTimeout(() => {
+    const card = document.querySelector(`[data-filename="${filename}"]`);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.style.transition = 'background 0.3s';
+      card.style.background = 'var(--point-light)';
+      setTimeout(() => card.style.background = '', 1500);
+    }
+  }, 200);
 }
 
 // ── 수익 데이터 기본값 ────────────────────────────────

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>개인정보처리방침 | 직장인 수익일기</title>
+<meta name="description" content="직장인 수익일기 블로그의 개인정보처리방침입니다. 방문자의 개인정보 수집, 이용, 보관, 파기에 관한 원칙을 안내합니다.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://koreansalaryman.com/privacy.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--white:#fff;--bg:#f8f7f4;--bg2:#f0ede8;--navy:#1a2640;--navy2:#253352;--navy3:#0f1824;--point:#c17f3e;--point2:#d4924e;--point-light:#f5ead8;--green:#2d6a4f;--text1:#1a1a1a;--text2:#444;--text3:#888;--border:#e8e4de;--border2:#d4cfc8;--gold:#c8a96e;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased;}
+
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8px;color:var(--text3);letter-spacing:0.25em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-cta{display:inline-flex;align-items:center;background:var(--point);color:var(--white);font-size:12px;font-weight:700;padding:8px 18px;border-radius:6px;text-decoration:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu.open{display:flex!important;}
+
+.hero{background:var(--navy3);padding:52px 24px 44px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;text-align:center;}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;color:var(--white);letter-spacing:-0.02em;margin-bottom:10px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.4);}
+
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 60px;}
+.toc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:36px;}
+.toc h4{font-family:'Noto Serif KR',serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:14px;letter-spacing:0.05em;}
+.toc ol{padding-left:20px;}
+.toc ol li{font-size:13px;color:var(--text2);padding:4px 0;}
+.toc ol li a{color:var(--text2);text-decoration:none;}
+.toc ol li a:hover{color:var(--point);}
+
+article section{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin-bottom:20px;scroll-margin-top:80px;}
+article h2{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--point-light);}
+article h2 .num{color:var(--point);margin-right:8px;}
+article h3{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--navy);margin:20px 0 8px;}
+article p{font-size:14px;color:var(--text2);margin-bottom:12px;line-height:1.85;}
+article ul,article ol{padding-left:22px;margin:12px 0;}
+article li{font-size:14px;color:var(--text2);margin:6px 0;line-height:1.8;}
+article strong{color:var(--navy);font-weight:700;}
+article .hi{background:var(--point-light);padding:2px 6px;border-radius:4px;color:var(--navy);font-weight:600;}
+article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+article th,article td{border:1px solid var(--border);padding:10px 14px;text-align:left;}
+article th{background:var(--bg);font-weight:700;color:var(--navy);}
+.effective{background:var(--point-light);border-left:4px solid var(--point);border-radius:0 8px 8px 0;padding:16px 20px;margin-top:24px;font-size:13px;color:var(--navy);}
+.effective strong{color:var(--point);}
+
+footer{background:var(--navy3);padding:40px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.8;}
+.ft-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.15em;margin-bottom:14px;}
+.ft-col a{display:block;font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;margin-bottom:8px;}
+.ft-col a:hover{color:rgba(255,255,255,0.7);}
+.ft-bottom{max-width:1080px;margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.2);}
+
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .hero h1{font-size:24px;}
+  .wrap{padding:28px 16px 40px;}
+  article section{padding:20px;}
+  .ft{grid-template-columns:1fr!important;gap:24px;}
+  .ft-bottom{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <a href="/" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <nav class="desktop-nav">
+      <a href="blog.html">블로그</a>
+      <a href="challenge.html">챌린지</a>
+      <a href="income.html">수익 공개</a>
+      <a href="about.html">소개</a>
+      <a href="class.html">강의</a>
+      <div class="nav-divider"></div>
+      <a href="index.html#newsletter" class="btn-cta">무료 구독</a>
+    </nav>
+    <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="blog.html">블로그</a>
+  <a href="challenge.html">챌린지</a>
+  <a href="income.html">수익 공개</a>
+  <a href="about.html">소개</a>
+  <a href="class.html">강의</a>
+  <a href="index.html#newsletter" class="btn-cta">무료 구독</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>개인정보처리방침</h1>
+    <div class="hero-sub">최종 업데이트: 2026년 4월 24일</div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="toc">
+    <h4>목차</h4>
+    <ol>
+      <li><a href="#s1">수집하는 개인정보의 항목 및 이용 목적</a></li>
+      <li><a href="#s2">개인정보의 수집 방법</a></li>
+      <li><a href="#s3">개인정보의 보유 및 이용 기간</a></li>
+      <li><a href="#s4">쿠키(Cookie)의 사용</a></li>
+      <li><a href="#s5">제3자 서비스 (Google, 네이버 등)</a></li>
+      <li><a href="#s6">이용자의 권리</a></li>
+      <li><a href="#s7">개인정보 보호책임자 및 문의</a></li>
+      <li><a href="#s8">정책 변경에 관한 사항</a></li>
+    </ol>
+  </div>
+
+  <article>
+    <section id="s1">
+      <h2><span class="num">01.</span>수집하는 개인정보의 항목 및 이용 목적</h2>
+      <p><strong>직장인 수익일기</strong>(https://koreansalaryman.com, 이하 '사이트')는 방문자의 개인정보를 소중하게 생각하며, 개인정보보호법을 준수하기 위해 노력하고 있습니다.</p>
+      
+      <h3>필수 수집 항목</h3>
+      <p>본 사이트는 다음과 같은 경우에 최소한의 개인정보를 수집합니다.</p>
+      <ul>
+        <li><strong>댓글 작성 시</strong>: 닉네임, 댓글 내용, IP 주소 (스팸 방지 목적)</li>
+        <li><strong>뉴스레터 구독 시</strong>: 이메일 주소 (구독 서비스 제공 목적)</li>
+        <li><strong>문의하기 시</strong>: 이메일 주소, 문의 내용</li>
+      </ul>
+      
+      <h3>자동 수집 항목</h3>
+      <p>서비스 이용 과정에서 다음 정보가 자동으로 수집될 수 있습니다.</p>
+      <ul>
+        <li>IP 주소, 접속 로그, 방문 시간</li>
+        <li>브라우저 종류 및 운영체제(OS) 정보</li>
+        <li>기기 종류, 화면 해상도</li>
+        <li>페이지 방문 기록, 체류 시간, 유입 경로</li>
+        <li>쿠키에 의한 익명화된 사용 패턴</li>
+      </ul>
+      
+      <h3>이용 목적</h3>
+      <ul>
+        <li>콘텐츠 제공 및 서비스 품질 향상</li>
+        <li>방문자 통계 및 트래픽 분석</li>
+        <li>맞춤형 광고 제공 (Google AdSense)</li>
+        <li>뉴스레터 발송 및 사이트 업데이트 알림</li>
+        <li>스팸 및 부정 이용 방지</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="num">02.</span>개인정보의 수집 방법</h2>
+      <ul>
+        <li>홈페이지(댓글, 뉴스레터 구독 폼) 입력</li>
+        <li>자동 수집 장치(쿠키, 웹 로그 분석 도구)</li>
+      </ul>
+    </section>
+
+    <section id="s3">
+      <h2><span class="num">03.</span>개인정보의 보유 및 이용 기간</h2>
+      <p>본 사이트는 원칙적으로 <span class="hi">개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기</span>합니다. 단, 아래와 같은 경우에는 예외적으로 보관합니다.</p>
+      <table>
+        <thead>
+          <tr><th>항목</th><th>보유 기간</th><th>근거</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>댓글</td><td>이용자 요청 시 삭제 또는 3년</td><td>서비스 이용 정보</td></tr>
+          <tr><td>뉴스레터 이메일</td><td>구독 해지 시까지</td><td>이용자 동의</td></tr>
+          <tr><td>접속 로그</td><td>3개월</td><td>통신비밀보호법</td></tr>
+          <tr><td>방문자 통계(익명)</td><td>14개월</td><td>Google Analytics 기본 설정</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="s4">
+      <h2><span class="num">04.</span>쿠키(Cookie)의 사용</h2>
+      <p>본 사이트는 방문자에게 맞춤형 서비스를 제공하기 위해 쿠키(Cookie)를 사용합니다.</p>
+      
+      <h3>쿠키란?</h3>
+      <p>쿠키는 웹사이트가 이용자의 브라우저에 전송하는 작은 정보 파일로, 이용자의 컴퓨터 하드디스크에 저장됩니다.</p>
+      
+      <h3>쿠키의 사용 목적</h3>
+      <ul>
+        <li>이용자의 방문 및 이용 형태 파악</li>
+        <li>인기 검색어, 접속 시간 등 맞춤형 정보 제공</li>
+        <li>광고 타겟팅 및 성과 측정</li>
+      </ul>
+      
+      <h3>쿠키 거부 방법</h3>
+      <p>이용자는 쿠키 설치를 거부할 수 있습니다.</p>
+      <ul>
+        <li><strong>Chrome</strong>: 설정 → 개인정보 및 보안 → 쿠키 및 기타 사이트 데이터</li>
+        <li><strong>Edge</strong>: 설정 → 쿠키 및 사이트 권한 → 쿠키 및 저장된 데이터</li>
+        <li><strong>Safari</strong>: 환경설정 → 개인정보 보호 → 쿠키 및 웹 사이트 데이터</li>
+      </ul>
+      <p style="font-size:12px;color:var(--text3);">※ 쿠키 저장을 거부하실 경우 일부 서비스의 이용에 제한이 있을 수 있습니다.</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="num">05.</span>제3자 서비스 (Google, 네이버 등)</h2>
+      <p>본 사이트는 아래와 같은 제3자 서비스를 이용하고 있으며, 해당 서비스 제공자는 각자의 개인정보처리방침에 따라 정보를 처리합니다.</p>
+      
+      <h3>Google Analytics</h3>
+      <p>방문자 통계 및 사이트 이용 행태 분석을 위해 Google Analytics 4를 사용합니다.</p>
+      <ul>
+        <li>수집 정보: 익명화된 방문 데이터, 페이지뷰, 체류 시간, 기기 정보</li>
+        <li>개인 식별 정보는 수집하지 않습니다</li>
+        <li>옵트아웃: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color:var(--point);">Google Analytics 옵트아웃 브라우저 부가 기능</a></li>
+      </ul>
+      
+      <h3>Google AdSense</h3>
+      <p>본 사이트에는 <span class="hi">Google AdSense 광고</span>가 게재될 수 있으며, Google은 쿠키를 사용하여 이용자의 관심사에 맞는 광고를 제공합니다.</p>
+      <ul>
+        <li>Google은 DoubleClick DART 쿠키를 사용하여 본 사이트 및 다른 사이트 방문 기반의 광고를 게재합니다</li>
+        <li>이용자는 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color:var(--point);">Google 광고 설정</a>에서 맞춤 광고를 거부할 수 있습니다</li>
+        <li>Google의 광고 개인정보 처리방침: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener" style="color:var(--point);">policies.google.com/technologies/ads</a></li>
+      </ul>
+      
+      <h3>Google Search Console / 네이버 서치어드바이저</h3>
+      <p>검색엔진 최적화(SEO) 및 사이트 운영 현황 파악을 위해 사용합니다. 개인 식별 정보는 수집되지 않습니다.</p>
+      
+      <h3>Vercel (호스팅)</h3>
+      <p>본 사이트는 Vercel Inc.의 호스팅 서비스를 통해 제공됩니다. 기본 접속 로그가 Vercel 서버에 기록될 수 있습니다.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="num">06.</span>이용자의 권리</h2>
+      <p>이용자는 자신의 개인정보에 관하여 다음의 권리를 행사할 수 있습니다.</p>
+      <ul>
+        <li><strong>개인정보 열람 요구</strong>: 본인의 개인정보에 대한 열람을 요청할 수 있습니다</li>
+        <li><strong>정정 및 삭제 요구</strong>: 개인정보에 오류가 있을 경우 정정 또는 삭제를 요청할 수 있습니다</li>
+        <li><strong>처리 정지 요구</strong>: 개인정보 처리 정지를 요청할 수 있습니다</li>
+        <li><strong>구독 해지</strong>: 뉴스레터 구독은 언제든지 해지할 수 있습니다</li>
+      </ul>
+      <p>권리 행사는 아래 문의처로 연락하시면 지체 없이 조치하겠습니다.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="num">07.</span>개인정보 보호책임자 및 문의</h2>
+      <p>개인정보에 관한 문의사항이나 불만처리, 피해구제를 위해 아래 연락처로 문의하실 수 있습니다.</p>
+      <table>
+        <tbody>
+          <tr><th>개인정보 보호책임자</th><td>박대홍</td></tr>
+          <tr><th>이메일</th><td>pride93d@gmail.com</td></tr>
+          <tr><th>응답 시간</th><td>영업일 기준 3일 이내</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px;font-size:12px;color:var(--text3);">※ 본인 확인이 필요한 요청의 경우 추가 서류가 요구될 수 있습니다.</p>
+      
+      <h3>기타 개인정보 침해 신고기관</h3>
+      <ul>
+        <li>개인정보분쟁조정위원회 (privacy.go.kr / 1833-6972)</li>
+        <li>개인정보침해신고센터 (privacy.kisa.or.kr / 118)</li>
+        <li>대검찰청 사이버수사과 (spo.go.kr / 1301)</li>
+        <li>경찰청 사이버수사국 (police.go.kr / 182)</li>
+      </ul>
+    </section>
+
+    <section id="s8">
+      <h2><span class="num">08.</span>정책 변경에 관한 사항</h2>
+      <p>본 개인정보처리방침은 법령 및 정책 변경에 따라 수정될 수 있으며, 변경 시에는 본 페이지를 통해 고지합니다.</p>
+      
+      <div class="effective">
+        <strong>✓ 공고일자:</strong> 2026년 4월 24일<br>
+        <strong>✓ 시행일자:</strong> 2026년 4월 24일
+      </div>
+    </section>
+  </article>
+
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">말만 하지 않고 직접 증명합니다.</p>
+    </div>
+    <div class="ft-col">
+      <h4>카테고리</h4>
+      <a href="blog.html?cat=부업 방법">부업 방법</a>
+      <a href="blog.html?cat=재테크">재테크</a>
+      <a href="blog.html?cat=블로그">블로그</a>
+      <a href="blog.html?cat=자기계발">자기계발</a>
+    </div>
+    <div class="ft-col">
+      <h4>정책</h4>
+      <a href="privacy.html">개인정보처리방침</a>
+      <a href="terms.html">이용약관</a>
+      <a href="about.html">운영자 소개</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 직장인 수익일기 · 박대홍</span>
+    <span>koreansalaryman.com</span>
+  </div>
+</footer>
+
+</body>
+</html>
