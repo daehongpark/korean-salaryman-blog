@@ -703,39 +703,19 @@ footer{background:var(--navy3);padding:52px 24px;}
       </div>
     </div>
 
-    <!-- 이달의 수익 -->
+    <!-- 이달의 수익 (admin에서 수정한 데이터 자동 반영) -->
     <div class="income-section">
       <div class="income-head">
         <h3>이달의 수익 현황</h3>
-        <span id="incomeMonth">2026년 4월</span>
+        <span id="incomeMonth"></span>
       </div>
       <div class="income-body">
-        <div class="income-row">
-          <div class="income-left">
-            <div class="income-dot" style="background:#3b6cf4"></div>
-            <span class="income-name">블로그 대행</span>
-          </div>
-          <span class="income-val">₩ 3,500,000+</span>
-        </div>
-        <div class="income-row">
-          <div class="income-left">
-            <div class="income-dot" style="background:var(--point)"></div>
-            <span class="income-name">강의 수익</span>
-          </div>
-          <span class="income-val">₩ 1,500,000+</span>
-        </div>
-        <div class="income-row">
-          <div class="income-left">
-            <div class="income-dot" style="background:var(--green)"></div>
-            <span class="income-name">에드센스 (목표 중)</span>
-          </div>
-          <span class="income-val">진행 중</span>
-        </div>
+        <div id="sidebarIncomeRows"></div>
         <div class="income-total">
           <span class="income-total-label">부업 합계</span>
-          <span class="income-total-val">₩ 5,000,000+</span>
+          <span class="income-total-val" id="sidebarIncomeTotal">₩ 5,000,000+</span>
         </div>
-        <p class="income-note">* 직장 월급 별도 · 매달 업데이트</p>
+        <p class="income-note" id="sidebarIncomeNote">* 직장 월급 별도 · 매달 업데이트</p>
       </div>
     </div>
 
@@ -1114,10 +1094,53 @@ function handleSubscribe() {
   input.value = '';
 }
 
-// ── 이달 수익 날짜 업데이트 ──
-const now = new Date();
-document.getElementById('incomeMonth').textContent =
-  `${now.getFullYear()}년 ${now.getMonth()+1}월`;
+// ── 이달 수익 — admin 데이터 연동 ──
+(function() {
+  const now = new Date();
+  document.getElementById('incomeMonth').textContent =
+    now.getFullYear() + '년 ' + (now.getMonth()+1) + '월';
+
+  // admin에서 저장한 incomeData 읽기
+  const INCOME_DEFAULT = {
+    total:  { amount: '5,000,000', suffix: '원+', note: '* 직장 월급 별도 · 매달 업데이트' },
+    items: [
+      { name: '블로그 대행', amount: '3,500,000+', suffix: '원', color: '#3b6cf4' },
+      { name: '강의 수익',   amount: '1,500,000+', suffix: '원', color: '#c17f3e' },
+      { name: '에드센스 (목표 중)', amount: '진행 중', suffix: '', color: '#2d6a4f' },
+    ]
+  };
+
+  let data = INCOME_DEFAULT;
+  try {
+    const saved = localStorage.getItem('incomeData');
+    if (saved) data = JSON.parse(saved);
+  } catch(e) {}
+
+  // 수익 항목 렌더링
+  const rowsEl = document.getElementById('sidebarIncomeRows');
+  if (rowsEl && data.items) {
+    rowsEl.innerHTML = data.items.map(item => `
+      <div class="income-row">
+        <div class="income-left">
+          <div class="income-dot" style="background:${item.color}"></div>
+          <span class="income-name">${item.name}</span>
+        </div>
+        <span class="income-val">${item.amount}${item.suffix || ''}</span>
+      </div>`).join('');
+  }
+
+  // 총 수익
+  const totalEl = document.getElementById('sidebarIncomeTotal');
+  if (totalEl && data.total) {
+    totalEl.textContent = '₩ ' + data.total.amount + (data.total.suffix || '');
+  }
+
+  // 안내문
+  const noteEl = document.getElementById('sidebarIncomeNote');
+  if (noteEl && data.total && data.total.note) {
+    noteEl.textContent = data.total.note;
+  }
+})();
 
 // ── manifest.json 로드 ──
 fetch('./posts/manifest.json')
