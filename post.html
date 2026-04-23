@@ -75,6 +75,14 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .article-body{color:var(--text1);font-size:16px;line-height:1.95;}
 .article-body p{margin-bottom:1.6em;color:var(--text2);}
 .article-body p:first-child{font-size:17px;color:var(--text1);font-weight:400;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:40px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:14px 20px;border-radius:0 10px 10px 0;margin:20px 0;font-size:14px;color:var(--text2);line-height:1.8;}
+.article-body figure{margin:28px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:420px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:6px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0;}
+.article-body li{margin-bottom:8px;color:var(--text2);}
 .article-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
 .article-tag{font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:20px;font-weight:500;}
 .back-btn{display:inline-flex;align-items:center;gap:8px;margin-top:40px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.15s;}
@@ -324,8 +332,13 @@ if (!postId) {
         document.getElementById('articleSummary').style.display = 'none';
       }
 
-      // 본문
-      document.getElementById('articleBody').innerHTML = textToHtml(post.content || '');
+      // 본문 — automation.py가 HTML로 저장하므로 innerHTML로 바로 삽입
+      // 구형 글(텍스트 저장)은 textToHtml로 fallback
+      const rawContent = post.content || '';
+      const isHtml = rawContent.trim().startsWith('<');
+      document.getElementById('articleBody').innerHTML = isHtml
+        ? rawContent
+        : textToHtml(rawContent);
 
       // 태그
       const tags = post.tags || [];

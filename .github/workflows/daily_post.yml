@@ -2,8 +2,19 @@ name: 매일 자동 글 생성
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 한국시간 오전 9시 (UTC 0시)
-  workflow_dispatch:      # 수동 실행 버튼
+    - cron: '0 0 * * *'   # 한국시간 오전 9시 (UTC 0시)
+  workflow_dispatch:        # 수동 실행 버튼
+    inputs:
+      auto_publish:
+        description: '자동 발행 여부 (true=즉시발행 / false=임시저장)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['true', 'false']
+      posts_per_day:
+        description: '오늘 생성할 글 수 (기본 3)'
+        required: false
+        default: '3'
 
 jobs:
   generate:
@@ -25,24 +36,33 @@ jobs:
 
       - name: .env 파일 생성
         run: |
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
-          echo "BLOG_TITLE=${{ secrets.BLOG_TITLE }}" >> .env
-          echo "AUTO_PUBLISH=${{ secrets.AUTO_PUBLISH }}" >> .env
-          echo "POSTS_PER_DAY=3" >> .env
+          # workflow_dispatch 수동 실행 시 입력값 우선, 없으면 Secrets 값 사용
+          AUTO_PUBLISH_VAL="${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}"
+          POSTS_PER_DAY_VAL="${{ github.event.inputs.posts_per_day || '3' }}"
+
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}"   >> .env
+          echo "BLOG_TITLE=${{ secrets.BLOG_TITLE }}"           >> .env
+          echo "AUTO_PUBLISH=${AUTO_PUBLISH_VAL}"               >> .env
+          echo "POSTS_PER_DAY=${POSTS_PER_DAY_VAL}"            >> .env
+          echo "UNSPLASH_ACCESS_KEY=${{ secrets.UNSPLASH_ACCESS_KEY }}" >> .env
+
+          echo "설정 확인:"
+          echo "  AUTO_PUBLISH  = ${AUTO_PUBLISH_VAL}"
+          echo "  POSTS_PER_DAY = ${POSTS_PER_DAY_VAL}"
         env:
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
 
       - name: 글 자동 생성 실행
         run: python automation.py
         env:
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
 
       - name: GitHub에 자동 업로드
         run: |
-          git config user.name "자동 글 생성"
+          git config user.name  "자동 글 생성"
           git config user.email "pride93d@gmail.com"
           git add posts/
-          git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d') [AUTO_PUBLISH=${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}]"
           git push
