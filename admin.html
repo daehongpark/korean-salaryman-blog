@@ -270,6 +270,21 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     </nav>
 
     <main class="admin-main">
+
+      <!-- ── 자동화 ON/OFF 배너 ── -->
+      <div id="automationBanner" style="border-radius:14px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div id="automationDot" style="width:12px;height:12px;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite;"></div>
+          <div>
+            <div id="automationTitle" style="font-size:14px;font-weight:700;"></div>
+            <div id="automationDesc" style="font-size:12px;margin-top:2px;opacity:0.75;"></div>
+          </div>
+        </div>
+        <button id="automationToggleBtn" onclick="toggleAutomation()"
+          style="padding:9px 22px;border-radius:8px;border:none;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;">
+        </button>
+      </div>
+
       <div class="stat-grid">
         <div class="stat-card"><div class="stat-label">전체 글</div><div class="stat-val" id="statTotal">—</div></div>
         <div class="stat-card" style="cursor:pointer;" onclick="document.querySelector('[style*=featured]')?.scrollIntoView({behavior:'smooth'})">
@@ -473,6 +488,55 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 <script>
 // ── 설정값 ────────────────────────────────────────────
 const ADMIN_PW   = 'admin1234';
+
+// ── 자동화 ON/OFF 상태 ────────────────────────────────
+// localStorage에 'automationEnabled' 저장 (true=켜짐 / false=꺼짐)
+// 실제 GitHub Actions는 별도로 켜고 끄는 것이고,
+// 이 토글은 "자동화가 현재 켜져 있는지" 상태를 어드민에서 관리하는 용도.
+let automationEnabled = localStorage.getItem('automationEnabled') !== 'false'; // 기본값: true
+
+function renderAutomationBanner() {
+  const banner = document.getElementById('automationBanner');
+  const dot    = document.getElementById('automationDot');
+  const title  = document.getElementById('automationTitle');
+  const desc   = document.getElementById('automationDesc');
+  const btn    = document.getElementById('automationToggleBtn');
+
+  if (automationEnabled) {
+    banner.style.background = 'linear-gradient(135deg,#1a2640,#253352)';
+    banner.style.color      = '#ffffff';
+    dot.style.background    = '#4ade80';
+    dot.style.boxShadow     = '0 0 8px #4ade80';
+    title.textContent       = '자동화 실행 중 — 매일 오전 9시 글이 자동 생성됩니다';
+    desc.textContent        = 'AUTO_PUBLISH=false 설정 시 임시저장 / true 설정 시 자동발행';
+    btn.textContent         = '⏹ 자동화 끄기';
+    btn.style.background    = '#c0392b';
+    btn.style.color         = '#ffffff';
+  } else {
+    banner.style.background = '#f0ede8';
+    banner.style.color      = '#444444';
+    dot.style.background    = '#d4cfc8';
+    dot.style.boxShadow     = 'none';
+    title.textContent       = '자동화 꺼짐 — 글 자동 생성이 중단된 상태입니다';
+    desc.textContent        = '아래 버튼을 눌러 자동화를 다시 활성화할 수 있습니다';
+    btn.textContent         = '▶ 자동화 켜기';
+    btn.style.background    = '#2d6a4f';
+    btn.style.color         = '#ffffff';
+  }
+}
+
+function toggleAutomation() {
+  automationEnabled = !automationEnabled;
+  localStorage.setItem('automationEnabled', automationEnabled ? 'true' : 'false');
+  renderAutomationBanner();
+  const msg = automationEnabled
+    ? '✅ 자동화가 켜졌습니다. 매일 오전 9시에 글이 생성됩니다.'
+    : '⏹ 자동화가 꺼졌습니다. GitHub Actions에서도 직접 중단하세요.';
+  showToast(msg, automationEnabled ? 'success' : 'info');
+}
+
+// 페이지 로드 시 배너 렌더링
+renderAutomationBanner();
 const GH_OWNER   = 'daehongpark';
 const GH_REPO    = 'korean-salaryman-blog';
 const GH_BRANCH  = 'main';

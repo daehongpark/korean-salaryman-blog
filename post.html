@@ -3,7 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── Primary SEO (JS로 동적 업데이트) ── -->
 <title>직장인 수익일기</title>
+<meta name="description" content="직장인 박대홍의 부업·재테크·자기계발 현실 기록">
+<meta name="author" content="박대홍">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://koreansalaryman.com/post.html" id="canonicalTag">
+
+<!-- ── Open Graph (JS로 동적 업데이트) ── -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="직장인 수익일기">
+<meta property="og:title" content="직장인 수익일기" id="ogTitle">
+<meta property="og:description" content="" id="ogDesc">
+<meta property="og:url" content="https://koreansalaryman.com/post.html" id="ogUrl">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="박대홍">
+<meta property="article:published_time" content="" id="ogPublished">
+<meta property="article:section" content="" id="ogSection">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="" id="twTitle">
+<meta name="twitter:description" content="" id="twDesc">
+<meta name="twitter:site" content="@koreansalaryman">
+
+<!-- ── 검색엔진 인증 ── -->
+<meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI">
+<meta name="naver-site-verification" content="ad5bce9f4de14cbe7ccf111ca46b1114e52a25ff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -514,8 +541,73 @@ if (!postId) {
       return r.json();
     })
     .then(post => {
-      // 메타 태그 업데이트
-      document.title = `${post.title} — 직장인 수익일기`;
+      // ── SEO 메타태그 동적 업데이트 ──────────────────────
+      // seo_title/seo_description 필드 우선 사용 (automation.py가 자동 생성)
+      const pageTitle = post.seo_title || `${post.title} | 직장인 수익일기`;
+      const pageDesc  = post.seo_description
+        || (post.summary ? post.summary.slice(0, 150).replace(/\n/g, ' ') + ' | 직장인 수익일기'
+        : `직장인 박대홍의 ${post.category || '부업'} 현실 이야기. 직장인 수익일기에서 읽어보세요.`);
+      const pageUrl   = `https://koreansalaryman.com/post.html?id=${encodeURIComponent(postId)}`;
+
+      document.title = pageTitle;
+
+      // Description
+      let descEl = document.querySelector('meta[name="description"]');
+      if (descEl) descEl.setAttribute('content', pageDesc);
+
+      // Canonical
+      let canonical = document.getElementById('canonicalTag');
+      if (canonical) canonical.setAttribute('href', pageUrl);
+
+      // OG
+      const ogTitle = document.getElementById('ogTitle');
+      const ogDesc  = document.getElementById('ogDesc');
+      const ogUrl   = document.getElementById('ogUrl');
+      const ogPub   = document.getElementById('ogPublished');
+      const ogSec   = document.getElementById('ogSection');
+      if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+      if (ogDesc)  ogDesc.setAttribute('content', pageDesc);
+      if (ogUrl)   ogUrl.setAttribute('content', pageUrl);
+      if (ogPub)   ogPub.setAttribute('content', post.created_at || '');
+      if (ogSec)   ogSec.setAttribute('content', post.category || '');
+
+      // Twitter
+      const twTitle = document.getElementById('twTitle');
+      const twDesc  = document.getElementById('twDesc');
+      if (twTitle) twTitle.setAttribute('content', pageTitle);
+      if (twDesc)  twDesc.setAttribute('content', pageDesc);
+
+      // JSON-LD 구조화 데이터 (Article)
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": pageDesc,
+        "url": pageUrl,
+        "datePublished": post.created_at || '',
+        "dateModified": post.created_at || '',
+        "author": {
+          "@type": "Person",
+          "name": "박대홍",
+          "url": "https://koreansalaryman.com/about.html"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "직장인 수익일기",
+          "url": "https://koreansalaryman.com"
+        },
+        "keywords": (post.tags || []).join(', '),
+        "articleSection": post.category || '',
+        "inLanguage": "ko-KR",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": pageUrl
+        }
+      };
+      const ldScript = document.createElement('script');
+      ldScript.type = 'application/ld+json';
+      ldScript.textContent = JSON.stringify(jsonLd);
+      document.head.appendChild(ldScript);
 
       // 히어로 섹션 채우기
       document.getElementById('heroCat').textContent = post.category;
