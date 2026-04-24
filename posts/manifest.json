@@ -13,12 +13,8 @@
       "경제적자유"
     ],
     "created_at": "2026-04-24T01:55:39.081495",
-    "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_015536.png",
-    "has_faq": true,
-    "seo_score": 97.0,
-    "monthly_search": 10
+    "status": "published",
+    "has_image": true
   },
   {
     "filename": "post_20260424_015434.json",
@@ -35,11 +31,7 @@
     ],
     "created_at": "2026-04-24T01:54:34.990894",
     "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_015432.png",
-    "has_faq": true,
-    "seo_score": 80.0,
-    "monthly_search": 10
+    "has_image": true
   },
   {
     "filename": "post_20260424_015341.json",
@@ -56,11 +48,24 @@
     ],
     "created_at": "2026-04-24T01:53:41.908572",
     "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_015339.png",
-    "has_faq": true,
-    "seo_score": 85.0,
-    "monthly_search": 50
+    "has_image": true
+  },
+  {
+    "filename": "post_20260424_012859.json",
+    "title": "월급만으로 부족했던 제가 월 20만원 더 벌기 시작한 3가지 재테크 습관",
+    "category": "자기계발",
+    "keyword": "재테크",
+    "summary": "월급만으로 부족함을 느끼던 평범한 직장인이 월 20만원 이상의 추가 수입을 얻게 된 3가지 재테크 습관을 공개합니다. 지출 파악부터 소액 투자, 부수입 파이프라인 구축까지, 작은 시작이 경제적 자유로 이어지는 과정을 소개합니다.",
+    "tags": [
+      "재테크",
+      "자기계발",
+      "직장인",
+      "부업",
+      "경제적자유"
+    ],
+    "created_at": "2026-04-24T01:28:59.173494",
+    "status": "draft",
+    "has_image": true
   },
   {
     "filename": "post_20260424_012754.json",
@@ -77,11 +82,7 @@
     ],
     "created_at": "2026-04-24T01:27:54.207941",
     "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_012752.png",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": true
   },
   {
     "filename": "post_20260424_011857.json",
@@ -98,11 +99,24 @@
     ],
     "created_at": "2026-04-24T01:18:57.909995",
     "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_011855.png",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": true
+  },
+  {
+    "filename": "post_20260424_011847.json",
+    "title": "월급만으로는 부족해서 주식 부업 시작한 썰: 직장인이 하루 1시간으로 월 20만원 버는 비법",
+    "category": "부업 방법",
+    "keyword": "주식투자",
+    "summary": "월급만으로는 부족한 현실에 '이대로는 안 되겠다' 싶어 주식 부업을 시작했고, 지난 6개월간 매달 평균 23만원의 추가 수익을 만들었습니다. 소액 분산 투자와 하루 1시간 이내의 효율적인 시간 관리, 그리고 꾸준함을 통해 현실적인 목표를 달성한 저의 경험담을 공유하며, 직장인도 충분히 할 수 있는 주식 부업의 길을 제시합니다.",
+    "tags": [
+      "주식투자",
+      "부업 방법",
+      "직장인",
+      "부업",
+      "경제적자유"
+    ],
+    "created_at": "2026-04-24T01:18:47.599408",
+    "status": "draft",
+    "has_image": true
   },
   {
     "filename": "post_20260424_010428.json",
@@ -119,11 +133,7 @@
     ],
     "created_at": "2026-04-24T01:04:28.935774",
     "status": "published",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_010428.png",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": true
   },
   {
     "filename": "post_20260424_005936.json",
@@ -140,11 +150,7 @@
     ],
     "created_at": "2026-04-24T00:59:36.850802",
     "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_005936.png",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": true
   },
   {
     "filename": "post_20260424_005847.json",
@@ -161,11 +167,7 @@
     ],
     "created_at": "2026-04-24T00:58:47.561462",
     "status": "draft",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260424_005847.png",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": true
   },
   {
     "filename": "post_20260423_012032.json",
@@ -183,11 +185,7 @@
     ],
     "created_at": "2026-04-23T01:20:32.042288",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260423_011849.json",
@@ -204,11 +202,7 @@
     ],
     "created_at": "2026-04-23T01:18:49.388284",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260423_011802.json",
@@ -225,11 +219,7 @@
     ],
     "created_at": "2026-04-23T01:18:02.352080",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260422_011427.json",
@@ -246,11 +236,7 @@
     ],
     "created_at": "2026-04-22T01:14:27.133353",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260422_011340.json",
@@ -270,11 +256,7 @@
     ],
     "created_at": "2026-04-22T01:13:40.707746",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260422_011249.json",
@@ -293,11 +275,7 @@
     ],
     "created_at": "2026-04-22T01:12:49.827449",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260421_011809.json",
@@ -316,11 +294,7 @@
     ],
     "created_at": "2026-04-21T01:18:09.238351",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260421_011531.json",
@@ -337,11 +311,7 @@
     ],
     "created_at": "2026-04-21T01:15:31.236007",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260421_011441.json",
@@ -358,11 +328,7 @@
     ],
     "created_at": "2026-04-21T01:14:41.515523",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260421125136..json",
@@ -375,11 +341,7 @@
     ],
     "created_at": "2026-04-21T12:51:36.058Z",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260420_011902.json",
@@ -397,11 +359,7 @@
     ],
     "created_at": "2026-04-20T01:19:02.502608",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260420_011818.json",
@@ -421,11 +379,7 @@
     ],
     "created_at": "2026-04-20T01:18:18.689795",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260420_011645.json",
@@ -442,11 +396,7 @@
     ],
     "created_at": "2026-04-20T01:16:45.029596",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260419_012459.json",
@@ -465,11 +415,7 @@
     ],
     "created_at": "2026-04-19T01:24:59.864812",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260419_012219.json",
@@ -489,11 +435,7 @@
     ],
     "created_at": "2026-04-19T01:22:19.601711",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260418_011142.json",
@@ -513,11 +455,7 @@
     ],
     "created_at": "2026-04-18T01:11:42.054031",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260418_011057.json",
@@ -534,11 +472,7 @@
     ],
     "created_at": "2026-04-18T01:10:57.733686",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260418_010811.json",
@@ -556,11 +490,7 @@
     ],
     "created_at": "2026-04-18T01:08:11.581113",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260417_011729.json",
@@ -579,11 +509,7 @@
     ],
     "created_at": "2026-04-17T01:17:29.743588",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260417_011549.json",
@@ -600,11 +526,7 @@
     ],
     "created_at": "2026-04-17T01:15:49.679177",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260417_011459.json",
@@ -622,11 +544,7 @@
     ],
     "created_at": "2026-04-17T01:14:59.990599",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260416_165852.json",
@@ -643,11 +561,7 @@
     ],
     "created_at": "2026-04-16T16:58:52.721185",
     "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260416_165804.json",
@@ -664,11 +578,7 @@
     ],
     "created_at": "2026-04-16T16:58:04.978796",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260416_000341.json",
@@ -685,11 +595,7 @@
     ],
     "created_at": "2026-04-16T00:03:41.916142",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260415_235856.json",
@@ -710,11 +616,7 @@
     ],
     "created_at": "2026-04-15T23:58:56.007490",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260414_222258.json",
@@ -732,11 +634,7 @@
     ],
     "created_at": "2026-04-14T22:22:58.893405",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260414_222006.json",
@@ -753,11 +651,7 @@
     ],
     "created_at": "2026-04-14T22:20:06.546929",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   },
   {
     "filename": "post_20260414_205158.json",
@@ -772,10 +666,6 @@
     ],
     "created_at": "2026-04-14T20:51:58.195900",
     "status": "published",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "seo_score": null,
-    "monthly_search": null
+    "has_image": false
   }
 ]
