@@ -989,9 +989,16 @@ function openPreview(filename) {
   } else {
     sumEl.style.display = 'none';
   }
-  document.getElementById('pvContent').innerHTML = (post.content||'')
-    .split(/\n\n+/).map(p=>p.trim()).filter(p=>p)
-    .map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+  // 자동 생성 글은 이미 완성된 HTML(<aside>/<table>/<section>...)이므로 그대로 표시.
+  // 수동 평문 글만 \n\n → <p>로 변환.
+  const _rawContent = post.content || '';
+  if (_rawContent.trim().startsWith('<')) {
+    document.getElementById('pvContent').innerHTML = `<div class="article-body">${_rawContent}</div>`;
+  } else {
+    document.getElementById('pvContent').innerHTML = _rawContent
+      .split(/\n\n+/).map(p=>p.trim()).filter(p=>p)
+      .map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+  }
   document.getElementById('pvTags').innerHTML = (post.tags||[])
     .map(t=>`<span class="preview-tag">${escHtml(t)}</span>`).join('');
   openModal('previewModal');

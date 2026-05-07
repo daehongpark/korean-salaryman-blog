@@ -177,11 +177,28 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 /* 사이드바 개선 */
 .about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
 
+/* ── 2026 신규 글 구조 (TL;DR / 비교표 / 단계 / 참고자료) ── */
+.article-body .post-tldr{margin:0 0 28px !important;}
+.article-body .post-tldr ul{padding-left:20px !important;margin:0 !important;}
+.article-body .post-comparison{margin:36px 0 24px !important;}
+.article-body .post-comparison table{font-size:14px;}
+.article-body .post-steps ol{padding:0 !important;list-style:none !important;}
+.article-body .post-steps li{margin-bottom:14px !important;}
+.article-body .post-references{margin:36px 0 16px !important;}
+.article-body .post-references ul{margin:0 !important;}
+.article-body .post-references li{margin:8px 0 !important;}
+
 @media(max-width:768px){
   .post-meta-bar{padding:12px 0;}
   .share-btns{flex-wrap:wrap;}
   .comment-form-row{flex-direction:column;}
   .post-nav{grid-template-columns:1fr;}
+  /* 신규 글 구조 모바일 최적화 */
+  .article-body .post-tldr{padding:14px 16px !important;font-size:14px;}
+  .article-body .post-comparison{overflow-x:auto !important;}
+  .article-body .post-comparison table{min-width:520px;}
+  .article-body .post-steps li{padding:12px !important;}
+  .article-body .post-audience{font-size:12px !important;}
 }
 
 /* ── Sidebar ─────────────────────────────────────── */
