@@ -1,9 +1,12 @@
 name: 매일 자동 글 생성
 
 on:
-  schedule:
-    - cron: '0 0 * * *'   # 한국시간 오전 9시 (UTC 0시)
-  workflow_dispatch:        # 수동 실행 버튼
+  # 자동 cron 일시 중단 (Phase 1+2 신규 시스템 적용 전까지)
+  # 기존 자동화는 .github/workflows/automation.py(옛 코드)를 사용하므로
+  # 새 카테고리/구조가 반영되지 않음. 신규 시스템 적용 후 다시 활성화.
+  # schedule:
+  #   - cron: '0 0 * * *'   # 한국시간 오전 9시 (UTC 0시)
+  workflow_dispatch:        # 수동 실행 버튼만 활성
     inputs:
       auto_publish:
         description: '자동 발행 여부 (true=즉시발행 / false=임시저장)'
