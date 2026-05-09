@@ -2,3 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Environment variables - 절대 commit 금지
+.env
+.env.*
+!.env.example
