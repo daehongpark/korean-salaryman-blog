@@ -209,51 +209,152 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 /* ── 모바일 강화 (touch-friendly + iOS zoom 방지) */
 @media (max-width: 768px) {
   body { font-size: 16px; }
-  .admin-main, main, .container, .main-content {
+
+  .container, main, .main-content {
     padding: 12px !important;
     max-width: 100% !important;
   }
-  button, .btn, .login-btn, input[type="button"], input[type="submit"] {
+
+  /* 버튼: 터치 친화 */
+  button, .btn, input[type="button"], input[type="submit"] {
     min-height: 44px;
-    min-width: 44px;
     padding: 10px 14px;
     font-size: 15px;
   }
-  input[type="text"], input[type="password"], input[type="email"],
-  select, textarea, .form-input, .form-select, .form-textarea, .login-input {
+
+  /* 입력 폼 */
+  input[type="text"], input[type="password"], input[type="email"], select, textarea {
     width: 100% !important;
     box-sizing: border-box;
     font-size: 16px;
     padding: 10px;
     min-height: 44px;
   }
-  textarea, .form-textarea {
-    min-height: 300px;
-    line-height: 1.6;
+
+  textarea { min-height: 200px; line-height: 1.6; }
+
+  /* form-row: 모바일에선 1단 (★ 버그 수정) */
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+
+  /* contenteditable 본문 에디터 (★ 버그 수정) */
+  #richEditor, [contenteditable="true"] {
+    font-size: 16px !important;
+    min-height: 300px !important;
+    padding: 14px !important;
+    line-height: 1.7 !important;
   }
-  .modal, [class*="modal"] {
+
+  /* ★ 광역 셀렉터 제거하고 정확한 것만 */
+  .modal {
     width: 95% !important;
     max-width: 95% !important;
-    margin: 20px auto !important;
-    padding: 16px !important;
+    margin: 10px auto !important;
+    max-height: 95vh !important;
   }
-  .post-item, .card, [class*="post-card"], .post-row {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 8px;
+
+  .modal-overlay { padding: 10px !important; }
+
+  .modal-head {
+    padding: 14px 16px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
   }
-  .actions, .button-group, [class*="actions"], .action-cell {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+
+  .modal-body { padding: 16px !important; }
+
+  .modal-foot {
+    padding: 14px 16px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
   }
-  header, nav, .header, .nav, .admin-header {
-    padding: 8px 12px !important;
+
+  /* ✕ 버튼: 광역 셀렉터 영향 받지 않게 명시적 */
+  .modal-close {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    padding: 0 !important;
+    flex-shrink: 0;
+  }
+
+  /* 모달 헤더 우측 버튼 그룹: 모바일에서 잘 보이게 */
+  .modal-head > div, .modal-head .header-actions {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  /* 글 목록 표 → 카드 레이아웃 (★ UX 개선) */
+  table.posts-table, table[class*="posts"], .posts-table {
+    display: block !important;
+  }
+
+  table.posts-table thead, .posts-table thead {
+    display: none !important;
+  }
+
+  table.posts-table tbody, .posts-table tbody {
+    display: block !important;
+  }
+
+  table.posts-table tr, .posts-table tr, .post-row {
+    display: block !important;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  table.posts-table td, .posts-table td {
+    display: block !important;
+    padding: 4px 0 !important;
+    border: none !important;
+    text-align: left !important;
+  }
+
+  /* 글 제목 크게 */
+  .post-title-text, td.post-title, [class*="post-title"] {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    line-height: 1.4 !important;
+    color: #111 !important;
+    cursor: pointer;
+  }
+
+  /* 메타 정보 (카테고리/날짜/상태) */
+  .post-meta, [class*="post-meta"], td.post-status, td.post-category, td.post-date {
+    display: inline-block !important;
+    font-size: 13px !important;
+    color: #6b7280 !important;
+    margin-right: 10px !important;
+  }
+
+  /* 액션 버튼 그룹 */
+  .action-cell, td.action-cell {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid #f3f4f6 !important;
+  }
+
+  .action-btn {
+    flex: 1 1 calc(33.333% - 8px) !important;
+    min-width: 80px !important;
+    text-align: center !important;
+    padding: 10px 8px !important;
+    font-size: 13px !important;
+  }
+
+  /* 헤더 */
+  header, .admin-header, [class*="header"] {
+    padding: 10px 12px !important;
   }
 }
 </style>
@@ -543,6 +644,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     </div>
     <div class="modal-foot">
       <button class="cancel-btn" onclick="closeModal('previewModal')">닫기</button>
+      <button class="action-btn btn-edit" id="pvEditBtn" onclick="editFromPreview()">수정</button>
+      <button class="action-btn btn-pub" id="pvToggleBtn" onclick="togglePvFromPreview()">발행</button>
+      <button class="action-btn btn-delete" id="pvDeleteBtn" onclick="deleteFromPreview()">삭제</button>
     </div>
   </div>
 </div>
@@ -1096,7 +1200,42 @@ async function toggleStatus(filename, newStatus) {
 }
 
 // ── 미리보기 ──────────────────────────────────────────
+// previewModal에서 어떤 글을 보고 있는지 추적
+let currentPreviewFilename = null;
+let currentPreviewStatus = null;
+
+// preview 모달에서 수정 버튼 → editModal로 전환
+async function editFromPreview() {
+  if (!currentPreviewFilename) return;
+  const fn = currentPreviewFilename;
+  closeModal('previewModal');
+  await openEdit(fn);
+}
+
+// preview 모달에서 발행/임시저장 토글
+async function togglePvFromPreview() {
+  if (!currentPreviewFilename) return;
+  const newStatus = (currentPreviewStatus === 'published') ? 'draft' : 'published';
+  const fn = currentPreviewFilename;
+  closeModal('previewModal');
+  await toggleStatus(fn, newStatus);
+}
+
+// preview 모달에서 삭제
+async function deleteFromPreview() {
+  if (!currentPreviewFilename) return;
+  const post = allPosts.find(p => p.filename === currentPreviewFilename);
+  const title = post?.title || currentPreviewFilename;
+  const fn = currentPreviewFilename;
+  closeModal('previewModal');
+  openDelete(fn, title);
+}
+
 function openPreview(filename) {
+  currentPreviewFilename = filename;
+  const _pvPost = allPosts.find(p => p.filename === filename);
+  currentPreviewStatus = _pvPost?.status || 'draft';
+  document.getElementById('pvToggleBtn').textContent = (currentPreviewStatus === 'published') ? '임시저장' : '발행';
   const post = allPosts.find(p => p.filename === filename);
   if (!post) return;
   document.getElementById('pvCat').textContent  = post.category || '';
