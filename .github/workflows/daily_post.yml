@@ -64,6 +64,22 @@ jobs:
           echo "NAVER_AD_SECRET_KEY=${{ secrets.NAVER_AD_SECRET_KEY }}" >> .env
           echo "NAVER_CUSTOMER_ID=${{ secrets.NAVER_CUSTOMER_ID }}"    >> .env
 
+          # 부동산 공공 API (미구현 모듈 대비 선제 매핑)
+          echo "APT_RENT_API_KEY=${{ secrets.APT_RENT_API_KEY }}" >> .env
+          echo "APT_TRADE_API_KEY=${{ secrets.APT_TRADE_API_KEY }}" >> .env
+          echo "OFFICETEL_RENT_API_KEY=${{ secrets.OFFICETEL_RENT_API_KEY }}" >> .env
+
+          # 청년정책 / 금융 / 통계 API
+          echo "YOUTH_POLICY_API_KEY=${{ secrets.YOUTH_POLICY_API_KEY }}" >> .env
+          echo "YOUTH_PLAN_API_KEY=${{ secrets.YOUTH_PLAN_API_KEY }}" >> .env
+          echo "YOUTH_CONTENT_API_KEY=${{ secrets.YOUTH_CONTENT_API_KEY }}" >> .env
+          echo "FINANCE_LOAN_API_KEY=${{ secrets.FINANCE_LOAN_API_KEY }}" >> .env
+          echo "KSED_API_KEY=${{ secrets.KSED_API_KEY }}" >> .env
+
+          # 블로그 메타
+          echo "BLOG_URL=${{ secrets.BLOG_URL }}" >> .env
+          # ADMIN_PASSWORD, ADMIN_PORT는 로컬 전용이라 매핑 제외
+
           echo "설정 확인:"
           echo "  AUTO_PUBLISH  = ${AUTO_PUBLISH_VAL}"
           echo "  POSTS_PER_DAY = ${POSTS_PER_DAY_VAL}"
