@@ -689,7 +689,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 // ── 설정값 ────────────────────────────────────────────
 // 비번 hash (SHA-256). 평문 비번은 코드에 없음.
 // 비번 변경 시: 콘솔에서 await sha256('새비번') 실행 → 결과로 아래 값 교체
-const ADMIN_PW_HASH = '__PLACEHOLDER_HASH__';
+const ADMIN_PW_HASH = 'da7bf6482c44202ce16be314f519394825f86bbcf0aca2f9cba0d5b861c30818';
 
 async function sha256(str) {
   const buf = new TextEncoder().encode(str);
