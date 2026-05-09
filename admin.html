@@ -1601,6 +1601,65 @@ function openNaverImport() {
   openModal('naverImportModal');
 }
 
+// JSON 복구 1차: 필드 값 안의 미escape 따옴표/줄바꿈 정리
+function repairGeminiJson(text) {
+  const fields = ['title', 'summary', 'content'];
+  let result = text;
+
+  for (const field of fields) {
+    const pattern = new RegExp(
+      `("${field}"\\s*:\\s*")((?:[^"\\\\]|\\\\.)*?)("\\s*[,}])`,
+      'gs'
+    );
+
+    result = result.replace(pattern, (match, prefix, value, suffix) => {
+      const escaped = value
+        .replace(/\\/g, '\\\\')
+        .replace(/(?<!\\)"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t');
+      return prefix + escaped + suffix;
+    });
+  }
+
+  return result;
+}
+
+// JSON 복구 2차: 정규식으로 핵심 필드만 수동 추출
+function extractFieldsManually(text) {
+  const result = {};
+
+  const titleMatch = text.match(/"title"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
+  if (titleMatch) result.title = titleMatch[1].replace(/\\"/g, '"').replace(/\\n/g, '\n');
+
+  const summaryMatch = text.match(/"summary"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
+  if (summaryMatch) result.summary = summaryMatch[1].replace(/\\"/g, '"').replace(/\\n/g, '\n');
+
+  const contentMatch = text.match(/"content"\s*:\s*"((?:[^"\\]|\\.)*)"\s*[,}]/s);
+  if (contentMatch) {
+    result.content = contentMatch[1]
+      .replace(/\\"/g, '"')
+      .replace(/\\n/g, '\n')
+      .replace(/\\r/g, '\r')
+      .replace(/\\t/g, '\t')
+      .replace(/\\\\/g, '\\');
+  }
+
+  const tagsMatch = text.match(/"tags"\s*:\s*\[((?:[^\]\\]|\\.)*)\]/s);
+  if (tagsMatch) {
+    try {
+      result.tags = JSON.parse('[' + tagsMatch[1] + ']');
+    } catch {
+      result.tags = [];
+    }
+  } else {
+    result.tags = [];
+  }
+
+  return result.title && result.content ? result : null;
+}
+
 function buildNaverConvertPrompt(content, category) {
   return `당신은 박대홍입니다. 7년차 직장인 월급쟁이 블로거.
 펀드매니저나 전문가 아님. 본인 시행착오 많고, 책 좋아함, 자기계발 관심 많음.
@@ -1623,6 +1682,12 @@ function buildNaverConvertPrompt(content, category) {
 
 [원문]
 ${content}
+
+[JSON 출력 시 중요]
+- content 필드 안에 큰따옴표(")가 들어갈 때는 반드시 \\" 로 escape
+- 줄바꿈은 \\n 으로 (실제 개행 X)
+- 백슬래시(\\)는 \\\\ 로
+- 절대 깨진 JSON 출력 금지. JSON 검증 후 응답할 것.
 
 [출력 형식 — 반드시 아래 JSON 한 객체만 출력. 코드블록·설명·인사 금지]
 {
@@ -1668,7 +1733,23 @@ async function convertNaverPost() {
     const m = cleanText.match(/\{[\s\S]*\}/);
     if (m) cleanText = m[0];
 
-    const parsed = JSON.parse(cleanText);
+    let parsed;
+    try {
+      parsed = JSON.parse(cleanText);
+    } catch (parseErr) {
+      // 1차 복구: content/summary/title 필드 안의 미escape 따옴표/줄바꿈 정리
+      const repaired = repairGeminiJson(cleanText);
+      try {
+        parsed = JSON.parse(repaired);
+      } catch (parseErr2) {
+        // 2차 복구: 정규식으로 핵심 필드만 수동 추출
+        parsed = extractFieldsManually(cleanText);
+        if (!parsed || !parsed.title || !parsed.content) {
+          throw new Error('JSON 파싱 실패. Gemini 응답 형식 문제. 다시 시도해주세요.');
+        }
+        showToast('일부 필드 자동 복구됨. 결과 미리보기 검토 필수.', 'warn');
+      }
+    }
     _naverConverted = { ...parsed, category };
 
     document.getElementById('naverResultBody').textContent =
