@@ -35,6 +35,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://koreansalaryman.com/post.html?id=post_20260509_045713.json</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://koreansalaryman.com/post.html?id=post_20260424_015539.json</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
