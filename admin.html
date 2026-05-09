@@ -407,13 +407,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
       </div>
       <div class="sidebar-section">
         <div class="sidebar-label">카테고리</div>
-        <div class="sidebar-item" onclick="setFilter('cat:부업 방법',this)"><span class="si-icon">💼</span> 부업 방법</div>
-        <div class="sidebar-item" onclick="setFilter('cat:블로그',this)"><span class="si-icon">✍️</span> 블로그</div>
-        <div class="sidebar-item" onclick="setFilter('cat:자기계발',this)"><span class="si-icon">📚</span> 자기계발</div>
-        <div class="sidebar-item" onclick="setFilter('cat:재테크',this)"><span class="si-icon">💰</span> 재테크</div>
-        <div class="sidebar-item" onclick="setFilter('cat:책 추천',this)"><span class="si-icon">📖</span> 책 추천</div>
-        <div class="sidebar-item" onclick="setFilter('cat:수익 공개',this)"><span class="si-icon">📊</span> 수익 공개</div>
-        <div class="sidebar-item" onclick="setFilter('cat:챌린지',this)"><span class="si-icon">🔥</span> 챌린지</div>
+        <div class="sidebar-item" onclick="setFilter('cat:money',this)"><span class="si-icon">💰</span> 정부 지원금/정책</div>
+        <div class="sidebar-item" onclick="setFilter('cat:ai',this)"><span class="si-icon">🤖</span> AI 도구 활용</div>
+        <div class="sidebar-item" onclick="setFilter('cat:startup',this)"><span class="si-icon">🚀</span> 초기 사업자</div>
+        <div class="sidebar-item" onclick="setFilter('cat:finance',this)"><span class="si-icon">📈</span> 재테크/투자</div>
+        <div class="sidebar-item" onclick="setFilter('cat:realestate',this)"><span class="si-icon">🏠</span> 부동산/주거</div>
+        <div class="sidebar-item" onclick="setFilter('cat:trending',this)"><span class="si-icon">🔥</span> 실시간 이슈</div>
+        <div class="sidebar-item" onclick="setFilter('cat:book',this)"><span class="si-icon">📚</span> 책 추천</div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-label">수익 관리</div>
@@ -716,6 +716,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           <button class="tb-btn" onclick="insertDivider()" title="구분선">— 구분선</button>
           <div style="width:1px;background:var(--border);margin:2px 4px;"></div>
           <button class="tb-btn" onclick="insertLink()" title="링크">🔗 링크</button>
+          <div style="width:1px;background:var(--border);margin:2px 4px;"></div>
+          <button type="button" class="tb-btn" onclick="insertImage()" title="이미지 추가">🖼️ 이미지</button>
+          <button type="button" class="tb-btn" onclick="insertVideo()" title="영상 추가">🎬 영상</button>
           <div style="flex:1;"></div>
           <button class="tb-btn" onclick="togglePreviewMode()" id="previewToggleBtn" style="background:var(--navy);color:var(--white);border-color:var(--navy);">👁 미리보기</button>
         </div>
@@ -1390,6 +1393,170 @@ function insertLink() {
   document.getElementById('richEditor').focus();
   document.execCommand('createLink', false, url);
   updateCharCount();
+}
+
+async function insertImage() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('이미지는 5MB 이하만 가능합니다', 'warn');
+      return;
+    }
+
+    showLoading(true);
+    try {
+      const base64 = await new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.onload = () => res(reader.result.split(',')[1]);
+        reader.onerror = () => rej(new Error('파일 읽기 실패'));
+        reader.readAsDataURL(file);
+      });
+
+      const ts = Date.now();
+      const ext = (file.name.split('.').pop() || 'png').toLowerCase();
+      const filename = `posts/images/img_${ts}.${ext}`;
+
+      const res = await fetch(`${GH_API}/${filename}`, {
+        method: 'PUT',
+        headers: ghHeaders(),
+        body: JSON.stringify({
+          message: `feat: upload image ${filename}`,
+          content: base64,
+          branch: GH_BRANCH
+        })
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `업로드 실패: ${res.status}`);
+      }
+
+      const imgUrl = `https://koreansalaryman.com/${filename}`;
+      const editor = document.getElementById('richEditor');
+      const imgHtml = `<img src="${imgUrl}" alt="" style="max-width:100%;height:auto;margin:16px 0;border-radius:8px;display:block;">`;
+
+      if (document.activeElement === editor) {
+        document.execCommand('insertHTML', false, imgHtml);
+      } else {
+        editor.innerHTML += imgHtml;
+      }
+      updateCharCount();
+      showToast('이미지 추가됨', 'success');
+    } catch (err) {
+      console.error(err);
+      showToast('이미지 업로드 실패: ' + err.message, 'error');
+    } finally {
+      showLoading(false);
+    }
+  };
+  input.click();
+}
+
+async function insertVideo() {
+  const choice = prompt(
+    '영상 추가 방법을 선택하세요:\n\n' +
+    '1. YouTube/Vimeo URL 붙여넣기 (권장 — 용량 무제한)\n' +
+    '2. 영상 파일 업로드 (50MB 이하)\n\n' +
+    '1 또는 2 입력:'
+  );
+
+  if (choice === '1') {
+    const url = prompt('YouTube 또는 Vimeo URL:');
+    if (!url) return;
+
+    let embedUrl = '';
+    const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\?]+)/);
+    if (ytMatch) {
+      embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}`;
+    } else {
+      const vmMatch = url.match(/vimeo\.com\/(\d+)/);
+      if (vmMatch) {
+        embedUrl = `https://player.vimeo.com/video/${vmMatch[1]}`;
+      }
+    }
+
+    if (!embedUrl) {
+      showToast('YouTube 또는 Vimeo URL이 아닙니다', 'warn');
+      return;
+    }
+
+    const editor = document.getElementById('richEditor');
+    const html = `<div style="position:relative;padding-bottom:56.25%;height:0;margin:16px 0;border-radius:8px;overflow:hidden;"><iframe src="${embedUrl}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>`;
+
+    if (document.activeElement === editor) {
+      document.execCommand('insertHTML', false, html);
+    } else {
+      editor.innerHTML += html;
+    }
+    updateCharCount();
+    showToast('영상 추가됨', 'success');
+
+  } else if (choice === '2') {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'video/*';
+    input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      if (file.size > 50 * 1024 * 1024) {
+        showToast('영상 파일은 50MB 이하만 가능합니다. YouTube/Vimeo 권장.', 'warn');
+        return;
+      }
+
+      showLoading(true);
+      try {
+        const base64 = await new Promise((res, rej) => {
+          const reader = new FileReader();
+          reader.onload = () => res(reader.result.split(',')[1]);
+          reader.onerror = () => rej(new Error('파일 읽기 실패'));
+          reader.readAsDataURL(file);
+        });
+
+        const ts = Date.now();
+        const ext = (file.name.split('.').pop() || 'mp4').toLowerCase();
+        const filename = `posts/videos/vid_${ts}.${ext}`;
+
+        const res = await fetch(`${GH_API}/${filename}`, {
+          method: 'PUT',
+          headers: ghHeaders(),
+          body: JSON.stringify({
+            message: `feat: upload video ${filename}`,
+            content: base64,
+            branch: GH_BRANCH
+          })
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.message || `업로드 실패: ${res.status}`);
+        }
+
+        const videoUrl = `https://koreansalaryman.com/${filename}`;
+        const editor = document.getElementById('richEditor');
+        const html = `<video controls src="${videoUrl}" style="max-width:100%;height:auto;margin:16px 0;border-radius:8px;display:block;"></video>`;
+
+        if (document.activeElement === editor) {
+          document.execCommand('insertHTML', false, html);
+        } else {
+          editor.innerHTML += html;
+        }
+        updateCharCount();
+        showToast('영상 추가됨', 'success');
+      } catch (err) {
+        console.error(err);
+        showToast('영상 업로드 실패: ' + err.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    };
+    input.click();
+  }
 }
 
 function togglePreviewMode() {
