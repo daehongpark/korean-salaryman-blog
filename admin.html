@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>관리자 — 직장인 수익일기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
@@ -204,6 +204,57 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
   .admin-sidebar{display:none;}
   .admin-main{padding:16px;}
   .stat-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ── 모바일 강화 (touch-friendly + iOS zoom 방지) */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .admin-main, main, .container, .main-content {
+    padding: 12px !important;
+    max-width: 100% !important;
+  }
+  button, .btn, .login-btn, input[type="button"], input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+  input[type="text"], input[type="password"], input[type="email"],
+  select, textarea, .form-input, .form-select, .form-textarea, .login-input {
+    width: 100% !important;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    min-height: 44px;
+  }
+  textarea, .form-textarea {
+    min-height: 300px;
+    line-height: 1.6;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .modal, [class*="modal"] {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 20px auto !important;
+    padding: 16px !important;
+  }
+  .post-item, .card, [class*="post-card"], .post-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px;
+  }
+  .actions, .button-group, [class*="actions"], .action-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  header, nav, .header, .nav, .admin-header {
+    padding: 8px 12px !important;
+  }
 }
 </style>
 </head>
@@ -636,7 +687,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 <script>
 // ── 설정값 ────────────────────────────────────────────
-const ADMIN_PW   = 'admin1234';
+// 비번 hash (SHA-256). 평문 비번은 코드에 없음.
+// 비번 변경 시: 콘솔에서 await sha256('새비번') 실행 → 결과로 아래 값 교체
+const ADMIN_PW_HASH = '__PLACEHOLDER_HASH__';
+
+async function sha256(str) {
+  const buf = new TextEncoder().encode(str);
+  const hashBuf = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hashBuf))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
 
 // ── 자동화 ON/OFF 상태 ────────────────────────────────
 // localStorage에 'automationEnabled' 저장 (true=켜짐 / false=꺼짐)
@@ -698,15 +759,33 @@ let currentFilter = 'all';
 let deleteTarget  = null;   // {filename, sha}
 let ghToken       = localStorage.getItem('ghToken') || '';
 
+// ── 자동 로그아웃 (1시간 무활동) ──────────────────────
+const AUTO_LOGOUT_MS = 60 * 60 * 1000;
+let autoLogoutTimer = null;
+
+function resetAutoLogoutTimer() {
+  if (autoLogoutTimer) clearTimeout(autoLogoutTimer);
+  autoLogoutTimer = setTimeout(() => {
+    sessionStorage.removeItem('adminLoggedIn');
+    alert('1시간 동안 활동이 없어 자동 로그아웃됩니다.');
+    location.reload();
+  }, AUTO_LOGOUT_MS);
+}
+
+['click', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
+  document.addEventListener(evt, resetAutoLogoutTimer, { passive: true });
+});
+
 // ── 로그인 ────────────────────────────────────────────
-function doLogin() {
+async function doLogin() {
   const pw = document.getElementById('pwInput').value;
-  if (pw === ADMIN_PW) {
+  if ((await sha256(pw)) === ADMIN_PW_HASH) {
     isLoggedIn = true;
     sessionStorage.setItem('adminLoggedIn', '1');
     document.getElementById('loginScreen').style.display = 'none';
     const app = document.getElementById('adminApp');
     app.style.display = 'flex';
+    resetAutoLogoutTimer();
     loadPosts();
   } else {
     const err = document.getElementById('loginErr');
@@ -728,6 +807,7 @@ if (sessionStorage.getItem('adminLoggedIn') === '1') {
   isLoggedIn = true;
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('adminApp').style.display = 'flex';
+  resetAutoLogoutTimer();
 }
 
 document.getElementById('pwInput').addEventListener('keydown', e => {
@@ -798,6 +878,45 @@ async function ghDelete(path, sha, message) {
     throw new Error(err.message || `GitHub 삭제 실패: ${res.status}`);
   }
   return res.json();
+}
+
+// ── manifest.json 동기화 헬퍼 ─────────────────────────
+// action: 'upsert' | 'remove' | 'updateStatus'
+// 파일 작업 성공 후 호출. 실패해도 파일 작업은 이미 끝났으니 throw 안 하고 toast만.
+async function syncManifest(action, filename, postData) {
+  try {
+    const mfFile = await ghGet(`${POSTS_PATH}/manifest.json`);
+    const mfRaw  = decodeURIComponent(escape(atob(mfFile.content.replace(/\n/g, ''))));
+    let mfArr    = JSON.parse(mfRaw);
+    const idx    = mfArr.findIndex(e => e.filename === filename);
+
+    if (action === 'remove') {
+      if (idx < 0) return; // 이미 없음
+      mfArr.splice(idx, 1);
+    } else if (action === 'upsert') {
+      if (idx >= 0) {
+        mfArr[idx] = { ...mfArr[idx], ...postData, filename };
+      } else {
+        mfArr.unshift({ ...postData, filename });
+      }
+    } else if (action === 'updateStatus') {
+      if (idx < 0) return;
+      mfArr[idx].status = postData.status;
+    } else {
+      throw new Error(`unknown syncManifest action: ${action}`);
+    }
+
+    const newContent = JSON.stringify(mfArr, null, 2);
+    await ghPut(
+      `${POSTS_PATH}/manifest.json`,
+      newContent,
+      mfFile.sha,
+      `manifest sync (${action}): ${filename}`
+    );
+  } catch (e) {
+    console.error('manifest sync 실패:', e);
+    showToast('manifest 동기화 실패: ' + e.message, 'error');
+  }
 }
 
 // ── 포스트 로드 ───────────────────────────────────────
@@ -965,6 +1084,7 @@ async function toggleStatus(filename, newStatus) {
     const content = JSON.stringify(updated, null, 2);
     await ghPut(`${POSTS_PATH}/${filename}`, content, freshSha,
       `${newStatus === 'published' ? '발행' : '임시저장'}: ${post.title}`);
+    await syncManifest('updateStatus', filename, { status: newStatus });
     const label = newStatus === 'published' ? '발행' : '임시저장';
     showToast(`"${label}"으로 변경되었습니다.`, 'success');
     await loadPosts();
@@ -1188,6 +1308,14 @@ async function savePost(statusOverride) {
         status: statusOverride || 'published'
       };
       await ghPut(`${POSTS_PATH}/${newFilename}`, JSON.stringify(newPost, null, 2), null, `새 글: ${title}`);
+      await syncManifest('upsert', newFilename, {
+        title:      newPost.title,
+        summary:    newPost.summary,
+        category:   newPost.category,
+        tags:       newPost.tags,
+        status:     newPost.status,
+        created_at: newPost.created_at,
+      });
       closeModal('editModal');
       showToast('새 글이 저장되었습니다!', 'success');
       await loadPosts();
@@ -1208,6 +1336,14 @@ async function savePost(statusOverride) {
       // 항상 최신 SHA를 GitHub에서 직접 가져오기
       const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
       await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha, `수정: ${updated.title}`);
+      await syncManifest('upsert', filename, {
+        title:      updated.title,
+        summary:    updated.summary,
+        category:   updated.category,
+        tags:       updated.tags,
+        status:     updated.status,
+        created_at: updated.created_at,
+      });
       closeModal('editModal');
       showToast('저장되었습니다!', 'success');
       await loadPosts();
@@ -1236,6 +1372,7 @@ async function confirmDelete() {
     // 항상 최신 SHA를 GitHub에서 직접 가져오기
     const freshFile = await ghGet(`${POSTS_PATH}/${deleteTarget}`);
     await ghDelete(`${POSTS_PATH}/${deleteTarget}`, freshFile.sha, `삭제: ${post.title}`);
+    await syncManifest('remove', deleteTarget, null);
     showToast('삭제되었습니다.', 'info');
     await loadPosts();
   } catch(e) {
