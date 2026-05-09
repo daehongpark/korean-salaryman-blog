@@ -1395,7 +1395,54 @@ function insertLink() {
   updateCharCount();
 }
 
+// ── 에디터 커서 위치 보존 (toolbar 클릭 전 selection 저장) ──
+let _lastEditorRange = null;
+
+function saveEditorRange() {
+  const sel = window.getSelection();
+  if (sel && sel.rangeCount > 0) {
+    const range = sel.getRangeAt(0);
+    const editor = document.getElementById('richEditor');
+    if (editor && editor.contains(range.commonAncestorContainer)) {
+      _lastEditorRange = range.cloneRange();
+    }
+  }
+}
+
+function insertHtmlAtSavedRange(html) {
+  const editor = document.getElementById('richEditor');
+  if (!editor) return;
+
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+  const fragment = document.createDocumentFragment();
+  while (temp.firstChild) fragment.appendChild(temp.firstChild);
+  const lastNode = fragment.lastChild;
+
+  if (_lastEditorRange) {
+    _lastEditorRange.deleteContents();
+    _lastEditorRange.insertNode(fragment);
+
+    if (lastNode) {
+      const sel = window.getSelection();
+      const newRange = document.createRange();
+      newRange.setStartAfter(lastNode);
+      newRange.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(newRange);
+      _lastEditorRange = newRange.cloneRange();
+    }
+  } else {
+    editor.appendChild(fragment);
+  }
+
+  if (typeof updateCharCount === 'function') updateCharCount();
+}
+
 async function insertImage() {
+  // 모바일 안전망: 버튼 클릭 시점의 selection 한 번 더 저장
+  saveEditorRange();
+
   const input = document.createElement('input');
   input.type = 'file';
   input.accept = 'image/*';
@@ -1437,15 +1484,9 @@ async function insertImage() {
       }
 
       const imgUrl = `https://koreansalaryman.com/${filename}`;
-      const editor = document.getElementById('richEditor');
-      const imgHtml = `<img src="${imgUrl}" alt="" style="max-width:100%;height:auto;margin:16px 0;border-radius:8px;display:block;">`;
+      const imgHtml = `<img src="${imgUrl}" alt="" style="width:100%;max-width:720px;height:auto;margin:16px auto;border-radius:8px;display:block;">`;
 
-      if (document.activeElement === editor) {
-        document.execCommand('insertHTML', false, imgHtml);
-      } else {
-        editor.innerHTML += imgHtml;
-      }
-      updateCharCount();
+      insertHtmlAtSavedRange(imgHtml);
       showToast('이미지 추가됨', 'success');
     } catch (err) {
       console.error(err);
@@ -1458,6 +1499,9 @@ async function insertImage() {
 }
 
 async function insertVideo() {
+  // 모바일 안전망: 버튼 클릭 시점의 selection 한 번 더 저장
+  saveEditorRange();
+
   const choice = prompt(
     '영상 추가 방법을 선택하세요:\n\n' +
     '1. YouTube/Vimeo URL 붙여넣기 (권장 — 용량 무제한)\n' +
@@ -1485,15 +1529,9 @@ async function insertVideo() {
       return;
     }
 
-    const editor = document.getElementById('richEditor');
-    const html = `<div style="position:relative;padding-bottom:56.25%;height:0;margin:16px 0;border-radius:8px;overflow:hidden;"><iframe src="${embedUrl}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>`;
+    const html = `<div style="position:relative;padding-bottom:56.25%;height:0;margin:16px auto;max-width:720px;border-radius:8px;overflow:hidden;"><iframe src="${embedUrl}" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>`;
 
-    if (document.activeElement === editor) {
-      document.execCommand('insertHTML', false, html);
-    } else {
-      editor.innerHTML += html;
-    }
-    updateCharCount();
+    insertHtmlAtSavedRange(html);
     showToast('영상 추가됨', 'success');
 
   } else if (choice === '2') {
@@ -1538,15 +1576,9 @@ async function insertVideo() {
         }
 
         const videoUrl = `https://koreansalaryman.com/${filename}`;
-        const editor = document.getElementById('richEditor');
-        const html = `<video controls src="${videoUrl}" style="max-width:100%;height:auto;margin:16px 0;border-radius:8px;display:block;"></video>`;
+        const html = `<video controls src="${videoUrl}" style="width:100%;max-width:720px;height:auto;margin:16px auto;border-radius:8px;display:block;"></video>`;
 
-        if (document.activeElement === editor) {
-          document.execCommand('insertHTML', false, html);
-        } else {
-          editor.innerHTML += html;
-        }
-        updateCharCount();
+        insertHtmlAtSavedRange(html);
         showToast('영상 추가됨', 'success');
       } catch (err) {
         console.error(err);
@@ -2510,6 +2542,15 @@ function collectIncomeData() {
 
 // 페이지 로드 시 자동 로드
 if (isLoggedIn) loadPosts();
+
+// richEditor 커서 위치 추적 (toolbar 클릭 전 selection 보존용)
+(function attachEditorCursorTracking() {
+  const editor = document.getElementById('richEditor');
+  if (!editor) return;
+  ['keyup', 'mouseup', 'touchend', 'focus', 'input'].forEach(evt => {
+    editor.addEventListener(evt, saveEditorRange);
+  });
+})();
 </script>
 </body>
 </html>
