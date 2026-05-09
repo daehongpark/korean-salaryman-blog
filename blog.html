@@ -261,11 +261,13 @@ footer{background:var(--navy3);padding:48px 24px;}
     </div>
     <div class="ft-col">
       <h4>카테고리</h4>
-      <a href="blog.html?cat=부업 방법">부업 방법</a>
-      <a href="blog.html?cat=재테크">재테크</a>
-      <a href="blog.html?cat=블로그">블로그</a>
-      <a href="blog.html?cat=자기계발">자기계발</a>
-      <a href="blog.html?cat=수익 공개">수익 공개</a>
+      <a href="category-money.html">💰 정부 지원금</a>
+      <a href="category-ai.html">🤖 AI 도구</a>
+      <a href="category-startup.html">🚀 초기 사업자</a>
+      <a href="category-finance.html">📈 재테크/투자</a>
+      <a href="category-realestate.html">🏠 부동산/주거</a>
+      <a href="category-trending.html">🔥 실시간 이슈</a>
+      <a href="category-book.html">📚 책 추천</a>
     </div>
     <div class="ft-col">
       <h4>페이지</h4>
@@ -292,19 +294,27 @@ function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('o
 
 const PER_PAGE = 12;
 const CATEGORY_EMOJI = {
-  '전체':'📚','부업 방법':'💼','블로그':'✍️','자기계발':'📚',
-  '재테크':'💰','책 추천':'📖','수익 공개':'📊','챌린지':'🔥'
+  '전체':'📚',
+  'money':'💰','ai':'🤖','startup':'🚀',
+  'finance':'📈','realestate':'🏠','trending':'🔥','book':'📚'
+};
+
+const CATEGORY_LABEL = {
+  '전체':'전체',
+  'money':'정부 지원금/정책', 'ai':'AI 도구 활용', 'startup':'초기 사업자 가이드',
+  'finance':'재테크/투자', 'realestate':'부동산/주거', 'trending':'실시간 이슈', 'book':'책 추천'
 };
 
 // SEO 용: 카테고리별 메타 정보
 const CATEGORY_META = {
-  '전체':       { title:'블로그 — 직장인 수익일기', desc:'부업, 재테크, 블로그 수익화, 자기계발까지 — 평범한 직장인이 실제로 경험하고 검증한 내용만 기록합니다.', hero:'직장인의 <em>현실적인</em> 부업 기록' },
-  '부업 방법':   { title:'부업 방법 — 직장인 수익일기', desc:'퇴근 후 2~3시간으로 시작할 수 있는 직장인 부업 방법과 현실 후기 모음.', hero:'직장인 <em>부업</em> 방법' },
-  '블로그':     { title:'블로그 수익화 — 직장인 수익일기', desc:'직장인이 블로그 대행과 에드센스로 월 수십만원 이상 버는 실전 방법.', hero:'블로그로 돈 버는 <em>현실적인 법</em>' },
-  '자기계발':   { title:'자기계발 — 직장인 수익일기', desc:'직장인의 성장과 생산성 향상을 위한 실전 자기계발 노하우.', hero:'성장하는 <em>직장인의 습관</em>' },
-  '재테크':     { title:'재테크 — 직장인 수익일기', desc:'직장인을 위한 현실적인 재테크와 투자 전략. ETF, 청약, 저축부터 경제적 자유까지.', hero:'직장인 <em>재테크</em> 가이드' },
-  '책 추천':     { title:'책 추천 — 직장인 수익일기', desc:'직장인의 성장에 도움이 되는 책 추천과 실전 활용법.', hero:'성장에 <em>진짜 도움 되는</em> 책' },
-  '수익 공개':   { title:'수익 공개 — 직장인 수익일기', desc:'블로그 대행, 에드센스, 부업 등 직장인의 실제 수익 공개 기록.', hero:'진짜 숫자만 <em>공개합니다</em>' }
+  '전체':       { title:'블로그 — 직장인 수익일기', desc:'정부 지원금·AI 도구·재테크·부동산까지 — 직장인이 진짜 필요한 정보를 모았습니다.', hero:'직장인의 <em>현실적인</em> 정보 기록' },
+  'money':      { title:'정부 지원금/정책 — 직장인 수익일기', desc:'직장인이 받을 수 있는 정부 지원금. 청년정책·근로장려금·복지·소상공인 자금 정리.', hero:'직장인 <em>정부 지원금</em> 가이드' },
+  'ai':         { title:'AI 도구 활용 — 직장인 수익일기', desc:'Claude·ChatGPT·n8n 등 AI 도구를 직장인 업무에 어떻게 쓰는지 실전 가이드.', hero:'AI로 <em>일 빠르게</em> 끝내는 법' },
+  'startup':    { title:'초기 사업자 가이드 — 직장인 수익일기', desc:'직장인 → 1인 사업자 전환. 사업자등록·세무·통장·카드 초기 셋업 정리.', hero:'직장인 → <em>1인 사업자</em>' },
+  'finance':    { title:'재테크/투자 — 직장인 수익일기', desc:'월급을 굴리는 법. ETF·ISA·연금·청약저축까지 직장인 재테크 실전.', hero:'직장인 <em>재테크</em> 가이드' },
+  'realestate': { title:'부동산/주거 — 직장인 수익일기', desc:'청약·전월세·디딤돌·버팀목까지 직장인 첫 집 의사결정 정보.', hero:'직장인 <em>첫 집</em> 가이드' },
+  'trending':   { title:'실시간 이슈 — 직장인 수익일기', desc:'정책 변경·세법 개정·금리 등 직장인에게 영향 가는 속보 분석.', hero:'직장인 <em>속보</em> 분석' },
+  'book':       { title:'책 추천 — 직장인 수익일기', desc:'박대홍이 직접 읽고 도움 받은 책 솔직 후기. 자기계발·재테크·사업·심리.', hero:'성장에 <em>진짜 도움 되는</em> 책' }
 };
 
 let allPosts = [];
@@ -379,8 +389,8 @@ function updateSEOMeta(){
   document.getElementById('og-desc').setAttribute('content', meta.desc);
   document.getElementById('hero-title').innerHTML = meta.hero;
   document.getElementById('hero-desc').textContent = meta.desc;
-  document.getElementById('hero-badge-text').textContent = 
-    (currentCat === '전체' ? 'ALL POSTS · 전체 글' : currentCat.toUpperCase());
+  document.getElementById('hero-badge-text').textContent =
+    (currentCat === '전체' ? 'ALL POSTS · 전체 글' : (CATEGORY_LABEL[currentCat] || currentCat).toUpperCase());
   
   // Canonical URL
   const canonical = 'https://koreansalaryman.com/blog.html' + 
@@ -401,15 +411,16 @@ function renderCategoryTabs(){
   });
   
   // 정해진 순서로 표시 (글 없는 카테고리는 제외)
-  const catOrder = ['전체', '부업 방법', '재테크', '블로그', '자기계발', '책 추천', '수익 공개'];
+  const catOrder = ['전체','money','ai','startup','finance','realestate','trending','book'];
   const cats = catOrder.filter(c => counts[c] > 0 || c === '전체');
   
   container.innerHTML = cats.map(cat => {
     const active = cat === currentCat ? 'active' : '';
     const count = counts[cat] || 0;
+    const label = CATEGORY_LABEL[cat] || cat;
     return `<a href="blog.html${cat === '전체' ? '' : '?cat=' + encodeURIComponent(cat)}" class="cat-tab ${active}" data-cat="${escapeHtml(cat)}">
       <span>${CATEGORY_EMOJI[cat] || '📝'}</span>
-      <span>${escapeHtml(cat)}</span>
+      <span>${escapeHtml(label)}</span>
       <span class="count">${count}</span>
     </a>`;
   }).join('');
@@ -481,7 +492,8 @@ function renderPosts(){
     tagEl.textContent = '🔍 검색';
     tagEl.style.display = 'inline-block';
   } else if (currentCat !== '전체') {
-    countEl.innerHTML = `<strong>${escapeHtml(currentCat)}</strong> 카테고리 <strong>${totalCount}</strong>편`;
+    const _label = CATEGORY_LABEL[currentCat] || currentCat;
+    countEl.innerHTML = `<strong>${escapeHtml(_label)}</strong> 카테고리 <strong>${totalCount}</strong>편`;
     tagEl.textContent = CATEGORY_EMOJI[currentCat] || '📁';
     tagEl.style.display = 'inline-block';
   } else {
@@ -513,6 +525,7 @@ function renderPosts(){
   let html = '<div class="post-grid">';
   pagePosts.forEach(p => {
     const emoji = CATEGORY_EMOJI[p.category] || '📝';
+    const _catLabel = CATEGORY_LABEL[p.category] || (p.category || '');
     const thumbnail = p.thumbnail;
     const seoScore = (typeof p.seo_score === 'number' && p.seo_score > 0)
       ? `<span class="seo-badge" title="SEO 점수">⚡ ${Math.round(p.seo_score)}</span>` : '';
@@ -527,7 +540,7 @@ function renderPosts(){
           }
         </div>
         <div class="post-body">
-          <span class="post-cat-badge">${escapeHtml(p.category||'')}</span>
+          <span class="post-cat-badge">${escapeHtml(_catLabel)}</span>
           <h3>${escapeHtml(p.title||'')}</h3>
           ${p.summary ? `<div class="post-summary">${escapeHtml(p.summary.slice(0,100))}</div>` : ''}
           <div class="post-meta-row">

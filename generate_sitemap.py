@@ -21,10 +21,22 @@ OUTPUT     = BLOG_DIR / "sitemap.xml"
 # 고정 페이지 (priority, changefreq)
 STATIC_PAGES = [
     ("",               "1.0",  "daily"),
+    ("blog.html",      "0.95", "daily"),
     ("about.html",     "0.8",  "monthly"),
     ("income.html",    "0.9",  "weekly"),
     ("challenge.html", "0.9",  "weekly"),
     ("class.html",     "0.8",  "monthly"),
+]
+
+# 7개 카테고리 페이지 (영문 키 기반)
+CATEGORY_PAGES = [
+    "category-money.html",
+    "category-ai.html",
+    "category-startup.html",
+    "category-finance.html",
+    "category-realestate.html",
+    "category-trending.html",
+    "category-book.html",
 ]
 
 
@@ -41,6 +53,16 @@ def generate_sitemap():
     <lastmod>{today}</lastmod>
     <changefreq>{changefreq}</changefreq>
     <priority>{priority}</priority>
+  </url>""")
+
+    # 카테고리 페이지 (7개)
+    for path in CATEGORY_PAGES:
+        url = f"{BASE_URL}/{path}"
+        urls.append(f"""  <url>
+    <loc>{url}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>""")
 
     # 발행된 글 페이지

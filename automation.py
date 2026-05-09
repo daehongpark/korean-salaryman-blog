@@ -31,7 +31,7 @@ COLOR_POINT    = (193, 127, 62)    # #c17f3e - 골드
 COLOR_WHITE    = (255, 255, 255)
 COLOR_BG       = (248, 247, 244)   # #f8f7f4 - 배경
 
-# ── 키워드 풀 (2026 신규 6개 카테고리 - keyword_pool_v2 모듈) ──
+# ── 키워드 풀 (2026 통일 7개 카테고리 - keyword_pool_v2 모듈) ──
 try:
     from keyword_pool_v2 import (
         KEYWORD_POOL_V2     as KEYWORD_POOL,
@@ -39,18 +39,38 @@ try:
         UNSPLASH_BODY_QUERIES_V2 as UNSPLASH_BODY_QUERIES,
         CATEGORY_BALANCE,
         CATEGORY_INTENTS,
+        LEGACY_CATEGORY_MAP,
     )
-    print("[INFO] keyword_pool_v2 로드 완료 (6개 신규 카테고리)")
+    print("[INFO] keyword_pool_v2 로드 완료 (7개 통일 카테고리)")
 except ImportError as _e:
     print(f"[WARN] keyword_pool_v2 로드 실패 → 비상용 폴백 사용: {_e}")
     KEYWORD_POOL = {
-        "직장인커리어": ["직장인 자기계발 방법", "연봉협상 잘하는 법", "이직 면접 질문"],
-        "재테크":      ["직장인 ETF 투자", "ISA 계좌 비교", "고금리 적금 추천"],
+        "finance": ["직장인 ETF 투자", "ISA 계좌 비교", "고금리 적금 추천"],
+        "money":   ["청년도약계좌 가입조건", "근로장려금 신청자격"],
     }
-    UNSPLASH_QUERY = {"직장인커리어": "korean office worker", "재테크": "money investment"}
+    UNSPLASH_QUERY = {"finance": "money investment", "money": "korean government policy"}
     UNSPLASH_BODY_QUERIES = {k: [v] for k, v in UNSPLASH_QUERY.items()}
     CATEGORY_BALANCE = {k: 1.0 / len(KEYWORD_POOL) for k in KEYWORD_POOL}
     CATEGORY_INTENTS = {}
+    LEGACY_CATEGORY_MAP = {}
+
+
+# ── 카테고리 정규화 (한글 키 / 미지의 키 → 영문 7개 키로 매핑) ──
+VALID_CATEGORIES = {"money", "ai", "startup", "finance", "realestate", "trending", "book"}
+FALLBACK_CATEGORY = "trending"  # 알 수 없는 카테고리 도착 시 보낼 곳
+
+
+def normalize_category(cat: str) -> str:
+    """7개 영문 키 외의 값이 들어오면 LEGACY_CATEGORY_MAP으로 변환, 그래도 안 잡히면 fallback."""
+    if not cat:
+        return FALLBACK_CATEGORY
+    if cat in VALID_CATEGORIES:
+        return cat
+    mapped = LEGACY_CATEGORY_MAP.get(cat)
+    if mapped in VALID_CATEGORIES:
+        return mapped
+    print(f"[WARN] 알 수 없는 카테고리 '{cat}' → '{FALLBACK_CATEGORY}'로 fallback")
+    return FALLBACK_CATEGORY
 
 
 # ── 카테고리 가중 랜덤 선택 (균형 발행) ───────────────
@@ -948,6 +968,7 @@ SEO(검색)·AEO(답변엔진)·GEO(생성형엔진) 3가지를 동시에 최적
 
 # ── Gemini API 호출 ───────────────────────────────────
 def generate_article(category: str, keyword: str, seo_meta: dict | None = None) -> dict | None:
+    category = normalize_category(category)
     prompt = build_prompt(category, keyword, seo_meta)
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"

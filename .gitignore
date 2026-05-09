@@ -7,3 +7,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# 일회성 마이그레이션/생성 스크립트 (커밋 X)
+_gen_category_pages.py
+_migrate_categories.py

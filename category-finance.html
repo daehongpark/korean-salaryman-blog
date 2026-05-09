@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="박대홍이 직접 읽고 도움 받은 책 추천. 자기계발·재테크·1인 사업·심리 분야 실전 후기.">
-<title>책 추천 — 직장인 수익일기</title>
-<link rel="canonical" href="https://koreansalaryman.com/category-book.html">
+<meta name="description" content="월급을 굴리는 법. ETF·ISA·연금저축·청약저축까지 직장인 재테크 실전.">
+<title>재테크 · 투자 — 직장인 수익일기</title>
+<link rel="canonical" href="https://koreansalaryman.com/category-finance.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -117,13 +117,13 @@ footer{background:var(--navy3);padding:52px 24px;}
 <!-- 히어로 -->
 <div class="page-hero" style="background:#0d1b3e;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;"></div>
-  <div style="position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,#b7870b22,transparent 65%);"></div>
+  <div style="position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,#3b6cf422,transparent 65%);"></div>
   <div class="page-hero-inner">
-    <div class="page-hero-badge" style="background:#b7870b26;border:1px solid #b7870b55;">
-      <span style="color:#b7870b;">📚 CATEGORY</span>
+    <div class="page-hero-badge" style="background:#3b6cf426;border:1px solid #3b6cf455;">
+      <span style="color:#3b6cf4;">📈 CATEGORY</span>
     </div>
-    <h1 style="color:#ffffff;">책<br><span style="color:#b7870b;">추천</span></h1>
-    <p style="color:rgba(255,255,255,0.55);">박대홍이 직접 읽고 도움 받은 책들.<br>자기계발·재테크·사업·심리까지 솔직한 후기로.</p>
+    <h1 style="color:#ffffff;">재테크<br><span style="color:#3b6cf4;">투자</span></h1>
+    <p style="color:rgba(255,255,255,0.55);">ETF, 주식, 저축, 부동산까지.<br>직장인이 알아야 할 재테크 정보를 쉽고 현실적으로 알려드립니다.</p>
   </div>
 </div>
 
@@ -155,10 +155,6 @@ footer{background:var(--navy3);padding:52px 24px;}
           <div style="width:3px;height:24px;background:#0ea5e9;border-radius:2px;flex-shrink:0;"></div>
           <span style="font-size:13px;font-weight:500;color:var(--navy);">🚀 초기 사업자</span>
         </a>
-        <a href="category-finance.html" style="display:flex;align-items:center;gap:10px;padding:10px 18px;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
-          <div style="width:3px;height:24px;background:#3b6cf4;border-radius:2px;flex-shrink:0;"></div>
-          <span style="font-size:13px;font-weight:500;color:var(--navy);">📈 재테크·투자</span>
-        </a>
         <a href="category-realestate.html" style="display:flex;align-items:center;gap:10px;padding:10px 18px;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
           <div style="width:3px;height:24px;background:#10b981;border-radius:2px;flex-shrink:0;"></div>
           <span style="font-size:13px;font-weight:500;color:var(--navy);">🏠 부동산·주거</span>
@@ -166,6 +162,10 @@ footer{background:var(--navy3);padding:52px 24px;}
         <a href="category-trending.html" style="display:flex;align-items:center;gap:10px;padding:10px 18px;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
           <div style="width:3px;height:24px;background:#ef4444;border-radius:2px;flex-shrink:0;"></div>
           <span style="font-size:13px;font-weight:500;color:var(--navy);">🔥 실시간 이슈</span>
+        </a>
+        <a href="category-book.html" style="display:flex;align-items:center;gap:10px;padding:10px 18px;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+          <div style="width:3px;height:24px;background:#b7870b;border-radius:2px;flex-shrink:0;"></div>
+          <span style="font-size:13px;font-weight:500;color:var(--navy);">📚 독서·책 추천</span>
         </a>
         <a href="income.html" style="display:flex;align-items:center;gap:10px;padding:10px 18px;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
           <div style="width:3px;height:24px;background:#c0392b;border-radius:2px;flex-shrink:0;"></div>
@@ -225,9 +225,9 @@ function readTime(text){return Math.max(1,Math.round((text||'').length/500))+'�
 </script>
 
 <script>
-const CAT_KEY = 'book';
-const CAT_LABEL = '책 추천';
-const CAT_COLOR = '#b7870b';
+const CAT_KEY = 'finance';
+const CAT_LABEL = '재테크/투자';
+const CAT_COLOR = '#3b6cf4';
 
 fetch('./posts/manifest.json')
   .then(r => r.ok ? r.json() : [])
@@ -243,7 +243,7 @@ fetch('./posts/manifest.json')
     if (filtered.length === 0) {
       list.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icon">📚</div>
+          <div class="empty-state-icon">📈</div>
           <h3>아직 글이 없습니다</h3>
           <p>곧 양질의 글로 찾아올게요!</p>
         </div>`;
@@ -270,7 +270,7 @@ fetch('./posts/manifest.json')
   .catch(() => {
     document.getElementById('skeleton').style.display = 'none';
     document.getElementById('postList').style.display = 'block';
-    document.getElementById('postList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">📚</div><h3>글을 불러올 수 없습니다</h3></div>';
+    document.getElementById('postList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">📈</div><h3>글을 불러올 수 없습니다</h3></div>';
   });
 </script>
 </body>
