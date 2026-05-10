@@ -1138,6 +1138,51 @@ def _build_steps_html(steps) -> str:
     )
 
 
+def _build_chart_html(chart_data) -> str:
+    """chart JSON → Chart.js inline canvas + init script."""
+    if not chart_data or not isinstance(chart_data, dict):
+        return ""
+    chart_type = (chart_data.get("type") or "").lower()
+    if chart_type not in ("line", "bar", "doughnut", "radar"):
+        return ""
+
+    labels   = chart_data.get("labels") or []
+    datasets = chart_data.get("datasets") or []
+    if not labels or not datasets:
+        return ""
+
+    import secrets
+    chart_id = f"chart_{secrets.token_hex(4)}"
+    title = chart_data.get("title", "")
+
+    config = {
+        "type": chart_type,
+        "data": {"labels": labels, "datasets": datasets},
+        "options": {
+            "responsive": True,
+            "maintainAspectRatio": False,
+            "plugins": {
+                "title":  {"display": bool(title), "text": title},
+                "legend": {"display": True, "position": "bottom"},
+            },
+        },
+    }
+    config_json = json.dumps(config, ensure_ascii=False)
+
+    return (
+        '\n<div class="chart-container" style="position:relative;width:100%;'
+        'max-width:720px;height:360px;margin:24px auto;background:#fff;'
+        'padding:16px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">'
+        f'<canvas id="{chart_id}"></canvas></div>\n'
+        '<script>(function(){'
+        f'function init(){{if(typeof Chart==="undefined"){{setTimeout(init,100);return;}}'
+        f'var ctx=document.getElementById("{chart_id}");if(!ctx)return;'
+        f'new Chart(ctx,{config_json});}}'
+        'if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}'
+        '})();</script>\n'
+    )
+
+
 def _build_references_html(refs) -> str:
     """참고자료 섹션. [{label, url}, ...] 구조. GEO 신뢰도 핵심."""
     if not refs or not isinstance(refs, list):
@@ -1237,8 +1282,10 @@ def save_article(article: dict, hero_image: dict | None = None, body_images: lis
         + _build_tldr_html(tldr)
         + _build_audience_html(target_audience)
     )
+    chart_data = article.get("chart") or {}
     post_html = (
         _build_comparison_html(comparison_table)
+        + _build_chart_html(chart_data)
         + _build_steps_html(steps)
     )
     refs_html = _build_references_html(references)
@@ -1269,7 +1316,7 @@ def save_article(article: dict, hero_image: dict | None = None, body_images: lis
     article["seo_title"] = f"{title} | 직장인 수익일기"[:60]
 
     # SEO 설명: 150~160자가 구글 스니펫 최적
-    base_desc = summary[:140] if summary else f"{keyword}에 대한 직장인 박대홍의 실전 경험과 구체적 수치를 공개합니다."
+    base_desc = summary[:140] if summary else f"{keyword}에 대한 직장인의 실전 경험과 구체적 수치를 공개합니다."
     article["seo_description"] = (base_desc + " | 직장인 수익일기")[:160]
 
     # SEO 키워드 (메인 키워드 앞쪽 배치)

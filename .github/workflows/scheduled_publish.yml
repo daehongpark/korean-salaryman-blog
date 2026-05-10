@@ -1,0 +1,18 @@
+name: 예약 발행 체크
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # 매 30분
+  workflow_dispatch:
+
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 예약 발행 트리거
+        run: |
+          curl -fsSL -X POST https://koreansalaryman.com/api/scheduled-publish \
+            -H "Content-Type: application/json" \
+            -H "x-publish-secret: ${{ secrets.SCHEDULED_PUBLISH_SECRET }}" \
+            --max-time 60 \
+            -w "\n[HTTP %{http_code}]\n"

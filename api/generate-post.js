@@ -68,7 +68,13 @@ export default async function handler(req, res) {
           { q: "질문4", a: "답변4" },
           { q: "질문5", a: "답변5" }
         ],
-        references: [{ label: "공식 사이트", url: "https://..." }]
+        references: [{ label: "공식 사이트", url: "https://..." }],
+        chart: {
+          type: "(line/bar/doughnut/radar 중 하나, 없으면 빈 문자열)",
+          title: "차트 제목",
+          labels: ["X축1", "X축2"],
+          datasets: [{ label: "시리즈명", data: [10, 20] }]
+        }
       }, null, 2)
     ].join('\n');
 

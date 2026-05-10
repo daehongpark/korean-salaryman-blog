@@ -103,6 +103,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .status-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap;}
 .status-badge.published{background:var(--green-light);color:var(--green);}
 .status-badge.draft{background:var(--yellow-light);color:var(--yellow);}
+.status-badge.scheduled{background:#ede9fe;color:#6d28d9;}
+.btn-schedule{background:#ede9fe;color:#6d28d9;}
+.btn-schedule:hover{background:#6d28d9;color:var(--white);}
 .status-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
 .date-cell{font-size:12px;color:var(--text3);}
 .action-cell{display:flex;gap:5px;justify-content:flex-end;flex-wrap:wrap;}
@@ -416,6 +419,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="sidebar-item" id="si-draft" onclick="setFilter('draft',this)">
           <span class="si-icon">📝</span> 임시저장
           <span class="sidebar-count" id="cnt-draft">0</span>
+        </div>
+        <div class="sidebar-item" id="si-scheduled" onclick="setFilter('scheduled',this)">
+          <span class="si-icon">⏰</span> 예약 발행
+          <span class="sidebar-count" id="cnt-scheduled">0</span>
         </div>
       </div>
       <div class="sidebar-section">
@@ -773,6 +780,40 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 </div>
 
 <!-- 삭제 모달 -->
+<!-- 예약 발행 모달 -->
+<div class="modal-overlay" id="scheduleModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-head">
+      <span class="modal-title">⏰ 예약 발행</span>
+      <button class="modal-close" onclick="closeModal('scheduleModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="scheduleTitle" style="font-weight:600;margin-bottom:14px;color:var(--text1);"></div>
+
+      <label class="form-label">발행 날짜</label>
+      <input type="date" id="scheduleDate" class="form-input" style="margin-bottom:14px;">
+
+      <label class="form-label">발행 시간 (KST · 30분 단위)</label>
+      <select id="scheduleTime" class="form-select" style="margin-bottom:14px;">
+        <option value="">시간 선택</option>
+      </select>
+
+      <div id="schedulePreview" style="background:#f9fafb;padding:12px;border-radius:6px;font-size:13px;color:var(--text2);display:none;margin-top:8px;border-left:3px solid #16a34a;">
+        <span id="schedulePreviewText"></span>
+      </div>
+
+      <div style="margin-top:14px;font-size:11px;color:var(--text3);line-height:1.6;">
+        ※ 예약된 글은 매 30분마다 GitHub Actions가 검사해 자동 발행합니다.<br>
+        ※ 정확한 분 단위 발행은 보장되지 않으며 최대 30분 지연될 수 있습니다.
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="cancel-btn" onclick="closeModal('scheduleModal')">취소</button>
+      <button class="save-btn" onclick="confirmSchedule()">예약 확정</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="deleteModal">
   <div class="modal">
     <div class="modal-head">
@@ -1186,6 +1227,7 @@ function updateStats() {
   const total = allPosts.length;
   const pub   = allPosts.filter(p => p.status === 'published').length;
   const draft = allPosts.filter(p => p.status === 'draft').length;
+  const scheduled = allPosts.filter(p => p.status === 'scheduled').length;
   const today = new Date().toISOString().slice(0,10);
   const todayCount = allPosts.filter(p => p.created_at && p.created_at.startsWith(today)).length;
   document.getElementById('statTotal').textContent = total;
@@ -1202,6 +1244,8 @@ function updateStats() {
   document.getElementById('cnt-all').textContent   = total;
   document.getElementById('cnt-pub').textContent   = pub;
   document.getElementById('cnt-draft').textContent = draft;
+  const scheduledEl = document.getElementById('cnt-scheduled');
+  if (scheduledEl) scheduledEl.textContent = scheduled;
   
   // 에드센스 뷰가 열려있으면 재렌더링 (데이터 최신화)
   const adsView = document.getElementById('view-adsense');
@@ -1226,6 +1270,7 @@ function applyFilters() {
   let filtered = [...allPosts];
   if (currentFilter === 'published') filtered = filtered.filter(p => p.status === 'published');
   else if (currentFilter === 'draft') filtered = filtered.filter(p => p.status === 'draft');
+  else if (currentFilter === 'scheduled') filtered = filtered.filter(p => p.status === 'scheduled');
   else if (currentFilter.startsWith('cat:')) filtered = filtered.filter(p => p.category === currentFilter.slice(4));
   if (catSel) filtered = filtered.filter(p => p.category === catSel);
   if (search) filtered = filtered.filter(p => p.title && p.title.toLowerCase().includes(search));
@@ -1257,16 +1302,24 @@ function renderTable(posts) {
       <div>
         <span class="status-badge ${p.status}">
           <span class="status-dot"></span>
-          ${p.status === 'published' ? '발행됨' : '임시저장'}
+          ${p.status === 'published' ? '발행됨' : (p.status === 'scheduled' ? '⏰ 예약됨' : '임시저장')}
         </span>
+        ${p.status === 'scheduled' && p.scheduled_at
+          ? `<div style="font-size:10px;color:var(--text3);margin-top:3px;">${formatScheduledKST(p.scheduled_at)}</div>`
+          : ''}
       </div>
       <div class="date-cell">${formatDate(p.created_at)}</div>
       <div class="action-cell">
         <button class="action-btn btn-preview" onclick="openPreview('${p.filename}')">보기</button>
         ${p.status === 'draft'
           ? `<button class="action-btn btn-publish" onclick="toggleStatus('${p.filename}','published')">발행</button>`
-          : `<button class="action-btn btn-draft" onclick="toggleStatus('${p.filename}','draft')">임시저장</button>`
+          : (p.status === 'scheduled'
+            ? `<button class="action-btn btn-publish" onclick="toggleStatus('${p.filename}','published')">즉시 발행</button>`
+            : `<button class="action-btn btn-draft" onclick="toggleStatus('${p.filename}','draft')">임시저장</button>`)
         }
+        ${p.status !== 'published'
+          ? `<button class="action-btn btn-schedule" onclick="openScheduleModal('${p.filename}','${escAttr(p.title)}')">⏰ 예약</button>`
+          : ''}
         <button class="action-btn btn-edit" onclick="openEdit('${p.filename}')">수정</button>
         <button class="action-btn btn-delete" onclick="openDelete('${p.filename}','${escAttr(p.title)}')">삭제</button>
         <button class="action-btn"
@@ -1374,6 +1427,155 @@ async function bulkUnpublish() {
     showToast(`임시저장 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
     clearSelection();
     await loadPosts();
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ── 예약 발행 ───────────────────────────────────────
+let _scheduleTargetFilename = null;
+
+function formatScheduledKST(isoString) {
+  if (!isoString) return '';
+  try {
+    const d = new Date(isoString);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mi = String(d.getMinutes()).padStart(2, '0');
+    return `📅 ${yyyy}-${mm}-${dd} ${hh}:${mi}`;
+  } catch (e) {
+    return '';
+  }
+}
+
+function openScheduleModal(filename, title) {
+  _scheduleTargetFilename = filename;
+  document.getElementById('scheduleTitle').textContent = title;
+
+  // 오늘 날짜 기본
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  const todayStr = `${yyyy}-${mm}-${dd}`;
+  const dateInput = document.getElementById('scheduleDate');
+  dateInput.value = todayStr;
+  dateInput.min = todayStr;
+
+  // 시간 옵션 생성 (30분 단위, 06:00 ~ 23:30)
+  const timeSelect = document.getElementById('scheduleTime');
+  timeSelect.innerHTML = '<option value="">시간 선택</option>';
+  for (let h = 6; h < 24; h++) {
+    for (const m of [0, 30]) {
+      const hh = String(h).padStart(2, '0');
+      const mi = String(m).padStart(2, '0');
+      const opt = document.createElement('option');
+      opt.value = `${hh}:${mi}`;
+      opt.textContent = `${hh}:${mi}`;
+      timeSelect.appendChild(opt);
+    }
+  }
+  timeSelect.value = '';
+
+  document.getElementById('scheduleTime').onchange = updateSchedulePreview;
+  document.getElementById('scheduleDate').onchange = updateSchedulePreview;
+
+  document.getElementById('schedulePreview').style.display = 'none';
+  openModal('scheduleModal');
+}
+
+function updateSchedulePreview() {
+  const date = document.getElementById('scheduleDate').value;
+  const time = document.getElementById('scheduleTime').value;
+  const previewEl = document.getElementById('schedulePreview');
+  const previewText = document.getElementById('schedulePreviewText');
+  if (!date || !time) {
+    previewEl.style.display = 'none';
+    return;
+  }
+
+  const target = new Date(`${date}T${time}:00+09:00`);
+  const now = new Date();
+
+  if (target <= now) {
+    previewText.textContent = '⚠️ 과거 시간은 선택할 수 없습니다.';
+    previewEl.style.display = 'block';
+    previewEl.style.borderLeft = '3px solid #dc2626';
+    return;
+  }
+
+  const diffMs = target - now;
+  const diffMin = Math.floor(diffMs / 60000);
+  const diffHr = Math.floor(diffMin / 60);
+  const remainMin = diffMin % 60;
+
+  let waitText = '';
+  if (diffHr >= 24) {
+    const diffDay = Math.floor(diffHr / 24);
+    const remainHr = diffHr % 24;
+    waitText = `${diffDay}일 ${remainHr}시간 후 발행`;
+  } else if (diffHr > 0) {
+    waitText = `${diffHr}시간 ${remainMin}분 후 발행`;
+  } else {
+    waitText = `${diffMin}분 후 발행`;
+  }
+
+  previewText.textContent = `📅 ${date} ${time} KST — ${waitText}`;
+  previewEl.style.display = 'block';
+  previewEl.style.borderLeft = '3px solid #16a34a';
+}
+
+async function confirmSchedule() {
+  const date = document.getElementById('scheduleDate').value;
+  const time = document.getElementById('scheduleTime').value;
+
+  if (!date || !time || !_scheduleTargetFilename) {
+    showToast('날짜와 시간을 선택해주세요', 'warn');
+    return;
+  }
+
+  const target = new Date(`${date}T${time}:00+09:00`);
+  if (target <= new Date()) {
+    showToast('과거 시간은 선택할 수 없습니다', 'warn');
+    return;
+  }
+
+  const scheduledAt = target.toISOString();
+
+  showLoading(true);
+  try {
+    const filename = _scheduleTargetFilename;
+    const file = await ghGet(`${POSTS_PATH}/${filename}`);
+    const raw = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
+    const post = JSON.parse(raw);
+
+    post.status = 'scheduled';
+    post.scheduled_at = scheduledAt;
+
+    const newContent = JSON.stringify(post, null, 2);
+    await ghPut(`${POSTS_PATH}/${filename}`, newContent, file.sha,
+      `schedule: ${filename} → ${date} ${time} KST`);
+    await syncManifest('upsert', filename, {
+      status: 'scheduled',
+      scheduled_at: scheduledAt,
+      title: post.title,
+      category: post.category,
+      keyword: post.keyword,
+      summary: post.summary,
+      tags: post.tags,
+      created_at: post.created_at,
+      source: post.source,
+    });
+
+    showToast(`예약 완료: ${date} ${time} KST에 발행됩니다`, 'success');
+    closeModal('scheduleModal');
+    _scheduleTargetFilename = null;
+    await loadPosts();
+  } catch (e) {
+    console.error(e);
+    showToast('예약 실패: ' + e.message, 'error');
   } finally {
     showLoading(false);
   }
