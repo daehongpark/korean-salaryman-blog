@@ -89,9 +89,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 
 /* ── 포스트 테이블 */
 .posts-table{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-.table-head{display:grid;grid-template-columns:1fr 100px 120px 80px 200px;padding:12px 20px;background:var(--bg);border-bottom:1px solid var(--border);}
+.table-head{display:grid;grid-template-columns:40px 1fr 100px 120px 80px 200px;padding:12px 20px;background:var(--bg);border-bottom:1px solid var(--border);align-items:center;}
 .th{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.1em;}
-.post-row{display:grid;grid-template-columns:1fr 100px 120px 80px 200px;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.1s;}
+.post-row{display:grid;grid-template-columns:40px 1fr 100px 120px 80px 200px;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.1s;position:relative;}
+.post-checkbox-cell{display:flex;align-items:center;justify-content:flex-start;}
+.post-checkbox{width:18px;height:18px;cursor:pointer;accent-color:var(--point);}
 .post-row:last-child{border-bottom:none;}
 .post-row:hover{background:var(--bg);}
 .post-title-cell{min-width:0;}
@@ -194,10 +196,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 /* ── 반응형 */
 @media(max-width:900px){
   .stat-grid{grid-template-columns:repeat(2,1fr);}
-  .table-head{grid-template-columns:1fr 90px 90px;}
-  .table-head .th:nth-child(4),.table-head .th:nth-child(5){display:none;}
-  .post-row{grid-template-columns:1fr 90px 90px;}
-  .post-row>*:nth-child(4),.post-row>*:nth-child(5){display:none;}
+  .table-head{grid-template-columns:40px 1fr 90px 90px;}
+  .table-head .th:nth-child(5),.table-head .th:nth-child(6){display:none;}
+  .post-row{grid-template-columns:40px 1fr 90px 90px;}
+  .post-row>*:nth-child(5),.post-row>*:nth-child(6){display:none;}
   .action-cell{display:none;}
 }
 @media(max-width:640px){
@@ -307,6 +309,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     padding: 14px;
     margin-bottom: 12px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    position: relative;
+  }
+  .post-row .post-checkbox-cell {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+  }
+  .post-row .post-checkbox {
+    width: 22px;
+    height: 22px;
   }
 
   table.posts-table td, .posts-table td {
@@ -483,8 +496,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <button onclick="openCustomRequest()" style="background:var(--bg2);color:var(--text1);border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">✏️ 직접 글 요청</button>
       </div>
 
+      <div id="bulkActionBar" style="display:none;background:#f9fafb;padding:10px 14px;border:1px solid var(--border);border-radius:8px;margin-bottom:12px;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span id="bulkSelectedCount" style="font-weight:600;color:#111;">0개 선택됨</span>
+        <button onclick="bulkPublish()" class="btn-publish" style="padding:8px 14px;font-size:13px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;">📢 일괄 발행</button>
+        <button onclick="bulkUnpublish()" class="cancel-btn" style="padding:8px 14px;font-size:13px;">📝 일괄 임시저장</button>
+        <button onclick="bulkDelete()" class="del-btn" style="padding:8px 14px;font-size:13px;">🗑️ 일괄 삭제</button>
+        <button onclick="clearSelection()" style="background:transparent;border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-family:inherit;">선택 해제</button>
+      </div>
+
       <div class="posts-table">
         <div class="table-head">
+          <div class="th"><input type="checkbox" id="selectAllPosts" class="post-checkbox" onchange="toggleSelectAll(this)" title="전체 선택"></div>
           <div class="th">제목</div>
           <div class="th">카테고리</div>
           <div class="th">상태</div>
@@ -1224,6 +1246,9 @@ function renderTable(posts) {
   }
   tbody.innerHTML = posts.map(p => `
     <div class="post-row">
+      <div class="post-checkbox-cell">
+        <input type="checkbox" class="post-checkbox" data-filename="${escAttr(p.filename)}" onclick="event.stopPropagation();">
+      </div>
       <div class="post-title-cell">
         <div class="post-title-text" onclick="openPreview('${p.filename}')" title="${escHtml(p.title)}">${escHtml(p.title)}</div>
         <div class="post-cat-text">${escHtml(p.keyword||'')}</div>
@@ -1244,7 +1269,7 @@ function renderTable(posts) {
         }
         <button class="action-btn btn-edit" onclick="openEdit('${p.filename}')">수정</button>
         <button class="action-btn btn-delete" onclick="openDelete('${p.filename}','${escAttr(p.title)}')">삭제</button>
-        <button class="action-btn" 
+        <button class="action-btn"
           style="background:${localStorage.getItem('featured_post')===p.filename?'#c17f3e':'#f0ede8'};color:${localStorage.getItem('featured_post')===p.filename?'#fff':'#888'};border:1px solid #e0d8d0;"
           onclick="setFeatured('${p.filename}','${escAttr(p.title)}')"
           title="메인 대표글로 설정">
@@ -1252,10 +1277,139 @@ function renderTable(posts) {
         </button>
       </div>
     </div>`).join('');
+  attachCheckboxListeners();
+  // 새로 그려졌으니 전체선택 상태 초기화 + bar 갱신
+  const sa = document.getElementById('selectAllPosts');
+  if (sa) sa.checked = false;
+  updateBulkActionBar();
 }
 
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escAttr(s) { return String(s||'').replace(/'/g,"\\'"); }
+
+// ── 일괄 작업: 체크박스 / 선택 / 일괄 발행·임시저장·삭제 ─────────
+function getSelectedFilenames() {
+  const checked = document.querySelectorAll('.post-checkbox:checked');
+  return Array.from(checked)
+    .filter(cb => cb.dataset.filename)
+    .map(cb => cb.dataset.filename);
+}
+
+function updateBulkActionBar() {
+  const count = getSelectedFilenames().length;
+  const bar = document.getElementById('bulkActionBar');
+  const counter = document.getElementById('bulkSelectedCount');
+  if (!bar) return;
+  if (count > 0) {
+    bar.style.display = 'flex';
+    if (counter) counter.textContent = `${count}개 선택됨`;
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function toggleSelectAll(checkbox) {
+  document.querySelectorAll('.post-checkbox').forEach(cb => {
+    if (cb.dataset.filename) cb.checked = checkbox.checked;
+  });
+  updateBulkActionBar();
+}
+
+function clearSelection() {
+  document.querySelectorAll('.post-checkbox').forEach(cb => { cb.checked = false; });
+  const sa = document.getElementById('selectAllPosts');
+  if (sa) sa.checked = false;
+  updateBulkActionBar();
+}
+
+function attachCheckboxListeners() {
+  document.querySelectorAll('.post-checkbox').forEach(cb => {
+    if (cb.id === 'selectAllPosts') return;
+    cb.addEventListener('change', updateBulkActionBar);
+  });
+}
+
+async function bulkPublish() {
+  const filenames = getSelectedFilenames();
+  if (filenames.length === 0) return;
+  if (!confirm(`선택한 ${filenames.length}개 글을 발행하시겠습니까?`)) return;
+
+  showLoading(true);
+  let success = 0, failed = 0;
+  try {
+    for (const filename of filenames) {
+      try {
+        await toggleStatus(filename, 'published');
+        success++;
+      } catch (e) {
+        console.error(`발행 실패 ${filename}:`, e);
+        failed++;
+      }
+    }
+    showToast(`발행 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
+    clearSelection();
+    await loadPosts();
+  } finally {
+    showLoading(false);
+  }
+}
+
+async function bulkUnpublish() {
+  const filenames = getSelectedFilenames();
+  if (filenames.length === 0) return;
+  if (!confirm(`선택한 ${filenames.length}개 글을 임시저장 상태로 변경하시겠습니까?`)) return;
+
+  showLoading(true);
+  let success = 0, failed = 0;
+  try {
+    for (const filename of filenames) {
+      try {
+        await toggleStatus(filename, 'draft');
+        success++;
+      } catch (e) {
+        console.error(`임시저장 실패 ${filename}:`, e);
+        failed++;
+      }
+    }
+    showToast(`임시저장 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
+    clearSelection();
+    await loadPosts();
+  } finally {
+    showLoading(false);
+  }
+}
+
+async function bulkDelete() {
+  const filenames = getSelectedFilenames();
+  if (filenames.length === 0) return;
+
+  const confirmText = `선택한 ${filenames.length}개 글을 영구 삭제합니다.\n\n복구할 수 없습니다. 정말 진행하시겠습니까?`;
+  if (!confirm(confirmText)) return;
+  if (filenames.length >= 5) {
+    if (!confirm(`${filenames.length}개를 한 번에 삭제합니다. 마지막 확인입니다.`)) return;
+  }
+
+  showLoading(true);
+  let success = 0, failed = 0;
+  try {
+    for (const filename of filenames) {
+      try {
+        const file = await ghGet(`${POSTS_PATH}/${filename}`);
+        await ghDelete(`${POSTS_PATH}/${filename}`, file.sha, `bulk delete: ${filename}`);
+        await syncManifest('remove', filename, null);
+        success++;
+      } catch (e) {
+        console.error(`삭제 실패 ${filename}:`, e);
+        failed++;
+      }
+    }
+    showToast(`삭제 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
+    clearSelection();
+    await loadPosts();
+  } finally {
+    showLoading(false);
+  }
+}
 
 // ── 대표글 설정 ────────────────────────────────────
 function setFeatured(filename, title) {
