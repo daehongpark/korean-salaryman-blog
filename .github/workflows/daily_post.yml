@@ -2,7 +2,8 @@ name: 매일 자동 글 생성
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 매일 09:00 KST (UTC 0시)
+    - cron: '17 0 * * *'   # 09:17 KST 1차 시도 (정각 부하 회피)
+    - cron: '47 0 * * *'   # 09:47 KST 폴백 (1차 스킵 시)
   workflow_dispatch:
     inputs:
       auto_publish:

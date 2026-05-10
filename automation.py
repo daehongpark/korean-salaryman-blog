@@ -1,5 +1,6 @@
 import os
 import io
+import sys
 import json
 import time
 import base64
@@ -1183,6 +1184,7 @@ def update_manifest():
                 "tags":          data.get("tags", []),
                 "created_at":    data.get("created_at", ""),
                 "status":        data.get("status", "draft"),
+                "source":        data.get("source", "auto"),
                 "has_image":     bool(data.get("hero_image")),
                 "thumbnail":     (data.get("hero_image") or {}).get("url", ""),
                 "has_faq":       bool(data.get("faq")),
@@ -1215,6 +1217,7 @@ def save_article(article: dict, hero_image: dict | None = None, body_images: lis
 
     article["created_at"] = datetime.now().isoformat()
     article["status"]     = "published" if AUTO_PUBLISH else "draft"
+    article.setdefault("source", "auto")
 
     # 텍스트 정리
     raw_content = clean_content(article.get("content", ""))
@@ -1498,7 +1501,32 @@ def get_keywords_for_today_with_trends():
 
 
 # ── 메인 실행 ─────────────────────────────────────────
+def _already_ran_today():
+    """오늘 이미 글이 생성됐는지 확인. manifest에서 today 날짜로 created_at 매칭."""
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    manifest_path = Path(__file__).parent / "posts" / "manifest.json"
+
+    if not manifest_path.exists():
+        return False
+
+    with open(manifest_path, encoding='utf-8') as f:
+        manifest = json.load(f)
+
+    today_posts = [
+        p for p in manifest
+        if p.get('created_at', '').startswith(today_str)
+        and p.get('source') in (None, 'auto', 'cron')
+    ]
+
+    target = int(os.getenv('POSTS_PER_DAY', '5'))
+    return len(today_posts) >= target
+
+
 def run_daily():
+    if _already_ran_today():
+        print(f"[SKIP] 오늘 이미 {os.getenv('POSTS_PER_DAY', '5')}편 생성 완료 — 중복 실행 방지")
+        sys.exit(0)
+
     print(f"\n{'='*52}")
     print(f"  자동 글 생성 시작: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"  AUTO_PUBLISH : {AUTO_PUBLISH}  (true=자동발행 / false=임시저장)")
