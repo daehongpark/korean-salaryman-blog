@@ -144,27 +144,6 @@
     "monthly_search": null
   },
   {
-    "filename": "post_20260421125136..json",
-    "title": "제발",
-    "category": "finance",
-    "keyword": "",
-    "summary": "./.",
-    "tags": [
-      "돼라"
-    ],
-    "created_at": "2026-04-21T12:51:36.058Z",
-    "status": "draft",
-    "has_image": false,
-    "thumbnail": "",
-    "has_faq": false,
-    "has_tldr": false,
-    "has_comparison": false,
-    "has_steps": false,
-    "has_references": false,
-    "seo_score": null,
-    "monthly_search": null
-  },
-  {
     "filename": "post_20260420_011902.json",
     "title": "월급만으로는 부족한 당신을 위한 재테크 필독서 2권",
     "category": "book",
