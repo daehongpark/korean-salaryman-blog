@@ -480,6 +480,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <button class="refresh-btn" onclick="loadPosts()">↻ 새로고침</button>
         <button onclick="openNewPost()" style="background:var(--point);color:var(--white);border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">✏️ 새 글 쓰기</button>
         <button onclick="openNaverImport()" style="background:var(--bg2);color:var(--text1);border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">📥 네이버 글 변형</button>
+        <button onclick="openCustomRequest()" style="background:var(--bg2);color:var(--text1);border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">✏️ 직접 글 요청</button>
       </div>
 
       <div class="posts-table">
@@ -832,6 +833,52 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div style="margin-top:12px;display:flex;gap:8px;">
           <button class="action-btn btn-pub" onclick="saveNaverDraft()">💾 draft로 저장</button>
           <button class="cancel-btn" onclick="document.getElementById('naverConvertResult').style.display='none';">다시 변환</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 직접 글 요청 모달 -->
+<div class="modal-overlay" id="customRequestModal">
+  <div class="modal" style="max-width:800px;width:100%;max-height:90vh;">
+    <div class="modal-head">
+      <span class="modal-title">✏️ 직접 글 요청</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="action-btn btn-pub" onclick="generateCustomPost()" id="customGenBtn">✨ 글 생성</button>
+        <button class="modal-close" onclick="closeModal('customRequestModal')">✕</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom:16px;color:#6b7280;font-size:13px;line-height:1.6;">
+        박대홍님이 궁금한 주제를 직접 입력하면 자동화 시스템과 동일한 v2 톤으로 글을 만들어 draft로 저장합니다.
+      </div>
+
+      <label class="form-label" style="margin-bottom:6px;display:block;">키워드 (글의 핵심 주제)</label>
+      <input id="customKeyword" class="form-input" type="text" placeholder="예: RSU 세금 처리, 청년 도약 계좌, 1인 사업자 절세" style="margin-bottom:14px;">
+
+      <label class="form-label" style="margin-bottom:6px;display:block;">카테고리</label>
+      <select id="customCategory" class="form-select" style="margin-bottom:14px;">
+        <option value="money">💰 정부 지원금/정책</option>
+        <option value="ai">🤖 AI 도구 활용</option>
+        <option value="startup">🚀 초기 사업자 가이드</option>
+        <option value="finance" selected>📈 재테크/투자</option>
+        <option value="realestate">🏠 부동산/주거</option>
+        <option value="trending">🔥 실시간 이슈</option>
+        <option value="book">📚 책 추천</option>
+      </select>
+
+      <label class="form-label" style="margin-bottom:6px;display:block;">추가 컨텍스트 (선택, 글 방향 지시)</label>
+      <textarea id="customContext" class="form-textarea" style="min-height:100px;font-family:inherit;" placeholder="예: 미국 주식 RSU 받는 한국 직장인 관점에서. 양도세 vs 근로소득세 구분에 집중해서. 내가 작년에 RSU 받았는데 세금 처리 헷갈렸던 경험 위주로."></textarea>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;">비워두면 키워드만으로 글을 씁니다. 구체적으로 적을수록 박대홍님 의도에 맞게 나옵니다.</div>
+
+      <div id="customGenResult" style="margin-top:16px;display:none;">
+        <hr style="margin:16px 0;border:none;border-top:1px solid #e5e7eb;">
+        <div style="font-weight:600;margin-bottom:8px;">생성 결과 미리보기</div>
+        <div id="customResultBody" style="background:#f9fafb;padding:14px;border-radius:8px;font-size:14px;line-height:1.7;white-space:pre-wrap;max-height:300px;overflow-y:auto;"></div>
+        <div style="margin-top:12px;display:flex;gap:8px;">
+          <button class="action-btn btn-pub" onclick="saveCustomDraft()">💾 draft로 저장</button>
+          <button class="cancel-btn" onclick="document.getElementById('customGenResult').style.display='none';">다시 생성</button>
         </div>
       </div>
     </div>
@@ -1781,7 +1828,7 @@ function closeModal(id) {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') ['previewModal','editModal','deleteModal','settingsModal','naverImportModal'].forEach(closeModal);
+  if (e.key === 'Escape') ['previewModal','editModal','deleteModal','settingsModal','naverImportModal','customRequestModal'].forEach(closeModal);
 });
 document.querySelectorAll('.modal-overlay').forEach(el => {
   el.addEventListener('click', e => {
@@ -1995,6 +2042,126 @@ async function saveNaverDraft() {
 
     showToast('draft로 저장됐습니다. 어드민에서 검토 후 발행하세요.', 'success');
     closeModal('naverImportModal');
+    await loadPosts();
+  } catch (e) {
+    console.error(e);
+    showToast('저장 실패: ' + e.message, 'error');
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ── 직접 글 요청 (단일 진실 소스: prompt_template.json + automation.py 동일 톤) ──
+let _customGenerated = null;
+
+function openCustomRequest() {
+  document.getElementById('customKeyword').value = '';
+  document.getElementById('customContext').value = '';
+  document.getElementById('customCategory').value = 'finance';
+  document.getElementById('customGenResult').style.display = 'none';
+  _customGenerated = null;
+  openModal('customRequestModal');
+}
+
+async function generateCustomPost() {
+  const keyword = document.getElementById('customKeyword').value.trim();
+  const category = document.getElementById('customCategory').value;
+  const context = document.getElementById('customContext').value.trim();
+
+  if (!keyword || keyword.length < 2) {
+    showToast('키워드를 입력해주세요 (최소 2자)', 'warn');
+    return;
+  }
+
+  const btn = document.getElementById('customGenBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ 생성 중... (30~60초)';
+  showLoading(true);
+
+  try {
+    const res = await fetch('/api/generate-post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ keyword, category, context })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || err.detail || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    const text = (data.text || '').trim();
+
+    let cleanText = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+    const m = cleanText.match(/\{[\s\S]*\}/);
+    if (m) cleanText = m[0];
+
+    let parsed;
+    try {
+      parsed = JSON.parse(cleanText);
+    } catch (parseErr) {
+      const repaired = repairGeminiJson(cleanText);
+      try {
+        parsed = JSON.parse(repaired);
+      } catch (parseErr2) {
+        parsed = extractFieldsManually(cleanText);
+        if (!parsed || !parsed.title || !parsed.content) {
+          throw new Error('JSON 파싱 실패. 다시 시도해주세요.');
+        }
+        showToast('일부 필드 자동 복구됨. 미리보기 검토 필수.', 'warn');
+      }
+    }
+
+    _customGenerated = { ...parsed, category, keyword };
+
+    document.getElementById('customResultBody').textContent =
+      `[제목]\n${parsed.title}\n\n[요약]\n${parsed.summary || ''}\n\n[본문]\n${parsed.content}`;
+    document.getElementById('customGenResult').style.display = 'block';
+
+    showToast('생성 완료. 미리보기 확인 후 저장하세요.', 'success');
+  } catch (e) {
+    console.error(e);
+    showToast('생성 실패: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✨ 글 생성';
+    showLoading(false);
+  }
+}
+
+async function saveCustomDraft() {
+  if (!_customGenerated) {
+    showToast('생성된 글이 없습니다', 'warn');
+    return;
+  }
+
+  showLoading(true);
+  try {
+    const now = new Date();
+    const ts = now.toISOString().replace(/[-:]/g,'').replace(/\..+/,'').replace('T','_').slice(0,15);
+    const filename = `post_${ts.slice(0,8)}_${ts.slice(9,15)}.json`;
+
+    const postData = {
+      title: _customGenerated.title,
+      category: _customGenerated.category,
+      summary: _customGenerated.summary || '',
+      content: _customGenerated.content,
+      tags: _customGenerated.tags || [_customGenerated.keyword],
+      status: 'draft',
+      created_at: now.toISOString().slice(0,10),
+      source: 'custom_request',
+      keyword: _customGenerated.keyword,
+      faq: _customGenerated.faq || [],
+      references: _customGenerated.references || []
+    };
+
+    const content = JSON.stringify(postData, null, 2);
+    await ghPut(`${POSTS_PATH}/${filename}`, content, null, `feat: custom request: ${postData.title}`);
+    await syncManifest('upsert', filename, postData);
+
+    showToast('draft로 저장됐습니다. 어드민에서 검토 후 발행하세요.', 'success');
+    closeModal('customRequestModal');
     await loadPosts();
   } catch (e) {
     console.error(e);
