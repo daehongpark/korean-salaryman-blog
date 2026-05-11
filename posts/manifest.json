@@ -68,7 +68,7 @@
       "인공지능 비서"
     ],
     "created_at": "2026-05-11T03:59:01.042858",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260511_035858.png",
@@ -78,7 +78,8 @@
     "has_steps": true,
     "has_references": true,
     "seo_score": 102,
-    "monthly_search": 10
+    "monthly_search": 10,
+    "scheduled_at": "2026-05-11T10:00:00.000Z"
   },
   {
     "filename": "post_20260511_035757.json",
