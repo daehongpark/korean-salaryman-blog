@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/finalize-post.py": {
+      "maxDuration": 60
+    }
+  },
   "headers": [
     {
       "source": "/posts/(.*)\\.json",

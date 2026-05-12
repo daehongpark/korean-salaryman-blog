@@ -1250,15 +1250,14 @@ def update_manifest():
     return posts
 
 
-# ── 글 저장 ──────────────────────────────────────────
-def save_article(article: dict, hero_image: dict | None = None, body_images: list | None = None) -> str | None:
+# ── 글 조립 (이미지/HTML/SEO 메타) ─────────────────────
+# save_article과 외부 API(/api/finalize-post)에서 공유.
+# 단일 진실 소스: 자동 cron + 직접 글 요청 + 네이버 변형 3개 경로 모두 동일 인프라.
+def finalize_article(article: dict, hero_image: dict | None = None, body_images: list | None = None) -> dict | None:
+    """article에 이미지/HTML/SEO 메타를 추가하고 완성된 article을 반환합니다.
+    파일 저장과 manifest 갱신은 하지 않습니다."""
     if not article:
         return None
-
-    POSTS_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename  = f"post_{timestamp}.json"
-    filepath  = POSTS_DIR / filename
 
     article["created_at"] = datetime.now().isoformat()
     article["status"]     = "published" if AUTO_PUBLISH else "draft"
@@ -1378,7 +1377,7 @@ def save_article(article: dict, hero_image: dict | None = None, body_images: lis
             hero_image["url"] if hero_image["url"].startswith("http")
             else f"https://koreansalaryman.com{hero_image['url']}"
         )
-    
+
     if article.get("faq"):
         article["jsonld"]["faq"] = {
             "@context":  "https://schema.org",
@@ -1410,6 +1409,23 @@ def save_article(article: dict, hero_image: dict | None = None, body_images: lis
                     for i, s in enumerate(valid_steps[:7], 1)
                 ],
             }
+
+    return article
+
+
+# ── 글 저장 ──────────────────────────────────────────
+def save_article(article: dict, hero_image: dict | None = None, body_images: list | None = None) -> str | None:
+    if not article:
+        return None
+
+    POSTS_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename  = f"post_{timestamp}.json"
+    filepath  = POSTS_DIR / filename
+
+    article = finalize_article(article, hero_image, body_images)
+    if not article:
+        return None
 
     filepath.write_text(
         json.dumps(article, ensure_ascii=False, indent=2), encoding="utf-8"
