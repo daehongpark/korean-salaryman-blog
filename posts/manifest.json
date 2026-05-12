@@ -1,5 +1,85 @@
 [
   {
+    "filename": "post_20260512_040907.json",
+    "title": "2026 새 정책 시행: 직장인 자산, 어떻게 바뀔까요? (+대응법)",
+    "category": "trending",
+    "keyword": "2026 새 정책 시행",
+    "summary": "2026년 새롭게 시행되는 '직장인 자산 형성 지원 특별법'은 직장인의 목돈 마련을 돕기 위해 기존보다 확대된 혜택과 비과세를 제공합니다.\n중도 해지 페널티를 고려하여 장기적인 관점에서 신중하게 접근하고, 가입 조건을 확인 후 은행 앱이나 정부24를 통해 신청하는 것이 중요합니다.",
+    "tags": [
+      "2026 새 정책 시행",
+      "trending",
+      "직장인",
+      "자산 형성",
+      "재테크",
+      "정부 지원",
+      "비과세"
+    ],
+    "created_at": "2026-05-12T04:09:07.611554",
+    "status": "draft",
+    "source": "auto",
+    "has_image": true,
+    "thumbnail": "/posts/thumbnails/thumb_20260512_040904.png",
+    "has_faq": true,
+    "has_tldr": true,
+    "has_comparison": true,
+    "has_steps": false,
+    "has_references": true,
+    "seo_score": 95.0,
+    "monthly_search": 10
+  },
+  {
+    "filename": "post_20260512_040804.json",
+    "title": "ChatGPT 업무 활용법 5가지: 2026년 직장인 필수 스킬",
+    "category": "ai",
+    "keyword": "ChatGPT 업무 활용법",
+    "summary": "ChatGPT는 직장인의 아이디어 구상, 문서 작성 등 반복적인 업무 시간을 크게 줄여주는 든든한 AI 비서입니다.\n명확한 지시와 지속적인 피드백으로 AI를 훈련시키면 업무 생산성을 한 단계 끌어올릴 수 있습니다.",
+    "tags": [
+      "ChatGPT 업무 활용법",
+      "ai",
+      "직장인",
+      "부업"
+    ],
+    "created_at": "2026-05-12T04:08:04.335969",
+    "status": "draft",
+    "source": "auto",
+    "has_image": true,
+    "thumbnail": "/posts/thumbnails/thumb_20260512_040802.png",
+    "has_faq": false,
+    "has_tldr": false,
+    "has_comparison": false,
+    "has_steps": false,
+    "has_references": false,
+    "seo_score": 70.0,
+    "monthly_search": null
+  },
+  {
+    "filename": "post_20260512_040704.json",
+    "title": "2026년 에너지바우처대상, 직장인·청년 신청 자격 3단계",
+    "category": "money",
+    "keyword": "에너지바우처대상",
+    "summary": "2026년 에너지바우처는 저소득층 가구의 냉난방비 부담을 덜어주는 정부 지원금으로, 기초생활수급 가구 중 특정 취약계층 세대원이 있다면 신청할 수 있습니다. 관할 주민센터나 복지로에서 간편하게 신청 가능하며, 다른 에너지 지원과 중복되지 않으니 주의하여 기간 내에 사용하는 것이 중요합니다.",
+    "tags": [
+      "에너지바우처대상",
+      "정부지원금",
+      "직장인",
+      "청년",
+      "난방비",
+      "복지로"
+    ],
+    "created_at": "2026-05-12T04:07:04.137078",
+    "status": "draft",
+    "source": "auto",
+    "has_image": true,
+    "thumbnail": "/posts/thumbnails/thumb_20260512_040700.png",
+    "has_faq": true,
+    "has_tldr": true,
+    "has_comparison": false,
+    "has_steps": true,
+    "has_references": true,
+    "seo_score": 115.0,
+    "monthly_search": 2500
+  },
+  {
     "filename": "post_20260511_040101.json",
     "title": "2026년 청년미래적금VS청년도약계좌, 똑똑하게 고르는 3가지 기준",
     "category": "money",
@@ -48,9 +128,7 @@
     "has_steps": false,
     "has_references": false,
     "seo_score": 81,
-    "monthly_search": 10,
-    "scheduled_at": "2026-05-11T09:30:00.000Z",
-    "published_at": "2026-05-11T10:04:51.263Z"
+    "monthly_search": 10
   },
   {
     "filename": "post_20260511_035901.json",
@@ -79,13 +157,11 @@
     "has_steps": true,
     "has_references": true,
     "seo_score": 102,
-    "monthly_search": 10,
-    "scheduled_at": "2026-05-11T10:00:00.000Z",
-    "published_at": "2026-05-11T10:04:51.263Z"
+    "monthly_search": 10
   },
   {
     "filename": "post_20260511_035757.json",
-    "title": "2026년 청년 전월세 보증금 대출: 조건부터 신청까지 (3단계)",
+    "title": "2026년 청년 전월세 보증금 대출 조건부터 신청까지 (3단계)",
     "category": "money",
     "keyword": "청년 전월세 보증금 대출",
     "summary": "청년 전월세 보증금 대출은 만 19~34세 무주택 청년의 주거비 부담을 덜어주는 좋은 제도입니다. 낮은 금리로 최대 2억원을 빌릴 수 있어 전월세 계약 시 든든한 지원군이 됩니다.\n신청 전 자격 조건을 꼼꼼히 확인하고, 잔금일 최소 1개월 전에는 서류 준비와 신청을 완료하는 것이 중요합니다.",
@@ -97,7 +173,7 @@
       "주거지원"
     ],
     "created_at": "2026-05-11T03:57:57.264348",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260511_035754.png",
@@ -123,7 +199,7 @@
       "장기투자"
     ],
     "created_at": "2026-05-11T03:57:02.218961",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260511_035658.png",
@@ -185,7 +261,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 102,
+    "seo_score": 102.0,
     "monthly_search": 10
   },
   {
@@ -268,7 +344,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 95,
+    "seo_score": 95.0,
     "monthly_search": 10
   },
   {
