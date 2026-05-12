@@ -15,7 +15,7 @@
       "비과세"
     ],
     "created_at": "2026-05-12T04:09:07.611554",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260512_040904.png",
@@ -25,7 +25,8 @@
     "has_steps": false,
     "has_references": true,
     "seo_score": 95,
-    "monthly_search": 10
+    "monthly_search": 10,
+    "scheduled_at": "2026-05-12T21:00:00.000Z"
   },
   {
     "filename": "post_20260512_040804.json",
