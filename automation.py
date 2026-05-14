@@ -16,7 +16,7 @@ load_dotenv()
 GEMINI_API_KEY  = os.getenv("GEMINI_API_KEY")
 BLOG_TITLE      = os.getenv("BLOG_TITLE", "직장인 수익일기")
 AUTO_PUBLISH    = os.getenv("AUTO_PUBLISH", "false").lower() == "true"
-POSTS_PER_DAY   = int(os.getenv("POSTS_PER_DAY", "3"))
+POSTS_PER_DAY   = int(os.getenv("POSTS_PER_DAY", "5"))
 UNSPLASH_KEY    = os.getenv("UNSPLASH_ACCESS_KEY", "")   # 선택사항
 
 # ── 경로 설정 ─────────────────────────────────────────
@@ -1135,7 +1135,7 @@ def _build_tldr_html(tldr) -> str:
         'background:#f8f7f4;border-left:4px solid #c17f3e;'
         'padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;">'
         '<div style="font-size:13px;font-weight:700;color:#c17f3e;'
-        'letter-spacing:0.05em;margin-bottom:8px;">TL;DR · 핵심 요약</div>'
+        'letter-spacing:0.05em;margin-bottom:8px;">한눈에 보기</div>'
         f'<ul style="margin:0;padding-left:20px;color:#1a2640;font-size:15px;">{lis}</ul>'
         '</aside>'
     )
@@ -1715,58 +1715,125 @@ def run_daily():
     else:
         keywords = get_keywords_for_today_with_trends()
 
+    target_count = POSTS_PER_DAY
     success_count = 0
-    for i, item in enumerate(keywords, 1):
+    attempt_log = []  # 디버깅용
+    keyword_queue = list(keywords)  # 사본
+    used_in_run = set()  # 이번 실행에서 이미 시도한 키워드
+
+    while success_count < target_count and keyword_queue:
+        item = keyword_queue.pop(0)
+        kw = item["keyword"]
+        if kw in used_in_run:
+            continue
+        used_in_run.add(kw)
+
+        i = success_count + 1
         seo_meta = item.get("seo_meta")
         seo_info = f" [SEO {seo_meta['score']}점]" if seo_meta else ""
-        print(f"\n[{i}/{len(keywords)}] {item['category']} — {item['keyword']}{seo_info}")
+        print(f"\n[{i}/{target_count}] {item['category']} — {kw}{seo_info}")
 
-        # 글 생성 (SEO 메타 전달)
-        article = generate_article(item["category"], item["keyword"], seo_meta)
+        # 글 생성 (재시도 1회)
+        article = None
+        for attempt in range(2):
+            article = generate_article(item["category"], kw, seo_meta)
+            if article:
+                break
+            if attempt == 0:
+                print(f"   글 생성 실패 → 30초 후 재시도")
+                time.sleep(30)
+
         if not article:
-            print("   글 생성 실패")
+            print(f"   ⚠ 글 생성 최종 실패: {kw} → 폴백 키워드 추가")
+            attempt_log.append((kw, 'failed'))
+            # 폴백: 같은 카테고리에서 다른 키워드 1개 추가 (cooldown 적용)
+            try:
+                fallback_seeds = KEYWORD_POOL.get(item["category"], [])
+                recent_kws = _recent_keywords_from_manifest(days=14)
+                blocked = recent_kws | used_in_run
+                available = [s for s in fallback_seeds if s not in blocked]
+                if available:
+                    import random
+                    fb_kw = random.choice(available)
+                    keyword_queue.append({"category": item["category"], "keyword": fb_kw})
+                    print(f"   → 폴백 키워드 추가: {fb_kw}")
+            except Exception as e:
+                print(f"   [경고] 폴백 실패: {e}")
             continue
 
         # SEO 메타 정보를 article에 보존
         if seo_meta:
             article["seo_analysis"] = seo_meta
 
-        # 썸네일 생성 (글 제목 사용)
-        title = article.get("title", item["keyword"])
-        hero_image = get_hero_image(item["category"], item["keyword"], title)
+        # 썸네일 + 본문 이미지
+        title = article.get("title", kw)
+        hero_image = get_hero_image(item["category"], kw, title)
 
-        # ── 본문 이미지 개수 결정 ──
         raw_text = article.get("content", "")
         heading_count = sum(
             1 for line in raw_text.split("\n")
             if line.strip().startswith("## ")
         )
-        
-        # FAQ 섹션도 있으니 이미지는 섹션 수에 맞춰 조금 더 여유 있게
         if heading_count <= 1:
-            target_count = 0
+            target_img = 0
         elif heading_count == 2:
-            target_count = 1
+            target_img = 1
         elif heading_count == 3:
-            target_count = 2
+            target_img = 2
         else:
-            target_count = 3
+            target_img = 3
 
         body_images = []
-        if target_count > 0:
-            print(f"   본문 이미지 {target_count}장 가져오는 중... (소제목 {heading_count}개 감지)")
-            body_images = get_body_images(item["category"], target_count)
+        if target_img > 0:
+            print(f"   본문 이미지 {target_img}장 가져오는 중... (소제목 {heading_count}개 감지)")
+            body_images = get_body_images(item["category"], target_img)
 
         # 저장
         if save_article(article, hero_image, body_images):
             success_count += 1
+            attempt_log.append((kw, 'success'))
 
-        if i < len(keywords):
+        # 마지막이 아니면 30초 대기
+        if success_count < target_count and keyword_queue:
             print("   30초 대기...")
             time.sleep(30)
 
+    # 폴백도 다 떨어졌는데 미달이면 카테고리 무관 폴백 1바퀴
+    if success_count < target_count:
+        print(f"\n   ⚠ {success_count}/{target_count}편 — 키워드 풀 폴백 시도")
+        try:
+            recent_kws = _recent_keywords_from_manifest(days=14)
+            all_seeds = []
+            for cat, seeds in KEYWORD_POOL.items():
+                for s in seeds:
+                    if s not in recent_kws and s not in used_in_run:
+                        all_seeds.append((cat, s))
+            import random
+            random.shuffle(all_seeds)
+            for cat, kw in all_seeds:
+                if success_count >= target_count:
+                    break
+                used_in_run.add(kw)
+                print(f"\n[폴백] {cat} — {kw}")
+                article = generate_article(cat, kw, None)
+                if not article:
+                    continue
+                title = article.get("title", kw)
+                hero_image = get_hero_image(cat, kw, title)
+                if save_article(article, hero_image, []):
+                    success_count += 1
+                    print(f"   ✓ 폴백 성공 ({success_count}/{target_count})")
+                    if success_count < target_count:
+                        time.sleep(30)
+        except Exception as e:
+            print(f"   [경고] 카테고리 무관 폴백 실패: {e}")
+
     print(f"\n{'='*52}")
-    print(f"  완료: {success_count}/{len(keywords)}개 성공")
+    print(f"  완료: {success_count}/{target_count}개 성공")
+    if attempt_log:
+        print(f"  시도 로그: {len(attempt_log)}회")
+        for kw, status in attempt_log[-10:]:
+            print(f"    {status:8s} {kw}")
     print(f"  상태: {'자동 발행됨' if AUTO_PUBLISH else '임시저장 — 어드민에서 검토 후 발행하세요'}")
     print(f"{'='*52}")
 

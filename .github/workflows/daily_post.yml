@@ -13,9 +13,9 @@ on:
         type: choice
         options: ['true', 'false']
       posts_per_day:
-        description: '오늘 생성할 글 수 (기본 3)'
+        description: '오늘 생성할 글 수 (기본 5)'
         required: false
-        default: '3'
+        default: '5'
 
 jobs:
   generate:
@@ -44,7 +44,7 @@ jobs:
         run: |
           # workflow_dispatch 수동 실행 시 입력값 우선, 없으면 Secrets 값 사용
           AUTO_PUBLISH_VAL="${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}"
-          POSTS_PER_DAY_VAL="${{ github.event.inputs.posts_per_day || secrets.POSTS_PER_DAY || '3' }}"
+          POSTS_PER_DAY_VAL="${{ github.event.inputs.posts_per_day || secrets.POSTS_PER_DAY || '5' }}"
 
           # 기본 설정
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}"           >> .env
