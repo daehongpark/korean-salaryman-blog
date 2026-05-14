@@ -1025,6 +1025,34 @@ let currentFilter = 'all';
 let deleteTarget  = null;   // {filename, sha}
 let ghToken       = localStorage.getItem('ghToken') || '';
 
+// 본문 메모리 캐시: 미리보기/수정 클릭 시 lazy load. 페이지 종료 시 자동 비워짐.
+const _postBodyCache = new Map();  // key: filename, value: { content, sha, fetchedAt }
+
+// 본문 lazy load 헬퍼: 캐시에 있으면 즉시 반환, 없으면 GitHub API 1회 호출 후 캐시.
+async function getPostBody(filename) {
+  const cached = _postBodyCache.get(filename);
+  // 캐시는 5분 유효 (그 안에 수정/예약 한 글은 stale일 수 있어서)
+  if (cached && (Date.now() - cached.fetchedAt) < 5 * 60 * 1000) {
+    return cached;
+  }
+  const fileData = await ghGet(`${POSTS_PATH}/${filename}`);
+  const content = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
+  const json = JSON.parse(content);
+  const entry = {
+    ...json,
+    filename,
+    sha: fileData.sha,
+    fetchedAt: Date.now(),
+  };
+  _postBodyCache.set(filename, entry);
+  return entry;
+}
+
+// 본문 캐시 무효화: 수정/삭제/예약 후 호출
+function invalidatePostBody(filename) {
+  _postBodyCache.delete(filename);
+}
+
 // ── 자동 로그아웃 (1시간 무활동) ──────────────────────
 const AUTO_LOGOUT_MS = 60 * 60 * 1000;
 let autoLogoutTimer = null;
@@ -1189,27 +1217,28 @@ async function syncManifest(action, filename, postData) {
 async function loadPosts() {
   showLoading(true);
   try {
-    const files = await ghGet(POSTS_PATH);
-    const jsonFiles = files.filter(f => f.name.endsWith('.json') && f.name !== 'manifest.json');
+    // ★ manifest.json 한 번만 받음 (이전: 글 N개 각각 받음, GitHub API 24회 → 1회)
+    const mfFile = await ghGet(`${POSTS_PATH}/manifest.json`);
+    const mfRaw  = decodeURIComponent(escape(atob(mfFile.content.replace(/\n/g, ''))));
+    const manifest = JSON.parse(mfRaw);
 
-    const posts = await Promise.all(jsonFiles.map(async f => {
-      try {
-        const fileData = await ghGet(`${POSTS_PATH}/${f.name}`);
-        const content = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g,''))));
-        const json = JSON.parse(content);
-        return {...json, filename: f.name, sha: fileData.sha};
-      } catch(e) {
-        return null;
-      }
-    }));
-
-    allPosts = posts.filter(Boolean).sort((a,b) => {
-      return new Date(b.created_at||0) - new Date(a.created_at||0);
-    });
+    // manifest는 이미 카테고리/상태/태그/요약/scheduled_at 등 다 포함 (자동화 시스템 단일 진실 소스)
+    // 본문(content)만 빠져있음 → 미리보기/수정 클릭 시 getPostBody로 lazy load
+    allPosts = manifest
+      .filter(p => p && p.filename && p.filename.startsWith('post_'))
+      .map(p => ({
+        ...p,
+        // 호환: 일부 코드가 post.title/category를 기대하니까 manifest 필드 그대로 사용
+        title: p.title || '',
+        category: p.category || '',
+        status: p.status || 'draft',
+        tags: p.tags || [],
+      }))
+      .sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
 
     updateStats();
     applyFilters();
-    showToast('글 목록을 불러왔습니다.', 'success');
+    showToast(`글 목록 ${allPosts.length}편을 불러왔습니다.`, 'success');
   } catch(e) {
     showToast('글 목록 로드 실패: ' + e.message, 'error');
     document.getElementById('postTableBody').innerHTML = `
@@ -1557,6 +1586,7 @@ async function confirmSchedule() {
     const newContent = JSON.stringify(post, null, 2);
     await ghPut(`${POSTS_PATH}/${filename}`, newContent, file.sha,
       `schedule: ${filename} → ${date} ${time} KST`);
+    invalidatePostBody(filename);
     await syncManifest('upsert', filename, {
       status: 'scheduled',
       scheduled_at: scheduledAt,
@@ -1598,6 +1628,7 @@ async function bulkDelete() {
       try {
         const file = await ghGet(`${POSTS_PATH}/${filename}`);
         await ghDelete(`${POSTS_PATH}/${filename}`, file.sha, `bulk delete: ${filename}`);
+        invalidatePostBody(filename);
         await syncManifest('remove', filename, null);
         success++;
       } catch (e) {
@@ -1643,6 +1674,7 @@ async function toggleStatus(filename, newStatus) {
     const content = JSON.stringify(updated, null, 2);
     await ghPut(`${POSTS_PATH}/${filename}`, content, freshSha,
       `${newStatus === 'published' ? '발행' : '임시저장'}: ${post.title}`);
+    invalidatePostBody(filename);
     await syncManifest('updateStatus', filename, { status: newStatus });
     const label = newStatus === 'published' ? '발행' : '임시저장';
     showToast(`"${label}"으로 변경되었습니다.`, 'success');
@@ -1686,36 +1718,42 @@ async function deleteFromPreview() {
   openDelete(fn, title);
 }
 
-function openPreview(filename) {
+async function openPreview(filename) {
   currentPreviewFilename = filename;
   const _pvPost = allPosts.find(p => p.filename === filename);
-  currentPreviewStatus = _pvPost?.status || 'draft';
+  if (!_pvPost) return;
+  currentPreviewStatus = _pvPost.status || 'draft';
   document.getElementById('pvToggleBtn').textContent = (currentPreviewStatus === 'published') ? '임시저장' : '발행';
-  const post = allPosts.find(p => p.filename === filename);
-  if (!post) return;
-  document.getElementById('pvCat').textContent  = post.category || '';
-  document.getElementById('pvTitle').textContent = post.title || '';
-  document.getElementById('pvMeta').textContent  = `${formatDate(post.created_at)} · ${post.status === 'published' ? '발행됨' : '임시저장'}`;
+  document.getElementById('pvCat').textContent  = _pvPost.category || '';
+  document.getElementById('pvTitle').textContent = _pvPost.title || '';
+  document.getElementById('pvMeta').textContent  = `${formatDate(_pvPost.created_at)} · ${_pvPost.status === 'published' ? '발행됨' : '임시저장'}`;
   const sumEl = document.getElementById('pvSummary');
-  if (post.summary) {
-    sumEl.innerHTML = `<div class="preview-summary-label">SUMMARY</div><p>${post.summary.replace(/\n/g,'<br>')}</p>`;
+  if (_pvPost.summary) {
+    sumEl.innerHTML = `<div class="preview-summary-label">SUMMARY</div><p>${_pvPost.summary.replace(/\n/g,'<br>')}</p>`;
     sumEl.style.display = 'block';
   } else {
     sumEl.style.display = 'none';
   }
-  // 자동 생성 글은 이미 완성된 HTML(<aside>/<table>/<section>...)이므로 그대로 표시.
-  // 수동 평문 글만 \n\n → <p>로 변환.
-  const _rawContent = post.content || '';
-  if (_rawContent.trim().startsWith('<')) {
-    document.getElementById('pvContent').innerHTML = `<div class="article-body">${_rawContent}</div>`;
-  } else {
-    document.getElementById('pvContent').innerHTML = _rawContent
-      .split(/\n\n+/).map(p=>p.trim()).filter(p=>p)
-      .map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
-  }
-  document.getElementById('pvTags').innerHTML = (post.tags||[])
+  document.getElementById('pvTags').innerHTML = (_pvPost.tags||[])
     .map(t=>`<span class="preview-tag">${escHtml(t)}</span>`).join('');
+
+  // 본문은 lazy load (모달 먼저 열고 본문 로딩 표시)
+  document.getElementById('pvContent').innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3);">불러오는 중...</div>';
   openModal('previewModal');
+
+  try {
+    const fullPost = await getPostBody(filename);
+    const _rawContent = fullPost.content || '';
+    if (_rawContent.trim().startsWith('<')) {
+      document.getElementById('pvContent').innerHTML = `<div class="article-body">${_rawContent}</div>`;
+    } else {
+      document.getElementById('pvContent').innerHTML = _rawContent
+        .split(/\n\n+/).map(p=>p.trim()).filter(p=>p)
+        .map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+    }
+  } catch(e) {
+    document.getElementById('pvContent').innerHTML = `<div style="padding:20px;color:#c00;">본문 로드 실패: ${e.message}</div>`;
+  }
 }
 
 // ── 편집 ─────────────────────────────────────────────
@@ -2053,19 +2091,29 @@ ${bodyText.slice(0, 1000)}`
 }
 
 // ── 기존 글 편집 ────────────────────────────────────
-function openEdit(filename) {
+async function openEdit(filename) {
   const post = allPosts.find(p => p.filename === filename);
   if (!post) return;
+
   document.getElementById('editFilename').value = filename;
-  document.getElementById('editSha').value      = post.sha || '';
   document.getElementById('editTitle').value    = post.title || '';
   document.getElementById('editCategory').value = post.category || 'finance';
-  // status는 발행하기/임시저장 버튼으로 처리
   document.getElementById('editSummary').value  = post.summary || '';
-  document.getElementById('richEditor').innerHTML = (post.content || '').replace(/\n/g, '<br>');
-  updateCharCount();
   document.getElementById('editTags').value     = (post.tags||[]).join(', ');
+
+  // 본문은 lazy load (sha도 같이 받음 - savePost가 ghPut 시 필요)
+  document.getElementById('richEditor').innerHTML = '<div style="text-align:center;padding:40px;color:#888;">불러오는 중...</div>';
+  document.getElementById('editSha').value = '';
   openModal('editModal');
+
+  try {
+    const fullPost = await getPostBody(filename);
+    document.getElementById('editSha').value = fullPost.sha || '';
+    document.getElementById('richEditor').innerHTML = (fullPost.content || '').replace(/\n/g, '<br>');
+    updateCharCount();
+  } catch(e) {
+    document.getElementById('richEditor').innerHTML = `<div style="color:#c00;padding:20px;">본문 로드 실패: ${e.message}</div>`;
+  }
 }
 
 async function savePost(statusOverride) {
@@ -2126,6 +2174,7 @@ async function savePost(statusOverride) {
       // 항상 최신 SHA를 GitHub에서 직접 가져오기
       const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
       await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha, `수정: ${updated.title}`);
+      invalidatePostBody(filename);
       await syncManifest('upsert', filename, {
         title:      updated.title,
         summary:    updated.summary,
@@ -2162,6 +2211,7 @@ async function confirmDelete() {
     // 항상 최신 SHA를 GitHub에서 직접 가져오기
     const freshFile = await ghGet(`${POSTS_PATH}/${deleteTarget}`);
     await ghDelete(`${POSTS_PATH}/${deleteTarget}`, freshFile.sha, `삭제: ${post.title}`);
+    invalidatePostBody(deleteTarget);
     await syncManifest('remove', deleteTarget, null);
     showToast('삭제되었습니다.', 'info');
     await loadPosts();
