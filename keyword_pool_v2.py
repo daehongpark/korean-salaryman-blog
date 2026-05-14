@@ -145,6 +145,7 @@ CATEGORY_BALANCE = {
 CATEGORY_INTENTS = {
     "money": {
         "primary_format": "step_by_step",   # 단계별 신청 가이드
+        "format_pool":    ["step_by_step", "comparison", "guide", "checklist"],
         "secondary":      "comparison",      # A 정책 vs B 정책 비교
         "tone":           "objective",       # 객관 정보 위주
         "needs_official_link": True,         # 정부 공식 사이트 링크 필수
@@ -154,6 +155,7 @@ CATEGORY_INTENTS = {
     },
     "ai": {
         "primary_format": "how_to",
+        "format_pool":    ["how_to", "comparison", "guide", "experience"],
         "secondary":      "comparison",
         "tone":           "practical",       # 실전 위주
         "needs_official_link": False,
@@ -163,6 +165,7 @@ CATEGORY_INTENTS = {
     },
     "startup": {
         "primary_format": "guide",
+        "format_pool":    ["guide", "step_by_step", "checklist", "comparison"],
         "secondary":      "step_by_step",
         "tone":           "practical",
         "needs_official_link": True,         # 사업자등록 등 공식 절차 링크
@@ -172,6 +175,7 @@ CATEGORY_INTENTS = {
     },
     "finance": {
         "primary_format": "comparison",      # A vs B 비교 우선
+        "format_pool":    ["comparison", "step_by_step", "guide", "insight"],
         "secondary":      "step_by_step",
         "tone":           "data_driven",     # 숫자/근거 중심
         "needs_official_link": True,
@@ -181,6 +185,7 @@ CATEGORY_INTENTS = {
     },
     "realestate": {
         "primary_format": "guide",
+        "format_pool":    ["guide", "checklist", "step_by_step", "comparison"],
         "secondary":      "checklist",
         "tone":           "objective",
         "needs_official_link": True,
@@ -190,6 +195,7 @@ CATEGORY_INTENTS = {
     },
     "trending": {
         "primary_format": "insight",         # 분석/해석
+        "format_pool":    ["insight", "comparison", "step_by_step", "guide"],
         "secondary":      "step_by_step",
         "tone":           "analytical",
         "needs_official_link": True,
@@ -199,6 +205,7 @@ CATEGORY_INTENTS = {
     },
     "book": {
         "primary_format": "experience",      # 책 읽고 본인 경험 녹임
+        "format_pool":    ["experience", "guide", "insight"],
         "secondary":      "guide",
         "tone":           "balanced",        # 솔직한 평 + 적용기
         "needs_official_link": False,

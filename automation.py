@@ -56,6 +56,30 @@ except ImportError as _e:
     LEGACY_CATEGORY_MAP = {}
 
 
+def _recent_keywords_from_manifest(days: int = 14) -> set:
+    """manifest에서 최근 N일 발행/예약/draft 글의 키워드를 set으로 반환."""
+    import datetime
+    try:
+        if not MANIFEST_PATH.exists():
+            return set()
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        cutoff = (datetime.datetime.now() - datetime.timedelta(days=days)).strftime("%Y%m%d")
+        kws = set()
+        for p in manifest:
+            fn = p.get("filename", "")
+            if not fn.startswith("post_"):
+                continue
+            date_part = fn[5:13]
+            if date_part >= cutoff:
+                kw = (p.get("keyword") or "").strip()
+                if kw:
+                    kws.add(kw)
+        return kws
+    except Exception as e:
+        print(f"   [경고] manifest 키워드 로드 실패: {e}")
+        return set()
+
+
 # ── 카테고리 정규화 (한글 키 / 미지의 키 → 영문 7개 키로 매핑) ──
 VALID_CATEGORIES = {"money", "ai", "startup", "finance", "realestate", "trending", "book"}
 FALLBACK_CATEGORY = "trending"  # 알 수 없는 카테고리 도착 시 보낼 곳
@@ -78,16 +102,47 @@ def normalize_category(cat: str) -> str:
 def _pick_balanced_categories(n: int) -> list:
     """
     CATEGORY_BALANCE 비율을 가중치로 카테고리 n개 선택.
-    같은 카테고리가 연속해서 너무 많이 뽑히지 않도록 후처리.
+    같은 카테고리 연속 쏠림 방지 + 최근 14일 결손 카테고리 강제 보충.
     """
     import random
+    import datetime
     cats    = list(KEYWORD_POOL.keys())
     weights = [CATEGORY_BALANCE.get(c, 1.0 / len(cats)) for c in cats]
 
-    picked  = []
+    # 최근 14일 카테고리 분포 확인
+    deficit_cats = []
+    try:
+        if MANIFEST_PATH.exists():
+            manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+            cutoff = (datetime.datetime.now() - datetime.timedelta(days=14)).strftime("%Y%m%d")
+            recent_posts = [
+                p for p in manifest
+                if p.get("filename", "").startswith("post_")
+                and p.get("filename", "")[5:13] >= cutoff
+            ]
+            total_recent = len(recent_posts) or 1
+            for cat in cats:
+                actual_ratio = sum(1 for p in recent_posts if p.get("category") == cat) / total_recent
+                target_ratio = CATEGORY_BALANCE.get(cat, 0)
+                # 목표 대비 -3%p 이상 결손이면 강제 보충 대상
+                if target_ratio - actual_ratio >= 0.03:
+                    deficit_cats.append(cat)
+            if deficit_cats:
+                print(f"   [quota] 결손 카테고리 강제 보충: {deficit_cats}")
+    except Exception as e:
+        print(f"   [경고] quota 계산 실패: {e}")
+
+    picked = []
     used_count = {c: 0 for c in cats}
-    for _ in range(n):
-        # 이미 많이 뽑힌 카테고리는 가중치 절감
+
+    # 결손 카테고리 먼저 1개씩 강제 배정 (n 한도 내에서)
+    for cat in deficit_cats[:n]:
+        picked.append(cat)
+        used_count[cat] += 1
+
+    # 남은 슬롯은 가중 랜덤
+    remaining = n - len(picked)
+    for _ in range(remaining):
         adjusted = [
             weights[i] * (0.4 if used_count[cats[i]] >= 2 else 1.0)
             for i in range(len(cats))
@@ -95,6 +150,8 @@ def _pick_balanced_categories(n: int) -> list:
         cat = random.choices(cats, weights=adjusted, k=1)[0]
         picked.append(cat)
         used_count[cat] += 1
+
+    random.shuffle(picked)  # 순서도 섞어줌 (결손 카테고리가 항상 첫 번째 X)
     return picked
 
 
@@ -102,12 +159,16 @@ def _pick_balanced_categories(n: int) -> list:
 def get_keywords_for_today():
     """가중치 기반 랜덤 카테고리 선택 + 시드 키워드 랜덤 픽 (폴백용)"""
     import random
+    recent_kws = _recent_keywords_from_manifest(days=14)
     selected = []
     for cat in _pick_balanced_categories(POSTS_PER_DAY):
         seeds = KEYWORD_POOL.get(cat, [])
         if not seeds:
             continue
-        selected.append({"category": cat, "keyword": random.choice(seeds)})
+        cooldown_seeds = [s for s in seeds if s not in recent_kws]
+        pick = random.choice(cooldown_seeds if cooldown_seeds else seeds)
+        selected.append({"category": cat, "keyword": pick})
+        recent_kws.add(pick)
     return selected
 
 
@@ -142,7 +203,9 @@ def get_seo_optimized_keywords():
     # 카테고리는 균형 발행 비율로 선택
     picked_cats   = _pick_balanced_categories(POSTS_PER_DAY)
     selected      = []
-    used_keywords = set()  # 중복 방지
+    used_keywords = _recent_keywords_from_manifest(days=14)
+    if used_keywords:
+        print(f"   [cooldown] 최근 14일 키워드 {len(used_keywords)}개 제외 대상")
 
     print(f"\n   [SEO 분석] 카테고리 분배: {picked_cats}")
 
@@ -188,14 +251,18 @@ def get_seo_optimized_keywords():
                 })
                 print(f"   ✓ 선택: {top['keyword']} (SEO {top['score']}점)")
             else:
-                # SEO 분석 결과 없음 → 랜덤 폴백
-                kw = random.choice(seed_pool)
+                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용)
+                cooldown_seeds = [s for s in seed_pool if s not in used_keywords]
+                kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
+                used_keywords.add(kw)
                 selected.append({"category": cat, "keyword": kw})
                 print(f"   ⚠ SEO 결과 없음 → 폴백: {kw}")
-                
+
         except Exception as e:
             print(f"   ⚠ SEO 분석 오류: {e} → 폴백")
-            kw = random.choice(seed_pool)
+            cooldown_seeds = [s for s in seed_pool if s not in used_keywords]
+            kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
+            used_keywords.add(kw)
             selected.append({"category": cat, "keyword": kw})
     
     return selected
@@ -678,16 +745,51 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None) -> s
     카테고리별로 글 유형을 자동 판단해서 비교표/단계별/가이드 형식 결정.
     프롬프트 본문 = prompt_template.json (admin '직접 글 요청'도 동일 소스 사용).
     """
+    import random
     T = _PROMPT_TEMPLATE
 
     # ── 카테고리 인텐트 매핑 (JSON 우선, keyword_pool_v2 폴백) ─────
-    intent = T.get("category_intents", {}).get(category, {})
-    if not intent:
+    intent_raw = T.get("category_intents", {}).get(category, {})
+    if not intent_raw:
         try:
             from keyword_pool_v2 import CATEGORY_INTENTS
-            intent = CATEGORY_INTENTS.get(category, {})
+            intent_raw = CATEGORY_INTENTS.get(category, {})
         except ImportError:
-            intent = {}
+            intent_raw = {}
+
+    # format_pool은 keyword_pool_v2에만 있을 수 있어 JSON intent에 보강
+    if "format_pool" not in intent_raw:
+        try:
+            from keyword_pool_v2 import CATEGORY_INTENTS as _CI
+            _pool = _CI.get(category, {}).get("format_pool")
+            if _pool:
+                intent_raw = {**intent_raw, "format_pool": _pool}
+        except ImportError:
+            pass
+
+    intent = dict(intent_raw)  # 복사
+
+    # 최근 5편 같은 카테고리 글의 format 회피
+    try:
+        if MANIFEST_PATH.exists():
+            manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+            same_cat_posts = [p for p in manifest if p.get("category") == category]
+            recent_5 = same_cat_posts[:5]
+            recent_formats = set()
+            for p in recent_5:
+                # manifest엔 format이 없으니 has_* 플래그로 역추정
+                if p.get("has_steps") and not p.get("has_comparison"):
+                    recent_formats.add("step_by_step")
+                elif p.get("has_comparison") and not p.get("has_steps"):
+                    recent_formats.add("comparison")
+
+            pool = intent_raw.get("format_pool", [intent_raw.get("primary_format", "guide")])
+            available_formats = [f for f in pool if f not in recent_formats]
+            chosen_format = random.choice(available_formats) if available_formats else random.choice(pool)
+            intent["primary_format"] = chosen_format
+            print(f"   [format 다양화] {category} → {chosen_format} (회피: {recent_formats})")
+    except Exception as e:
+        print(f"   [경고] format 다양화 실패: {e}")
 
     primary_format       = intent.get("primary_format", "guide")
     needs_official_link  = intent.get("needs_official_link", False)
@@ -1230,6 +1332,8 @@ def update_manifest():
                 "created_at":    data.get("created_at", ""),
                 "status":        data.get("status", "draft"),
                 "source":        data.get("source", "auto"),
+                "scheduled_at":  data.get("scheduled_at"),
+                "published_at":  data.get("published_at"),
                 "has_image":     bool(data.get("hero_image")),
                 "thumbnail":     (data.get("hero_image") or {}).get("url", ""),
                 "has_faq":       bool(data.get("faq")),
