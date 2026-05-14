@@ -21,7 +21,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 113.0,
+    "seo_score": 113,
     "monthly_search": 460
   },
   {
@@ -48,7 +48,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 90.0,
+    "seo_score": 90,
     "monthly_search": 10
   },
   {
@@ -75,7 +75,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 95.0,
+    "seo_score": 95,
     "monthly_search": 1370
   },
   {
@@ -102,7 +102,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 90.0,
+    "seo_score": 90,
     "monthly_search": 10
   },
   {
@@ -128,12 +128,12 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 105.0,
+    "seo_score": 105,
     "monthly_search": 20
   },
   {
     "filename": "post_20260513_223512.json",
-    "title": "2026년 주택청약 1순위 조건 납입횟수, 저도 헤매다 찾은 완벽 정리",
+    "title": "2026년 주택청약 1순위 조건 납입 횟수 헤매다 겨우 찾은 완벽 정리",
     "category": "realestate",
     "keyword": "주택청약 1순위 조건 납입횟수",
     "summary": "주택청약 1순위 자격은 무주택 세대주로서 지역별 납입횟수와 기간을 충족하는 것이 핵심입니다. 투기과열지구 24회, 조정대상지역 12회, 비규제지역 6회 등 기준이 다르니 반드시 확인해야 합니다.\n청약홈을 통해 공고문을 확인하고 정확한 절차를 따르되, 재당첨 제한 등 주의사항을 미리 숙지하여 소중한 기회를 놓치지 않기를 바랍니다.",
@@ -144,7 +144,7 @@
       "부업"
     ],
     "created_at": "2026-05-13T22:35:12.586192",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260513_223509.png",
@@ -153,7 +153,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 119.0,
+    "seo_score": 119,
     "monthly_search": 140
   },
   {
@@ -180,7 +180,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -205,7 +205,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 95.0,
+    "seo_score": 95,
     "monthly_search": 10
   },
   {
