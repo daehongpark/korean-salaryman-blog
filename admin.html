@@ -1412,50 +1412,124 @@ function attachCheckboxListeners() {
 }
 
 async function bulkPublish() {
-  const filenames = getSelectedFilenames();
-  if (filenames.length === 0) return;
-  if (!confirm(`선택한 ${filenames.length}개 글을 발행하시겠습니까?`)) return;
-
-  showLoading(true);
-  let success = 0, failed = 0;
-  try {
-    for (const filename of filenames) {
-      try {
-        await toggleStatus(filename, 'published');
-        success++;
-      } catch (e) {
-        console.error(`발행 실패 ${filename}:`, e);
-        failed++;
-      }
-    }
-    showToast(`발행 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
-    clearSelection();
-    await loadPosts();
-  } finally {
-    showLoading(false);
-  }
+  await _bulkStatusChange('published');
 }
 
 async function bulkUnpublish() {
+  await _bulkStatusChange('draft');
+}
+
+async function _bulkStatusChange(newStatus) {
   const filenames = getSelectedFilenames();
   if (filenames.length === 0) return;
-  if (!confirm(`선택한 ${filenames.length}개 글을 임시저장 상태로 변경하시겠습니까?`)) return;
+
+  const label = newStatus === 'published' ? '발행' : '임시저장';
+  if (!confirm(`선택한 ${filenames.length}개 글을 "${label}"으로 변경합니다.`)) return;
 
   showLoading(true);
+
+  // 낙관적 UI: 메모리 먼저 업데이트 (백업 보관)
+  const targetSet = new Set(filenames);
+  const backupStatusMap = new Map();
+  allPosts.forEach(p => {
+    if (targetSet.has(p.filename)) {
+      backupStatusMap.set(p.filename, p.status);
+      p.status = newStatus;
+    }
+  });
+  updateStats();
+  applyFilters();
+
   let success = 0, failed = 0;
+  const failedFilenames = [];
+  const successFilenames = [];
+
   try {
-    for (const filename of filenames) {
+    // 1. 글 파일들 병렬 업데이트
+    const updatePromises = filenames.map(async (filename) => {
       try {
-        await toggleStatus(filename, 'draft');
-        success++;
+        const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
+        const freshContent = decodeURIComponent(escape(atob(freshFile.content.replace(/\n/g, ''))));
+        const freshJson = JSON.parse(freshContent);
+        const updated = { ...freshJson, status: newStatus };
+        if (newStatus === 'published') {
+          updated.published_at = new Date().toISOString();
+        }
+        await ghPut(
+          `${POSTS_PATH}/${filename}`,
+          JSON.stringify(updated, null, 2),
+          freshFile.sha,
+          `bulk ${label}: ${filename}`
+        );
+        invalidatePostBody(filename);
+        return { filename, ok: true };
       } catch (e) {
-        console.error(`임시저장 실패 ${filename}:`, e);
-        failed++;
+        console.error(`${label} 실패 ${filename}:`, e);
+        return { filename, ok: false };
+      }
+    });
+    const results = await Promise.all(updatePromises);
+
+    successFilenames.push(...results.filter(r => r.ok).map(r => r.filename));
+    failedFilenames.push(...results.filter(r => !r.ok).map(r => r.filename));
+    success = successFilenames.length;
+    failed = failedFilenames.length;
+
+    // 2. manifest 한 번에 업데이트
+    if (success > 0) {
+      try {
+        const successSet = new Set(successFilenames);
+        const mfFile = await ghGet(`${POSTS_PATH}/manifest.json`);
+        const mfRaw  = decodeURIComponent(escape(atob(mfFile.content.replace(/\n/g, ''))));
+        let mfArr    = JSON.parse(mfRaw);
+
+        mfArr = mfArr.map(e => {
+          if (successSet.has(e.filename)) {
+            const updated = { ...e, status: newStatus };
+            if (newStatus === 'published') {
+              updated.published_at = new Date().toISOString();
+            }
+            return updated;
+          }
+          return e;
+        });
+
+        await ghPut(
+          `${POSTS_PATH}/manifest.json`,
+          JSON.stringify(mfArr, null, 2),
+          mfFile.sha,
+          `manifest sync (bulk ${label}): ${success} files`
+        );
+      } catch (e) {
+        console.error('manifest 일괄 sync 실패:', e);
+        showToast('manifest 동기화 실패: ' + e.message, 'warn');
       }
     }
-    showToast(`임시저장 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
+
+    // 3. 실패한 글 롤백
+    if (failed > 0) {
+      const failSet = new Set(failedFilenames);
+      allPosts.forEach(p => {
+        if (failSet.has(p.filename)) {
+          p.status = backupStatusMap.get(p.filename) || p.status;
+        }
+      });
+      updateStats();
+      applyFilters();
+    }
+
+    showToast(`${label} 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
     clearSelection();
-    await loadPosts();
+  } catch (e) {
+    // 전체 롤백
+    allPosts.forEach(p => {
+      if (backupStatusMap.has(p.filename)) {
+        p.status = backupStatusMap.get(p.filename);
+      }
+    });
+    updateStats();
+    applyFilters();
+    showToast(`일괄 ${label} 실패: ` + e.message, 'error');
   } finally {
     showLoading(false);
   }
@@ -1599,10 +1673,22 @@ async function confirmSchedule() {
       source: post.source,
     });
 
+    // 낙관적 UI: 메모리 allPosts 업데이트
+    const memIdx = allPosts.findIndex(p => p.filename === filename);
+    if (memIdx >= 0) {
+      allPosts[memIdx] = {
+        ...allPosts[memIdx],
+        status: 'scheduled',
+        scheduled_at: scheduledAt,
+      };
+      updateStats();
+      applyFilters();
+    }
+
     showToast(`예약 완료: ${date} ${time} KST에 발행됩니다`, 'success');
     closeModal('scheduleModal');
     _scheduleTargetFilename = null;
-    await loadPosts();
+    // loadPosts 호출 제거 (메모리 이미 업데이트)
   } catch (e) {
     console.error(e);
     showToast('예약 실패: ' + e.message, 'error');
@@ -1622,23 +1708,78 @@ async function bulkDelete() {
   }
 
   showLoading(true);
+
+  // 낙관적 UI: 메모리에서 먼저 제거 (백업 보관)
+  const targetSet = new Set(filenames);
+  const backupPosts = allPosts.filter(p => targetSet.has(p.filename));
+  allPosts = allPosts.filter(p => !targetSet.has(p.filename));
+  updateStats();
+  applyFilters();
+
   let success = 0, failed = 0;
+  const failedFilenames = [];
+
   try {
-    for (const filename of filenames) {
+    // 1. 글 파일들 병렬 삭제 (각 글마다 ghGet → ghDelete)
+    const deletePromises = filenames.map(async (filename) => {
       try {
         const file = await ghGet(`${POSTS_PATH}/${filename}`);
         await ghDelete(`${POSTS_PATH}/${filename}`, file.sha, `bulk delete: ${filename}`);
         invalidatePostBody(filename);
-        await syncManifest('remove', filename, null);
-        success++;
+        return { filename, ok: true };
       } catch (e) {
         console.error(`삭제 실패 ${filename}:`, e);
-        failed++;
+        return { filename, ok: false, error: e.message };
+      }
+    });
+    const results = await Promise.all(deletePromises);
+
+    success = results.filter(r => r.ok).length;
+    failed = results.filter(r => !r.ok).length;
+    failedFilenames.push(...results.filter(r => !r.ok).map(r => r.filename));
+
+    // 2. manifest 한 번에 업데이트 (★ N번 호출 → 1번)
+    if (success > 0) {
+      try {
+        const mfFile = await ghGet(`${POSTS_PATH}/manifest.json`);
+        const mfRaw  = decodeURIComponent(escape(atob(mfFile.content.replace(/\n/g, ''))));
+        let mfArr    = JSON.parse(mfRaw);
+
+        const successSet = new Set(results.filter(r => r.ok).map(r => r.filename));
+        const newMfArr = mfArr.filter(e => !successSet.has(e.filename));
+
+        await ghPut(
+          `${POSTS_PATH}/manifest.json`,
+          JSON.stringify(newMfArr, null, 2),
+          mfFile.sha,
+          `manifest sync (bulk remove): ${success} files`
+        );
+      } catch (e) {
+        console.error('manifest 일괄 sync 실패:', e);
+        showToast('manifest 동기화 실패: ' + e.message, 'warn');
       }
     }
+
+    // 3. 롤백: 실패한 글은 다시 메모리에 복원
+    if (failed > 0) {
+      const restored = backupPosts.filter(p => failedFilenames.includes(p.filename));
+      allPosts = [...allPosts, ...restored].sort((a, b) =>
+        new Date(b.created_at || 0) - new Date(a.created_at || 0)
+      );
+      updateStats();
+      applyFilters();
+    }
+
     showToast(`삭제 완료: ${success}개 성공 / ${failed}개 실패`, failed > 0 ? 'warn' : 'success');
     clearSelection();
-    await loadPosts();
+  } catch (e) {
+    // 전체 실패 시 전체 롤백
+    allPosts = [...allPosts, ...backupPosts].sort((a, b) =>
+      new Date(b.created_at || 0) - new Date(a.created_at || 0)
+    );
+    updateStats();
+    applyFilters();
+    showToast('일괄 삭제 실패: ' + e.message, 'error');
   } finally {
     showLoading(false);
   }
@@ -1659,27 +1800,45 @@ function setFeatured(filename, title) {
 
 // ── 발행 상태 토글 ────────────────────────────────────
 async function toggleStatus(filename, newStatus) {
+  const post = allPosts.find(p => p.filename === filename);
+  if (!post) {
+    showToast('글을 찾을 수 없습니다.', 'error');
+    return;
+  }
+
+  // 낙관적 UI 업데이트: 일단 화면에서 먼저 변경
+  const prevStatus = post.status;
+  post.status = newStatus;
+  updateStats();
+  applyFilters();
+
   showLoading(true);
   try {
-    const post = allPosts.find(p => p.filename === filename);
-    if (!post) throw new Error('글을 찾을 수 없습니다.');
-
-    // 항상 최신 SHA를 GitHub에서 직접 가져오기
+    // 1. 글 파일만 받고 status 바꿔서 다시 씀
     const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
-    const freshSha = freshFile.sha;
     const freshContent = decodeURIComponent(escape(atob(freshFile.content.replace(/\n/g,''))));
     const freshJson = JSON.parse(freshContent);
-
     const updated = {...freshJson, status: newStatus};
-    const content = JSON.stringify(updated, null, 2);
-    await ghPut(`${POSTS_PATH}/${filename}`, content, freshSha,
+    if (newStatus === 'published') {
+      updated.published_at = new Date().toISOString();
+    }
+
+    await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha,
       `${newStatus === 'published' ? '발행' : '임시저장'}: ${post.title}`);
-    invalidatePostBody(filename);
+
+    // 2. manifest sync (이건 어쩔 수 없이 별도 호출)
     await syncManifest('updateStatus', filename, { status: newStatus });
+
+    invalidatePostBody(filename);
+
     const label = newStatus === 'published' ? '발행' : '임시저장';
     showToast(`"${label}"으로 변경되었습니다.`, 'success');
-    await loadPosts();
+    // ★ loadPosts 호출 제거: allPosts에 이미 반영했고 UI는 applyFilters로 그려놨음
   } catch(e) {
+    // 실패 시 롤백
+    post.status = prevStatus;
+    updateStats();
+    applyFilters();
     showToast('상태 변경 실패: ' + e.message, 'error');
   } finally {
     showLoading(false);
@@ -2154,9 +2313,24 @@ async function savePost(statusOverride) {
         status:     newPost.status,
         created_at: newPost.created_at,
       });
+
+      // 새 글은 메모리 allPosts에 직접 추가 (정렬 유지)
+      allPosts.unshift({
+        filename: newFilename,
+        title: newPost.title,
+        category: newPost.category,
+        summary: newPost.summary,
+        tags: newPost.tags,
+        status: newPost.status,
+        created_at: newPost.created_at,
+        source: 'manual',
+      });
+      allPosts.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+      updateStats();
+      applyFilters();
+
       closeModal('editModal');
       showToast('새 글이 저장되었습니다!', 'success');
-      await loadPosts();
     } else {
       // ── 기존 글 수정 ─────────────────────────────────
       const post = allPosts.find(p => p.filename === filename);
@@ -2183,9 +2357,24 @@ async function savePost(statusOverride) {
         status:     updated.status,
         created_at: updated.created_at,
       });
+
+      // 낙관적 UI: 메모리 allPosts 업데이트
+      const memIdx = allPosts.findIndex(p => p.filename === filename);
+      if (memIdx >= 0) {
+        allPosts[memIdx] = {
+          ...allPosts[memIdx],
+          title: updated.title,
+          summary: updated.summary,
+          category: updated.category,
+          tags: updated.tags,
+          status: updated.status,
+        };
+        updateStats();
+        applyFilters();
+      }
+
       closeModal('editModal');
-      showToast('저장되었습니다!', 'success');
-      await loadPosts();
+      showToast('글이 저장되었습니다!', 'success');
     }
   } catch(e) {
     showToast('저장 실패: ' + e.message, 'error');
@@ -2203,23 +2392,43 @@ function openDelete(filename, title) {
 
 async function confirmDelete() {
   if (!deleteTarget) return;
-  const post = allPosts.find(p => p.filename === deleteTarget);
-  if (!post) return;
+
+  const filename = deleteTarget;
+  const post = allPosts.find(p => p.filename === filename);
+  if (!post) {
+    closeModal('deleteModal');
+    deleteTarget = null;
+    return;
+  }
+
+  // 낙관적 UI: 메모리에서 먼저 제거
+  const idx = allPosts.findIndex(p => p.filename === filename);
+  const backup = idx >= 0 ? allPosts[idx] : null;
+  if (idx >= 0) allPosts.splice(idx, 1);
+  updateStats();
+  applyFilters();
+
   showLoading(true);
-  closeModal('deleteModal');
   try {
-    // 항상 최신 SHA를 GitHub에서 직접 가져오기
-    const freshFile = await ghGet(`${POSTS_PATH}/${deleteTarget}`);
-    await ghDelete(`${POSTS_PATH}/${deleteTarget}`, freshFile.sha, `삭제: ${post.title}`);
-    invalidatePostBody(deleteTarget);
-    await syncManifest('remove', deleteTarget, null);
-    showToast('삭제되었습니다.', 'info');
-    await loadPosts();
+    const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
+    await ghDelete(`${POSTS_PATH}/${filename}`, freshFile.sha, `삭제: ${post.title}`);
+    await syncManifest('remove', filename, null);
+    invalidatePostBody(filename);
+
+    closeModal('deleteModal');
+    deleteTarget = null;
+    showToast('글이 삭제되었습니다.', 'success');
+    // loadPosts 호출 제거 (이미 메모리에서 제거함)
   } catch(e) {
+    // 실패 시 롤백
+    if (backup && idx >= 0) {
+      allPosts.splice(idx, 0, backup);
+      updateStats();
+      applyFilters();
+    }
     showToast('삭제 실패: ' + e.message, 'error');
   } finally {
     showLoading(false);
-    deleteTarget = null;
   }
 }
 
