@@ -92,6 +92,51 @@ _BLOCKED_HINT = (
 
 
 # ═══════════════════════════════════════════════════════
+#  카테고리별 데이터랩 트렌드 그룹 (박대홍 7카테고리 매핑)
+#  각 카테고리당 4~6개 대표 키워드로 그룹 구성.
+#  네이버 데이터랩이 그룹별 검색 트렌드 비율을 반환 → 어떤 키워드가 지금 뜨는지 판단.
+# ═══════════════════════════════════════════════════════
+CATEGORY_DATALAB_GROUPS = {
+    "money": [
+        {"groupName": "청년정책",    "keywords": ["청년도약계좌", "청년월세지원", "청년내일채움공제", "청년창업지원금"]},
+        {"groupName": "근로지원",    "keywords": ["근로장려금", "자녀장려금", "중소기업 청년 소득세 감면"]},
+        {"groupName": "복지지원",    "keywords": ["에너지바우처", "긴급복지지원", "기초연금"]},
+        {"groupName": "소상공인",    "keywords": ["소상공인 정책자금", "예비창업패키지", "청년창업사관학교"]},
+    ],
+    "ai": [
+        {"groupName": "AI챗봇",      "keywords": ["ChatGPT", "Claude", "Gemini", "Perplexity"]},
+        {"groupName": "AI코딩",      "keywords": ["Cursor AI", "Claude Code", "GitHub Copilot"]},
+        {"groupName": "AI자동화",    "keywords": ["n8n", "Zapier", "Make"]},
+        {"groupName": "AI업무",      "keywords": ["AI 보고서", "AI 엑셀", "프롬프트 엔지니어링"]},
+    ],
+    "startup": [
+        {"groupName": "사업자등록",  "keywords": ["사업자등록", "1인 사업자", "간이과세자", "일반과세자"]},
+        {"groupName": "직장인부업",  "keywords": ["직장인 부업", "N잡", "재택부업", "회사 적발"]},
+        {"groupName": "세무신고",    "keywords": ["부가가치세 신고", "종합소득세 신고", "프리랜서 세금"]},
+        {"groupName": "사업운영",    "keywords": ["사업자 통장", "사업용 카드", "비용처리"]},
+    ],
+    "finance": [
+        {"groupName": "ETF투자",     "keywords": ["S&P500 ETF", "나스닥100 ETF", "TIGER ETF", "KODEX ETF"]},
+        {"groupName": "연금세제",    "keywords": ["ISA 계좌", "연금저축", "IRP", "세액공제"]},
+        {"groupName": "적금저축",    "keywords": ["고금리 적금", "파킹통장", "청년도약계좌 수익률"]},
+        {"groupName": "환율금리",    "keywords": ["원달러 환율", "미국 금리", "한국은행 기준금리"]},
+    ],
+    "realestate": [
+        {"groupName": "주택청약",    "keywords": ["주택청약 1순위", "특별공급", "공공분양", "청약가점"]},
+        {"groupName": "전월세",      "keywords": ["전세대출", "디딤돌대출", "버팀목전세자금대출", "보증금 반환"]},
+        {"groupName": "주거지원",    "keywords": ["행복주택", "역세권청년주택", "신혼희망타운"]},
+        {"groupName": "부동산세제",  "keywords": ["DSR 규제", "양도세 비과세", "취득세"]},
+    ],
+    "trending": [
+        {"groupName": "정책시행",    "keywords": ["2026 정책", "세법 개정", "최저임금"]},
+        {"groupName": "금융이슈",    "keywords": ["기준금리", "스트레스 DSR", "예금자보호"]},
+        {"groupName": "근무제도",    "keywords": ["주4일제", "유연근무", "재택근무"]},
+    ],
+    # book은 트렌드 추적 의미 낮음 (장기 콘텐츠) → 카테고리 매핑 제외
+}
+
+
+# ═══════════════════════════════════════════════════════
 #  1. 네이버 검색광고 API (가장 강력)
 # ═══════════════════════════════════════════════════════
 
@@ -396,6 +441,149 @@ def fetch_naver_datalab_trends(top_n: int = 20) -> List[str]:
     except Exception as e:
         logger.warning(f"데이터랩 실패: {e}")
         return []
+
+
+def fetch_category_trends(category: str, top_n: int = 8) -> List[str]:
+    """
+    특정 카테고리의 데이터랩 검색 트렌드 + 자동완성을 합쳐서
+    '지금 뜨는' 키워드 top_n개를 반환.
+
+    워크플로:
+    1. CATEGORY_DATALAB_GROUPS에서 카테고리 그룹들 가져옴
+    2. 네이버 데이터랩 호출 → 그룹별 검색 트렌드 비율 측정
+    3. 비율 높은 그룹의 키워드를 시드로 자동완성 호출
+    4. 합쳐서 top_n 반환
+    """
+    groups = CATEGORY_DATALAB_GROUPS.get(category)
+    if not groups:
+        return []
+
+    trending_keywords = []
+
+    # 1단계: 데이터랩으로 인기 그룹 식별
+    if NAVER_CLIENT_ID and NAVER_CLIENT_SECRET:
+        url = "https://openapi.naver.com/v1/datalab/search"
+        headers = {
+            "X-Naver-Client-Id":     NAVER_CLIENT_ID,
+            "X-Naver-Client-Secret": NAVER_CLIENT_SECRET,
+            "Content-Type":          "application/json",
+        }
+        end_date   = datetime.now().strftime("%Y-%m-%d")
+        start_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        # 데이터랩은 한 요청에 그룹 5개까지만 지원
+        body = {
+            "startDate":     start_date,
+            "endDate":       end_date,
+            "timeUnit":      "date",
+            "keywordGroups": groups[:5],
+        }
+        try:
+            resp = requests.post(url, headers=headers, json=body, timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                results = data.get("results", [])
+                # 각 그룹의 최근 평균 비율로 정렬
+                ranked = []
+                for r in results:
+                    data_points = r.get("data", [])
+                    if data_points:
+                        recent = data_points[-3:]  # 최근 3일
+                        avg_ratio = sum(d.get("ratio", 0) for d in recent) / len(recent)
+                        ranked.append((avg_ratio, r.get("keywords", []), r.get("title", "")))
+                ranked.sort(key=lambda x: -x[0])
+
+                logger.info(f"[트렌드 {category}] 데이터랩 그룹 순위:")
+                for ratio, kws, gname in ranked:
+                    logger.info(f"  {gname}: 비율 {ratio:.1f} | {kws}")
+
+                # 상위 그룹의 키워드를 트렌드 시드로 채택
+                for _, kws, _ in ranked[:3]:  # 상위 3그룹
+                    trending_keywords.extend(kws)
+            else:
+                logger.warning(f"[트렌드 {category}] 데이터랩 응답 {resp.status_code}")
+        except Exception as e:
+            logger.warning(f"[트렌드 {category}] 데이터랩 실패: {e}")
+    else:
+        logger.warning(f"[트렌드 {category}] NAVER_CLIENT_ID/SECRET 없음 → 데이터랩 건너뜀")
+
+    # 2단계: 자동완성으로 신선한 롱테일 키워드 발굴
+    auto_keywords = []
+    seed_for_auto = trending_keywords[:3] if trending_keywords else [g["keywords"][0] for g in groups[:3]]
+
+    for seed in seed_for_auto:
+        try:
+            auto = get_naver_autocomplete(seed)
+            # 시드 그대로는 제외, 길이 6자 이상만 (롱테일)
+            for kw in auto:
+                if kw != seed and len(kw) >= 6 and kw not in auto_keywords:
+                    auto_keywords.append(kw)
+            time.sleep(0.3)
+        except Exception:
+            continue
+
+    # 최종: 데이터랩 시드 키워드 + 자동완성 롱테일 합침
+    combined = []
+    seen = set()
+    for kw in trending_keywords + auto_keywords:
+        if kw not in seen:
+            seen.add(kw)
+            combined.append(kw)
+
+    logger.info(f"[트렌드 {category}] 최종 {len(combined[:top_n])}개: {combined[:top_n]}")
+    return combined[:top_n]
+
+
+def get_seo_scored_keywords_with_trends(seed_keywords: List[str],
+                                         category: str,
+                                         top_n: int = 10,
+                                         trend_weight: float = 1.3) -> List[dict]:
+    """
+    기존 get_seo_scored_keywords + 카테고리 트렌드 키워드 동적 주입.
+
+    - 시드 풀에 트렌드 키워드 5~8개 추가하여 확장 → 점수화
+    - 트렌드 출신 키워드는 점수 × trend_weight 가중치 적용
+    """
+    # 트렌드 키워드 가져오기
+    trend_kws = fetch_category_trends(category, top_n=8)
+    trend_set = set(trend_kws)
+
+    if trend_kws:
+        logger.info(f"[SEO+트렌드 {category}] 시드 {len(seed_keywords)}개 + 트렌드 {len(trend_kws)}개 결합")
+    else:
+        logger.info(f"[SEO+트렌드 {category}] 트렌드 추적 결과 없음 → 시드만 사용")
+
+    # 시드 + 트렌드를 합쳐서 일반 SEO 함수 호출
+    merged_seeds = list(set(seed_keywords) | trend_set)
+    scored = get_seo_scored_keywords(
+        seed_keywords=merged_seeds,
+        category_hint=category,
+        top_n=top_n * 3,  # 가중치 적용 후 다시 정렬해야 하니까 넉넉히 받음
+        check_competition=False,
+    )
+
+    # 트렌드 출신 키워드에 가중치 적용
+    boosted = []
+    for entry in scored:
+        kw = entry["keyword"]
+        is_trend = any(t in kw or kw in t for t in trend_set)
+        if is_trend:
+            entry["original_score"] = entry["score"]
+            entry["score"] = round(entry["score"] * trend_weight, 1)
+            entry["trend_boost"] = True
+            entry["detail"]["reasons"].append(f"트렌드 가중치 ×{trend_weight}")
+        else:
+            entry["trend_boost"] = False
+        boosted.append(entry)
+
+    # 가중치 적용 후 재정렬
+    boosted.sort(key=lambda x: -x["score"])
+
+    # 로그: top 5
+    for i, item in enumerate(boosted[:5], 1):
+        trend_mark = "🔥" if item.get("trend_boost") else "  "
+        logger.info(f"  #{i} {trend_mark} [{item['score']}점] {item['keyword']}")
+
+    return boosted[:top_n]
 
 
 # ═══════════════════════════════════════════════════════

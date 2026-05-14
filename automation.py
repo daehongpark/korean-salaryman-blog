@@ -189,7 +189,7 @@ def get_seo_optimized_keywords():
     import random
     
     try:
-        from trend_crawler import get_seo_scored_keywords
+        from trend_crawler import get_seo_scored_keywords, get_seo_scored_keywords_with_trends
     except ImportError:
         print("   [SEO] trend_crawler 모듈 로드 실패 → 기본 모드 사용")
         return get_keywords_for_today()
@@ -219,7 +219,7 @@ def get_seo_optimized_keywords():
         print(f"\n   ▶ [{cat}] 시드: {seeds}")
 
         try:
-            # 정부지원금은 policy_crawler 통합 함수 사용
+            # 정부지원금(레거시 한글)은 policy_crawler
             if cat == "정부지원금" and get_policy_seo_keywords is not None:
                 scored = get_policy_seo_keywords(
                     base_seeds=seeds,
@@ -227,12 +227,22 @@ def get_seo_optimized_keywords():
                     max_seeds=25,
                 )
             else:
-                scored = get_seo_scored_keywords(
-                    seed_keywords=seeds,
-                    category_hint=cat,
-                    top_n=10,
-                    check_competition=False,
-                )
+                # 7카테고리 영문 키 + 트렌드 통합 (균형 가중치 ×1.3)
+                try:
+                    scored = get_seo_scored_keywords_with_trends(
+                        seed_keywords=seeds,
+                        category=cat,
+                        top_n=10,
+                        trend_weight=1.3,
+                    )
+                except Exception as e:
+                    print(f"   ⚠ 트렌드 통합 실패 → 일반 SEO 폴백: {e}")
+                    scored = get_seo_scored_keywords(
+                        seed_keywords=seeds,
+                        category_hint=cat,
+                        top_n=10,
+                        check_competition=False,
+                    )
             
             # 이미 선택된 키워드는 제외
             available = [s for s in scored if s["keyword"] not in used_keywords]
