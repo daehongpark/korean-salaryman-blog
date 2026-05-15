@@ -2,32 +2,6 @@
   "title": "2026년 직장인 n8n npm 설치방법: 자동화 첫걸음",
   "category": "ai",
   "keyword": "n8n npm 설치방법",
-  "tldr": [
-    "n8n은 반복 업무를 자동화해주는 로우코드 툴로, npm을 이용해 쉽게 설치할 수 있습니다.",
-    "설치 전 Node.js와 npm 버전 확인은 필수이며, `npm install -g n8n` 명령어로 간단하게 시작해요.",
-    "n8n을 로컬에서 실행 후 웹 UI에 접속하면, 복잡한 코딩 없이 나만의 자동화 워크플로우를 만들 수 있습니다."
-  ],
-  "target_audience": "이 글은 반복되는 업무를 줄이고 싶은 직장인과 AI 자동화에 관심 있는 분들을 위한 글입니다.",
-  "content": "<div class=\"post-updated\" style=\"text-align:right;font-size:12px;color:#999;margin:0 0 12px;\">📅 2026.05.14 업데이트</div><aside class=\"post-tldr\" style=\"background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;\"><div style=\"font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;\">한눈에 보기</div><ul style=\"margin:0;padding-left:20px;color:#1a2640;font-size:15px;\"><li style=\"margin:6px 0;line-height:1.6;\">n8n은 반복 업무를 자동화해주는 로우코드 툴로, npm을 이용해 쉽게 설치할 수 있습니다.</li><li style=\"margin:6px 0;line-height:1.6;\">설치 전 Node.js와 npm 버전 확인은 필수이며, `npm install -g n8n` 명령어로 간단하게 시작해요.</li><li style=\"margin:6px 0;line-height:1.6;\">n8n을 로컬에서 실행 후 웹 UI에 접속하면, 복잡한 코딩 없이 나만의 자동화 워크플로우를 만들 수 있습니다.</li></ul></aside><div class=\"post-audience\" style=\"font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;\">👤 이 글은 반복되는 업무를 줄이고 싶은 직장인과 AI 자동화에 관심 있는 분들을 위한 글입니다.</div><p>예전부터 궁금했던 주제예요.</p>\n<p>n8n 같은 자동화 툴이 업무에 얼마나 도움이 될까 하고 말이죠. 처음엔 너무 어려울까 봐 망설였는데, 알고 보니 n8n npm 설치방법이 생각보다 간단하더라구요. 반복 업무를 줄이고 싶은 직장인이라면 꼭 한번 시도해볼 만하다고 생각합니다.</p>\n<figure style=\"margin:32px 0 24px;\"><img src=\"/posts/thumbnails/thumb_20260514_223334.png\" alt=\"2026년 직장인 n8n npm 설치방법: 자동화 첫걸음\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@martinsanchez\" target=\"_blank\" style=\"color:#888;\">Martin Sanchez</a> on Unsplash</figcaption></figure>\n<h2>n8n, 그래서 정확히 뭔가요?</h2>\n<p>n8n은 다양한 웹 서비스와 애플리케이션을 연결해 반복적인 업무를 자동화하는 로우코드/노코드 자동화 툴입니다. 코딩 지식이 없어도 드래그 앤 드롭 방식으로 워크플로우를 만들 수 있어요. 예를 들어, 특정 메일이 오면 자동으로 슬랙 메시지를 보내거나, 구글 시트의 데이터를 다른 서비스로 옮기는 작업 같은 것들이죠.</p>\n<p>저도 매일 같이 엑셀 데이터를 복사해서 붙여넣거나, 특정 사이트에서 정보를 가져오는 단순 반복 업무에 시간을 많이 썼거든요. 이런 일을 n8n이 대신해준다면 하루 1시간 정도는 거뜬히 아낄 수 있겠다고 생각했습니다. 한 달이면 20시간이 넘는 시간이죠. 저는 이 시간을 자기계발이나 다른 부업에 투자하고 싶었습니다.</p>\n<blockquote>포인트: 결국 단순 반복 업무를 코드 없이 자동으로 처리해주는 도구예요. 그게 핵심.</blockquote>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1738107450281-45c52f7d06d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTV8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"A close up of a cell phone with a keyboard\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@solenfeyissa\" target=\"_blank\" style=\"color:#888;\">Solen Feyissa</a> on Unsplash</figcaption></figure>\n<h2>n8n 설치, 왜 npm이 편할까요?</h2>\n<p>npm은 Node.js 패키지 매니저의 줄임말입니다. 자바스크립트 기반의 프로젝트에서 필요한 라이브러리나 도구를 설치하고 관리하는 데 사용되죠. n8n은 Node.js 기반으로 개발되었기 때문에, npm을 이용하는 것이 가장 보편적이고 간단한 n8n npm 설치방법입니다. 저도 처음에 설치 방법을 찾아보다가 Docker 같은 복잡한 방식도 봤는데, npm이 제일 쉬워 보였어요.</p>\n<p>npm으로 설치하면 n8n 실행에 필요한 모든 의존성을 자동으로 해결해줍니다. 별도로 신경 쓸 부분이 줄어드는 거죠. 중요한 건 Node.js와 npm이 컴퓨터에 미리 설치되어 있어야 한다는 점입니다. 보통 Node.js 설치 시 npm도 함께 설치되니 걱정할 필요는 없습니다. 다만, Node.js 16.x 이상, npm 8.x 이상 버전이 안정적으로 작동하더라구요. 제가 작년에 설치할 때는 Node.js 버전이 낮아서 한참 헤맸어요. 이것 때문에 밤을 새우는 직장인이 되지 않으려면, 꼭 미리 확인해야 합니다.</p>\n<blockquote>포인트: npm은 n8n을 가장 쉽고 안정적으로 깔 수 있는 방법이거든요. Node.js 버전만 잘 확인하세요.</blockquote>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1675627452858-0dd3d1df63d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTZ8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"a computer generated image of the word google\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@steve_j\" target=\"_blank\" style=\"color:#888;\">Steve A Johnson</a> on Unsplash</figcaption></figure>\n<h2>n8n npm 설치방법, 이렇게 따라 해보세요</h2>\n<p>n8n을 내 컴퓨터에 설치하고 실행하는 과정은 몇 가지 간단한 단계로 이루어져 있습니다. 아래 스텝을 차근차근 따라 하면 누구나 쉽게 n8n을 사용할 수 있어요. 진짜입니다.</p>\n<p>저도 처음엔 명령어가 낯설어서 어려웠는데, 한번 해보니 별거 아니더라구요. 설치가 끝나면 웹 브라우저에서 익숙한 화면을 만날 수 있을 겁니다. 제가 작년에 설치했을 때도 이런 단계를 거쳤는데, 특히 마지막 웹 UI 접속 단계가 가장 설레더라구요. 이제 반복되는 일은 n8n에게 맡길 시간이죠.</p>\n<blockquote>포인트: Node.js 설치하고, 명령어 두 개만 기억하면 끝! 생각보다 간단하죠.</blockquote>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1649451844813-3130d6f42f8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTd8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"a laptop computer sitting on top of a table\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@hdbernd\" target=\"_blank\" style=\"color:#888;\">Bernd 📷 Dittrich</a> on Unsplash</figcaption></figure>\n<h2>n8n, 처음 시작할 때 놓치기 쉬운 것들</h2>\n<p>n8n을 설치했다고 바로 모든 업무가 자동화되는 건 아닙니다. 현실은 다르죠. 처음엔 간단한 워크플로우부터 만들어보면서 익숙해지는 게 중요합니다. 예를 들어, 매일 아침 특정 웹사이트의 뉴스를 가져와 슬랙으로 보내는 워크플로우 같은 것들이죠. 저는 처음에 너무 거창한 걸 하려다가 몇 번 포기할 뻔했어요.</p>\n<p>또 하나, n8n은 로컬에서 실행할 수도 있지만, 계속 켜두려면 서버가 필요합니다. 만약 컴퓨터를 끄면 n8n도 멈추거든요. 그래서 저는 나중에 AWS나 다른 클라우드 환경으로 옮겼어요. 매달 5~10달러 정도면 작은 서버를 빌릴 수 있어서 부담도 적죠. 처음부터 클라우드에 설치하는 방법도 있지만, n8n npm 설치방법이 더 쉽고 접근성이 좋다고 생각합니다. 일단 로컬에서 충분히 익숙해진 다음에 클라우드 환경을 고려해보는 게 저한테는 더 좋더라구요.</p>\n<blockquote>포인트: 간단한 것부터 시작하고, 장기적인 관점에선 클라우드 서버도 고려해보는 게 좋아요.</blockquote><section class=\"post-steps\" style=\"margin:36px 0 24px;\"><h2 style=\"margin-bottom:14px;\">단계별 가이드</h2><ol style=\"list-style:none;padding:0;margin:0;\"><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">1</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">1단계: Node.js 및 npm 설치 확인</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">명령 프롬프트(Windows)나 터미널(macOS/Linux)을 열고 `node -v`와 `npm -v`를 입력하여 Node.js와 npm이 설치되어 있는지, 그리고 버전이 충분한지 확인합니다. 만약 설치되어 있지 않다면, Node.js 공식 웹사이트에서 다운로드하여 설치해야 합니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">2</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">2단계: n8n 전역 설치</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">Node.js와 npm이 준비되었다면, 다음 명령어를 입력하여 n8n을 전역으로 설치합니다. 전역 설치는 어떤 디렉토리에서든 n8n 명령어를 사용할 수 있게 해줍니다. `npm install -g n8n`</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">3</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">3단계: n8n 실행</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">설치가 완료되면, 이제 n8n을 실행할 차례입니다. 터미널에 `n8n start` 명령어를 입력하세요. n8n 서버가 시작되고, 몇 초 후 'n8n started'와 같은 메시지가 보일 겁니다. 이 명령어를 통해 n8n이 백그라운드에서 계속 실행되도록 할 수도 있습니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">4</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">4단계: n8n 웹 UI 접속</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">n8n이 정상적으로 실행되면, 웹 브라우저를 열고 `http://localhost:5678` 주소로 접속합니다. 이 주소는 n8n의 기본 웹 인터페이스이며, 여기서 워크플로우를 생성하고 관리할 수 있습니다. 처음 접속하면 로그인 정보를 설정하는 화면이 나올 수 있습니다.</div></div></li></ol></section>\n\n<section class=\"faq-section\" style=\"margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;\">\n<h2 style=\"margin-top:0;\">자주 묻는 질문</h2>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n을 설치하기 전에 꼭 Node.js를 설치해야 하나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 네, n8n은 Node.js 기반으로 개발되었기 때문에 Node.js가 설치되어 있어야 n8n npm 설치방법을 사용할 수 있습니다. Node.js를 설치하면 npm도 함께 설치되니 한 번에 해결됩니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n npm 설치 시 '권한 오류'가 발생하면 어떻게 해야 하나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. macOS나 Linux 환경에서는 전역 설치 시 권한 오류가 발생할 수 있습니다. 이때는 명령어 앞에 `sudo`를 붙여 `sudo npm install -g n8n`으로 실행하거나, npm 권한 설정을 변경해야 합니다. 저는 `sudo`를 사용했어요.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n을 설치했는데 웹 UI에 접속이 안 돼요. 뭐가 문제일까요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 대부분 n8n 서버가 제대로 실행되지 않았거나, 포트 충돌이 원인입니다. 터미널에 `n8n start` 명령어를 다시 입력하여 서버가 시작되었는지 확인하고, 다른 프로그램이 5678번 포트를 사용 중인지 확인해보세요. 저도 비슷한 경험이 있어서 포트를 바꿔본 적도 있습니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n으로 어떤 업무를 자동화할 수 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. n8n은 이메일 처리, 파일 관리, 소셜 미디어 포스팅, 데이터베이스 연동, 보고서 생성 등 다양한 반복 업무를 자동화할 수 있습니다. API를 제공하는 대부분의 웹 서비스와 연결하여 나만의 워크플로우를 만들 수 있죠.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n 외에 다른 자동화 툴도 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 네, Zapier, Make(구 Integromat), IFTTT 같은 다양한 자동화 툴들이 있습니다. 각각 장단점이 다르니, 본인의 사용 목적과 예산에 맞춰 비교해보는 것을 추천합니다. n8n은 직접 설치해서 사용하면 무료라는 점이 가장 큰 장점이에요.</p></div>\n</section>\n<section class=\"post-references\" style=\"margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;\"><h2 style=\"margin-top:0;margin-bottom:10px;font-size:18px;\">참고자료</h2><ul style=\"margin:0;padding-left:20px;\"><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://docs.n8n.io/\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">n8n 공식 문서</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://nodejs.org/\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Node.js 공식 웹사이트</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://docs.npmjs.com/\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">npm 공식 문서</a></li></ul><div style=\"margin-top:10px;font-size:12px;color:#888;\">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section>",
-  "comparison_table": {},
-  "steps": [
-    {
-      "title": "1단계: Node.js 및 npm 설치 확인",
-      "desc": "명령 프롬프트(Windows)나 터미널(macOS/Linux)을 열고 `node -v`와 `npm -v`를 입력하여 Node.js와 npm이 설치되어 있는지, 그리고 버전이 충분한지 확인합니다. 만약 설치되어 있지 않다면, Node.js 공식 웹사이트에서 다운로드하여 설치해야 합니다."
-    },
-    {
-      "title": "2단계: n8n 전역 설치",
-      "desc": "Node.js와 npm이 준비되었다면, 다음 명령어를 입력하여 n8n을 전역으로 설치합니다. 전역 설치는 어떤 디렉토리에서든 n8n 명령어를 사용할 수 있게 해줍니다. `npm install -g n8n`"
-    },
-    {
-      "title": "3단계: n8n 실행",
-      "desc": "설치가 완료되면, 이제 n8n을 실행할 차례입니다. 터미널에 `n8n start` 명령어를 입력하세요. n8n 서버가 시작되고, 몇 초 후 'n8n started'와 같은 메시지가 보일 겁니다. 이 명령어를 통해 n8n이 백그라운드에서 계속 실행되도록 할 수도 있습니다."
-    },
-    {
-      "title": "4단계: n8n 웹 UI 접속",
-      "desc": "n8n이 정상적으로 실행되면, 웹 브라우저를 열고 `http://localhost:5678` 주소로 접속합니다. 이 주소는 n8n의 기본 웹 인터페이스이며, 여기서 워크플로우를 생성하고 관리할 수 있습니다. 처음 접속하면 로그인 정보를 설정하는 화면이 나올 수 있습니다."
-    }
-  ],
   "summary": "n8n은 반복 업무 자동화를 돕는 로우코드 툴로, Node.js 기반이라 npm을 통해 쉽게 설치할 수 있습니다.\nNode.js 버전 확인 후 `npm install -g n8n` 명령어로 설치하고 `n8n start`로 실행하여 웹 UI에 접속하면 바로 워크플로우를 만들 수 있어요.",
   "tags": [
     "n8n npm 설치방법",
@@ -38,183 +12,19 @@
     "로우코드",
     "Node.js"
   ],
-  "faq": [
-    {
-      "q": "n8n을 설치하기 전에 꼭 Node.js를 설치해야 하나요?",
-      "a": "네, n8n은 Node.js 기반으로 개발되었기 때문에 Node.js가 설치되어 있어야 n8n npm 설치방법을 사용할 수 있습니다. Node.js를 설치하면 npm도 함께 설치되니 한 번에 해결됩니다."
-    },
-    {
-      "q": "n8n npm 설치 시 '권한 오류'가 발생하면 어떻게 해야 하나요?",
-      "a": "macOS나 Linux 환경에서는 전역 설치 시 권한 오류가 발생할 수 있습니다. 이때는 명령어 앞에 `sudo`를 붙여 `sudo npm install -g n8n`으로 실행하거나, npm 권한 설정을 변경해야 합니다. 저는 `sudo`를 사용했어요."
-    },
-    {
-      "q": "n8n을 설치했는데 웹 UI에 접속이 안 돼요. 뭐가 문제일까요?",
-      "a": "대부분 n8n 서버가 제대로 실행되지 않았거나, 포트 충돌이 원인입니다. 터미널에 `n8n start` 명령어를 다시 입력하여 서버가 시작되었는지 확인하고, 다른 프로그램이 5678번 포트를 사용 중인지 확인해보세요. 저도 비슷한 경험이 있어서 포트를 바꿔본 적도 있습니다."
-    },
-    {
-      "q": "n8n으로 어떤 업무를 자동화할 수 있나요?",
-      "a": "n8n은 이메일 처리, 파일 관리, 소셜 미디어 포스팅, 데이터베이스 연동, 보고서 생성 등 다양한 반복 업무를 자동화할 수 있습니다. API를 제공하는 대부분의 웹 서비스와 연결하여 나만의 워크플로우를 만들 수 있죠."
-    },
-    {
-      "q": "n8n 외에 다른 자동화 툴도 있나요?",
-      "a": "네, Zapier, Make(구 Integromat), IFTTT 같은 다양한 자동화 툴들이 있습니다. 각각 장단점이 다르니, 본인의 사용 목적과 예산에 맞춰 비교해보는 것을 추천합니다. n8n은 직접 설치해서 사용하면 무료라는 점이 가장 큰 장점이에요."
-    }
-  ],
-  "references": [
-    {
-      "label": "n8n 공식 문서",
-      "url": "https://docs.n8n.io/"
-    },
-    {
-      "label": "Node.js 공식 웹사이트",
-      "url": "https://nodejs.org/"
-    },
-    {
-      "label": "npm 공식 문서",
-      "url": "https://docs.npmjs.com/"
-    }
-  ],
-  "seo_analysis": {
-    "score": 93.6,
-    "monthly_total": null,
-    "competition": null
-  },
   "created_at": "2026-05-14T22:33:37.506207",
-  "status": "draft",
+  "status": "published",
   "source": "auto",
-  "content_raw": "예전부터 궁금했던 주제예요.\n\nn8n 같은 자동화 툴이 업무에 얼마나 도움이 될까 하고 말이죠. 처음엔 너무 어려울까 봐 망설였는데, 알고 보니 n8n npm 설치방법이 생각보다 간단하더라구요. 반복 업무를 줄이고 싶은 직장인이라면 꼭 한번 시도해볼 만하다고 생각합니다.\n\n## n8n, 그래서 정확히 뭔가요?\n\nn8n은 다양한 웹 서비스와 애플리케이션을 연결해 반복적인 업무를 자동화하는 로우코드/노코드 자동화 툴입니다. 코딩 지식이 없어도 드래그 앤 드롭 방식으로 워크플로우를 만들 수 있어요. 예를 들어, 특정 메일이 오면 자동으로 슬랙 메시지를 보내거나, 구글 시트의 데이터를 다른 서비스로 옮기는 작업 같은 것들이죠.\n\n저도 매일 같이 엑셀 데이터를 복사해서 붙여넣거나, 특정 사이트에서 정보를 가져오는 단순 반복 업무에 시간을 많이 썼거든요. 이런 일을 n8n이 대신해준다면 하루 1시간 정도는 거뜬히 아낄 수 있겠다고 생각했습니다. 한 달이면 20시간이 넘는 시간이죠. 저는 이 시간을 자기계발이나 다른 부업에 투자하고 싶었습니다.\n\n> 포인트: 결국 단순 반복 업무를 코드 없이 자동으로 처리해주는 도구예요. 그게 핵심.\n\n## n8n 설치, 왜 npm이 편할까요?\n\nnpm은 Node.js 패키지 매니저의 줄임말입니다. 자바스크립트 기반의 프로젝트에서 필요한 라이브러리나 도구를 설치하고 관리하는 데 사용되죠. n8n은 Node.js 기반으로 개발되었기 때문에, npm을 이용하는 것이 가장 보편적이고 간단한 n8n npm 설치방법입니다. 저도 처음에 설치 방법을 찾아보다가 Docker 같은 복잡한 방식도 봤는데, npm이 제일 쉬워 보였어요.\n\nnpm으로 설치하면 n8n 실행에 필요한 모든 의존성을 자동으로 해결해줍니다. 별도로 신경 쓸 부분이 줄어드는 거죠. 중요한 건 Node.js와 npm이 컴퓨터에 미리 설치되어 있어야 한다는 점입니다. 보통 Node.js 설치 시 npm도 함께 설치되니 걱정할 필요는 없습니다. 다만, Node.js 16.x 이상, npm 8.x 이상 버전이 안정적으로 작동하더라구요. 제가 작년에 설치할 때는 Node.js 버전이 낮아서 한참 헤맸어요. 이것 때문에 밤을 새우는 직장인이 되지 않으려면, 꼭 미리 확인해야 합니다.\n\n> 포인트: npm은 n8n을 가장 쉽고 안정적으로 깔 수 있는 방법이거든요. Node.js 버전만 잘 확인하세요.\n\n## n8n npm 설치방법, 이렇게 따라 해보세요\n\nn8n을 내 컴퓨터에 설치하고 실행하는 과정은 몇 가지 간단한 단계로 이루어져 있습니다. 아래 스텝을 차근차근 따라 하면 누구나 쉽게 n8n을 사용할 수 있어요. 진짜입니다.\n\n저도 처음엔 명령어가 낯설어서 어려웠는데, 한번 해보니 별거 아니더라구요. 설치가 끝나면 웹 브라우저에서 익숙한 화면을 만날 수 있을 겁니다. 제가 작년에 설치했을 때도 이런 단계를 거쳤는데, 특히 마지막 웹 UI 접속 단계가 가장 설레더라구요. 이제 반복되는 일은 n8n에게 맡길 시간이죠.\n\n> 포인트: Node.js 설치하고, 명령어 두 개만 기억하면 끝! 생각보다 간단하죠.\n\n## n8n, 처음 시작할 때 놓치기 쉬운 것들\n\nn8n을 설치했다고 바로 모든 업무가 자동화되는 건 아닙니다. 현실은 다르죠. 처음엔 간단한 워크플로우부터 만들어보면서 익숙해지는 게 중요합니다. 예를 들어, 매일 아침 특정 웹사이트의 뉴스를 가져와 슬랙으로 보내는 워크플로우 같은 것들이죠. 저는 처음에 너무 거창한 걸 하려다가 몇 번 포기할 뻔했어요.\n\n또 하나, n8n은 로컬에서 실행할 수도 있지만, 계속 켜두려면 서버가 필요합니다. 만약 컴퓨터를 끄면 n8n도 멈추거든요. 그래서 저는 나중에 AWS나 다른 클라우드 환경으로 옮겼어요. 매달 5~10달러 정도면 작은 서버를 빌릴 수 있어서 부담도 적죠. 처음부터 클라우드에 설치하는 방법도 있지만, n8n npm 설치방법이 더 쉽고 접근성이 좋다고 생각합니다. 일단 로컬에서 충분히 익숙해진 다음에 클라우드 환경을 고려해보는 게 저한테는 더 좋더라구요.\n\n> 포인트: 간단한 것부터 시작하고, 장기적인 관점에선 클라우드 서버도 고려해보는 게 좋아요.",
-  "hero_image": {
-    "url": "/posts/thumbnails/thumb_20260514_223334.png",
-    "alt": "2026년 직장인 n8n npm 설치방법: 자동화 첫걸음",
-    "credit": "Martin Sanchez",
-    "credit_link": "https://unsplash.com/@martinsanchez",
-    "source": "unsplash"
-  },
-  "body_images": [
-    {
-      "url": "https://images.unsplash.com/photo-1738107450281-45c52f7d06d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTV8&ixlib=rb-4.1.0&q=80&w=1080",
-      "alt": "A close up of a cell phone with a keyboard",
-      "credit": "Solen Feyissa",
-      "credit_link": "https://unsplash.com/@solenfeyissa",
-      "source": "unsplash"
-    },
-    {
-      "url": "https://images.unsplash.com/photo-1675627452858-0dd3d1df63d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTZ8&ixlib=rb-4.1.0&q=80&w=1080",
-      "alt": "a computer generated image of the word google",
-      "credit": "Steve A Johnson",
-      "credit_link": "https://unsplash.com/@steve_j",
-      "source": "unsplash"
-    },
-    {
-      "url": "https://images.unsplash.com/photo-1649451844813-3130d6f42f8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTd8&ixlib=rb-4.1.0&q=80&w=1080",
-      "alt": "a laptop computer sitting on top of a table",
-      "credit": "Bernd 📷 Dittrich",
-      "credit_link": "https://unsplash.com/@hdbernd",
-      "source": "unsplash"
-    }
-  ],
-  "seo_title": "2026년 직장인 n8n npm 설치방법: 자동화 첫걸음 | 직장인 수익일기",
-  "seo_description": "n8n은 반복 업무 자동화를 돕는 로우코드 툴로, Node.js 기반이라 npm을 통해 쉽게 설치할 수 있습니다.\nNode.js 버전 확인 후 `npm install -g n8n` 명령어로 설치하고 `n8n start`로 실행하여 웹 UI에 접속하면  | 직장인 수익일기",
-  "seo_keywords": "n8n npm 설치방법, ai, ai 추천, n8n npm 설치방법 방법, 직장인 부업, 직장인 수익일기, 직장인, 업무 자동화, 노코드, 로우코드, Node.js",
-  "jsonld": {
-    "article": {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "2026년 직장인 n8n npm 설치방법: 자동화 첫걸음",
-      "description": "n8n은 반복 업무 자동화를 돕는 로우코드 툴로, Node.js 기반이라 npm을 통해 쉽게 설치할 수 있습니다.\nNode.js 버전 확인 후 `npm install -g n8n` 명령어로 설치하고 `n8n start`로 실행하여 웹 UI에 접속하면 ",
-      "keywords": "n8n npm 설치방법, ai, ai 추천, n8n npm 설치방법 방법, 직장인 부업, 직장인 수익일기, 직장인, 업무 자동화, 노코드, 로우코드, Node.js",
-      "articleSection": "ai",
-      "author": {
-        "@type": "Person",
-        "name": "박대홍"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "직장인 수익일기",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://koreansalaryman.com/og-image.png"
-        }
-      },
-      "datePublished": "2026-05-14T22:33:37.506207",
-      "image": "https://koreansalaryman.com/posts/thumbnails/thumb_20260514_223334.png"
-    },
-    "faq": {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "n8n을 설치하기 전에 꼭 Node.js를 설치해야 하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "네, n8n은 Node.js 기반으로 개발되었기 때문에 Node.js가 설치되어 있어야 n8n npm 설치방법을 사용할 수 있습니다. Node.js를 설치하면 npm도 함께 설치되니 한 번에 해결됩니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "n8n npm 설치 시 '권한 오류'가 발생하면 어떻게 해야 하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "macOS나 Linux 환경에서는 전역 설치 시 권한 오류가 발생할 수 있습니다. 이때는 명령어 앞에 `sudo`를 붙여 `sudo npm install -g n8n`으로 실행하거나, npm 권한 설정을 변경해야 합니다. 저는 `sudo`를 사용했어요."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "n8n을 설치했는데 웹 UI에 접속이 안 돼요. 뭐가 문제일까요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "대부분 n8n 서버가 제대로 실행되지 않았거나, 포트 충돌이 원인입니다. 터미널에 `n8n start` 명령어를 다시 입력하여 서버가 시작되었는지 확인하고, 다른 프로그램이 5678번 포트를 사용 중인지 확인해보세요. 저도 비슷한 경험이 있어서 포트를 바꿔본 적도 있습니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "n8n으로 어떤 업무를 자동화할 수 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "n8n은 이메일 처리, 파일 관리, 소셜 미디어 포스팅, 데이터베이스 연동, 보고서 생성 등 다양한 반복 업무를 자동화할 수 있습니다. API를 제공하는 대부분의 웹 서비스와 연결하여 나만의 워크플로우를 만들 수 있죠."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "n8n 외에 다른 자동화 툴도 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "네, Zapier, Make(구 Integromat), IFTTT 같은 다양한 자동화 툴들이 있습니다. 각각 장단점이 다르니, 본인의 사용 목적과 예산에 맞춰 비교해보는 것을 추천합니다. n8n은 직접 설치해서 사용하면 무료라는 점이 가장 큰 장점이에요."
-          }
-        }
-      ]
-    },
-    "howto": {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "2026년 직장인 n8n npm 설치방법: 자동화 첫걸음",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "1단계: Node.js 및 npm 설치 확인",
-          "text": "명령 프롬프트(Windows)나 터미널(macOS/Linux)을 열고 `node -v`와 `npm -v`를 입력하여 Node.js와 npm이 설치되어 있는지, 그리고 버전이 충분한지 확인합니다. 만약 설치되어 있지 않다면, Node.js 공식 웹사이트에서 다운로드하여 설치해야 합니다."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "2단계: n8n 전역 설치",
-          "text": "Node.js와 npm이 준비되었다면, 다음 명령어를 입력하여 n8n을 전역으로 설치합니다. 전역 설치는 어떤 디렉토리에서든 n8n 명령어를 사용할 수 있게 해줍니다. `npm install -g n8n`"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "3단계: n8n 실행",
-          "text": "설치가 완료되면, 이제 n8n을 실행할 차례입니다. 터미널에 `n8n start` 명령어를 입력하세요. n8n 서버가 시작되고, 몇 초 후 'n8n started'와 같은 메시지가 보일 겁니다. 이 명령어를 통해 n8n이 백그라운드에서 계속 실행되도록 할 수도 있습니다."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "4단계: n8n 웹 UI 접속",
-          "text": "n8n이 정상적으로 실행되면, 웹 브라우저를 열고 `http://localhost:5678` 주소로 접속합니다. 이 주소는 n8n의 기본 웹 인터페이스이며, 여기서 워크플로우를 생성하고 관리할 수 있습니다. 처음 접속하면 로그인 정보를 설정하는 화면이 나올 수 있습니다."
-        }
-      ]
-    }
-  }
+  "scheduled_at": null,
+  "published_at": null,
+  "has_image": true,
+  "thumbnail": "/posts/thumbnails/thumb_20260514_223334.png",
+  "has_faq": true,
+  "has_tldr": true,
+  "has_comparison": false,
+  "has_steps": true,
+  "has_references": true,
+  "seo_score": 93.6,
+  "monthly_search": null,
+  "content": "<div class=\"post-updated\" style=\"text-align:right;font-size:12px;color:#999;margin:0 0 12px;\">📅 2026.05.14 업데이트</div><aside class=\"post-tldr\" style=\"background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;\"><div style=\"font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;\">한눈에 보기</div><ul style=\"margin:0;padding-left:20px;color:#1a2640;font-size:15px;\"><li style=\"margin:6px 0;line-height:1.6;\">n8n은 반복 업무를 자동화해주는 로우코드 툴로, npm을 이용해 쉽게 설치할 수 있습니다.</li><li style=\"margin:6px 0;line-height:1.6;\">설치 전 Node.js와 npm 버전 확인은 필수이며, `npm install -g n8n` 명령어로 간단하게 시작해요.</li><li style=\"margin:6px 0;line-height:1.6;\">n8n을 로컬에서 실행 후 웹 UI에 접속하면, 복잡한 코딩 없이 나만의 자동화 워크플로우를 만들 수 있습니다.</li></ul></aside><div class=\"post-audience\" style=\"font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;\">👤 이 글은 반복되는 업무를 줄이고 싶은 직장인과 AI 자동화에 관심 있는 분들을 위한 글입니다.</div><p>예전부터 궁금했던 주제예요.</p><br><p>n8n 같은 자동화 툴이 업무에 얼마나 도움이 될까 하고 말이죠.&nbsp;</p><p>처음엔 너무 어려울까 봐 망설였는데, 알고 보니 n8n npm 설치방법이 생각보다 간단하더라구요.&nbsp;</p><p>반복 업무를 줄이고 싶은 직장인이라면 꼭 한번 시도해볼 만하다고 생각합니다.</p><figure style=\"margin:32px 0 24px;\"><img src=\"/posts/thumbnails/thumb_20260514_223334.png\" alt=\"2026년 직장인 n8n npm 설치방법: 자동화 첫걸음\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@martinsanchez\" target=\"_blank\" style=\"color:#888;\">Martin Sanchez</a> on Unsplash</figcaption></figure><br><h2>n8n이 뭔지부터 알아보죠.</h2><br><p>n8n은 다양한 웹 서비스와 애플리케이션을 연결해 반복적인 업무를 자동화하는 로우코드/노코드 자동화 툴입니다. 코딩 지식이 없어도 드래그 앤 드롭 방식으로 워크플로우를 만들 수 있어요. 예를 들어, 특정 메일이 오면 자동으로 슬랙 메시지를 보내거나, 구글 시트의 데이터를 다른 서비스로 옮기는 작업 같은 것들이죠.</p><br><p>저도 매일 같이 엑셀 데이터를 복사해서 붙여넣거나, 특정 사이트에서 정보를 가져오는 단순 반복 업무에 시간을 많이 썼거든요. 이런 일을 n8n이 대신해준다면 하루 1시간 정도는 거뜬히 아낄 수 있겠다고 생각했습니다. 한 달이면 20시간이 넘는 시간이죠. 저는 이 시간을 자기계발이나 다른 부업에 투자하고 싶었습니다.</p><br><blockquote>포인트: 결국 단순 반복 업무를 코드 없이 자동으로 처리해주는 도구예요. 그게 핵심.</blockquote><br><figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1738107450281-45c52f7d06d0?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTV8&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080\" alt=\"A close up of a cell phone with a keyboard\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@solenfeyissa\" target=\"_blank\" style=\"color:#888;\">Solen Feyissa</a> on Unsplash</figcaption></figure><h2>n8n 설치, 왜 npm이 편할까요?</h2><br><p>npm은 Node.js 패키지 매니저의 줄임말입니다. 자바스크립트 기반의 프로젝트에서 필요한 라이브러리나 도구를 설치하고 관리하는 데 사용되죠. n8n은 Node.js 기반으로 개발되었기 때문에, npm을 이용하는 것이 가장 보편적이고 간단한 n8n npm 설치방법입니다. 저도 처음에 설치 방법을 찾아보다가 Docker 같은 복잡한 방식도 봤는데, npm이 제일 쉬워 보였어요.</p><br><p>npm으로 설치하면 n8n 실행에 필요한 모든 의존성을 자동으로 해결해줍니다. 별도로 신경 쓸 부분이 줄어드는 거죠. 중요한 건 Node.js와 npm이 컴퓨터에 미리 설치되어 있어야 한다는 점입니다. 보통 Node.js 설치 시 npm도 함께 설치되니 걱정할 필요는 없습니다. 다만, Node.js 16.x 이상, npm 8.x 이상 버전이 안정적으로 작동하더라구요. 제가 작년에 설치할 때는 Node.js 버전이 낮아서 한참 헤맸어요. 이것 때문에 밤을 새우는 직장인이 되지 않으려면, 꼭 미리 확인해야 합니다.</p><br><blockquote>포인트: npm은 n8n을 가장 쉽고 안정적으로 깔 수 있는 방법이거든요. Node.js 버전만 잘 확인하세요.</blockquote><br><figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1675627452858-0dd3d1df63d2?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTZ8&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080\" alt=\"a computer generated image of the word google\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@steve_j\" target=\"_blank\" style=\"color:#888;\">Steve A Johnson</a> on Unsplash</figcaption></figure><h2>n8n npm 설치방법, 이렇게 따라 해보세요</h2><br><p>n8n을 내 컴퓨터에 설치하고 실행하는 과정은 몇 가지 간단한 단계로 이루어져 있습니다. 아래 스텝을 차근차근 따라 하면 누구나 쉽게 n8n을 사용할 수 있어요. 진짜입니다.</p><br><p>저도 처음엔 명령어가 낯설어서 어려웠는데, 한번 해보니 별거 아니더라구요. 설치가 끝나면 웹 브라우저에서 익숙한 화면을 만날 수 있을 겁니다. 제가 작년에 설치했을 때도 이런 단계를 거쳤는데, 특히 마지막 웹 UI 접속 단계가 가장 설레더라구요. 이제 반복되는 일은 n8n에게 맡길 시간이죠.</p><br><blockquote>포인트: Node.js 설치하고, 명령어 두 개만 기억하면 끝! 생각보다 간단하죠.</blockquote><br><figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1649451844813-3130d6f42f8a?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzg3OTgwMTd8&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080\" alt=\"a laptop computer sitting on top of a table\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@hdbernd\" target=\"_blank\" style=\"color:#888;\">Bernd 📷 Dittrich</a> on Unsplash</figcaption></figure><h2>n8n, 처음 시작할 때 놓치기 쉬운 것들</h2><br><p>n8n을 설치했다고 바로 모든 업무가 자동화되는 건 아닙니다. 현실은 다르죠. 처음엔 간단한 워크플로우부터 만들어보면서 익숙해지는 게 중요합니다. 예를 들어, 매일 아침 특정 웹사이트의 뉴스를 가져와 슬랙으로 보내는 워크플로우 같은 것들이죠. 저는 처음에 너무 거창한 걸 하려다가 몇 번 포기할 뻔했어요.</p><br><p>또 하나, n8n은 로컬에서 실행할 수도 있지만, 계속 켜두려면 서버가 필요합니다. 만약 컴퓨터를 끄면 n8n도 멈추거든요. 그래서 저는 나중에 AWS나 다른 클라우드 환경으로 옮겼어요. 매달 5~10달러 정도면 작은 서버를 빌릴 수 있어서 부담도 적죠. 처음부터 클라우드에 설치하는 방법도 있지만, n8n npm 설치방법이 더 쉽고 접근성이 좋다고 생각합니다. 일단 로컬에서 충분히 익숙해진 다음에 클라우드 환경을 고려해보는 게 저한테는 더 좋더라구요.</p><br><blockquote>포인트: 간단한 것부터 시작하고, 장기적인 관점에선 클라우드 서버도 고려해보는 게 좋아요.</blockquote><section class=\"post-steps\" style=\"margin:36px 0 24px;\"><h2 style=\"margin-bottom:14px;\">단계별 가이드</h2><ol style=\"list-style:none;padding:0;margin:0;\"><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">1</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">1단계: Node.js 및 npm 설치 확인</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">명령 프롬프트(Windows)나 터미널(macOS/Linux)을 열고 `node -v`와 `npm -v`를 입력하여 Node.js와 npm이 설치되어 있는지, 그리고 버전이 충분한지 확인합니다. 만약 설치되어 있지 않다면, Node.js 공식 웹사이트에서 다운로드하여 설치해야 합니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">2</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">2단계: n8n 전역 설치</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">Node.js와 npm이 준비되었다면, 다음 명령어를 입력하여 n8n을 전역으로 설치합니다. 전역 설치는 어떤 디렉토리에서든 n8n 명령어를 사용할 수 있게 해줍니다. `npm install -g n8n`</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">3</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">3단계: n8n 실행</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">설치가 완료되면, 이제 n8n을 실행할 차례입니다. 터미널에 `n8n start` 명령어를 입력하세요. n8n 서버가 시작되고, 몇 초 후 'n8n started'와 같은 메시지가 보일 겁니다. 이 명령어를 통해 n8n이 백그라운드에서 계속 실행되도록 할 수도 있습니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">4</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">4단계: n8n 웹 UI 접속</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">n8n이 정상적으로 실행되면, 웹 브라우저를 열고 `http://localhost:5678` 주소로 접속합니다. 이 주소는 n8n의 기본 웹 인터페이스이며, 여기서 워크플로우를 생성하고 관리할 수 있습니다. 처음 접속하면 로그인 정보를 설정하는 화면이 나올 수 있습니다.</div></div></li></ol></section><br><br><section class=\"faq-section\" style=\"margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;\"><br><h2 style=\"margin-top:0;\">자주 묻는 질문</h2><br><div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n을 설치하기 전에 꼭 Node.js를 설치해야 하나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 네, n8n은 Node.js 기반으로 개발되었기 때문에 Node.js가 설치되어 있어야 n8n npm 설치방법을 사용할 수 있습니다. Node.js를 설치하면 npm도 함께 설치되니 한 번에 해결됩니다.</p></div><br><div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n npm 설치 시 '권한 오류'가 발생하면 어떻게 해야 하나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. macOS나 Linux 환경에서는 전역 설치 시 권한 오류가 발생할 수 있습니다. 이때는 명령어 앞에 `sudo`를 붙여 `sudo npm install -g n8n`으로 실행하거나, npm 권한 설정을 변경해야 합니다. 저는 `sudo`를 사용했어요.</p></div><br><div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n을 설치했는데 웹 UI에 접속이 안 돼요. 뭐가 문제일까요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 대부분 n8n 서버가 제대로 실행되지 않았거나, 포트 충돌이 원인입니다. 터미널에 `n8n start` 명령어를 다시 입력하여 서버가 시작되었는지 확인하고, 다른 프로그램이 5678번 포트를 사용 중인지 확인해보세요. 저도 비슷한 경험이 있어서 포트를 바꿔본 적도 있습니다.</p></div><br><div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n으로 어떤 업무를 자동화할 수 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. n8n은 이메일 처리, 파일 관리, 소셜 미디어 포스팅, 데이터베이스 연동, 보고서 생성 등 다양한 반복 업무를 자동화할 수 있습니다. API를 제공하는 대부분의 웹 서비스와 연결하여 나만의 워크플로우를 만들 수 있죠.</p></div><br><div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. n8n 외에 다른 자동화 툴도 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 네, Zapier, Make(구 Integromat), IFTTT 같은 다양한 자동화 툴들이 있습니다. 각각 장단점이 다르니, 본인의 사용 목적과 예산에 맞춰 비교해보는 것을 추천합니다. n8n은 직접 설치해서 사용하면 무료라는 점이 가장 큰 장점이에요.</p></div><br></section><br><section class=\"post-references\" style=\"margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;\"><h2 style=\"margin-top:0;margin-bottom:10px;font-size:18px;\">참고자료</h2><ul style=\"margin:0;padding-left:20px;\"><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://docs.n8n.io/\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">n8n 공식 문서</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://nodejs.org/\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Node.js 공식 웹사이트</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://docs.npmjs.com/\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">npm 공식 문서</a></li></ul><div style=\"margin-top:10px;font-size:12px;color:#888;\">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section>"
 }
