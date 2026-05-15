@@ -14,10 +14,10 @@
     "ETF"
   ],
   "created_at": "2026-05-14T22:36:54.852220",
-  "status": "scheduled",
+  "status": "published",
   "source": "auto",
   "scheduled_at": "2026-05-15T04:30:00.000Z",
-  "published_at": null,
+  "published_at": "2026-05-15T05:06:02.560Z",
   "has_image": true,
   "thumbnail": "/posts/thumbnails/thumb_20260514_223652.png",
   "has_faq": true,
