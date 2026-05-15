@@ -55,7 +55,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 92.0,
+    "seo_score": 92,
     "monthly_search": 10
   },
   {
@@ -133,7 +133,7 @@
       "Node.js"
     ],
     "created_at": "2026-05-14T22:33:37.506207",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
     "published_at": null,
@@ -200,7 +200,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 90.0,
+    "seo_score": 90,
     "monthly_search": 10
   },
   {
