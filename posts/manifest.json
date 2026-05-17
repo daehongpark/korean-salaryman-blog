@@ -213,10 +213,10 @@
       "주택도시기금"
     ],
     "created_at": "2026-05-16T22:33:49.754458",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-05-17T11:00:00.000Z",
-    "published_at": null,
+    "published_at": "2026-05-17T11:36:50.602Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260516_223346.png",
     "has_faq": true,
