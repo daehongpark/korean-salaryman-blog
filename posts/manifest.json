@@ -18,7 +18,7 @@
     "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-05-17T08:49:19.167Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260517_043719.png",
     "has_faq": true,
@@ -126,10 +126,10 @@
       "정부지원금"
     ],
     "created_at": "2026-05-16T22:39:13.759920",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-05-17T08:49:42.798Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260516_223911.png",
     "has_faq": true,
@@ -155,9 +155,9 @@
       "투자 전략"
     ],
     "created_at": "2026-05-16T22:36:01.714845",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-05-17T10:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260516_223558.png",
@@ -213,9 +213,9 @@
       "주택도시기금"
     ],
     "created_at": "2026-05-16T22:33:49.754458",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-05-17T11:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260516_223346.png",
@@ -339,7 +339,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 169,
+    "seo_score": 169.0,
     "monthly_search": 880
   },
   {
@@ -395,7 +395,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 169,
+    "seo_score": 169.0,
     "monthly_search": 930
   },
   {
@@ -422,7 +422,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 91,
+    "seo_score": 91.0,
     "monthly_search": null
   },
   {
@@ -448,7 +448,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 91,
+    "seo_score": 91.0,
     "monthly_search": null
   },
   {
@@ -468,16 +468,16 @@
     "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": "2026-05-17T08:43:24.147Z",
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260515_042248.png",
-    "has_faq": true,
-    "has_tldr": true,
+    "published_at": "2026-05-17T08:43:22.812Z",
+    "has_image": false,
+    "thumbnail": "",
+    "has_faq": false,
+    "has_tldr": false,
     "has_comparison": false,
-    "has_steps": true,
-    "has_references": true,
-    "seo_score": 166.4,
-    "monthly_search": 3270
+    "has_steps": false,
+    "has_references": false,
+    "seo_score": null,
+    "monthly_search": null
   },
   {
     "filename": "post_20260515_042148.json",
@@ -493,9 +493,9 @@
       "직장인 재테크"
     ],
     "created_at": "2026-05-15T04:21:48.783712",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-05-17T09:30:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260515_042145.png",
@@ -521,9 +521,9 @@
       "인공지능 활용"
     ],
     "created_at": "2026-05-15T04:20:44.001436",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-05-17T09:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260515_042041.png",
@@ -552,7 +552,7 @@
     "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-05-17T08:37:17.018Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260514_223914.png",
     "has_faq": true,
@@ -678,7 +678,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 90,
+    "seo_score": 90.0,
     "monthly_search": 10
   },
   {

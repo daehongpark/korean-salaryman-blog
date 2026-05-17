@@ -80,6 +80,52 @@ def _recent_keywords_from_manifest(days: int = 14) -> set:
         return set()
 
 
+# ── 의미 기반 cooldown ─────────────────────────────
+_CD_STOP_TOKENS = {
+    # 시간/연도
+    '2024', '2025', '2026', '2027', '올해', '내년', '작년', '최근',
+    # 직장인 블로그 일반
+    '직장인', '월급쟁이', '신청', '방법', '안내', '핵심', '활용', '대상', '조건',
+    '확인', '비교', '추천', '동결', '발표일', '계산기', '한국어', '사용법',
+    # 형식어
+    '이란', '관련', '시작', '시간', '회사', '업무',
+    # 너무 일반적인 영문
+    'ai', 'vs', 'npm', 'how', 'what', 'why',
+}
+
+
+def _extract_core_tokens(keyword: str) -> set:
+    """키워드에서 의미 토큰 추출. stop word 제거 + 어근 매칭."""
+    import re
+    if not keyword:
+        return set()
+    s = keyword.lower().strip()
+    en_tokens = set(re.findall(r'[a-z0-9]{2,}', s))
+    ko_tokens = set(re.findall(r'[가-힣]{2,}', s))
+    all_tokens = (en_tokens | ko_tokens) - _CD_STOP_TOKENS
+
+    # 어근 매칭: 긴 토큰의 prefix도 추가 (한글 합성어 매칭용)
+    expanded = set(all_tokens)
+    for t in list(all_tokens):
+        if len(t) >= 4:
+            for i in range(3, len(t)):
+                expanded.add(t[:i])
+    return expanded
+
+
+def _has_semantic_overlap(new_keyword: str, past_keywords) -> bool:
+    """새 키워드가 최근 키워드 중 하나라도 의미적으로 겹치는지."""
+    new_tokens = _extract_core_tokens(new_keyword)
+    if not new_tokens:
+        return False
+    for past_kw in past_keywords:
+        past_tokens = _extract_core_tokens(past_kw)
+        overlap = {t for t in (new_tokens & past_tokens) if len(t) >= 3}
+        if overlap:
+            return True
+    return False
+
+
 # ── 카테고리 정규화 (한글 키 / 미지의 키 → 영문 7개 키로 매핑) ──
 VALID_CATEGORIES = {"money", "ai", "startup", "finance", "realestate", "trending", "book"}
 FALLBACK_CATEGORY = "trending"  # 알 수 없는 카테고리 도착 시 보낼 곳
@@ -165,7 +211,7 @@ def get_keywords_for_today():
         seeds = KEYWORD_POOL.get(cat, [])
         if not seeds:
             continue
-        cooldown_seeds = [s for s in seeds if s not in recent_kws]
+        cooldown_seeds = [s for s in seeds if s not in recent_kws and not _has_semantic_overlap(s, recent_kws)]
         pick = random.choice(cooldown_seeds if cooldown_seeds else seeds)
         selected.append({"category": cat, "keyword": pick})
         recent_kws.add(pick)
@@ -244,9 +290,16 @@ def get_seo_optimized_keywords():
                         check_competition=False,
                     )
             
-            # 이미 선택된 키워드는 제외
-            available = [s for s in scored if s["keyword"] not in used_keywords]
-            
+            # 이미 선택된 키워드는 제외 (완전 일치 + 의미 매칭 둘 다 차단)
+            available = []
+            for s in scored:
+                kw = s["keyword"]
+                if kw in used_keywords:
+                    continue
+                if _has_semantic_overlap(kw, used_keywords):
+                    continue
+                available.append(s)
+
             if available:
                 top = available[0]
                 used_keywords.add(top["keyword"])
@@ -261,8 +314,8 @@ def get_seo_optimized_keywords():
                 })
                 print(f"   ✓ 선택: {top['keyword']} (SEO {top['score']}점)")
             else:
-                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용)
-                cooldown_seeds = [s for s in seed_pool if s not in used_keywords]
+                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용 + 의미 매칭)
+                cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords)]
                 kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
                 used_keywords.add(kw)
                 selected.append({"category": cat, "keyword": kw})
@@ -270,7 +323,7 @@ def get_seo_optimized_keywords():
 
         except Exception as e:
             print(f"   ⚠ SEO 분석 오류: {e} → 폴백")
-            cooldown_seeds = [s for s in seed_pool if s not in used_keywords]
+            cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords)]
             kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
             used_keywords.add(kw)
             selected.append({"category": cat, "keyword": kw})
@@ -1679,15 +1732,20 @@ def get_keywords_for_today_with_trends():
 
 # ── 메인 실행 ─────────────────────────────────────────
 def _already_ran_today():
-    """오늘 이미 글이 생성됐는지 확인. manifest에서 today 날짜로 created_at 매칭."""
+    """오늘 이미 글이 POSTS_PER_DAY만큼 생성됐는지 확인.
+    중복 cron(GitHub Actions schedule + cron-job.org) 동시 발동 시 두 번째 SKIP.
+    """
     today_str = datetime.now().strftime("%Y-%m-%d")
     manifest_path = Path(__file__).parent / "posts" / "manifest.json"
 
     if not manifest_path.exists():
         return False
 
-    with open(manifest_path, encoding='utf-8') as f:
-        manifest = json.load(f)
+    try:
+        with open(manifest_path, encoding='utf-8') as f:
+            manifest = json.load(f)
+    except Exception:
+        return False
 
     today_posts = [
         p for p in manifest
@@ -1695,14 +1753,32 @@ def _already_ran_today():
         and p.get('source') in (None, 'auto', 'cron')
     ]
 
-    target = int(os.getenv('POSTS_PER_DAY', '5'))
-    return len(today_posts) >= target
+    return len(today_posts) >= POSTS_PER_DAY
 
 
 def run_daily():
     if _already_ran_today():
-        print(f"[SKIP] 오늘 이미 {os.getenv('POSTS_PER_DAY', '5')}편 생성 완료 — 중복 실행 방지")
+        print(f"[SKIP] 오늘 이미 {POSTS_PER_DAY}편 생성 완료 — 다른 cron이 이미 실행했음")
         sys.exit(0)
+
+    # 디버그: 오늘 이미 만든 글 카테고리/키워드 출력
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    manifest_path = Path(__file__).parent / "posts" / "manifest.json"
+    if manifest_path.exists():
+        try:
+            with open(manifest_path, encoding='utf-8') as f:
+                manifest = json.load(f)
+            today_existing = [
+                p for p in manifest
+                if p.get('created_at', '').startswith(today_str)
+                and p.get('source') in (None, 'auto', 'cron')
+            ]
+            if today_existing:
+                print(f"[INFO] 오늘 이미 만든 글 {len(today_existing)}편 — 추가로 {POSTS_PER_DAY - len(today_existing)}편 생성")
+                for p in today_existing:
+                    print(f"  - {p.get('category','?')} | {p.get('keyword','?')}")
+        except Exception:
+            pass
 
     print(f"\n{'='*52}")
     print(f"  자동 글 생성 시작: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
@@ -1761,7 +1837,7 @@ def run_daily():
                 fallback_seeds = KEYWORD_POOL.get(item["category"], [])
                 recent_kws = _recent_keywords_from_manifest(days=14)
                 blocked = recent_kws | used_in_run
-                available = [s for s in fallback_seeds if s not in blocked]
+                available = [s for s in fallback_seeds if s not in blocked and not _has_semantic_overlap(s, blocked)]
                 if available:
                     import random
                     fb_kw = random.choice(available)
