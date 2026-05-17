@@ -128,9 +128,11 @@ CATEGORY_DATALAB_GROUPS = {
         {"groupName": "부동산세제",  "keywords": ["DSR 규제", "양도세 비과세", "취득세"]},
     ],
     "trending": [
-        {"groupName": "정책시행",    "keywords": ["2026 정책", "세법 개정", "최저임금"]},
-        {"groupName": "금융이슈",    "keywords": ["기준금리", "스트레스 DSR", "예금자보호"]},
-        {"groupName": "근무제도",    "keywords": ["주4일제", "유연근무", "재택근무"]},
+        {"groupName": "커리어이직",  "keywords": ["연봉 인상률", "이직", "성과급", "경력직"]},
+        {"groupName": "직장문화",    "keywords": ["MZ세대 직장", "회식 문화", "주4일제", "재택근무"]},
+        {"groupName": "건강번아웃",  "keywords": ["직장인 번아웃", "직장인 운동", "직장인 정신건강"]},
+        {"groupName": "가족정책",    "keywords": ["육아휴직", "맞벌이 세금", "신혼부부 정책"]},
+        {"groupName": "정책핫이슈",  "keywords": ["2026 정책", "세법 개정", "연말정산"]},
     ],
     # book은 트렌드 추적 의미 낮음 (장기 콘텐츠) → 카테고리 매핑 제외
 }

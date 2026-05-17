@@ -56,6 +56,105 @@ except ImportError as _e:
     LEGACY_CATEGORY_MAP = {}
 
 
+# ── 자료조사 (필요 카테고리/키워드에만 발동) ───────
+RESEARCH_TRIGGER_CATS = {'money', 'finance', 'realestate', 'trending', 'ai'}
+RESEARCH_TRIGGER_PATTERNS = [
+    '2026', '2027', '정책', '제도', '법', '금리', '발표', '시행', '개정',
+    '신청', '지원금', '버전', '출시', '업데이트', '신기능',
+]
+
+
+def _should_do_research(category: str, keyword: str) -> bool:
+    """자료조사 발동 여부 판단. book은 자동 글 자체가 만들어지지 않으므로 여기 진입 X."""
+    if category in RESEARCH_TRIGGER_CATS:
+        return True
+    kw_lower = (keyword or "").lower()
+    for pattern in RESEARCH_TRIGGER_PATTERNS:
+        if pattern.lower() in kw_lower:
+            return True
+    return False
+
+
+def _research_keyword(category: str, keyword: str) -> str:
+    """Gemini에 사전 자료조사 요청. 최신 정책/뉴스/통계/도구 정보 수집."""
+    if not GEMINI_API_KEY:
+        return ""
+
+    if category == 'ai':
+        research_prompt = (
+            f"다음 AI 도구/기술에 대해 글을 쓰기 전 자료조사를 합니다. 가장 핵심 정보만 간결하게:\n\n"
+            f"키워드: {keyword}\n\n"
+            "다음 형식으로 답변 (각 항목 2-3문장씩, 모르는 건 '데이터 없음'으로):\n"
+            "1. 도구/기술의 최신 버전 + 주요 기능 (2026년 기준)\n"
+            "2. 구체적 수치 (가격, 토큰 한도, 응답 속도, 정확도 비교) 3-5개\n"
+            "3. 자주 헷갈리는 점 / 흔한 오해 (예: ChatGPT vs Claude 차이, 무료 vs 유료 한계) 2개\n"
+            "4. 실제 사용 시 함정 또는 알아둘 점 (속도 저하 시점, 오류 케이스) 1-2개\n"
+            "5. 관련 공식 출처 URL 2-3개 (제조사 문서, 공식 블로그 등)\n\n"
+            "추측보다 사실 위주. 박대홍 직장인 블로그용이라 실용성 우선."
+        )
+    else:
+        research_prompt = (
+            f"다음 키워드에 대해 글을 쓰기 전 자료조사를 합니다. 가장 핵심 정보만 간결하게:\n\n"
+            f"키워드: {keyword}\n"
+            f"카테고리: {category}\n\n"
+            "다음 형식으로 답변 (각 항목 2-3문장씩, 모르는 건 '데이터 없음'으로):\n"
+            "1. 최신 정책/제도 핵심 (시행일, 변경점)\n"
+            "2. 구체적 숫자 (금액, 비율, 조건치) 3-5개\n"
+            "3. 자주 헷갈리는 점 / 흔한 오해 2개\n"
+            "4. 신청/적용 시 함정 또는 예외 케이스 1-2개\n"
+            "5. 관련 공식 출처 URL 2-3개\n\n"
+            "추측보다 사실 위주."
+        )
+
+    url = (
+        "https://generativelanguage.googleapis.com/v1beta/models/"
+        f"gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
+    )
+    payload = {
+        "contents": [{"parts": [{"text": research_prompt}]}],
+        "generationConfig": {"temperature": 0.3, "topP": 0.9, "maxOutputTokens": 1200},
+    }
+    try:
+        r = requests.post(url, headers={"Content-Type": "application/json"},
+                          json=payload, timeout=45)
+        if r.status_code != 200:
+            print(f"   [자료조사 API {r.status_code}]")
+            return ""
+        data = r.json()
+        text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
+        if text and len(text) > 100:
+            return text
+    except Exception as e:
+        print(f"   [자료조사 실패] {e}")
+    return ""
+
+
+# ── 박스 헤더 풀 (★ 매 글 다른 헤더 라운드로빈) ─────
+STEPS_HEADER_POOL = [
+    "단계별 가이드",
+    "이렇게 하면 됩니다",
+    "신청 흐름 정리",
+    "실제 진행 순서",
+    "차근차근 따라가 보세요",
+]
+
+FAQ_HEADER_POOL = [
+    "자주 묻는 질문",
+    "독자들이 많이 물어보는 거",
+    "Q&A 정리",
+    "이건 더 궁금하실 텐데",
+    "헷갈리는 부분 정리",
+]
+
+REFERENCES_HEADER_POOL = [
+    "참고자료",
+    "참고한 자료",
+    "공식 출처",
+    "더 깊이 보고 싶다면",
+    "근거 자료",
+]
+
+
 def _recent_keywords_from_manifest(days: int = 14) -> set:
     """manifest에서 최근 N일 발행/예약/draft 글의 키워드를 set으로 반환."""
     import datetime
@@ -152,7 +251,8 @@ def _pick_balanced_categories(n: int) -> list:
     """
     import random
     import datetime
-    cats    = list(KEYWORD_POOL.keys())
+    # ★ book은 자동 글 생성 제외 (박대홍 5/17 결정 - 박대홍 직접 작성)
+    cats    = [c for c in KEYWORD_POOL.keys() if c != 'book']
     weights = [CATEGORY_BALANCE.get(c, 1.0 / len(cats)) for c in cats]
 
     # 최근 14일 카테고리 분포 확인
@@ -248,6 +348,11 @@ def get_seo_optimized_keywords():
 
     # 카테고리는 균형 발행 비율로 선택
     picked_cats   = _pick_balanced_categories(POSTS_PER_DAY)
+    # ★ 이중 안전망: book이 어떤 경로로든 섞이지 않게 (5/17 박대홍 결정)
+    picked_cats = [c for c in picked_cats if c != 'book']
+    while len(picked_cats) < POSTS_PER_DAY:
+        other_cats = [c for c in KEYWORD_POOL.keys() if c != 'book']
+        picked_cats.append(random.choice(other_cats))
     selected      = []
     used_keywords = _recent_keywords_from_manifest(days=14)
     if used_keywords:
@@ -897,8 +1002,23 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None) -> s
     # ── 오늘 날짜 (업데이트 표기용) ─────
     today_str = datetime.now().strftime("%Y년 %m월 %d일")
 
+    # ── 자료조사 (조건부 발동) ─────
+    research_block = ""
+    if _should_do_research(category, keyword):
+        print(f"   [자료조사 발동] {category} / {keyword}")
+        research_data = _research_keyword(category, keyword)
+        if research_data:
+            research_block = (
+                "\n\n═══════════════════════════════════════════════════════\n"
+                "[사전 자료조사 결과] — 이 정보를 글에 녹여서 깊이 있는 내용으로 작성하라.\n"
+                "출처 미상의 내용은 \"공식 자료 확인 필요\"로 처리하고, 구체적 숫자/조건은 그대로 활용.\n"
+                + research_data + "\n"
+                "═══════════════════════════════════════════════════════\n\n"
+            )
+            print(f"   [자료조사 완료] {len(research_data)}자 자료 주입")
+
     # ── main_template에 placeholder 치환 ─────
-    return (T["main_template"]
+    rendered = (T["main_template"]
         .replace("<<BLOG_TITLE>>", BLOG_TITLE)
         .replace("<<CATEGORY>>", category)
         .replace("<<KEYWORD>>", keyword)
@@ -911,6 +1031,8 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None) -> s
         .replace("<<TONE_EXAMPLES>>", T["tone_examples"])
         .replace("<<OFFICIAL_LINK_BLOCK>>", official_link_block)
     )
+    # 자료조사 블록은 본문 작성 지시 앞에 prepend (가장 먼저 참고하도록)
+    return research_block + rendered if research_block else rendered
 
 
 # ── Gemini API 호출 ───────────────────────────────────
@@ -1272,6 +1394,7 @@ def _build_comparison_html(table) -> str:
 
 def _build_steps_html(steps) -> str:
     """단계별 가이드 HTML. [{title, desc}, ...] 구조."""
+    import random
     if not steps or not isinstance(steps, list):
         return ""
     valid = [s for s in steps if isinstance(s, dict) and s.get("title")]
@@ -1295,9 +1418,10 @@ def _build_steps_html(steps) -> str:
             '</div>'
             '</li>'
         )
+    header = random.choice(STEPS_HEADER_POOL)
     return (
         '<section class="post-steps" style="margin:36px 0 24px;">'
-        '<h2 style="margin-bottom:14px;">단계별 가이드</h2>'
+        f'<h2 style="margin-bottom:14px;">{header}</h2>'
         f'<ol style="list-style:none;padding:0;margin:0;">{"".join(items)}</ol>'
         '</section>'
     )
@@ -1348,8 +1472,99 @@ def _build_chart_html(chart_data) -> str:
     )
 
 
+def _extract_numbers_from_content(content: str) -> dict:
+    """본문에서 차트로 그릴 만한 숫자 추출."""
+    import re
+    text = re.sub(r'<[^>]+>', ' ', content)
+    won_pattern = re.findall(r'([\w가-힣\s]{2,15}?)[은는이가:\s]+([\d,]+)\s*만원', text)
+    eok_pattern = re.findall(r'([\w가-힣\s]{2,15}?)[은는이가:\s]+([\d,.]+)\s*억', text)
+    pct_pattern = re.findall(r'([\w가-힣\s]{2,15}?)[은는이가:\s]+([\d.]+)\s*%', text)
+    rate_pattern = re.findall(r'(금리|이자율|수익률)[은는이가도\s]+([\d.]+)\s*%', text)
+    return {
+        'won': won_pattern[:6],
+        'eok': eok_pattern[:6],
+        'pct': pct_pattern[:6],
+        'rate': rate_pattern[:6],
+    }
+
+
+def _build_dynamic_chart_html(category: str, content: str) -> str:
+    """본문 숫자 추출 → 카테고리에 맞는 차트 자동 생성. 데이터 부족 시 빈 문자열."""
+    extracted = _extract_numbers_from_content(content)
+
+    chart_id = f"autoChart_{datetime.now().strftime('%H%M%S%f')[:-3]}"
+    chart_type = None
+    labels = []
+    data = []
+    title = ""
+
+    if category == 'money' and extracted['won']:
+        chart_type = 'bar'
+        for label, amount in extracted['won'][:5]:
+            try:
+                val = int(amount.replace(',', ''))
+                if val < 10000:
+                    labels.append(label.strip()[:15])
+                    data.append(val)
+            except Exception:
+                pass
+        title = "주요 금액 비교 (만원)"
+
+    elif category == 'finance':
+        targets = extracted['rate'] or extracted['pct']
+        if targets:
+            chart_type = 'bar'
+            for label, val in targets[:5]:
+                try:
+                    v = float(val)
+                    if v < 50:
+                        labels.append(label.strip()[:15])
+                        data.append(v)
+                except Exception:
+                    pass
+            title = "수치 비교 (%)"
+
+    elif category == 'realestate' and extracted['eok']:
+        chart_type = 'bar'
+        for label, amount in extracted['eok'][:5]:
+            try:
+                val = float(amount.replace(',', ''))
+                if val < 30:
+                    labels.append(label.strip()[:15])
+                    data.append(val)
+            except Exception:
+                pass
+        title = "주요 한도/금액 (억원)"
+
+    if not chart_type or len(data) < 2:
+        return ""
+
+    chart_html = (
+        '<div class="post-chart-wrapper" style="margin:24px 0;padding:16px;background:#fafbfc;border-radius:8px;">'
+        f'<h3 style="margin-top:0;font-size:16px;color:#1a2640;">📊 {title}</h3>'
+        '<div style="position:relative;height:300px;">'
+        f'<canvas id="{chart_id}"></canvas>'
+        '</div></div>'
+        '<script>(function(){'
+        'if (typeof Chart === "undefined") return;'
+        f'var ctx = document.getElementById("{chart_id}");'
+        'if (!ctx) return;'
+        f'new Chart(ctx, {{type:"{chart_type}",'
+        f'data:{{labels:{json.dumps(labels, ensure_ascii=False)},'
+        f'datasets:[{{label:"{title}",data:{json.dumps(data)},'
+        'backgroundColor:["#1a2640","#2563eb","#0ea5e9","#10b981","#f59e0b"],'
+        'borderColor:"#1a2640",borderWidth:1}]},'
+        'options:{responsive:true,maintainAspectRatio:false,'
+        'plugins:{legend:{display:false}},'
+        'scales:{y:{beginAtZero:true}}}});'
+        '})();</script>'
+    )
+    return chart_html
+
+
 def _build_references_html(refs) -> str:
     """참고자료 섹션. [{label, url}, ...] 구조. GEO 신뢰도 핵심."""
+    import random
     if not refs or not isinstance(refs, list):
         return ""
     valid = [r for r in refs if isinstance(r, dict) and r.get("url")]
@@ -1366,10 +1581,11 @@ def _build_references_html(refs) -> str:
             f'style="color:#1a2640;text-decoration:underline;">{label}</a>'
             f'</li>'
         )
+    refs_header = random.choice(REFERENCES_HEADER_POOL)
     return (
         '<section class="post-references" style="margin:36px 0 16px;'
         'padding:18px 22px;background:#fafafa;border-radius:8px;">'
-        '<h2 style="margin-top:0;margin-bottom:10px;font-size:18px;">참고자료</h2>'
+        f'<h2 style="margin-top:0;margin-bottom:10px;font-size:18px;">{refs_header}</h2>'
         f'<ul style="margin:0;padding-left:20px;">{"".join(items)}</ul>'
         '<div style="margin-top:10px;font-size:12px;color:#888;">'
         '※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.'
@@ -1449,14 +1665,22 @@ def finalize_article(article: dict, hero_image: dict | None = None, body_images:
         + _build_audience_html(target_audience)
     )
     chart_data = article.get("chart") or {}
+    # 동적 차트 (본문 숫자 자동 추출). LLM 차트가 비어 있고 카테고리가 적합하면 강제 삽입.
+    dynamic_chart_html = ""
+    if not (chart_data and chart_data.get("type")):
+        dynamic_chart_html = _build_dynamic_chart_html(article.get("category", ""), body_html)
+        if dynamic_chart_html:
+            print(f"   [차트] {article.get('category','?')} → 동적 차트 자동 삽입")
+
     post_html = (
         _build_comparison_html(comparison_table)
         + _build_chart_html(chart_data)
+        + dynamic_chart_html
         + _build_steps_html(steps)
     )
     refs_html = _build_references_html(references)
 
-    # 최종 content 조립: [배지+TL;DR+대상] + [본문(이미지 포함)] + [비교표+단계] + [FAQ는 아래에서 추가] + [참고자료]
+    # 최종 content 조립: [배지+TL;DR+대상] + [본문(이미지 포함)] + [비교표+차트+단계] + [FAQ는 아래에서 추가] + [참고자료]
     article["content"] = pre_html + body_html + post_html
     # references는 FAQ 뒤로 보낼 예정 → 잠시 보관
     article["_references_html"] = refs_html
@@ -1504,7 +1728,8 @@ def finalize_article(article: dict, hero_image: dict | None = None, body_images:
             article["faq"] = clean_faq
             # FAQ HTML을 content 뒤에 추가
             faq_html = ['\n<section class="faq-section" style="margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;">']
-            faq_html.append('<h2 style="margin-top:0;">자주 묻는 질문</h2>')
+            import random as _faq_random
+            faq_html.append(f'<h2 style="margin-top:0;">{_faq_random.choice(FAQ_HEADER_POOL)}</h2>')
             for q_item in clean_faq:
                 faq_html.append(
                     f'<div style="margin:20px 0;">'
