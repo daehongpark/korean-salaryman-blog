@@ -1642,7 +1642,11 @@ def finalize_article(article: dict, hero_image: dict | None = None, body_images:
     if not article:
         return None
 
-    article["created_at"] = datetime.now().isoformat()
+    # KST 기준 naive ISO 저장 (예: "2026-05-18T07:30:00.123456")
+    # GitHub Actions가 UTC라서 datetime.now() 그대로 쓰면 KST 기준 날짜가 어긋남.
+    from datetime import timezone as _tz, timedelta as _td
+    _KST = _tz(_td(hours=9))
+    article["created_at"] = datetime.now(_KST).replace(tzinfo=None).isoformat()
     article["status"]     = "published" if AUTO_PUBLISH else "draft"
     article.setdefault("source", "auto")
 
@@ -1959,8 +1963,11 @@ def get_keywords_for_today_with_trends():
 def _already_ran_today():
     """오늘 이미 글이 POSTS_PER_DAY만큼 생성됐는지 확인.
     중복 cron(GitHub Actions schedule + cron-job.org) 동시 발동 시 두 번째 SKIP.
+    KST 기준 "오늘" 판정 — GitHub Actions가 UTC라서 datetime.now() 그대로 쓰면 안 됨.
     """
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    from datetime import timezone, timedelta, datetime as _dt
+    KST = timezone(timedelta(hours=9))
+    today_str = datetime.now(KST).strftime("%Y-%m-%d")
     manifest_path = Path(__file__).parent / "posts" / "manifest.json"
 
     if not manifest_path.exists():
@@ -1972,11 +1979,29 @@ def _already_ran_today():
     except Exception:
         return False
 
-    today_posts = [
-        p for p in manifest
-        if p.get('created_at', '').startswith(today_str)
-        and p.get('source') in (None, 'auto', 'cron')
-    ]
+    today_posts = []
+    for p in manifest:
+        if p.get('source') not in (None, 'auto', 'cron'):
+            continue
+        created = p.get('created_at', '')
+        if not created:
+            continue
+        try:
+            # 시간대 정보 있는 ISO (Z 또는 +/-HH:MM): 그대로 파싱 후 KST 변환
+            if created.endswith('Z') or '+' in created[10:] or '-' in created[10:]:
+                ts = _dt.fromisoformat(created.replace('Z', '+00:00'))
+            else:
+                # naive datetime: KST로 가정 (한국 운영 블로그).
+                # 본 fix 이후 글은 KST naive 저장. 과거 글은 사실 UTC naive지만,
+                # KST로 가정하면 "5/17 UTC 22:30 = KST 5/18 07:30" 같은 글이
+                # "5/17 KST"로 매핑되어 새 cron이 SKIP되지 않고 정상 실행됨.
+                ts = _dt.fromisoformat(created).replace(tzinfo=KST)
+            ts_kst = ts.astimezone(KST)
+            if ts_kst.strftime("%Y-%m-%d") == today_str:
+                today_posts.append(p)
+        except Exception:
+            if created.startswith(today_str):
+                today_posts.append(p)
 
     return len(today_posts) >= POSTS_PER_DAY
 
@@ -1986,16 +2011,29 @@ def run_daily():
         print(f"[SKIP] 오늘 이미 {POSTS_PER_DAY}편 생성 완료 — 다른 cron이 이미 실행했음")
         sys.exit(0)
 
-    # 디버그: 오늘 이미 만든 글 카테고리/키워드 출력
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    # 디버그: 오늘(KST) 이미 만든 글 카테고리/키워드 출력
+    from datetime import timezone as _tz_dbg, timedelta as _td_dbg, datetime as _dt_dbg
+    _KST_DBG = _tz_dbg(_td_dbg(hours=9))
+    today_str = datetime.now(_KST_DBG).strftime("%Y-%m-%d")
     manifest_path = Path(__file__).parent / "posts" / "manifest.json"
     if manifest_path.exists():
         try:
             with open(manifest_path, encoding='utf-8') as f:
                 manifest = json.load(f)
+            def _is_today_kst(created: str) -> bool:
+                if not created:
+                    return False
+                try:
+                    if created.endswith('Z') or '+' in created[10:] or '-' in created[10:]:
+                        ts = _dt_dbg.fromisoformat(created.replace('Z', '+00:00'))
+                    else:
+                        ts = _dt_dbg.fromisoformat(created).replace(tzinfo=_KST_DBG)
+                    return ts.astimezone(_KST_DBG).strftime("%Y-%m-%d") == today_str
+                except Exception:
+                    return created.startswith(today_str)
             today_existing = [
                 p for p in manifest
-                if p.get('created_at', '').startswith(today_str)
+                if _is_today_kst(p.get('created_at', ''))
                 and p.get('source') in (None, 'auto', 'cron')
             ]
             if today_existing:
