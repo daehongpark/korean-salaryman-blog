@@ -125,10 +125,10 @@
       "이직준비"
     ],
     "created_at": "2026-05-19T07:34:28.708214",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-05-19T10:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-05-19T10:33:29.666Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260518_223427.png",
     "has_faq": true,
