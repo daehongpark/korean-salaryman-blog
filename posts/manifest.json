@@ -771,9 +771,9 @@
       "머니"
     ],
     "created_at": "2026-05-23T07:37:37.018327",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-05-28T21:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260522_223734.png",
