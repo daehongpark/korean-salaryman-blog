@@ -275,7 +275,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 102.0,
+    "seo_score": 102,
     "monthly_search": 10
   },
   {
@@ -303,7 +303,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 110.0,
+    "seo_score": 110,
     "monthly_search": 750
   },
   {
@@ -389,7 +389,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 110.0,
+    "seo_score": 110,
     "monthly_search": 1340
   },
   {
@@ -421,7 +421,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
@@ -443,7 +443,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
@@ -810,7 +810,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 73.0,
+    "seo_score": 73,
     "monthly_search": 5400
   },
   {
@@ -953,7 +953,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 143.0,
+    "seo_score": 143,
     "monthly_search": 400
   },
   {
@@ -979,7 +979,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 72.0,
+    "seo_score": 72,
     "monthly_search": 10
   },
   {
@@ -1092,7 +1092,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 94.0,
+    "seo_score": 94,
     "monthly_search": 10
   },
   {
@@ -1266,33 +1266,6 @@
     "has_references": false,
     "seo_score": 114.4,
     "monthly_search": 4060
-  },
-  {
-    "filename": "post_20260518_223701.json",
-    "title": "2026 청년정책 신청, 직장인이라면 헷갈리는 5가지 (혜택부터)",
-    "category": "money",
-    "keyword": "2026 청년정책 신청",
-    "summary": "2026 청년정책 신청에 대한 직장인 박대홍의 실전 경험을 공개합니다.",
-    "tags": [
-      "2026 청년정책 신청",
-      "money",
-      "직장인",
-      "부업"
-    ],
-    "created_at": "2026-05-19T07:37:01.571358",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260518_223658.png",
-    "has_faq": false,
-    "has_tldr": false,
-    "has_comparison": false,
-    "has_steps": false,
-    "has_references": false,
-    "seo_score": null,
-    "monthly_search": null
   },
   {
     "filename": "post_20260518_223428.json",
