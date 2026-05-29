@@ -52,7 +52,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
@@ -82,7 +82,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 110.0,
+    "seo_score": 110,
     "monthly_search": 1380
   },
   {
@@ -197,7 +197,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 130.0,
+    "seo_score": 130,
     "monthly_search": 25
   },
   {
@@ -327,10 +327,10 @@
       "복지로"
     ],
     "created_at": "2026-05-28T07:36:15.535966",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-05-29T06:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-05-29T06:36:15.604Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260527_223611.png",
     "has_faq": true,
@@ -383,10 +383,10 @@
       "재테크"
     ],
     "created_at": "2026-05-26T07:39:07.339497",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-05-29T05:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-05-29T06:36:15.604Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260525_223904.png",
     "has_faq": true,
@@ -412,10 +412,10 @@
       "비상금 통장"
     ],
     "created_at": "2026-05-26T07:37:57.878401",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-05-29T03:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-05-29T06:36:15.604Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260525_223756.png",
     "has_faq": true,
