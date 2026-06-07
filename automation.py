@@ -117,6 +117,10 @@ def _research_keyword(category: str, keyword: str) -> str:
     try:
         r = requests.post(url, headers={"Content-Type": "application/json"},
                           json=payload, timeout=45)
+        if r.status_code == 429:
+            # 크레딧 소진/rate 제한이면 자료조사 건너뜀 (본문 생성은 계속)
+            print("   [자료조사] 크레딧/rate 제한 → 자료조사 생략")
+            return ""
         if r.status_code != 200:
             print(f"   [자료조사 API {r.status_code}]")
             return ""
@@ -1069,6 +1073,15 @@ def generate_article(category: str, keyword: str, seo_meta: dict | None = None) 
             if r.status_code == 503:
                 print("   서버 과부하, 재시도...")
                 continue
+            if r.status_code == 429:
+                msg = data.get("error", {}).get("message", "")
+                # 크레딧 소진은 영구 오류 → 재시도 무의미, 즉시 중단
+                if "credit" in msg.lower() or "depleted" in msg.lower() or "quota" in msg.lower() or "billing" in msg.lower():
+                    print(f"   🚨 크레딧/쿼터 소진 (재시도 무의미): {msg[:120]}")
+                    raise RuntimeError(f"GEMINI_CREDITS_DEPLETED: {msg[:200]}")
+                # 일반 rate limit은 잠깐 대기 후 재시도
+                print(f"   rate limit, 대기 후 재시도...")
+                continue
             if r.status_code != 200:
                 msg = data.get("error", {}).get("message", "")
                 print(f"   API 오류 ({r.status_code}): {msg}")
@@ -1115,6 +1128,8 @@ def generate_article(category: str, keyword: str, seo_meta: dict | None = None) 
             print(f"   JSON 파싱 오류: {e}")
         except (KeyError, IndexError):
             print("   응답 형식 오류, 재시도...")
+        except RuntimeError:
+            raise  # 크레딧 소진 등 영구 오류 → 재시도 없이 상위(run_daily)에서 처리
         except Exception as e:
             print(f"   오류: {e}")
 
@@ -2087,13 +2102,20 @@ def run_daily():
 
         # 글 생성 (재시도 1회)
         article = None
-        for attempt in range(2):
-            article = generate_article(item["category"], kw, seo_meta)
-            if article:
-                break
-            if attempt == 0:
-                print(f"   글 생성 실패 → 30초 후 재시도")
-                time.sleep(30)
+        try:
+            for attempt in range(2):
+                article = generate_article(item["category"], kw, seo_meta)
+                if article:
+                    break
+                if attempt == 0:
+                    print(f"   글 생성 실패 → 30초 후 재시도")
+                    time.sleep(30)
+        except RuntimeError as e:
+            if "GEMINI_CREDITS_DEPLETED" in str(e):
+                print(f"\n   🚨 Gemini 크레딧 소진 — 자동 글 생성 중단. AI Studio 충전 필요.")
+                print(f"   (지금까지 생성된 글은 정상 저장됨)")
+                break  # 더 시도해도 다 실패하므로 루프 전체 중단
+            raise
 
         if not article:
             print(f"   ⚠ 글 생성 최종 실패: {kw} → 폴백 키워드 추가")

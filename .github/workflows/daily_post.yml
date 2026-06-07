@@ -20,10 +20,11 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 90   # hang 시 6시간 러너 낭비 방지 (정상 5편 ≈ 60분)
 
     steps:
       - name: 저장소 체크아웃
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GH_PAT }}
 
