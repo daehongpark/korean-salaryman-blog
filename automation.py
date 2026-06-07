@@ -251,7 +251,7 @@ def normalize_category(cat: str) -> str:
 def _pick_balanced_categories(n: int) -> list:
     """
     CATEGORY_BALANCE 비율을 가중치로 카테고리 n개 선택.
-    같은 카테고리 연속 쏠림 방지 + 최근 14일 결손 카테고리 강제 보충.
+    같은 카테고리 연속 쏠림 방지 + 최근 7일(주간 쿼터) 결손 카테고리 강제 보충.
     """
     import random
     import datetime
@@ -259,12 +259,12 @@ def _pick_balanced_categories(n: int) -> list:
     cats    = [c for c in KEYWORD_POOL.keys() if c != 'book']
     weights = [CATEGORY_BALANCE.get(c, 1.0 / len(cats)) for c in cats]
 
-    # 최근 14일 카테고리 분포 확인
+    # 최근 7일(주간 쿼터) 카테고리 분포 확인
     deficit_cats = []
     try:
         if MANIFEST_PATH.exists():
             manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-            cutoff = (datetime.datetime.now() - datetime.timedelta(days=14)).strftime("%Y%m%d")
+            cutoff = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y%m%d")
             recent_posts = [
                 p for p in manifest
                 if p.get("filename", "").startswith("post_")
@@ -357,6 +357,35 @@ def get_seo_optimized_keywords():
     while len(picked_cats) < POSTS_PER_DAY:
         other_cats = [c for c in KEYWORD_POOL.keys() if c != 'book']
         picked_cats.append(random.choice(other_cats))
+
+    # ── 트렌드 주제 사전 수집 (2-B) ──
+    # 실패(503/빈배열/예외)해도 기존 시드→SEO 로직 100% 폴백
+    trend_topics_by_cat = {}
+    TREND_CATS = {"finance", "ai", "money", "realestate", "trending"}
+    try:
+        needed = set(c for c in picked_cats if c in TREND_CATS)
+        if needed:
+            from trend_pipeline import fetch_category_news, convert_trends_to_topics
+            _recent_for_trend = _recent_keywords_from_manifest(days=14)
+            for tcat in needed:
+                try:
+                    news = fetch_category_news(tcat, limit=10)
+                    if news:
+                        topics = convert_trends_to_topics(tcat, news, max_topics=3)
+                        fresh = [
+                            t for t in topics
+                            if t.get("topic")
+                            and t["topic"] not in _recent_for_trend
+                            and not _has_semantic_overlap(t["topic"], _recent_for_trend)
+                        ]
+                        if fresh:
+                            trend_topics_by_cat[tcat] = fresh
+                            print(f"   [트렌드] {tcat}: {len(fresh)}개 주제 확보")
+                except Exception as e:
+                    print(f"   [트렌드] {tcat} 수집 실패 (시드풀 폴백): {e}")
+    except Exception as e:
+        print(f"   [트렌드] 전체 비활성 (기존 로직): {e}")
+
     selected      = []
     used_keywords = _recent_keywords_from_manifest(days=14)
     if used_keywords:
@@ -368,6 +397,22 @@ def get_seo_optimized_keywords():
         seed_pool = KEYWORD_POOL.get(cat, [])
         if not seed_pool:
             continue
+
+        # ── 트렌드 주제 우선 (2-B) ──
+        if trend_topics_by_cat.get(cat):
+            t = trend_topics_by_cat[cat].pop(0)
+            topic_kw = t["topic"]
+            if topic_kw not in used_keywords and not _has_semantic_overlap(topic_kw, used_keywords):
+                used_keywords.add(topic_kw)
+                selected.append({
+                    "category": cat,
+                    "keyword":  topic_kw,
+                    "seo_meta": None,
+                    "trend_source": t.get("source_news", ""),
+                    "trend_angle":  t.get("angle", ""),
+                })
+                print(f"   ✓ [트렌드 채택] {cat}: {topic_kw}")
+                continue
 
         # 시드는 카테고리당 3~5개 랜덤 선택 (너무 많으면 API 호출 과다)
         seeds = random.sample(seed_pool, min(4, len(seed_pool)))
@@ -909,7 +954,7 @@ _PROMPT_TEMPLATE = _load_prompt_template()
 _PERSONA_TONE = _PROMPT_TEMPLATE["persona"]
 
 
-def build_prompt(category: str, keyword: str, seo_meta: dict | None = None) -> str:
+def build_prompt(category: str, keyword: str, seo_meta: dict | None = None, trend_source: str = "", trend_angle: str = "") -> str:
     """
     2026 전략 기반 SEO+AEO+GEO 통합 프롬프트.
 
@@ -1038,14 +1083,33 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None) -> s
         .replace("<<TONE_EXAMPLES>>", T["tone_examples"])
         .replace("<<OFFICIAL_LINK_BLOCK>>", official_link_block)
     )
+    # ── 트렌드 맥락 + 2026 GEO 강화 블록 (2-B) ─────
+    trend_block = ""
+    if trend_source:
+        trend_block = (
+            "\n[실시간 트렌드 맥락 — 지금 왜 화제인가]\n"
+            f"근거 뉴스: {trend_source}\n"
+            f"독자 가치: {trend_angle}\n"
+            "→ 도입부에서 시의성을 자연스럽게 녹일 것. 단 뉴스를 그대로 옮기지 말고 직장인 관점으로 재해석.\n"
+        )
+    geo_block = (
+        "\n[2026 검색최적화 필수 (SEO/GEO/AEO)]\n"
+        "1. 신선도: '2026년 기준' 등 최신 시점 명시 (GEO 핵심).\n"
+        "2. 패시지 최적화: 각 H2는 독립적으로 하나의 질문에 완결된 답. 섹션만 떼도 이해되게.\n"
+        "3. 답 먼저: 각 섹션은 결론을 먼저, 설명을 뒤에 (AI 인용 용이).\n"
+        "4. 구체 수치/출처: 막연한 표현 금지. 금액/비율/조건 구체적으로.\n"
+        "5. EEAT: 1인칭 경험으로 경험성, 정확한 정보로 신뢰성.\n"
+    )
+
     # 자료조사 블록은 본문 작성 지시 앞에 prepend (가장 먼저 참고하도록)
-    return research_block + rendered if research_block else rendered
+    final_prompt = research_block + rendered if research_block else rendered
+    return final_prompt + trend_block + geo_block
 
 
 # ── Gemini API 호출 ───────────────────────────────────
-def generate_article(category: str, keyword: str, seo_meta: dict | None = None) -> dict | None:
+def generate_article(category: str, keyword: str, seo_meta: dict | None = None, trend_source: str = "", trend_angle: str = "") -> dict | None:
     category = normalize_category(category)
-    prompt = build_prompt(category, keyword, seo_meta)
+    prompt = build_prompt(category, keyword, seo_meta, trend_source=trend_source, trend_angle=trend_angle)
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
         f"gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
@@ -2100,11 +2164,14 @@ def run_daily():
         seo_info = f" [SEO {seo_meta['score']}점]" if seo_meta else ""
         print(f"\n[{i}/{target_count}] {item['category']} — {kw}{seo_info}")
 
-        # 글 생성 (재시도 1회)
+        # 글 생성 (재시도 1회) + 시간 측정
         article = None
+        _t_start = time.time()
         try:
             for attempt in range(2):
-                article = generate_article(item["category"], kw, seo_meta)
+                article = generate_article(item["category"], kw, seo_meta,
+                                           trend_source=item.get("trend_source", ""),
+                                           trend_angle=item.get("trend_angle", ""))
                 if article:
                     break
                 if attempt == 0:
@@ -2134,6 +2201,10 @@ def run_daily():
             except Exception as e:
                 print(f"   [경고] 폴백 실패: {e}")
             continue
+
+        _elapsed = time.time() - _t_start
+        _is_trend = " [트렌드]" if item.get("trend_source") else ""
+        print(f"   ⏱ 글 생성 {_elapsed:.0f}초{_is_trend}")
 
         # SEO 메타 정보를 article에 보존
         if seo_meta:
