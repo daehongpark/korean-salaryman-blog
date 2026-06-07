@@ -406,7 +406,10 @@ def get_seo_optimized_keywords():
                 available.append(s)
 
             if available:
-                top = available[0]
+                import random as _rnd
+                pool = available[:20]
+                weights = [max(it.get("score", 1) or 1, 1) ** 0.5 for it in pool]
+                top = _rnd.choices(pool, weights=weights, k=1)[0]
                 used_keywords.add(top["keyword"])
                 selected.append({
                     "category": cat,
@@ -417,7 +420,7 @@ def get_seo_optimized_keywords():
                         "competition":   top.get("competition"),
                     },
                 })
-                print(f"   ✓ 선택: {top['keyword']} (SEO {top['score']}점)")
+                print(f"   ✓ 선택: {top['keyword']} (SEO {top['score']}점, 상위 {len(pool)}개 중 가중랜덤)")
             else:
                 # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용 + 의미 매칭)
                 cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords)]
