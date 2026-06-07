@@ -201,24 +201,39 @@ def convert_trends_to_topics(category: str, news_items: list, max_topics: int = 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.7, "topP": 0.9, "maxOutputTokens": 1500},
+        "generationConfig": {
+            "temperature": 0.7,
+            "topP": 0.9,
+            # 2.5-flash는 thinking 토큰이 출력 한도에 포함됨 → 넉넉하게
+            "maxOutputTokens": 4000,
+            "responseMimeType": "application/json",
+        },
     }
-    try:
-        import requests as _rq
-        r = _rq.post(url, headers={"Content-Type": "application/json"}, json=payload, timeout=45)
-        if r.status_code != 200:
-            print(f"   [트렌드변환 API {r.status_code}]")
+    import requests as _rq
+    import time as _time
+    for attempt in range(3):
+        try:
+            r = _rq.post(url, headers={"Content-Type": "application/json"}, json=payload, timeout=45)
+            if r.status_code in (429, 500, 503):
+                # 과부하/일시 오류 → 백오프 재시도 (503 스파이크는 보통 수십 초 내 해소)
+                print(f"   [트렌드변환 API {r.status_code}] 재시도 {attempt+1}/3")
+                _time.sleep(8 * (attempt + 1))
+                continue
+            if r.status_code != 200:
+                print(f"   [트렌드변환 API {r.status_code}]")
+                return []
+            text = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+            # JSON 추출 (```json 감싸진 경우 제거)
+            text = re.sub(r"^```(?:json)?\s*", "", text)
+            text = re.sub(r"\s*```$", "", text).strip()
+            topics = _json.loads(text)
+            if isinstance(topics, list):
+                valid = [t for t in topics if isinstance(t, dict) and t.get("topic")]
+                return valid[:max_topics]
             return []
-        text = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-        # JSON 추출 (```json 감싸진 경우 제거)
-        text = re.sub(r"^```(?:json)?\s*", "", text)
-        text = re.sub(r"\s*```$", "", text).strip()
-        topics = _json.loads(text)
-        if isinstance(topics, list):
-            valid = [t for t in topics if isinstance(t, dict) and t.get("topic")]
-            return valid[:max_topics]
-    except Exception as e:
-        print(f"   [트렌드변환 실패] {e}")
+        except Exception as e:
+            print(f"   [트렌드변환 실패] {e}")
+            _time.sleep(3)
     return []
 
 
