@@ -1139,13 +1139,18 @@ function ghHeaders() {
 async function _ghRetry(fn, opts = {}) {
   const maxAttempts = opts.maxAttempts || 4;
   const baseDelay = opts.baseDelay || 1000;
+  const skipStatuses = opts.skipStatuses || [];
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       return await fn();
     } catch (e) {
       const status = e._status || 0;
-      const isRetryable = (status === 429) || (status >= 500 && status < 600) || (status === 409) || (status === 422) || (status === 0);
+      // skipStatuses에 있으면 즉시 throw (호출자가 직접 처리 - 예: sha 갱신)
+      if (skipStatuses.includes(status)) {
+        throw e;
+      }
+      const isRetryable = (status === 429) || (status >= 500 && status < 600) || (status === 0);
 
       if (!isRetryable || attempt === maxAttempts) {
         throw e;
@@ -1187,71 +1192,140 @@ async function ghGet(path) {
 
 async function ghPut(path, content, sha, message) {
   if (!ghToken) throw new Error('GitHub Token이 없습니다. 설정에서 Token을 입력해주세요.');
-  return _ghRetry(async () => {
-    const body = {
-      message,
-      content: btoa(unescape(encodeURIComponent(content))),
-      branch: GH_BRANCH
-    };
-    if (sha) body.sha = sha;
-    const res = await _fetchGh(`${GH_API}/${path}`, {
-      method: 'PUT',
-      headers: ghHeaders(),
-      body: JSON.stringify(body)
-    });
-    return res.json();
-  });
+
+  const encodedContent = btoa(unescape(encodeURIComponent(content)));
+  let currentSha = sha;
+  const maxShaRetries = 5;
+
+  for (let attempt = 1; attempt <= maxShaRetries; attempt++) {
+    try {
+      const body = { message, content: encodedContent, branch: GH_BRANCH };
+      if (currentSha) body.sha = currentSha;
+
+      // _ghRetry로 네트워크/rate-limit 재시도 (단 409/422는 여기서 안 잡고 바깥에서 sha 갱신)
+      const res = await _ghRetry(async () => {
+        return await _fetchGh(`${GH_API}/${path}`, {
+          method: 'PUT',
+          headers: ghHeaders(),
+          body: JSON.stringify(body)
+        });
+      }, { skipStatuses: [409, 422] });
+      return res.json();
+
+    } catch (e) {
+      const status = e._status || 0;
+      // 409(충돌) 또는 422(sha 불일치) → 최신 sha 다시 받아서 재시도
+      if ((status === 409 || status === 422) && attempt < maxShaRetries) {
+        console.warn(`[ghPut] sha 충돌(${status}) → 최신 sha 재조회 후 재시도 (${attempt}/${maxShaRetries})`);
+        try {
+          const fresh = await ghGet(path);
+          currentSha = fresh.sha;
+        } catch (getErr) {
+          // 파일이 없으면(404) sha 없이 생성 시도
+          if (getErr._status === 404) {
+            currentSha = null;
+          } else {
+            throw getErr;
+          }
+        }
+        // 짧은 대기 후 재시도
+        await new Promise(r => setTimeout(r, 300 + Math.random() * 400));
+        continue;
+      }
+      throw e;
+    }
+  }
+  throw new Error(`ghPut 실패: ${path} (sha 충돌 ${maxShaRetries}회 초과)`);
 }
 
 async function ghDelete(path, sha, message) {
   if (!ghToken) throw new Error('GitHub Token이 없습니다. 설정에서 Token을 입력해주세요.');
-  return _ghRetry(async () => {
-    const res = await _fetchGh(`${GH_API}/${path}`, {
-      method: 'DELETE',
-      headers: ghHeaders(),
-      body: JSON.stringify({message, sha, branch: GH_BRANCH})
-    });
-    return res.json();
-  });
+
+  let currentSha = sha;
+  const maxShaRetries = 5;
+
+  for (let attempt = 1; attempt <= maxShaRetries; attempt++) {
+    try {
+      const res = await _ghRetry(async () => {
+        return await _fetchGh(`${GH_API}/${path}`, {
+          method: 'DELETE',
+          headers: ghHeaders(),
+          body: JSON.stringify({ message, sha: currentSha, branch: GH_BRANCH })
+        });
+      }, { skipStatuses: [409, 422] });
+      return res.json();
+
+    } catch (e) {
+      const status = e._status || 0;
+      if ((status === 409 || status === 422) && attempt < maxShaRetries) {
+        console.warn(`[ghDelete] sha 충돌(${status}) → 최신 sha 재조회 후 재시도 (${attempt}/${maxShaRetries})`);
+        try {
+          const fresh = await ghGet(path);
+          currentSha = fresh.sha;
+        } catch (getErr) {
+          if (getErr._status === 404) {
+            // 이미 삭제됨 → 성공으로 간주
+            return { deleted: true };
+          }
+          throw getErr;
+        }
+        await new Promise(r => setTimeout(r, 300 + Math.random() * 400));
+        continue;
+      }
+      throw e;
+    }
+  }
+  throw new Error(`ghDelete 실패: ${path} (sha 충돌 ${maxShaRetries}회 초과)`);
 }
 
 // ── manifest.json 동기화 헬퍼 ─────────────────────────
 // action: 'upsert' | 'remove' | 'updateStatus'
 // 파일 작업 성공 후 호출. manifest 동기화 실패 시 toast + throw (호출 측이 처리해야 함)
 async function syncManifest(action, filename, postData) {
-  try {
-    const mfFile = await ghGet(`${POSTS_PATH}/manifest.json`);
-    const mfRaw  = decodeURIComponent(escape(atob(mfFile.content.replace(/\n/g, ''))));
-    let mfArr    = JSON.parse(mfRaw);
-    const idx    = mfArr.findIndex(e => e.filename === filename);
+  // manifest는 cron과 가장 자주 충돌 → 전체 read-modify-write를 재시도로 감쌈
+  const maxRetries = 5;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const mfFile = await ghGet(`${POSTS_PATH}/manifest.json`);
+      const mfRaw  = decodeURIComponent(escape(atob(mfFile.content.replace(/\n/g, ''))));
+      let mfArr    = JSON.parse(mfRaw);
+      const idx    = mfArr.findIndex(e => e.filename === filename);
 
-    if (action === 'remove') {
-      if (idx < 0) return; // 이미 없음
-      mfArr.splice(idx, 1);
-    } else if (action === 'upsert') {
-      if (idx >= 0) {
-        mfArr[idx] = { ...mfArr[idx], ...postData, filename };
+      if (action === 'remove') {
+        if (idx < 0) return;
+        mfArr.splice(idx, 1);
+      } else if (action === 'upsert') {
+        if (idx >= 0) {
+          mfArr[idx] = { ...mfArr[idx], ...postData, filename };
+        } else {
+          mfArr.unshift({ ...postData, filename });
+        }
+      } else if (action === 'updateStatus') {
+        if (idx < 0) return;
+        mfArr[idx].status = postData.status;
       } else {
-        mfArr.unshift({ ...postData, filename });
+        throw new Error(`unknown syncManifest action: ${action}`);
       }
-    } else if (action === 'updateStatus') {
-      if (idx < 0) return;
-      mfArr[idx].status = postData.status;
-    } else {
-      throw new Error(`unknown syncManifest action: ${action}`);
-    }
 
-    const newContent = JSON.stringify(mfArr, null, 2);
-    await ghPut(
-      `${POSTS_PATH}/manifest.json`,
-      newContent,
-      mfFile.sha,
-      `manifest sync (${action}): ${filename}`
-    );
-  } catch (e) {
-    console.error('manifest sync 실패:', e);
-    showToast('manifest 동기화 실패: ' + e.message, 'error');
-    throw e;
+      const newContent = JSON.stringify(mfArr, null, 2);
+      // ghPut에 방금 받은 mfFile.sha 전달 (self-healing이 충돌 시 갱신)
+      await ghPut(
+        `${POSTS_PATH}/manifest.json`,
+        newContent,
+        mfFile.sha,
+        `manifest sync (${action}): ${filename}`
+      );
+      return; // 성공
+    } catch (e) {
+      if (attempt < maxRetries && (e._status === 409 || e._status === 422)) {
+        console.warn(`[syncManifest] 충돌 → 전체 재시도 (${attempt}/${maxRetries})`);
+        await new Promise(r => setTimeout(r, 300 + Math.random() * 500));
+        continue;
+      }
+      console.error('manifest sync 실패:', e);
+      showToast('manifest 동기화 실패: ' + e.message, 'error');
+      throw e;
+    }
   }
 }
 
