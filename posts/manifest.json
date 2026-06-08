@@ -395,9 +395,9 @@
       "부업"
     ],
     "created_at": "2026-06-03T07:46:18.435162",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-06-09T01:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260602_224616.png",
