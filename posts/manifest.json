@@ -314,9 +314,9 @@
       "연말정산"
     ],
     "created_at": "2026-06-04T07:38:49.009012",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-06-09T02:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260603_223846.png",
