@@ -476,10 +476,10 @@
       "생성형 AI"
     ],
     "created_at": "2026-06-01T07:39:59.536744",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-06-08T21:00:00.000Z",
-    "published_at": null,
+    "published_at": "2026-06-08T21:44:51.967Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260531_223957.png",
     "has_faq": true,
