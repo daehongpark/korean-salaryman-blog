@@ -83,6 +83,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://koreansalaryman.com/post.html?id=post_20260607_223601.json</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://koreansalaryman.com/post.html?id=post_20260607_131914.json</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -91,6 +97,30 @@
   <url>
     <loc>https://koreansalaryman.com/post.html?id=post_20260607_125607.json</loc>
     <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koreansalaryman.com/post.html?id=post_20260607_123709.json</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koreansalaryman.com/post.html?id=post_20260607_122550.json</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koreansalaryman.com/post.html?id=post_20260603_223849.json</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://koreansalaryman.com/post.html?id=post_20260603_223628.json</loc>
+    <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
