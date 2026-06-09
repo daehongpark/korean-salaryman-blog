@@ -200,7 +200,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 10
   },
   {
@@ -371,10 +371,10 @@
       "realestate"
     ],
     "created_at": "2026-06-08T07:37:18.725779",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-06-09T21:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-06-09T23:12:19.763Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260607_223715.png",
     "has_faq": true,
@@ -460,10 +460,10 @@
       "자산 배분"
     ],
     "created_at": "2026-06-07T21:59:16.503297",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-06-09T22:00:00.000Z",
-    "published_at": null,
+    "published_at": "2026-06-09T23:12:19.763Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260607_125914.png",
     "has_faq": true,
