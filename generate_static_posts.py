@@ -283,6 +283,16 @@ def build_page(template, post, filename, manifest_entry):
     init_js = STATIC_INIT % {"filename": filename, "category": esc_attr(category)}
     doc = doc[:mi] + init_js + doc[si:]
 
+    # 14) 상대경로 → 절대경로 (정적본은 /p/ 하위라 상대경로 깨짐)
+    rel_pages = ["index.html", "blog.html", "about.html", "class.html",
+                 "challenge.html", "income.html", "privacy.html", "terms.html"]
+    for page in rel_pages:
+        doc = doc.replace('href="%s' % page, 'href="/%s' % page)
+    # fetch 경로 절대화 (작은따옴표/큰따옴표/백틱 모두)
+    doc = doc.replace("fetch('./posts/", "fetch('/posts/")
+    doc = doc.replace('fetch("./posts/', 'fetch("/posts/')
+    doc = doc.replace("fetch(`./posts/", "fetch(`/posts/")
+
     return pid, doc
 
 
