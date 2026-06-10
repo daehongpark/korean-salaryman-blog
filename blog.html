@@ -531,7 +531,7 @@ function renderPosts(){
       ? `<span class="seo-badge" title="SEO 점수">⚡ ${Math.round(p.seo_score)}</span>` : '';
     
     html += `
-      <a class="post-card" href="/p/${p.filename.replace(/\.json$/,'.html')}">
+      <a class="post-card" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
         <div class="post-thumb-box">
           ${thumbnail 
             ? `<img src="${escapeHtml(thumbnail)}" alt="${escapeHtml(p.title||'')}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">

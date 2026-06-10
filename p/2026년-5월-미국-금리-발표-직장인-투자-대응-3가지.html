@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── Primary SEO (JS로 동적 업데이트) ── -->
+<title>2026년 5월 미국 금리 발표, 직장인 투자 대응 3가지 | 직장인 수익일기</title>
+<meta name="description" content="2026년 5월 미국 금리 발표는 직장인 투자자에게 중요한 변곡점입니다. 금리 결정뿐 아니라 연준의 경제 전망과 점도표를 함께 보며 시장의 기대와 연준의 실제 스탠스 사이 괴리를 인지하는 것이 핵심입니다. | 직장인 수익일기">
+<meta name="author" content="박대홍">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://koreansalaryman.com/p/2026년-5월-미국-금리-발표-직장인-투자-대응-3가지.html" id="canonicalTag">
+
+<!-- ── Open Graph (JS로 동적 업데이트) ── -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="직장인 수익일기">
+<meta property="og:title" content="2026년 5월 미국 금리 발표, 직장인 투자 대응 3가지 | 직장인 수익일기" id="ogTitle">
+<meta property="og:description" content="2026년 5월 미국 금리 발표는 직장인 투자자에게 중요한 변곡점입니다. 금리 결정뿐 아니라 연준의 경제 전망과 점도표를 함께 보며 시장의 기대와 연준의 실제 스탠스 사이 괴리를 인지하는 것이 핵심입니다. | 직장인 수익일기" id="ogDesc">
+<meta property="og:url" content="https://koreansalaryman.com/p/2026년-5월-미국-금리-발표-직장인-투자-대응-3가지.html" id="ogUrl">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://koreansalaryman.com/posts/thumbnails/thumb_20260526_223733.png" id="ogImage">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://koreansalaryman.com/posts/thumbnails/thumb_20260526_223733.png" id="twImage">
+<meta property="article:author" content="박대홍">
+<meta property="article:published_time" content="2026-05-27T07:37:35.369847" id="ogPublished">
+<meta property="article:section" content="finance" id="ogSection">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2026년 5월 미국 금리 발표, 직장인 투자 대응 3가지 | 직장인 수익일기" id="twTitle">
+<meta name="twitter:description" content="2026년 5월 미국 금리 발표는 직장인 투자자에게 중요한 변곡점입니다. 금리 결정뿐 아니라 연준의 경제 전망과 점도표를 함께 보며 시장의 기대와 연준의 실제 스탠스 사이 괴리를 인지하는 것이 핵심입니다. | 직장인 수익일기" id="twDesc">
+<meta name="twitter:site" content="@koreansalaryman">
+
+<!-- ── 검색엔진 인증 ── -->
+<meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI">
+<meta name="naver-site-verification" content="ad5bce9f4de14cbe7ccf111ca46b1114e52a25ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Chart.js (defer to avoid blocking; charts initialize via DOMContentLoaded inside post body) -->
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;
+  --bg:#f8f7f4;
+  --bg2:#f0ede8;
+  --navy:#1a2640;
+  --navy2:#253352;
+  --point:#c17f3e;
+  --point-light:#f5ead8;
+  --point2:#2d6a4f;
+  --text1:#1a1a1a;
+  --text2:#444444;
+  --text3:#888888;
+  --border:#e8e4de;
+  --border2:#d4cfc8;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* ── Header ─────────────────────────────────────── */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8.5px;color:var(--text3);letter-spacing:0.2em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-sub{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:background 0.15s;}
+.btn-sub:hover{background:var(--navy2);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu a:hover{background:var(--bg);color:var(--navy);}
+.mobile-menu .btn-sub{margin-top:8px;justify-content:center;border-radius:8px;}
+
+/* ── Post Hero ───────────────────────────────────── */
+.post-hero{background:var(--navy);padding:56px 24px 64px;position:relative;overflow:hidden;}
+.post-hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;}
+.post-hero-glow{position:absolute;right:-200px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
+.post-hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.post-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.post-breadcrumb a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.15s;}
+.post-breadcrumb a:hover{color:rgba(255,255,255,0.8);}
+.post-breadcrumb span{font-size:12px;color:rgba(255,255,255,0.25);}
+.post-cat-pill{display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 14px;border-radius:4px;letter-spacing:0.15em;margin-bottom:16px;}
+.post-hero h1{font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;color:var(--white);line-height:1.35;letter-spacing:-0.02em;margin-bottom:20px;}
+.post-hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.post-hero-author{display:flex;align-items:center;gap:10px;}
+.post-author-avatar{width:32px;height:32px;border-radius:50%;background:var(--point);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;color:var(--white);}
+.post-author-name{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500;}
+.post-meta-divider{width:1px;height:12px;background:rgba(255,255,255,0.15);}
+.post-meta-info{font-size:12px;color:rgba(255,255,255,0.4);}
+
+/* ── Layout ──────────────────────────────────────── */
+.post-layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 280px;gap:52px;}
+
+/* ── Article ─────────────────────────────────────── */
+.article-wrap{min-width:0;}
+.article-summary{background:var(--point-light);border:1px solid rgba(193,127,62,0.2);border-radius:12px;padding:20px 24px;margin-bottom:40px;}
+.article-summary-label{font-size:10px;font-weight:700;color:var(--point);letter-spacing:0.2em;margin-bottom:8px;}
+.article-summary p{font-size:14px;color:var(--text2);line-height:1.85;font-weight:400;}
+.article-body{color:var(--text1);font-size:16px;line-height:1.95;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);}
+.article-body p:first-child{font-size:17px;color:var(--text1);font-weight:400;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:40px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:14px 20px;border-radius:0 10px 10px 0;margin:20px 0;font-size:14px;color:var(--text2);line-height:1.8;}
+.article-body figure{margin:28px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:420px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:6px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0;}
+.article-body li{margin-bottom:8px;color:var(--text2);}
+.article-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
+.article-tag{font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:20px;font-weight:500;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;margin-top:40px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.15s;}
+.back-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+/* ── 조회수 & 공유 바 ── */
+.post-meta-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.post-view-count{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);}
+.post-view-icon{font-size:14px;}
+.share-btns{display:flex;align-items:center;gap:8px;}
+.share-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:0.08em;margin-right:4px;}
+.share-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;text-decoration:none;}
+.share-btn.kakao{background:#FEE500;color:#3C1E1E;}
+.share-btn.kakao:hover{background:#f5dc00;}
+.share-btn.twitter{background:#1DA1F2;color:#fff;}
+.share-btn.twitter:hover{background:#1a91da;}
+.share-btn.copy{background:var(--bg2);color:var(--text2);}
+.share-btn.copy:hover{background:var(--border2);}
+
+/* ── 댓글 섹션 ── */
+.comments-section{margin-top:52px;padding-top:40px;border-top:2px solid var(--border);}
+.comments-title{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px;}
+.comment-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:32px;}
+.comment-form-row{display:flex;gap:12px;margin-bottom:12px;}
+.comment-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;}
+.comment-input:focus{border-color:var(--navy);background:var(--white);}
+.comment-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);min-height:100px;resize:vertical;transition:border 0.15s;margin-bottom:10px;}
+.comment-textarea:focus{border-color:var(--navy);background:var(--white);}
+.comment-submit{background:var(--navy);color:var(--white);border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.comment-submit:hover{background:var(--navy2);}
+.comment-list{display:flex;flex-direction:column;gap:16px;}
+.comment-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.comment-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.comment-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--white);flex-shrink:0;}
+.comment-name{font-size:13px;font-weight:700;color:var(--text1);}
+.comment-date{font-size:11px;color:var(--text3);margin-left:auto;}
+.comment-text{font-size:13px;color:var(--text2);line-height:1.8;}
+.comment-empty{text-align:center;padding:32px;color:var(--text3);font-size:13px;}
+
+/* ── 타이포그래피 개선 ── */
+.article-body{color:var(--text1);font-size:16px;line-height:2.0;letter-spacing:-0.01em;}
+.article-body>p:first-child{font-size:18px;line-height:1.9;color:var(--text1);font-weight:400;margin-bottom:2em;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);word-break:keep-all;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:44px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:32px 0 14px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:16px 22px;border-radius:0 10px 10px 0;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.85;font-style:italic;}
+.article-body figure{margin:32px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:440px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:8px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0 24px;}
+.article-body li{margin-bottom:10px;color:var(--text2);line-height:1.8;}
+.article-body strong{color:var(--text1);font-weight:700;}
+
+/* ── 이전/다음 글 ── */
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;}
+.post-nav-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:all 0.15s;display:block;}
+.post-nav-item:hover{border-color:var(--point);transform:translateY(-2px);}
+.post-nav-label{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:0.1em;margin-bottom:6px;}
+.post-nav-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* 사이드바 개선 */
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+
+/* ── 2026 신규 글 구조 (TL;DR / 비교표 / 단계 / 참고자료) ── */
+.article-body .post-tldr{margin:0 0 28px !important;}
+.article-body .post-tldr ul{padding-left:20px !important;margin:0 !important;}
+.article-body .post-comparison{margin:36px 0 24px !important;}
+.article-body .post-comparison table{font-size:14px;}
+.article-body .post-steps ol{padding:0 !important;list-style:none !important;}
+.article-body .post-steps li{margin-bottom:14px !important;}
+.article-body .post-references{margin:36px 0 16px !important;}
+.article-body .post-references ul{margin:0 !important;}
+.article-body .post-references li{margin:8px 0 !important;}
+
+@media(max-width:768px){
+  .post-meta-bar{padding:12px 0;}
+  .share-btns{flex-wrap:wrap;}
+  .comment-form-row{flex-direction:column;}
+  .post-nav{grid-template-columns:1fr;}
+  /* 신규 글 구조 모바일 최적화 */
+  .article-body .post-tldr{padding:14px 16px !important;font-size:14px;}
+  .article-body .post-comparison{overflow-x:auto !important;}
+  .article-body .post-comparison table{min-width:520px;}
+  .article-body .post-steps li{padding:12px !important;}
+  .article-body .post-audience{font-size:12px !important;}
+}
+
+/* ── Sidebar ─────────────────────────────────────── */
+.sidebar{display:flex;flex-direction:column;gap:20px;}
+.widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.wg-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.wg-top h3{font-size:12px;font-weight:700;color:var(--text1);letter-spacing:0.08em;}
+.wg-body{padding:16px 18px;}
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;background:var(--bg);color:var(--text2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-weight:500;}
+.nl-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
+.nl-input{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;margin-bottom:8px;}
+.nl-input:focus{border-color:var(--navy);background:var(--white);}
+.nl-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nl-btn:hover{background:var(--navy2);}
+.rel-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);text-decoration:none;}
+.rel-item:last-child{border-bottom:none;}
+.rel-dot{width:6px;height:6px;border-radius:50%;background:var(--point);flex-shrink:0;margin-top:7px;}
+.rel-title{font-size:12.5px;color:var(--text1);font-weight:500;line-height:1.55;transition:color 0.15s;}
+.rel-title:hover{color:var(--point);}
+.rel-cat{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{background:var(--navy);padding:48px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7;}
+.ft-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.ft-links{display:flex;gap:16px;}
+.ft-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.15s;}
+.ft-links a:hover{color:rgba(255,255,255,0.8);}
+.ft-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ── Skeleton / Error ────────────────────────────── */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.error-box{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:60px 40px;text-align:center;}
+.error-box h2{font-size:20px;color:var(--text1);margin-bottom:12px;}
+.error-box p{font-size:14px;color:var(--text3);margin-bottom:24px;}
+
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .mobile-menu.open{display:flex!important;}
+  .hd{padding:0 16px;}
+  .post-hero{padding:40px 16px 52px;}
+  .post-hero h1{font-size:24px;}
+  .post-layout{grid-template-columns:1fr!important;padding:28px 16px;gap:32px;}
+  .article-body{font-size:15px;}
+  .ft{flex-direction:column;align-items:flex-start;gap:24px;}
+  .ft-right{align-items:flex-start;}
+  .ft-links{flex-wrap:wrap;}
+}
+</style>
+<!-- ── Google Analytics 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D0W7QRLMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D0W7QRLMD', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "2026년 5월 미국 금리 발표, 직장인 투자 대응 3가지", "description": "2026년 5월 미국 금리 발표는 직장인 투자자에게 중요한 변곡점입니다. 금리 결정뿐 아니라 연준의 경제 전망과 점도표를 함께 보며 시장의 기대와 연준의 실제 스탠스 사이 괴리를 인지하는 것이 핵심입니다. | 직장인 수익일기", "url": "https://koreansalaryman.com/p/2026년-5월-미국-금리-발표-직장인-투자-대응-3가지.html", "datePublished": "2026-05-27T07:37:35.369847", "dateModified": "2026-05-27T07:37:35.369847", "author": {"@type": "Person", "name": "박대홍", "url": "https://koreansalaryman.com/about.html"}, "publisher": {"@type": "Organization", "name": "직장인 수익일기", "url": "https://koreansalaryman.com"}, "keywords": "미국 금리 발표일 5월, FOMC, 직장인 투자, 금리 전망, 재테크", "articleSection": "finance", "inLanguage": "ko-KR", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://koreansalaryman.com/p/2026년-5월-미국-금리-발표-직장인-투자-대응-3가지.html"}}</script>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <a href="/index.html" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <div class="desktop-nav">
+      <a href="/blog.html">블로그</a>
+      <a href="/challenge.html">챌린지</a>
+      <a href="/income.html">수익 공개</a>
+      <a href="/about.html">소개</a>
+      <a href="/class.html">강의</a>
+      <div class="nav-divider"></div>
+      <a href="/index.html#newsletter" class="btn-sub">구독하기</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/blog.html">블로그</a>
+  <a href="/challenge.html">챌린지</a>
+  <a href="/income.html">수익 공개</a>
+  <a href="/about.html">소개</a>
+  <a href="/class.html">강의</a>
+  <a href="/index.html#newsletter" class="btn-sub">구독하기</a>
+</div>
+
+<!-- 포스트 헤더 (JS로 채워짐) -->
+<script>window.__PRERENDERED__ = true;</script>
+<div id="postHero" class="post-hero" style="display:block">
+  <div class="post-hero-texture"></div>
+  <div class="post-hero-glow"></div>
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="/index.html">홈</a>
+      <span>›</span>
+      <span id="heroCat">finance</span>
+    </div>
+    <div id="heroCatPill" class="post-cat-pill">finance</div>
+    <h1 id="heroTitle">2026년 5월 미국 금리 발표, 직장인 투자 대응 3가지</h1>
+    <div class="post-hero-meta">
+      <div class="post-hero-author">
+        <div class="post-author-avatar">박</div>
+        <span class="post-author-name">박대홍</span>
+      </div>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroDate">2026년 5월 27일</span>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroReadTime">읽는 시간 25분</span>
+    </div>
+  </div>
+</div>
+
+<!-- 스켈레톤 로딩 -->
+<div id="loadingSkeleton" style="max-width:1080px;margin:40px auto;padding:0 24px;display:none;">
+  <div class="skeleton" style="height:200px;margin-bottom:20px;border-radius:12px;"></div>
+  <div class="skeleton" style="height:24px;width:60%;margin-bottom:12px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;width:80%;"></div>
+</div>
+
+<!-- 포스트 본문 -->
+<div id="postLayout" class="post-layout" style="display:grid">
+  <article class="article-wrap">
+    <div class="article-summary" id="articleSummary"><div class="article-summary-label">SUMMARY</div><p>2026년 5월 미국 금리 발표는 직장인 투자자에게 중요한 변곡점입니다. 금리 결정뿐 아니라 연준의 경제 전망과 점도표를 함께 보며 시장의 기대와 연준의 실제 스탠스 사이 괴리를 인지하는 것이 핵심입니다.</p></div>
+    <div class="article-body" id="articleBody"><div class="post-updated" style="text-align:right;font-size:12px;color:#999;margin:0 0 12px;">📅 2026.05.27 업데이트</div><aside class="post-tldr" style="background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;"><div style="font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;">한눈에 보기</div><ul style="margin:0;padding-left:20px;color:#1a2640;font-size:15px;"><li style="margin:6px 0;line-height:1.6;">2026년 5월 미국 FOMC 금리 발표는 글로벌 금융 시장의 주요 변동 요인입니다.</li><li style="margin:6px 0;line-height:1.6;">금리 동결, 인상, 인하 각 시나리오별로 내 주식, 채권, 예금 포트폴리오에 미칠 영향을 미리 파악해야 합니다.</li><li style="margin:6px 0;line-height:1.6;">직장인 투자자라면 단기 변동에 일희일비하기보다 연준의 진짜 의도를 파악하고 장기적 관점에서 포트폴리오를 점검하는 것이 중요합니다.</li></ul></aside><div class="post-audience" style="font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;">👤 이 글은 월급 200~400만원을 받는 직장인 초·중급 투자자를 위한 글입니다</div><p>정확히 알아두면 도움 됩니다. 미국 금리 발표, 왠지 모르게 어렵고 나와는 상관없는 이야기 같죠. 저도 처음엔 그랬습니다. 매번 뉴스에 FOMC 이야기가 나오면 '아, 또 뭔가 중요한가 보다' 하고 넘겼거든요. 그런데 막상 제 주식 계좌에 직접적인 영향을 미치는 걸 보고는 그때부터 파고들기 시작했습니다. 결론부터 말씀드리면, 5월 금리 발표는 우리 포트폴리오 점검의 좋은 계기가 될 겁니다.</p>
+<figure style="margin:32px 0 24px;"><img src="/posts/thumbnails/thumb_20260526_223733.png" alt="2026년 5월 미국 금리 발표, 직장인 투자 대응 3가지" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@bkaraivanov" target="_blank" style="color:#888;">Bozhin Karaivanov</a> on Unsplash</figcaption></figure>
+<h2>5월 FOMC, 왜 이번에도 중요한가요?</h2>
+<p>미국 금리 발표일 5월은 단순한 날짜가 아닙니다. 시장의 큰 흐름을 결정하는 중요한 분기점이죠. 연방공개시장위원회(FOMC) 회의 결과는 미국뿐 아니라 전 세계 경제에 파급 효과를 미칩니다. 특히 저희 같은 직장인 투자자에게는 주식, 채권, 환율, 심지어 예금 금리까지 영향을 주는 중요한 이벤트입니다.</p>
+<p>저도 처음엔 그냥 뉴스 헤드라인 정도로만 봤어요. 금리가 오르면 안 좋은 건가, 내리면 좋은 건가 정도였죠. 근데 실제 제 투자 자산이 요동치는 걸 보니, 단순히 금리 숫자만 볼 게 아니더라고요. 연준의 발표는 현재 경제 상황에 대한 진단과 앞으로의 정책 방향을 담고 있기 때문에, 투자자라면 반드시 주목해야 합니다. 이번 5월 발표 역시 연준이 인플레이션을 어떻게 보고 있는지, 경기 침체 우려는 없는지, 그리고 금리 인하에 대한 시장의 기대감을 어떻게 조절할 것인지 힌트를 줄 겁니다. 단순히 '금리 동결' 한마디가 아니라 그 속에 숨은 연준의 의도를 읽어내는 게 진짜 중요합니다.</p>
+<blockquote>포인트: 결국 이번 5월 발표는 시장의 불확실성을 가늠하고 투자 방향을 설정하는 중요한 신호입니다.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzk4MzUwNTR8&ixlib=rb-4.1.0&q=80&w=1080" alt="white Canon cash register" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@stellrweb" target="_blank" style="color:#888;">StellrWeb</a> on Unsplash</figcaption></figure>
+<h2>FOMC 발표, 어떤 숫자에 주목해야 할까?</h2>
+<p>FOMC 회의 결과는 금리 결정 자체만으로 끝나는 게 아닙니다. 연준은 기준 금리 외에도 다양한 경제 지표와 전망을 함께 발표하거든요. 가장 중요한 건 역시 기준금리 동결, 인상, 인하 여부입니다. 하지만 여기에 더해 연준 위원들의 금리 전망을 담은 '점도표'와 경제 성장률(GDP), 실업률, 물가 상승률(인플레이션) 같은 경제 전망치도 꼼꼼히 봐야 합니다. 금리 인상 폭이 0.25%p냐 0.5%p냐도 중요하지만, 연준이 내년에 예상하는 물가 상승률이 2.5%인지 3%인지에 따라 시장 반응은 크게 달라질 수 있습니다.</p>
+<p>다들 금리 숫자만 보는데, 사실은 점도표도 중요해요. 연준 위원들이 앞으로 금리를 어디까지 올리고 내릴지 점으로 표시해두거든요. 이걸 보면 앞으로의 금리 경로를 예측하는 데 큰 도움이 됩니다. 제가 작년에 금리 인상기 때 이걸 보고 채권 투자를 결정하기도 했었죠. 지난 3년간 FOMC 회의록을 보면, 연준은 시장과의 소통을 매우 중요하게 생각하는 편입니다. 그렇기 때문에 단순히 결과만 보지 말고, 발표문이나 의사록에 담긴 문장 하나하나의 뉘앙스까지 파악하려는 노력이 필요합니다. 그래야 금리 발표의 진짜 의미를 알 수 있습니다.</p>
+<blockquote>포인트: 금리뿐 아니라 연준의 경제 전망과 점도표를 함께 봐야 정확한 판단을 할 수 있습니다.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1671245166799-9639823eb9b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzk4MzUwNTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="a group of young men playing a game of soccer" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@framesbyblake" target="_blank" style="color:#888;">Blake Emge</a> on Unsplash</figcaption></figure>
+<h2>금리 발표 시나리오별 내 포트폴리오 영향</h2>
+<p>미국 금리 발표일 5월 결과에 따라 제 포트폴리오가 어떻게 변할지 미리 상상해보는 게 좋습니다. 크게 세 가지 시나리오를 생각해볼 수 있죠. 첫째, '금리 동결'입니다. 연준이 금리를 동결하면 시장은 단기적으로 안도할 수 있습니다. 이미 예상했던 시나리오일 가능성이 크고, 불확실성이 해소되는 거죠. 이때는 채권 가격이 안정되고 주식 시장도 큰 폭의 변동 없이 흘러갈 수 있습니다. 둘째, '금리 인하'입니다. 만약 연준이 금리 인하를 결정하면, 이건 시장에 강력한 호재로 작용할 가능성이 높습니다. 특히 성장주나 기술주에 투자했던 제 친구는 좋아하겠죠. 기업의 자금 조달 비용이 줄어들어 투자와 성장을 촉진할 수 있으니까요. 다만, 금리 인하가 경기 침체의 신호일 수도 있다는 점은 경계해야 합니다.</p>
+<p>셋째, '금리 인상'입니다. 2026년에 금리 인상은 다소 예상 밖의 시나리오일 수 있지만, 만약 인플레이션이 다시 고개를 들거나 경기가 너무 과열된다면 불가능한 이야기는 아닙니다. 금리 인상은 주식 시장에는 단기적으로 악재가 될 수 있습니다. 특히 빚이 많은 기업이나 성장주는 타격이 크죠. 반면 예금이나 채권은 매력이 높아질 수 있습니다. 저는 작년에 금리 인상기 때 채권 ETF로 재미 좀 봤어요. 금리가 오르면 채권 가격은 떨어지지만, 새로 발행되는 채권의 이자율은 높아지니까요. 결국 어떤 시나리오든 내 자산이 어떻게 반응할지 미리 생각해두는 게 좋습니다.</p>
+<blockquote>포인트: 각 시나리오별로 내 자산이 어떻게 반응할지 미리 생각해두는 게 좋습니다.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1632507127024-ae2d7369c784?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Nzk4MzUwNTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="a large sign that is on the side of a building" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@orenlbz" target="_blank" style="color:#888;">Oren Elbaz</a> on Unsplash</figcaption></figure>
+<h2>금리 인하 기대감, 과연 현실일까?</h2>
+<p>요즘 시장에는 미국 금리 인하에 대한 기대감이 꽤 강합니다. 하지만 과연 연준도 같은 생각일까요? 제 생각엔 아직 금리 인하는 좀 이른 감이 있어요. 시장은 항상 미래를 반영하려는 경향이 강하기 때문에, 연준의 공식적인 발표보다 한 발짝 앞서서 움직이려고 합니다. 그래서 금리 인하 가능성이 조금만 보여도 주식 시장은 환호하고 채권 금리는 떨어지죠. 이게 맹점이에요.</p>
+<p>하지만 연준은 시장의 기대감에 쉽게 휘둘리지 않습니다. 연준의 최우선 목표는 물가 안정과 완전 고용이기 때문에, 이 두 가지 목표가 확실하게 달성되지 않는 한 금리 인하는 신중하게 접근할 겁니다. 최근 연준 의장의 발언을 보면, 여전히 인플레이션에 대한 경계심을 늦추지 않고 있음을 알 수 있습니다. 과거에도 시장의 금리 인하 기대가 과도해서 실망 매물이 쏟아진 경우가 많았거든요. 직장인 투자자 입장에서는 이런 괴리를 인지하고, 단순히 '금리 내릴 것 같다'는 막연한 기대보다는 실제 데이터와 연준의 공식적인 입장을 중심으로 판단하는 게 중요합니다. 너무 앞서가지 마세요.</p>
+<blockquote>포인트: 시장의 기대와 연준의 실제 스탠스 사이 괴리를 인지하는 게 중요해요.</blockquote>
+<h2>발표 후 직장인 투자, 무엇부터 할까?</h2>
+<p>미국 금리 발표일 5월 결과가 나오면, 저희 같은 직장인 투자자들은 뭘 해야 할까요? 단기적인 시장 움직임에 일희일비하기보다는, 장기적인 관점에서 포트폴리오를 점검하는 것이 가장 중요합니다. 저는 이런 시기에 오히려 배당주나 가치주를 다시 보게 되더라구요. 금리 변동에 상대적으로 덜 민감하고, 꾸준한 현금 흐름을 기대할 수 있으니까요.</p>
+<p>첫째, 포트폴리오를 점검하고 리밸런싱을 고려해 보세요. 만약 금리 인하 가능성이 높아진다면 성장주 비중을 늘리거나, 금리 인상이 예상된다면 채권이나 고배당주 쪽으로 시선을 돌리는 식이죠. 둘째, 섣부른 매매는 피하는 게 좋습니다. 발표 직후에는 변동성이 커질 수 있으니, 충분히 시장의 방향성이 확인될 때까지 관망하는 것도 좋은 전략입니다. 여유 자금을 좀 더 확보하는 것도 방법이죠. 셋째, 장기적인 투자 목표를 다시 상기하는 겁니다. 단기적인 금리 변동에 내 노후 자금이나 주택 마련 자금의 계획을 흔들지 마세요. 오히려 이런 기회를 활용해서 저렴해진 우량 자산을 모아가는 것도 현명한 방법이라고 생각합니다. 저도 처음엔 조급해서 발표 직후에 바로 매매했다가 후회한 적이 많거든요. 느긋하게 길게 보세요.</p>
+<blockquote>포인트: 단기적인 움직임에 휘둘리지 말고, 장기적인 관점으로 포트폴리오를 점검하세요.</blockquote><div class="post-chart-wrapper" style="margin:24px 0;padding:16px;background:#fafbfc;border-radius:8px;"><h3 style="margin-top:0;font-size:16px;color:#1a2640;">📊 수치 비교 (%)</h3><div style="position:relative;height:300px;"><canvas id="autoChart_223735376"></canvas></div></div><script>(function(){if (typeof Chart === "undefined") return;var ctx = document.getElementById("autoChart_223735376");if (!ctx) return;new Chart(ctx, {type:"bar",data:{labels:["금리 인상 폭", "p냐", "내년에 예상하는 물가 상승률", "인지"],datasets:[{label:"수치 비교 (%)",data:[0.25, 0.5, 2.5, 3.0],backgroundColor:["#1a2640","#2563eb","#0ea5e9","#10b981","#f59e0b"],borderColor:"#1a2640",borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});})();</script><section class="post-steps" style="margin:36px 0 24px;"><h2 style="margin-bottom:14px;">실제 진행 순서</h2><ol style="list-style:none;padding:0;margin:0;"><li style="display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;"><div style="flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">1</div><div style="flex:1;"><div style="font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;">1단계: FOMC 발표 일정 미리 확인하기</div><div style="color:#444;font-size:14px;line-height:1.6;">미국 연방준비제도(Fed) 홈페이지나 주요 금융 뉴스 채널을 통해 5월 FOMC 회의 및 발표 일정을 놓치지 않고 확인합니다. 발표 시간은 보통 한국 시간으로 새벽입니다.</div></div></li><li style="display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;"><div style="flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">2</div><div style="flex:1;"><div style="font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;">2단계: 금리 결정 외 발표 내용 꼼꼼히 분석하기</div><div style="color:#444;font-size:14px;line-height:1.6;">단순한 금리 동결/인상/인하 여부뿐만 아니라, 연준의 성명서, 의사록, 점도표(Dot Plot), 그리고 의장의 기자회견 내용을 확인하여 연준의 향후 통화 정책 방향을 파악하세요.</div></div></li><li style="display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;"><div style="flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">3</div><div style="flex:1;"><div style="font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;">3단계: 내 투자 포트폴리오 영향 예측하고 점검하기</div><div style="color:#444;font-size:14px;line-height:1.6;">발표 내용을 바탕으로 내 주식, 채권, 예금 등 각 자산군에 미칠 영향을 예측하고, 장기적인 관점에서 포트폴리오의 리밸런싱 필요성을 검토합니다. 섣부른 단기 매매는 피하는 게 좋습니다.</div></div></li></ol></section>
+
+<section class="faq-section" style="margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;">
+<h2 style="margin-top:0;">독자들이 많이 물어보는 거</h2>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 2026년 5월 미국 금리 발표는 언제인가요?</p><p style="margin:0;color:#2a2a2a;">A. FOMC 회의 일정은 보통 한 달 전에 공개되며, 5월 회의는 보통 중순에서 하순 사이에 진행됩니다. 정확한 날짜는 미국 연방준비제도(Fed) 홈페이지에서 확인하는 것이 가장 확실합니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. FOMC 발표 내용이 제 월급에 직접적인 영향을 주나요?</p><p style="margin:0;color:#2a2a2a;">A. 직접적인 월급 변화는 없지만, 금리 변화는 은행 예금/대출 금리, 주식, 채권 등 투자 시장에 큰 영향을 미칩니다. 결국 직장인의 재산 증식이나 대출 이자 부담에 간접적인 영향을 줄 수 있습니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 금리 인하가 예상되면 어떤 주식에 투자하는 게 좋나요?</p><p style="margin:0;color:#2a2a2a;">A. 일반적으로 금리 인하 시기에는 기업의 자금 조달 비용이 줄어들어 성장주나 기술주가 긍정적인 영향을 받을 수 있습니다. 하지만 이는 일반적인 경향일 뿐, 개별 기업의 상황과 시장 전체의 흐름을 함께 고려해야 합니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 금리 인상기에는 어떻게 투자해야 할까요?</p><p style="margin:0;color:#2a2a2a;">A. 금리 인상기에는 대출 부담이 적고 안정적인 현금 흐름을 가진 기업, 또는 배당주나 가치주가 상대적으로 유리할 수 있습니다. 또한, 채권은 발행 금리가 높아져 매력도가 증가할 수 있지만, 기존 채권 가격은 하락할 수 있습니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. FOMC 발표를 제가 직접 확인할 수 있는 곳이 있나요?</p><p style="margin:0;color:#2a2a2a;">A. 네, 미국 연방준비제도(Fed) 공식 홈페이지(federalreserve.gov)에서 FOMC 회의 결과와 관련 성명서를 직접 확인할 수 있습니다. 주요 경제 뉴스 채널에서도 실시간으로 속보를 전합니다.</p></div>
+</section>
+<section class="post-references" style="margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;"><h2 style="margin-top:0;margin-bottom:10px;font-size:18px;">근거 자료</h2><ul style="margin:0;padding-left:20px;"><li style="margin:8px 0;font-size:14px;"><a href="https://www.federalreserve.gov" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">미국 연방준비제도(Federal Reserve)</a></li><li style="margin:8px 0;font-size:14px;"><a href="https://ecos.bok.or.kr" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">한국은행 경제통계시스템</a></li></ul><div style="margin-top:10px;font-size:12px;color:#888;">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section></div>
+    <!-- 조회수 & 공유 바 -->
+    <div class="post-meta-bar">
+      <div class="post-view-count">
+        <span class="post-view-icon">👁</span>
+        <span id="viewCount">조회 중...</span>
+      </div>
+      <div class="share-btns">
+        <span class="share-label">공유</span>
+        <button class="share-btn kakao" onclick="shareKakao()">카카오</button>
+        <button class="share-btn twitter" onclick="shareTwitter()">트위터</button>
+        <button class="share-btn copy" onclick="copyLink()">링크 복사</button>
+      </div>
+    </div>
+
+    <div class="article-tags" id="articleTags"></div>
+
+    <!-- 이전/다음 글 -->
+    <div class="post-nav" id="postNav"></div>
+
+    <a href="/index.html" class="back-btn">← 목록으로 돌아가기</a>
+
+    <!-- 댓글 섹션 -->
+    <div class="comments-section">
+      <div class="comments-title">댓글 <span id="commentCount" style="color:var(--point);"></span></div>
+      <div class="comment-form">
+        <div class="comment-form-row">
+          <input class="comment-input" type="text" id="commentName" placeholder="닉네임" maxlength="20">
+          <input class="comment-input" type="password" id="commentPw" placeholder="비밀번호 (삭제용)" maxlength="20">
+        </div>
+        <textarea class="comment-textarea" id="commentText" placeholder="댓글을 남겨주세요. 질문, 경험 공유 모두 환영합니다."></textarea>
+        <button class="comment-submit" onclick="submitComment()">댓글 등록</button>
+      </div>
+      <div class="comment-list" id="commentList">
+        <div class="comment-empty">첫 댓글을 남겨보세요.</div>
+      </div>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <div class="wg-top"><h3>ABOUT</h3></div>
+      <div class="wg-body">
+        <p class="about-msg">박대홍 · 블로그 대행 5년차. 월 500만원+ 부업 수익을 만든 직장인의 현실 이야기를 씁니다.</p>
+        <div class="chips">
+          <span class="chip">블로그 대행 대표</span>
+          <span class="chip">직장인 6년차</span>
+          <span class="chip">월 500만원+ 부업</span>
+        </div>
+        <a href="/about.html" style="display:block;margin-top:12px;text-align:center;font-size:12px;color:var(--point);font-weight:600;text-decoration:none;">더 알아보기 →</a>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>뉴스레터</h3></div>
+      <div class="wg-body">
+        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 받아보세요.</p>
+        <input class="nl-input" type="email" placeholder="이메일 주소 입력">
+        <button class="nl-btn">무료로 구독하기</button>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>같은 카테고리 글</h3></div>
+      <div class="wg-body" id="relatedPosts">
+        <p style="font-size:13px;color:var(--text3);">불러오는 중...</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- 에러 상태 -->
+<div id="errorBox" style="max-width:760px;margin:60px auto;padding:0 24px;display:none">
+  <div class="error-box">
+    <h2>글을 찾을 수 없습니다</h2>
+    <p>요청한 글이 존재하지 않거나 삭제되었습니다.</p>
+    <a href="/index.html" class="back-btn">← 홈으로 돌아가기</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">평범한 직장인의 경제적 자유 프로젝트.<br>SINCE 2022 · koreansalaryman.com</p>
+    </div>
+    <div class="ft-right">
+      <div class="ft-links">
+        <a href="/privacy.html">개인정보처리방침</a>
+        <a href="/terms.html">이용약관</a>
+        <a href="mailto:pride93d@gmail.com">문의하기</a>
+      </div>
+      <div class="ft-copy">© 2026 Korean Salaryman. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── 조회수 (localStorage 기반) ──────────────────────────
+function updateViewCount(postId) {
+  const key = 'views_' + postId;
+  const count = (parseInt(localStorage.getItem(key) || '0')) + 1;
+  localStorage.setItem(key, count);
+  document.getElementById('viewCount').textContent = '조회 ' + count.toLocaleString() + '회';
+}
+
+// ── 공유 버튼 ──────────────────────────────────────────
+function shareKakao() {
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://story.kakao.com/share?url=' + url, '_blank', 'width=600,height=500');
+}
+function shareTwitter() {
+  const title = encodeURIComponent(document.title);
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://twitter.com/intent/tweet?text=' + title + '&url=' + url, '_blank', 'width=600,height=400');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.textContent;
+    btn.textContent = '복사됨 ✓';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+  });
+}
+
+// ── 댓글 (localStorage 기반) ──────────────────────────
+function getComments(postId) {
+  try { return JSON.parse(localStorage.getItem('comments_' + postId) || '[]'); } catch(e) { return []; }
+}
+function saveComments(postId, comments) {
+  localStorage.setItem('comments_' + postId, JSON.stringify(comments));
+}
+function renderComments(postId) {
+  const comments = getComments(postId);
+  const list = document.getElementById('commentList');
+  const countEl = document.getElementById('commentCount');
+  countEl.textContent = comments.length > 0 ? comments.length : '';
+  if (comments.length === 0) {
+    list.innerHTML = '<div class="comment-empty">첫 댓글을 남겨보세요.</div>';
+    return;
+  }
+  list.innerHTML = comments.map((c, i) => `
+    <div class="comment-item">
+      <div class="comment-head">
+        <div class="comment-avatar">${c.name[0]}</div>
+        <div class="comment-name">${escHtml(c.name)}</div>
+        <div class="comment-date">${c.date}</div>
+      </div>
+      <div class="comment-text">${escHtml(c.text).replace(/\n/g,'<br>')}</div>
+    </div>`).join('');
+}
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function submitComment() {
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name) { alert('닉네임을 입력해주세요.'); return; }
+  if (!text) { alert('댓글을 입력해주세요.'); return; }
+  // postId 는 정적으로 주입됨 (전역 사용)
+  const comments = getComments(postId);
+  const now = new Date();
+  comments.push({
+    name, text,
+    date: now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0')
+  });
+  saveComments(postId, comments);
+  document.getElementById('commentName').value = '';
+  document.getElementById('commentText').value = '';
+  renderComments(postId);
+}
+
+// ── 이전/다음 글 ──────────────────────────────────────
+function renderPostNav(manifest, currentId) {
+  const published = manifest.filter(p => p.status === 'published');
+  const idx = published.findIndex(p => p.filename === currentId);
+  if (idx === -1) return;
+  const prev = published[idx - 1];
+  const next = published[idx + 1];
+  const nav = document.getElementById('postNav');
+  if (!nav) return;
+  let html = '';
+  if (prev) {
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(prev.slug || prev.filename.replace(/\.json$/,''))}.html">
+      <div class="post-nav-label">← 이전 글</div>
+      <div class="post-nav-title">${prev.title}</div>
+    </a>`;
+  } else { html += '<div></div>'; }
+  if (next) {
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(next.slug || next.filename.replace(/\.json$/,''))}.html" style="text-align:right;">
+      <div class="post-nav-label">다음 글 →</div>
+      <div class="post-nav-title">${next.title}</div>
+    </a>`;
+  }
+  nav.innerHTML = html;
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+}
+
+function readTime(content) {
+  return Math.max(1, Math.ceil(content.length / 500)) + '분';
+}
+
+// 본문 텍스트를 HTML 단락으로 변환
+function textToHtml(text) {
+  return text
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(p => p.length > 0)
+    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
+// ── 정적 프리렌더 페이지: 인터랙션만 초기화 (fetch 렌더링 제거됨) ──
+const postId = "post_20260526_223735.json";
+updateViewCount(postId);
+renderComments(postId);
+
+fetch('/posts/manifest.json')
+  .then(r => r.json())
+  .then(manifest => {
+    renderPostNav(manifest, postId);
+    const currentCat = "finance";
+    const related = manifest
+      .filter(p => p.status === 'published' && p.filename !== postId && p.category === currentCat)
+      .slice(0, 4);
+    const relBox = document.getElementById('relatedPosts');
+    if (relBox) {
+      if (related.length === 0) {
+        relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
+      } else {
+        relBox.innerHTML = related.map(p => `
+          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
+            <div class="rel-dot"></div>
+            <div>
+              <div class="rel-title">${p.title}</div>
+              <div class="rel-cat">${formatDate(p.created_at)}</div>
+            </div>
+          </a>`).join('');
+      }
+    }
+  })
+  .catch(err => console.error(err));
+</script>
+</body>
+</html>

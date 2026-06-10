@@ -18,6 +18,7 @@ import re
 import math
 import html
 import os
+import unicodedata
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -51,6 +52,32 @@ def set_attr_by_id(doc, elem_id, attr, value):
         return tag[:-1] + ' ' + attr + '="' + value + '">'
 
     return tag_re.sub(repl_tag, doc, count=1)
+
+
+def make_slug(title, existing):
+    """제목 → 한글 슬러그. 한글/영문/숫자만 남기고 공백→하이픈, 최대 50자, 중복 시 -2."""
+    s = unicodedata.normalize("NFC", title or "")
+    s = re.sub(r"[^\w가-힣\s-]", "", s)    # 특수문자 제거 (한글/영문/숫자/공백/하이픈만)
+    s = re.sub(r"[\s_]+", "-", s.strip())  # 공백→하이픈
+    s = re.sub(r"-{2,}", "-", s).strip("-")
+    s = s[:50].rstrip("-")
+    if not s:
+        s = "post"
+    base, n = s, 2
+    while s in existing:
+        s = "%s-%d" % (base, n)
+        n += 1
+    return s
+
+
+# ── 옛 /p/post_xxx.html → 슬러그 주소 리다이렉트 stub ──
+STUB = """<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>이동됨</title>
+<link rel="canonical" href="%(new_url)s">
+<meta http-equiv="refresh" content="0;url=%(new_url)s">
+<script>location.replace("%(new_url)s");</script>
+</head><body><p><a href="%(new_url)s">새 주소로 이동</a></p></body></html>"""
 
 
 def format_date_kr(iso):
@@ -105,7 +132,7 @@ fetch('./posts/manifest.json')
         relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
       } else {
         relBox.innerHTML = related.map(p => `
-          <a class="rel-item" href="/p/${p.filename.replace(/\.json$/,'.html')}">
+          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
             <div class="rel-dot"></div>
             <div>
               <div class="rel-title">${p.title}</div>
@@ -119,8 +146,7 @@ fetch('./posts/manifest.json')
 """
 
 
-def build_page(template, post, filename, manifest_entry):
-    pid = filename[:-5] if filename.endswith(".json") else filename  # .json 제거
+def build_page(template, post, filename, slug, manifest_entry):
     title = post.get("title") or ""
     category = post.get("category") or ""
     created = post.get("created_at") or ""
@@ -128,7 +154,8 @@ def build_page(template, post, filename, manifest_entry):
     tags = post.get("tags") or []
     content = post.get("content") or ""
 
-    page_url = "%s/p/%s.html" % (SITE, pid)
+    # 주소는 슬러그 기반 (HTML 안에서는 한글 URL 그대로 — 가독성·공유 우선)
+    page_url = "%s/p/%s.html" % (SITE, slug)
 
     # ── pageTitle / pageDesc (post.html JS 로직과 동일) ──
     page_title = post.get("seo_title") or ("%s | 직장인 수익일기" % title)
@@ -293,7 +320,7 @@ def build_page(template, post, filename, manifest_entry):
     doc = doc.replace('fetch("./posts/', 'fetch("/posts/')
     doc = doc.replace("fetch(`./posts/", "fetch(`/posts/")
 
-    return pid, doc
+    return slug, doc
 
 
 def main():
@@ -305,12 +332,27 @@ def main():
     by_name = {m["filename"]: m for m in manifest}
     published = [m for m in manifest if m.get("status") == "published"]
 
+    # ── slug 부여 (self-healing): slug 없는 published 글에 제목 기반 슬러그 영구 기록 ──
+    existing_slugs = set(m["slug"] for m in manifest if m.get("slug"))
+    new_slugs = 0
+    for entry in manifest:
+        if entry.get("status") == "published" and not entry.get("slug"):
+            slug = make_slug(entry.get("title", ""), existing_slugs)
+            entry["slug"] = slug
+            existing_slugs.add(slug)
+            new_slugs += 1
+    if new_slugs:
+        with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
+            json.dump(manifest, f, ensure_ascii=False, indent=2)
+        print("slug 신규 부여:", new_slugs, "건 → manifest.json 저장")
+
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    generated = skipped = failed = 0
+    generated = skipped = failed = stubs = 0
     fail_list = []
     for entry in published:
         filename = entry["filename"]
+        slug = entry.get("slug") or filename[:-5]
         path = os.path.join(POSTS_DIR, filename)
         if not os.path.exists(path):
             skipped += 1
@@ -319,11 +361,18 @@ def main():
         try:
             with open(path, encoding="utf-8") as f:
                 post = json.load(f)
-            pid, doc = build_page(template, post, filename, by_name.get(filename))
-            out_path = os.path.join(OUT_DIR, pid + ".html")
+            out_slug, doc = build_page(template, post, filename, slug, by_name.get(filename))
+            out_path = os.path.join(OUT_DIR, out_slug + ".html")
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(doc)
             generated += 1
+            # 옛 /p/post_xxx.html 자리에 새 슬러그로 보내는 리다이렉트 stub
+            old_pid = filename[:-5] if filename.endswith(".json") else filename
+            if old_pid != out_slug:
+                stub_html = STUB % {"new_url": "/p/%s.html" % out_slug}
+                with open(os.path.join(OUT_DIR, old_pid + ".html"), "w", encoding="utf-8") as f:
+                    f.write(stub_html)
+                stubs += 1
         except Exception as e:  # 한 글 실패해도 전체 중단 X
             failed += 1
             fail_list.append((filename, str(e)))
@@ -331,7 +380,8 @@ def main():
 
     print("\n=== 정적 생성 결과 ===")
     print("published 대상:", len(published))
-    print("생성:", generated)
+    print("생성(슬러그):", generated)
+    print("리다이렉트 stub:", stubs)
     print("스킵:", skipped)
     print("실패:", failed)
     if fail_list:

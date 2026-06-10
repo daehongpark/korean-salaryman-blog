@@ -529,13 +529,13 @@ function renderPostNav(manifest, currentId) {
   if (!nav) return;
   let html = '';
   if (prev) {
-    html += `<a class="post-nav-item" href="/p/${prev.filename.replace(/\.json$/,'.html')}">
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(prev.slug || prev.filename.replace(/\.json$/,''))}.html">
       <div class="post-nav-label">← 이전 글</div>
       <div class="post-nav-title">${prev.title}</div>
     </a>`;
   } else { html += '<div></div>'; }
   if (next) {
-    html += `<a class="post-nav-item" href="/p/${next.filename.replace(/\.json$/,'.html')}" style="text-align:right;">
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(next.slug || next.filename.replace(/\.json$/,''))}.html" style="text-align:right;">
       <div class="post-nav-label">다음 글 →</div>
       <div class="post-nav-title">${next.title}</div>
     </a>`;
@@ -568,7 +568,11 @@ const postId = params.get('id');
 
 // 정적 페이지로 영구 이전 — 옛 주소 fallback redirect
 if (postId && postId.endsWith('.json')) {
-  window.location.replace('/p/' + postId.replace(/\.json$/, '.html'));
+  fetch('/posts/manifest.json').then(r=>r.json()).then(m=>{
+    const e = m.find(x=>x.filename===postId);
+    const target = e && e.slug ? e.slug : postId.replace(/\.json$/,'');
+    window.location.replace('/p/' + encodeURIComponent(target) + '.html');
+  }).catch(()=>{ window.location.replace('/p/' + postId.replace(/\.json$/,'.html')); });
 }
 
 if (!postId) {
@@ -709,7 +713,7 @@ if (!postId) {
         relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
       } else {
         relBox.innerHTML = related.map(p => `
-          <a class="rel-item" href="/p/${p.filename.replace(/\.json$/,'.html')}">
+          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
             <div class="rel-dot"></div>
             <div>
               <div class="rel-title">${p.title}</div>
