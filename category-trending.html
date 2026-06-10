@@ -219,7 +219,7 @@ footer{background:var(--navy3);padding:52px 24px;}
 </footer>
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function goToPost(filename){window.location.href='post.html?id='+filename;}
+function goToPost(filename){window.location.href='/p/'+filename.replace(/\.json$/,'.html');}
 function formatDate(iso){if(!iso)return'—';return iso.slice(0,10).replace(/-/g,'.');}
 function readTime(text){return Math.max(1,Math.round((text||'').length/500))+'분 읽기';}
 </script>
@@ -251,7 +251,7 @@ fetch('./posts/manifest.json')
     }
 
     list.innerHTML = '<div class="post-list">' + filtered.map(p => `
-      <a class="post-card" href="post.html?id=${p.filename}">
+      <a class="post-card" href="/p/${p.filename.replace(/\.json$/,'.html')}">
         <div class="post-body">
           <span class="post-cat-badge" style="color:${CAT_COLOR};">${CAT_LABEL}</span>
           <h3>${p.title}</h3>

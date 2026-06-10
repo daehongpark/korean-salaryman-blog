@@ -94,6 +94,9 @@ jobs:
           NAVER_AD_SECRET_KEY: ${{ secrets.NAVER_AD_SECRET_KEY }}
           NAVER_CUSTOMER_ID:   ${{ secrets.NAVER_CUSTOMER_ID }}
 
+      - name: 정적 글 페이지 생성
+        run: python generate_static_posts.py
+
       - name: sitemap.xml 갱신
         run: python generate_sitemap.py
 
@@ -102,6 +105,6 @@ jobs:
           git config user.name  "자동 글 생성"
           git config user.email "pride93d@gmail.com"
           # posts 폴더 전체 (thumbnails 포함) 추가
-          git add posts/ sitemap.xml
+          git add posts/ sitemap.xml p/
           git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d') [AUTO_PUBLISH=${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}]"
           git push

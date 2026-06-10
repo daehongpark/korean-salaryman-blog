@@ -77,7 +77,7 @@ def generate_sitemap():
                 if not filename:
                     continue
                 date = (post.get("created_at") or today)[:10]
-                loc  = f"{BASE_URL}/post.html?id={filename}"
+                loc  = f"{BASE_URL}/p/{filename.replace('.json', '.html')}"
                 urls.append(f"""  <url>
     <loc>{loc}</loc>
     <lastmod>{date}</lastmod>

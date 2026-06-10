@@ -6,6 +6,20 @@
       "maxDuration": 60
     }
   },
+  "redirects": [
+    {
+      "source": "/post.html",
+      "has": [{ "type": "query", "key": "id", "value": "(?<id>.+)\\.json" }],
+      "destination": "/p/:id.html",
+      "permanent": true
+    },
+    {
+      "source": "/post",
+      "has": [{ "type": "query", "key": "id", "value": "(?<id>.+)\\.json" }],
+      "destination": "/p/:id.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/posts/(.*)\\.json",

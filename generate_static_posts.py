@@ -86,7 +86,7 @@ def text_to_html(text):
 # ── 정적 인터랙션 init (fetch 렌더링 블록 대체) ──────────────────
 # 조회수/댓글/이전다음/관련글만 manifest 기반으로 동작. 본문은 이미 정적 렌더됨.
 # 주의: manifest fetch 는 작은따옴표 사용 (백틱 fetch 제거 검증과 무관).
-STATIC_INIT = """// ── 정적 프리렌더 페이지: 인터랙션만 초기화 (fetch 렌더링 제거됨) ──
+STATIC_INIT = r"""// ── 정적 프리렌더 페이지: 인터랙션만 초기화 (fetch 렌더링 제거됨) ──
 const postId = "%(filename)s";
 updateViewCount(postId);
 renderComments(postId);
@@ -105,7 +105,7 @@ fetch('./posts/manifest.json')
         relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
       } else {
         relBox.innerHTML = related.map(p => `
-          <a class="rel-item" href="post.html?id=${encodeURIComponent(p.filename)}">
+          <a class="rel-item" href="/p/${p.filename.replace(/\.json$/,'.html')}">
             <div class="rel-dot"></div>
             <div>
               <div class="rel-title">${p.title}</div>

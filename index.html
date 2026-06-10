@@ -893,7 +893,7 @@ function readTime(text) {
 
 // ── 글 이동 ──
 function goToPost(filename) {
-  window.location.href = `post.html?id=${filename}`;
+  window.location.href = `/p/${filename.replace(/\.json$/,'.html')}`;
 }
 
 // ── 카테고리 메타 데이터 (7개 영문 키 시스템) ──
@@ -939,7 +939,7 @@ function renderPosts(posts, cat) {
       const _bnMeta = CAT_META[bannerPost.category];
       const _bnLabel = _bnMeta ? _bnMeta.label : (bannerPost.category || 'FEATURED');
       html += `
-        <a href="post.html?id=${bannerPost.filename}" class="story-banner" id="story">
+        <a href="/p/${bannerPost.filename.replace(/\.json$/,'.html')}" class="story-banner" id="story">
           <div class="story-banner-glow"></div>
           <div class="story-tag">✦ ${_bnLabel}</div>
           <h2>${bannerPost.title}</h2>
@@ -996,7 +996,7 @@ function renderPosts(posts, cat) {
     const _label = (_meta && _meta.label) || (p.category || '');
     const summary = p.summary ? p.summary.slice(0, 60) + '...' : '';
     html += `
-      <a class="post-card" href="post.html?id=${p.filename}">
+      <a class="post-card" href="/p/${p.filename.replace(/\.json$/,'.html')}">
         <div class="post-body">
           <span class="post-cat-badge">${_label}</span>
           <h3>${p.title||''}</h3>

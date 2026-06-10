@@ -565,13 +565,13 @@ function renderPostNav(manifest, currentId) {
   if (!nav) return;
   let html = '';
   if (prev) {
-    html += `<a class="post-nav-item" href="post.html?id=${prev.filename}">
+    html += `<a class="post-nav-item" href="/p/${prev.filename.replace(/\.json$/,'.html')}">
       <div class="post-nav-label">← 이전 글</div>
       <div class="post-nav-title">${prev.title}</div>
     </a>`;
   } else { html += '<div></div>'; }
   if (next) {
-    html += `<a class="post-nav-item" href="post.html?id=${next.filename}" style="text-align:right;">
+    html += `<a class="post-nav-item" href="/p/${next.filename.replace(/\.json$/,'.html')}" style="text-align:right;">
       <div class="post-nav-label">다음 글 →</div>
       <div class="post-nav-title">${next.title}</div>
     </a>`;
@@ -617,7 +617,7 @@ fetch('./posts/manifest.json')
         relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
       } else {
         relBox.innerHTML = related.map(p => `
-          <a class="rel-item" href="post.html?id=${encodeURIComponent(p.filename)}">
+          <a class="rel-item" href="/p/${p.filename.replace(/\.json$/,'.html')}">
             <div class="rel-dot"></div>
             <div>
               <div class="rel-title">${p.title}</div>
