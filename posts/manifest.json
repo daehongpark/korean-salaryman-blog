@@ -278,10 +278,10 @@
       "세금환급"
     ],
     "created_at": "2026-06-09T07:40:09.958655",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-06-10T03:00:00.000Z",
-    "published_at": null,
+    "published_at": "2026-06-10T06:14:58.445Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260608_224008.png",
     "has_faq": true,
