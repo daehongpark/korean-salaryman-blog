@@ -82,34 +82,6 @@
     "monthly_search": null
   },
   {
-    "filename": "post_20260610_224029.json",
-    "title": "2026년 Zapier 활용방법: 퇴근 30분 앞당기는 자동화 루틴",
-    "category": "ai",
-    "keyword": "Zapier 활용방법",
-    "summary": "2026년 기준으로 Zapier는 직장인의 반복 업무를 코딩 없이 자동화해주는 유용한 도구입니다. 이메일 처리부터 SNS 관리까지 다양한 작업을 연동해 업무 시간을 아껴주죠.",
-    "tags": [
-      "Zapier 활용방법",
-      "ai",
-      "직장인",
-      "업무자동화",
-      "생산성"
-    ],
-    "created_at": "2026-06-11T07:40:29.823313",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260610_224026.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": false,
-    "has_steps": true,
-    "has_references": true,
-    "seo_score": 87.1,
-    "monthly_search": null
-  },
-  {
     "filename": "post_20260610_223522.json",
     "title": "2026년 버팀목전세자금대출 연장, 이 5가지 놓치면 손해죠",
     "category": "realestate",
@@ -167,33 +139,6 @@
     "has_references": true,
     "seo_score": null,
     "monthly_search": null
-  },
-  {
-    "filename": "post_20260609_224647.json",
-    "title": "2026년 소상공인 정책자금 대환대출, 제가 알아본 5가지",
-    "category": "money",
-    "keyword": "소상공인 정책자금 대환대출",
-    "summary": "소상공인 정책자금 대환대출에 대한 직장인 박대홍의 실전 경험을 공개합니다.",
-    "tags": [
-      "소상공인 정책자금 대환대출",
-      "money",
-      "직장인",
-      "부업"
-    ],
-    "created_at": "2026-06-10T07:46:47.264643",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260609_224643.png",
-    "has_faq": false,
-    "has_tldr": false,
-    "has_comparison": false,
-    "has_steps": false,
-    "has_references": false,
-    "seo_score": 146.9,
-    "monthly_search": 1010
   },
   {
     "filename": "post_20260609_223952.json",
