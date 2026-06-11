@@ -327,10 +327,10 @@
       "번역 도구"
     ],
     "created_at": "2026-06-09T07:54:51.323910",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-11T01:17:32.471Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260608_225449.png",
     "has_faq": true,
@@ -338,7 +338,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 10
   },
   {
@@ -358,10 +358,10 @@
       "수면 개선"
     ],
     "created_at": "2026-06-09T07:53:38.797859",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-11T01:17:32.471Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260608_225335.png",
     "has_faq": true,
@@ -387,10 +387,10 @@
       "금융 시장"
     ],
     "created_at": "2026-06-09T07:50:14.704011",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-11T01:17:32.471Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260608_225012.png",
     "has_faq": true,
