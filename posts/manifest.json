@@ -299,9 +299,9 @@
       "청약 전략"
     ],
     "created_at": "2026-06-11T08:22:55.745044",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-06-12T04:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260610_232253.png",
