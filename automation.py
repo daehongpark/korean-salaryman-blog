@@ -370,17 +370,25 @@ def get_seo_optimized_keywords():
             for tcat in needed:
                 try:
                     news = fetch_category_news(tcat, limit=10)
-                    if news:
-                        topics = convert_trends_to_topics(tcat, news, max_topics=3)
-                        fresh = [
-                            t for t in topics
-                            if t.get("topic")
-                            and t["topic"] not in _recent_for_trend
-                            and not _has_semantic_overlap(t["topic"], _recent_for_trend)
-                        ]
-                        if fresh:
-                            trend_topics_by_cat[tcat] = fresh
-                            print(f"   [트렌드] {tcat}: {len(fresh)}개 주제 확보")
+                    if not news:
+                        print(f"   [트렌드] {tcat}: 뉴스 0건 수집 (RSS 비어있음) → 시드풀 폴백")
+                        continue
+                    topics = convert_trends_to_topics(tcat, news, max_topics=3)
+                    if not topics:
+                        # 거의 항상 Gemini 503 high-demand 스파이크 (convert 내부 로그 참조)
+                        print(f"   [트렌드] {tcat}: 뉴스 {len(news)}건 → 변환 주제 0개 (Gemini 변환 실패/빈배열) → 시드풀 폴백")
+                        continue
+                    fresh = [
+                        t for t in topics
+                        if t.get("topic")
+                        and t["topic"] not in _recent_for_trend
+                        and not _has_semantic_overlap(t["topic"], _recent_for_trend)
+                    ]
+                    if fresh:
+                        trend_topics_by_cat[tcat] = fresh
+                        print(f"   [트렌드] {tcat}: 뉴스 {len(news)}건 → 주제 {len(topics)}개 → 신규 {len(fresh)}개 확보 ✓")
+                    else:
+                        print(f"   [트렌드] {tcat}: 주제 {len(topics)}개 모두 최근14일과 중복 → 시드풀 폴백")
                 except Exception as e:
                     print(f"   [트렌드] {tcat} 수집 실패 (시드풀 폴백): {e}")
     except Exception as e:
@@ -1100,10 +1108,18 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None, tren
         "4. 구체 수치/출처: 막연한 표현 금지. 금액/비율/조건 구체적으로.\n"
         "5. EEAT: 1인칭 경험으로 경험성, 정확한 정보로 신뢰성.\n"
     )
+    # ── 콘텐츠 각도 가드 (박대홍 피드백 — 입문 설명글 금지) ──
+    angle_guard_block = (
+        "\n[콘텐츠 각도 — 반드시 준수]\n"
+        "1. 입문자용 개념 설명 글 금지. 독자는 이미 기본을 아는 직장인이다.\n"
+        "2. 개념 정의로 글을 시작하지 말 것. '~란 무엇인가', '~가 뭔가요'식 섹션 금지.\n"
+        "3. 비교(A vs B), 큐레이션(용도별 추천), 최신 동향, 실전 전략 각도를 우선한다.\n"
+        "4. '기초', '입문', '처음 시작' 같은 초보 프레임 대신, 바로 실전·선택·전략으로 들어갈 것.\n"
+    )
 
     # 자료조사 블록은 본문 작성 지시 앞에 prepend (가장 먼저 참고하도록)
     final_prompt = research_block + rendered if research_block else rendered
-    return final_prompt + trend_block + geo_block
+    return final_prompt + trend_block + geo_block + angle_guard_block
 
 
 # ── Gemini API 호출 ───────────────────────────────────
@@ -1186,6 +1202,11 @@ def generate_article(category: str, keyword: str, seo_meta: dict | None = None, 
             
             if article:
                 print(f"   글자수: {len(article.get('content',''))}자")
+                # 트렌드 채택분은 추적 가능하도록 출처를 글 JSON에 영속화
+                # (이게 없으면 데이터상 전부 '시드'로 보여 트렌드 작동 여부를 알 수 없음)
+                if trend_source:
+                    article["trend_source"] = trend_source
+                    article["trend_angle"]  = trend_angle
                 return article
 
         except json.JSONDecodeError as e:

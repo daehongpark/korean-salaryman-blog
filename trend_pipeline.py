@@ -40,6 +40,15 @@ GOOGLE_NEWS_FEEDS = {
     "trending":   "https://news.google.com/rss/headlines/section/topic/HEALTH?hl=ko&gl=KR&ceid=KR:ko",
 }
 
+# ── 카테고리별 구글 뉴스 '검색' RSS (토픽보다 카테고리 적중률 높음) ──
+# TECHNOLOGY 토픽은 일반 IT 뉴스라 AI 비중이 낮아 → AI 전용 검색 RSS 추가 (박대홍 지시)
+SEARCH_FEEDS = {
+    "ai": [
+        "https://news.google.com/rss/search?q=AI%20인공지능%20when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "https://news.google.com/rss/search?q=ChatGPT%20OR%20Gemini%20OR%20Claude%20when:7d&hl=ko&gl=KR&ceid=KR:ko",
+    ],
+}
+
 # ── 언론사 경제 RSS ──
 PRESS_FEEDS = {
     "연합경제":   "https://www.yna.co.kr/rss/economy.xml",
@@ -123,6 +132,12 @@ def fetch_category_news(category: str, limit: int = 15):
         for it in _fetch_rss(GOOGLE_NEWS_FEEDS[category], limit=limit):
             if _is_safe(it["title"]) and _is_safe(it["desc"]):
                 results.append(it)
+    # 카테고리 전용 검색 RSS (ai 등 — 적중률 높은 최신 뉴스)
+    if category in SEARCH_FEEDS:
+        for url in SEARCH_FEEDS[category]:
+            for it in _fetch_rss(url, limit=limit):
+                if _is_safe(it["title"]) and _is_safe(it["desc"]):
+                    results.append(it)
     # 언론사 경제 (finance)
     if category == "finance":
         for name, url in PRESS_FEEDS.items():
@@ -204,23 +219,32 @@ def convert_trends_to_topics(category: str, news_items: list, max_topics: int = 
         "generationConfig": {
             "temperature": 0.7,
             "topP": 0.9,
-            # 2.5-flash는 thinking 토큰이 출력 한도에 포함됨 → 넉넉하게
             "maxOutputTokens": 4000,
             "responseMimeType": "application/json",
+            # thinking 끔: 변환은 가벼운 작업 + 2.5-flash thinking 토큰이 출력한도
+            # 잠식하는 함정 회피 + 호출 부하 경감 (503 스파이크 영향 축소).
+            "thinkingConfig": {"thinkingBudget": 0},
         },
     }
     import requests as _rq
     import time as _time
-    for attempt in range(3):
+    # 2.5-flash는 "high demand" 503 스파이크가 잦음 → 재시도 5회 + 긴 백오프로
+    # 스파이크 구간(보통 수십 초~1분)을 넘긴다. (트렌드 채택 0건의 근본 원인)
+    MAX_RETRY = 5
+    for attempt in range(MAX_RETRY):
         try:
             r = _rq.post(url, headers={"Content-Type": "application/json"}, json=payload, timeout=45)
             if r.status_code in (429, 500, 503):
-                # 과부하/일시 오류 → 백오프 재시도 (503 스파이크는 보통 수십 초 내 해소)
-                print(f"   [트렌드변환 API {r.status_code}] 재시도 {attempt+1}/3")
-                _time.sleep(8 * (attempt + 1))
-                continue
+                # 과부하/일시 오류 → 점증 백오프 재시도 (최대 ~45초까지 대기)
+                wait = min(45, 9 * (attempt + 1))
+                if attempt < MAX_RETRY - 1:
+                    print(f"   [트렌드변환 API {r.status_code}] 재시도 {attempt+1}/{MAX_RETRY} ({wait}초 대기)")
+                    _time.sleep(wait)
+                    continue
+                print(f"   [트렌드변환 실패] {r.status_code} {MAX_RETRY}회 모두 실패 (high demand 스파이크) → 시드풀 폴백")
+                return []
             if r.status_code != 200:
-                print(f"   [트렌드변환 API {r.status_code}]")
+                print(f"   [트렌드변환 API {r.status_code}] → 시드풀 폴백")
                 return []
             text = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
             # JSON 추출 (```json 감싸진 경우 제거)
