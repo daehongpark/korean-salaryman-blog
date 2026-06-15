@@ -387,34 +387,6 @@
     "monthly_search": 750
   },
   {
-    "filename": "post_20260612_223437.json",
-    "title": "2026년 MAKE 사용 후기: 직장인 업무 자동화, AI 연결 5가지 방법",
-    "category": "ai",
-    "keyword": "MAKE",
-    "summary": "MAKE는 AI와 여러 서비스를 연결해 직장인의 반복 업무를 줄여주는 노코드 자동화 도구입니다. 복잡한 워크플로우를 시각적으로 설계하며 시간을 절약하고 생산성을 높일 수 있습니다.",
-    "tags": [
-      "MAKE",
-      "ai",
-      "직장인",
-      "업무자동화",
-      "노코드"
-    ],
-    "created_at": "2026-06-13T07:34:37.617705",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260612_223434.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": true,
-    "has_steps": false,
-    "has_references": true,
-    "seo_score": 73,
-    "monthly_search": 5290
-  },
-  {
     "filename": "post_20260611_225703.json",
     "title": "2026년 경제 불확실성 시대, 직장인 자산 지키는 비상금 관리 전략 5가지",
     "category": "finance",
