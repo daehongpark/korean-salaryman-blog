@@ -321,7 +321,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 100.0,
+    "seo_score": 100,
     "monthly_search": 1230
   },
   {
@@ -387,38 +387,6 @@
     "monthly_search": 750
   },
   {
-    "filename": "post_20260612_223548.json",
-    "title": "2026년 직장인 종합소득세 신고서, 사업 전환 전 꼭 확인할 것",
-    "category": "startup",
-    "keyword": "종합소득세 신고서",
-    "summary": "직장인 부업 소득이 있다면 2026년 종합소득세 신고서 제출은 필수이며, 근로소득과 사업소득을 합산 신고해야 합니다. 사업 전환을 고려 중인 직장인이라면 간편장부 작성부터 시작하여 사업용 계좌 분리, 경비 증빙, 기장의무 전환 등 세금 관련 사항을 미리 준비하는 것이 중요합니다.",
-    "tags": [
-      "종합소득세 신고서",
-      "startup",
-      "직장인",
-      "부업",
-      "1인사업자",
-      "세금신고",
-      "간편장부",
-      "복식부기",
-      "홈택스"
-    ],
-    "created_at": "2026-06-13T07:35:48.674421",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260612_223546.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": true,
-    "has_steps": false,
-    "has_references": true,
-    "seo_score": 87.1,
-    "monthly_search": 2040
-  },
-  {
     "filename": "post_20260612_223437.json",
     "title": "2026년 MAKE 사용 후기: 직장인 업무 자동화, AI 연결 5가지 방법",
     "category": "ai",
@@ -443,7 +411,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 73.0,
+    "seo_score": 73,
     "monthly_search": 5290
   },
   {
@@ -477,34 +445,6 @@
     "monthly_search": null
   },
   {
-    "filename": "post_20260611_225442.json",
-    "title": "2026년 이직 연봉 인상률, 이 정도는 받아야죠",
-    "category": "trending",
-    "keyword": "이직 연봉 인상률",
-    "summary": "2026년 이직 연봉 인상률은 평균 10~15% 수준이지만, 개인의 역량과 협상 능력에 따라 달라집니다.\n연봉 외에도 복지, 성장 가능성 등 장기적인 관점에서 회사를 선택하는 것이 중요합니다.",
-    "tags": [
-      "이직 연봉 인상률",
-      "trending",
-      "직장인",
-      "연봉협상",
-      "커리어성장"
-    ],
-    "created_at": "2026-06-12T07:54:42.143838",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260611_225439.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": false,
-    "has_steps": true,
-    "has_references": true,
-    "seo_score": 143.0,
-    "monthly_search": 220
-  },
-  {
     "filename": "post_20260611_225217.json",
     "title": "2026년 AI로 회의록 자동 정리: 직장인 업무 시간 30분 아끼는 법",
     "category": "ai",
@@ -528,7 +468,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 10
   },
   {
@@ -560,61 +500,6 @@
     "has_references": true,
     "seo_score": 126.1,
     "monthly_search": 10
-  },
-  {
-    "filename": "post_20260611_051239.json",
-    "title": "2026년 S&P500 ETF, 직장인 월급으로 뭘 담을까?",
-    "category": "finance",
-    "keyword": "S&P500 ETF",
-    "summary": "S&P500 ETF는 미국 500개 대표 기업에 분산 투자해 직장인에게 장기적인 성장 기회를 제공하는 상품입니다. 운용보수, 거래량, 환헤지 여부 등을 고려해 자신에게 맞는 ETF를 선택하고, ISA나 연금저축 계좌를 활용해 세금 혜택을 받으며 꾸준히 적립식으로 투자하는 것이 중요합니다.",
-    "tags": [
-      "S&P500 ETF",
-      "finance",
-      "직장인",
-      "부업"
-    ],
-    "created_at": "2026-06-11T14:12:39.905266",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260611_051238.png",
-    "has_faq": false,
-    "has_tldr": false,
-    "has_comparison": false,
-    "has_steps": false,
-    "has_references": false,
-    "seo_score": 104.0,
-    "monthly_search": 46600
-  },
-  {
-    "filename": "post_20260611_051119.json",
-    "title": "2026년 근로장려금확인, 직장인이 놓치기 쉬운 5가지",
-    "category": "money",
-    "keyword": "근로장려금확인",
-    "summary": "2026년 근로장려금은 저소득 직장인과 청년도 충분히 받을 수 있는 정부 지원금입니다. 소득 및 재산 기준을 꼼꼼히 확인하고 홈택스를 통해 기한 내 신청하는 것이 중요합니다.\n기한을 놓치면 감액되거나 부당 수령 시 환수될 수 있으니, 매년 본인 자격을 확인하는 습관을 들이는 게 좋습니다.",
-    "tags": [
-      "근로장려금확인",
-      "money",
-      "직장인",
-      "정부지원금",
-      "청년"
-    ],
-    "created_at": "2026-06-11T14:11:19.486253",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260611_051116.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": false,
-    "has_steps": true,
-    "has_references": true,
-    "seo_score": 145.6,
-    "monthly_search": 1050
   },
   {
     "filename": "post_20260611_050749.json",
