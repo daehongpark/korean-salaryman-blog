@@ -191,9 +191,9 @@
       "전세보증보험"
     ],
     "created_at": "2026-06-14T07:36:59.067957",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-06-16T00:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260613_223656.png",
