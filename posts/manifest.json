@@ -132,9 +132,9 @@
       "직업 훈련"
     ],
     "created_at": "2026-06-15T07:33:57.765407",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-06-16T03:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260614_223355.png",
