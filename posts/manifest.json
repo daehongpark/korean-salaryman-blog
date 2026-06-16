@@ -157,10 +157,10 @@
       "연말정산"
     ],
     "created_at": "2026-06-15T07:41:05.109894",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-06-16T09:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-06-16T13:23:07.150Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260614_224101.png",
     "has_faq": true,
