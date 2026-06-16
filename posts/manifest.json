@@ -337,10 +337,10 @@
       "전세보증보험"
     ],
     "created_at": "2026-06-14T07:36:59.067957",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-06-16T00:00:00.000Z",
-    "published_at": null,
+    "published_at": "2026-06-16T02:50:27.487Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260613_223656.png",
     "has_faq": true,
