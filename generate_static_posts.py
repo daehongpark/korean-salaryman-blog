@@ -26,7 +26,19 @@ TEMPLATE_PATH = os.path.join(ROOT, "post.html")
 MANIFEST_PATH = os.path.join(ROOT, "posts", "manifest.json")
 POSTS_DIR = os.path.join(ROOT, "posts")
 OUT_DIR = os.path.join(ROOT, "p")
+ARCHIVE_PATH = os.path.join(ROOT, "archive.html")
 SITE = "https://koreansalaryman.com"
+
+# 카테고리 표시 라벨 (index/blog 푸터와 동일 순서·라벨)
+CATEGORY_LABELS = [
+    ("money",      "💰 정부 지원금/정책"),
+    ("ai",         "🤖 AI 도구 활용"),
+    ("startup",    "🚀 초기 사업자"),
+    ("finance",    "📈 재테크/투자"),
+    ("realestate", "🏠 부동산/주거"),
+    ("trending",   "🔥 실시간 이슈"),
+    ("book",       "📚 책 추천"),
+]
 
 
 def esc_attr(s):
@@ -323,6 +335,121 @@ def build_page(template, post, filename, slug, manifest_entry):
     return slug, doc
 
 
+# ── 정적 글 목록 페이지(archive.html) — 크롤러 진입점 ──────────────
+# JS fetch 없이 순수 HTML 링크. 크롤러가 즉시 전체 /p/ 글 경로를 발견하게 한다.
+ARCHIVE_TEMPLATE = """<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전체 글 보기 | 직장인 수익일기</title>
+<meta name="description" content="직장인 수익일기의 모든 글을 카테고리별로 한눈에. 부업·재테크·투자·정부지원금·AI 활용까지 전체 글 목록.">
+<link rel="canonical" href="https://koreansalaryman.com/archive.html">
+<meta property="og:title" content="전체 글 보기 | 직장인 수익일기">
+<meta property="og:description" content="직장인 수익일기의 모든 글을 카테고리별로 모았습니다.">
+<meta property="og:url" content="https://koreansalaryman.com/archive.html">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--bg:#f8f7f4;--bg2:#f0ede8;--navy:#1a2640;--navy2:#253352;--navy3:#0f1824;--point:#c17f3e;--text1:#1a1a1a;--text2:#444;--text3:#888;--border:#e8e4de;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);line-height:1.7;}
+a{color:inherit;text-decoration:none;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;position:sticky;top:0;z-index:10;}
+.hdr-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);}
+.logo-kr span{color:var(--point);}
+.hdr-nav a{font-size:13px;font-weight:600;color:var(--text2);margin-left:16px;}
+.hdr-nav a:hover{color:var(--navy);}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 24px 64px;}
+.page-title{font-family:'Noto Serif KR',serif;font-size:30px;font-weight:900;color:var(--navy);margin-bottom:8px;}
+.page-sub{font-size:14px;color:var(--text3);margin-bottom:40px;}
+.cat-block{margin-bottom:40px;}
+.cat-head{font-family:'Noto Serif KR',serif;font-size:19px;font-weight:700;color:var(--navy);padding-bottom:10px;border-bottom:2px solid var(--point);margin-bottom:14px;}
+.cat-count{font-size:13px;font-weight:500;color:var(--text3);margin-left:8px;}
+ul.post-list{list-style:none;}
+ul.post-list li{padding:9px 2px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+ul.post-list li a{font-size:15px;font-weight:500;color:var(--text1);}
+ul.post-list li a:hover{color:var(--point);text-decoration:underline;}
+.post-date{font-size:12px;color:var(--text3);white-space:nowrap;}
+footer{background:var(--navy3);color:#cfd4dc;padding:40px 24px;font-size:13px;margin-top:40px;}
+.ft-in{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.ft-in a:hover{color:#fff;}
+</style>
+</head>
+<body>
+<header>
+  <div class="hdr-in">
+    <a href="/index.html" class="logo-kr">직장인 <span>수익일기</span></a>
+    <nav class="hdr-nav">
+      <a href="/index.html">홈</a>
+      <a href="/blog.html">블로그</a>
+      <a href="/archive.html">전체 글</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1 class="page-title">전체 글 보기</h1>
+  <p class="page-sub">직장인 수익일기의 모든 글을 카테고리별로 모았습니다. (총 __TOTAL__편)</p>
+__BODY__
+</main>
+<footer>
+  <div class="ft-in">
+    <span>&copy; 2026 직장인 수익일기 · 박대홍</span>
+    <span><a href="/index.html">홈</a> · <a href="/blog.html">블로그</a> · <a href="/about.html">소개</a> · koreansalaryman.com</span>
+  </div>
+</footer>
+</body>
+</html>
+"""
+
+
+def generate_archive(manifest):
+    """published 전체 글을 카테고리별 정적 링크 목록(archive.html)으로 생성."""
+    published = [m for m in manifest if m.get("status") == "published"]
+
+    groups = {}
+    for m in published:
+        cat = m.get("category") or "기타"
+        groups.setdefault(cat, []).append(m)
+
+    label_map = dict(CATEGORY_LABELS)
+    ordered_keys = [k for k, _ in CATEGORY_LABELS if k in groups]
+    for k in groups:  # 알 수 없는 카테고리는 뒤에 그대로 추가
+        if k not in label_map and k not in ordered_keys:
+            ordered_keys.append(k)
+
+    blocks = []
+    total_links = 0
+    for k in ordered_keys:
+        items = sorted(groups[k], key=lambda x: (x.get("created_at") or ""), reverse=True)
+        label = label_map.get(k, k)
+        rows = []
+        for it in items:
+            slug = it.get("slug") or it["filename"][:-5]
+            title = esc_text(it.get("title") or "(제목 없음)")
+            date = esc_text(format_date_kr(it.get("created_at") or ""))
+            rows.append(
+                '      <li><a href="/p/%s.html">%s</a><span class="post-date">%s</span></li>'
+                % (esc_attr(slug), title, date)
+            )
+            total_links += 1
+        block = (
+            '  <section class="cat-block">\n'
+            '    <h2 class="cat-head">%s<span class="cat-count">%d편</span></h2>\n'
+            '    <ul class="post-list">\n%s\n    </ul>\n'
+            '  </section>'
+        ) % (esc_text(label), len(items), "\n".join(rows))
+        blocks.append(block)
+
+    body = "\n".join(blocks) if blocks else "  <p>아직 발행된 글이 없습니다.</p>"
+    doc = ARCHIVE_TEMPLATE.replace("__BODY__", body).replace("__TOTAL__", str(total_links))
+    with open(ARCHIVE_PATH, "w", encoding="utf-8") as f:
+        f.write(doc)
+    print("archive.html 생성:", total_links, "개 글 링크 /", len(ordered_keys), "개 카테고리")
+    return total_links
+
+
 def main():
     with open(TEMPLATE_PATH, encoding="utf-8") as f:
         template = f.read()
@@ -378,10 +505,14 @@ def main():
             fail_list.append((filename, str(e)))
             print("FAIL:", filename, "->", e)
 
+    # ── 정적 글 목록(archive.html) 생성 — 크롤러 진입점 ──
+    archive_links = generate_archive(manifest)
+
     print("\n=== 정적 생성 결과 ===")
     print("published 대상:", len(published))
     print("생성(슬러그):", generated)
     print("리다이렉트 stub:", stubs)
+    print("archive.html 글 링크:", archive_links)
     print("스킵:", skipped)
     print("실패:", failed)
     if fail_list:

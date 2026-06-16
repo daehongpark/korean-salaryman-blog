@@ -22,6 +22,7 @@ OUTPUT     = BLOG_DIR / "sitemap.xml"
 STATIC_PAGES = [
     ("",               "1.0",  "daily"),
     ("blog.html",      "0.95", "daily"),
+    ("archive.html",   "0.9",  "daily"),
     ("about.html",     "0.8",  "monthly"),
     ("income.html",    "0.9",  "weekly"),
     ("challenge.html", "0.9",  "weekly"),
