@@ -88,7 +88,7 @@
   },
   {
     "filename": "post_20260615_224058.json",
-    "title": "Perplexity AI, 직장인 정보 검색 30분 아낀 비결 2026",
+    "title": "Perplexity AI, 직장인 정보 검색 30분 아낀 비결",
     "category": "ai",
     "keyword": "Perplexity AI",
     "summary": "Perplexity AI는 정확한 출처 기반의 정보 검색으로 직장인의 업무 시간을 크게 줄여줄 수 있는 유용한 도구입니다.\n다른 AI 챗봇과의 시너지를 통해 자료 조사, 보고서 작성 등 다양한 업무에서 효율성을 높이는 전략적 활용이 중요합니다.",
@@ -129,7 +129,7 @@
       "데이터거버넌스"
     ],
     "created_at": "2026-06-16T07:38:38.411812",
-    "status": "published",
+    "status": "draft",
     "source": "auto",
     "scheduled_at": null,
     "published_at": null,
@@ -141,8 +141,7 @@
     "has_steps": false,
     "has_references": true,
     "seo_score": null,
-    "monthly_search": null,
-    "slug": "2026년-베트남-AI-법규-우리-기업은-뭐부터-준비할까요-제-솔직한-생각"
+    "monthly_search": null
   },
   {
     "filename": "post_20260614_224105.json",
