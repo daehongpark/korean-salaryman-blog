@@ -229,6 +229,40 @@ def _has_semantic_overlap(new_keyword: str, past_keywords) -> bool:
     return False
 
 
+# ── 재테크 세부주제 그룹 쿨다운 (박대홍: 세액공제/연말정산/연금/청약 피로감) ──
+# 같은 그룹이 최근 N편에 이미 나왔으면 같은 그룹 재출현 억제.
+# 그룹 정의는 단순 키워드 부분일치로 (간단하게).
+TOPIC_GROUPS = {
+    "연말정산·절세": [
+        "연금저축", "irp", "세액공제", "연말정산", "혼인세액", "절세",
+    ],
+    "청약·대출": [
+        "청약", "디딤돌", "버팀목", "전세자금", "전세대출", "주택담보",
+        "특별공급", "특공",
+    ],
+}
+
+
+def _topic_group(keyword: str):
+    """키워드가 속한 세부주제 그룹명을 반환 (없으면 None)."""
+    if not keyword:
+        return None
+    k = keyword.lower()
+    for group, kws in TOPIC_GROUPS.items():
+        for kw in kws:
+            if kw in k:
+                return group
+    return None
+
+
+def _group_in_cooldown(keyword: str, used_groups) -> bool:
+    """키워드의 그룹이 이미 쿨다운(최근 7편 내 출현 + 이번 회차 선택분)에 있으면 True."""
+    g = _topic_group(keyword)
+    if not g:
+        return False
+    return g in used_groups
+
+
 # ── 카테고리 정규화 (한글 키 / 미지의 키 → 영문 7개 키로 매핑) ──
 VALID_CATEGORIES = {"money", "ai", "startup", "finance", "realestate", "trending", "book"}
 FALLBACK_CATEGORY = "trending"  # 알 수 없는 카테고리 도착 시 보낼 곳
@@ -363,7 +397,9 @@ def get_seo_optimized_keywords():
     trend_topics_by_cat = {}
     TREND_CATS = {"finance", "ai", "money", "realestate", "trending"}
     try:
-        needed = set(c for c in picked_cats if c in TREND_CATS)
+        # ★ 트렌드 수집 카테고리 확대: picked_cats와 무관하게 5개 전부 수집(book 제외)
+        #   → 채택 여력 확보 + 아래 '트렌드 최소 채택 보장' 로직이 풀을 활용
+        needed = set(TREND_CATS)
         if needed:
             from trend_pipeline import fetch_category_news, convert_trends_to_topics
             _recent_for_trend = _recent_keywords_from_manifest(days=14)
@@ -373,7 +409,7 @@ def get_seo_optimized_keywords():
                     if not news:
                         print(f"   [트렌드] {tcat}: 뉴스 0건 수집 (RSS 비어있음) → 시드풀 폴백")
                         continue
-                    topics = convert_trends_to_topics(tcat, news, max_topics=3)
+                    topics = convert_trends_to_topics(tcat, news, max_topics=5)
                     if not topics:
                         # 거의 항상 Gemini 503 high-demand 스파이크 (convert 내부 로그 참조)
                         print(f"   [트렌드] {tcat}: 뉴스 {len(news)}건 → 변환 주제 0개 (Gemini 변환 실패/빈배열) → 시드풀 폴백")
@@ -394,10 +430,48 @@ def get_seo_optimized_keywords():
     except Exception as e:
         print(f"   [트렌드] 전체 비활성 (기존 로직): {e}")
 
+    # ── 트렌드 최소 채택 보장 (POSTS_PER_DAY 중 최소 3편을 트렌드에서) ──
+    #   변환이 그만큼 확보됐을 때만 발동 (확보분 한도 내). 부족하면 가능한 만큼만.
+    TREND_MIN = min(3, POSTS_PER_DAY)
+    _avail = {c: len(v) for c, v in trend_topics_by_cat.items() if v}
+    _total_trend = sum(_avail.values())
+    if _total_trend > 0:
+        guaranteed = min(TREND_MIN, _total_trend)
+        # 트렌드 카테고리로 슬롯 배정 (라운드로빈 — 한 카테고리에 여러 주제면 중복 허용)
+        trend_slots = []
+        rr = dict(_avail)
+        while len(trend_slots) < guaranteed:
+            progressed = False
+            for c in list(rr.keys()):
+                if len(trend_slots) >= guaranteed:
+                    break
+                if rr[c] > 0:
+                    trend_slots.append(c)
+                    rr[c] -= 1
+                    progressed = True
+            if not progressed:
+                break
+        # picked_cats 재구성: 트렌드 슬롯 우선 + 나머지는 기존 균형분배 유지
+        remaining = POSTS_PER_DAY - len(trend_slots)
+        picked_cats = trend_slots + list(picked_cats)[:max(0, remaining)]
+        while len(picked_cats) < POSTS_PER_DAY:
+            picked_cats.append(random.choice([c for c in KEYWORD_POOL.keys() if c != 'book']))
+        picked_cats = picked_cats[:POSTS_PER_DAY]
+        random.shuffle(picked_cats)
+        print(f"   [트렌드 보장] 확보 {_total_trend}개 → 최소 {guaranteed}편 트렌드 슬롯 배정 (분포: {_avail})")
+    else:
+        print(f"   [트렌드 보장] 확보된 트렌드 주제 0개 → 전부 시드 기반")
+
     selected      = []
     used_keywords = _recent_keywords_from_manifest(days=14)
     if used_keywords:
         print(f"   [cooldown] 최근 14일 키워드 {len(used_keywords)}개 제외 대상")
+
+    # ── 재테크 세부주제 그룹 쿨다운 상태 (최근 7편 + 이번 회차 누적) ──
+    _recent_7 = _recent_keywords_from_manifest(days=7)
+    used_groups = {g for g in (_topic_group(k) for k in _recent_7) if g}
+    if used_groups:
+        print(f"   [그룹 쿨다운] 최근 7편 그룹 점유: {sorted(used_groups)}")
 
     print(f"\n   [SEO 분석] 카테고리 분배: {picked_cats}")
 
@@ -410,8 +484,13 @@ def get_seo_optimized_keywords():
         if trend_topics_by_cat.get(cat):
             t = trend_topics_by_cat[cat].pop(0)
             topic_kw = t["topic"]
-            if topic_kw not in used_keywords and not _has_semantic_overlap(topic_kw, used_keywords):
+            if _group_in_cooldown(topic_kw, used_groups):
+                print(f"   ⤷ [그룹 쿨다운] 트렌드 '{topic_kw}' ({_topic_group(topic_kw)}) 그룹 중복 → 시드 폴백")
+            elif topic_kw not in used_keywords and not _has_semantic_overlap(topic_kw, used_keywords):
                 used_keywords.add(topic_kw)
+                _g = _topic_group(topic_kw)
+                if _g:
+                    used_groups.add(_g)
                 selected.append({
                     "category": cat,
                     "keyword":  topic_kw,
@@ -452,13 +531,15 @@ def get_seo_optimized_keywords():
                         check_competition=False,
                     )
             
-            # 이미 선택된 키워드는 제외 (완전 일치 + 의미 매칭 둘 다 차단)
+            # 이미 선택된 키워드는 제외 (완전 일치 + 의미 매칭 + 그룹 쿨다운 차단)
             available = []
             for s in scored:
                 kw = s["keyword"]
                 if kw in used_keywords:
                     continue
                 if _has_semantic_overlap(kw, used_keywords):
+                    continue
+                if _group_in_cooldown(kw, used_groups):
                     continue
                 available.append(s)
 
@@ -468,6 +549,9 @@ def get_seo_optimized_keywords():
                 weights = [max(it.get("score", 1) or 1, 1) ** 0.5 for it in pool]
                 top = _rnd.choices(pool, weights=weights, k=1)[0]
                 used_keywords.add(top["keyword"])
+                _g = _topic_group(top["keyword"])
+                if _g:
+                    used_groups.add(_g)
                 selected.append({
                     "category": cat,
                     "keyword":  top["keyword"],
@@ -477,22 +561,32 @@ def get_seo_optimized_keywords():
                         "competition":   top.get("competition"),
                     },
                 })
-                print(f"   ✓ 선택: {top['keyword']} (SEO {top['score']}점, 상위 {len(pool)}개 중 가중랜덤)")
+                print(f"   ✓ [시드 채택] {cat}: {top['keyword']} (SEO {top['score']}점, 상위 {len(pool)}개 중 가중랜덤)")
             else:
-                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용 + 의미 매칭)
-                cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords)]
+                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용 + 의미 매칭 + 그룹 쿨다운)
+                cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords) and not _group_in_cooldown(s, used_groups)]
                 kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
                 used_keywords.add(kw)
+                _g = _topic_group(kw)
+                if _g:
+                    used_groups.add(_g)
                 selected.append({"category": cat, "keyword": kw})
-                print(f"   ⚠ SEO 결과 없음 → 폴백: {kw}")
+                print(f"   ⚠ [시드 폴백] {cat}: SEO 결과 없음 → {kw}")
 
         except Exception as e:
-            print(f"   ⚠ SEO 분석 오류: {e} → 폴백")
-            cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords)]
+            print(f"   ⚠ [시드 폴백] {cat}: SEO 분석 오류({e})")
+            cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords) and not _group_in_cooldown(s, used_groups)]
             kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
             used_keywords.add(kw)
+            _g = _topic_group(kw)
+            if _g:
+                used_groups.add(_g)
             selected.append({"category": cat, "keyword": kw})
-    
+
+    # ── 채택 요약 (트렌드 vs 시드) ──
+    trend_n = sum(1 for s in selected if s.get("trend_source"))
+    seed_n  = len(selected) - trend_n
+    print(f"\n   [채택 요약] 오늘 트렌드 {trend_n}편 / 시드 {seed_n}편 (총 {len(selected)}편)")
     return selected
 
 
@@ -1101,8 +1195,8 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None, tren
             "→ 도입부에서 시의성을 자연스럽게 녹일 것. 단 뉴스를 그대로 옮기지 말고 직장인 관점으로 재해석.\n"
         )
     geo_block = (
-        "\n[2026 검색최적화 필수 (SEO/GEO/AEO)]\n"
-        "1. 신선도: '2026년 기준' 등 최신 시점 명시 (GEO 핵심).\n"
+        "\n[검색최적화 필수 (SEO/GEO/AEO)]\n"
+        "1. 신선도: 본문에 최신 시점을 자연스럽게 (필요할 때만 '올해 기준' 수준). 단, 제목에는 연도를 기계적으로 넣지 말 것 — 연도 한정 정보일 때만 제목에 연도 허용.\n"
         "2. 패시지 최적화: 각 H2는 독립적으로 하나의 질문에 완결된 답. 섹션만 떼도 이해되게.\n"
         "3. 답 먼저: 각 섹션은 결론을 먼저, 설명을 뒤에 (AI 인용 용이).\n"
         "4. 구체 수치/출처: 막연한 표현 금지. 금액/비율/조건 구체적으로.\n"
