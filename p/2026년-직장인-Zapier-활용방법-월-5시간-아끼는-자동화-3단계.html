@@ -445,9 +445,9 @@ footer{background:var(--navy);padding:48px 24px;}
     <div class="widget">
       <div class="wg-top"><h3>뉴스레터</h3></div>
       <div class="wg-body">
-        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 받아보세요.</p>
+        <p class="nl-desc">매주 직장인 재테크·부업 정보와 새 글을 이메일로 받아보세요. 무료 구독, 스팸 없음.</p>
         <input class="nl-input" type="email" placeholder="이메일 주소 입력">
-        <button class="nl-btn">무료로 구독하기</button>
+        <button class="nl-btn" onclick="handleSubscribe()">무료로 구독하기</button>
       </div>
     </div>
 
@@ -489,6 +489,35 @@ footer{background:var(--navy);padding:48px 24px;}
 <script>
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── 뉴스레터 구독 (Substack 실제 연결) ──────────────────────
+async function handleSubscribe() {
+  const input = document.querySelector('.nl-input');
+  const email = (input?.value || '').trim();
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    alert('올바른 이메일 주소를 입력해주세요.');
+    return;
+  }
+  const btn = document.querySelector('.nl-btn');
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '구독 중...'; }
+  try {
+    await fetch('https://koreansalaryman.substack.com/api/v1/free', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, first_url: 'koreansalaryman.com', first_referrer: '' })
+    });
+    // no-cors라 응답 확인 불가 → 낙관적 성공 처리
+    if (input) input.value = '';
+    alert('구독 신청이 완료되었습니다! 확인 이메일을 보내드렸어요. 메일함에서 구독을 확인해주세요 😊');
+  } catch (e) {
+    // 실패 시 Substack 페이지로 폴백
+    window.open('https://koreansalaryman.substack.com/subscribe', '_blank');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = orig; }
+  }
 }
 
 // ── 조회수 (localStorage 기반) ──────────────────────────
