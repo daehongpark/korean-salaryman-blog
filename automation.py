@@ -183,6 +183,26 @@ def _recent_keywords_from_manifest(days: int = 14) -> set:
         return set()
 
 
+def _recent_keywords_by_count(n: int = 14) -> list:
+    """manifest에서 가장 최근 글 N편(파일명 기준 최신순)의 키워드/제목을 리스트로 반환.
+    일 단위가 아닌 '편 수' 기준 쿨다운/유사도 비교용."""
+    try:
+        if not MANIFEST_PATH.exists():
+            return []
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        posts = [p for p in manifest if str(p.get("filename", "")).startswith("post_")]
+        posts.sort(key=lambda p: p.get("filename", ""), reverse=True)
+        out = []
+        for p in posts[:max(0, n)]:
+            kw = (p.get("keyword") or p.get("title") or "").strip()
+            if kw:
+                out.append(kw)
+        return out
+    except Exception as e:
+        print(f"   [경고] manifest 최근 N편 로드 실패: {e}")
+        return []
+
+
 # ── 의미 기반 cooldown ─────────────────────────────
 _CD_STOP_TOKENS = {
     # 시간/연도
@@ -229,18 +249,57 @@ def _has_semantic_overlap(new_keyword: str, past_keywords) -> bool:
     return False
 
 
+def _base_tokens(keyword: str) -> set:
+    """prefix 확장 없이 '구별되는' 핵심 토큰만 추출 (제목 유사도 카운트용)."""
+    import re
+    if not keyword:
+        return set()
+    s = keyword.lower().strip()
+    en = set(re.findall(r'[a-z0-9]{2,}', s))
+    ko = set(re.findall(r'[가-힣]{2,}', s))
+    return (en | ko) - _CD_STOP_TOKENS
+
+
+def _has_strong_overlap(new_keyword: str, past_keywords, min_shared: int = 3) -> bool:
+    """새 제목/키워드가 과거 어느 글과 핵심 토큰 min_shared개 이상 겹치면 True.
+    _has_semantic_overlap(어근 1개라도 겹치면 차단)보다 보수적인 '강한 유사' 판정으로,
+    더 넓은 lookback(최근 30편)에 적용해 월 단위 반복 제목을 추가로 회피한다."""
+    new_tokens = _base_tokens(new_keyword)
+    if len(new_tokens) < min_shared:
+        return False
+    for past_kw in past_keywords:
+        shared = new_tokens & _base_tokens(past_kw)
+        if len(shared) >= min_shared:
+            return True
+    return False
+
+
 # ── 재테크 세부주제 그룹 쿨다운 (박대홍: 세액공제/연말정산/연금/청약 피로감) ──
 # 같은 그룹이 최근 N편에 이미 나왔으면 같은 그룹 재출현 억제.
 # 그룹 정의는 단순 키워드 부분일치로 (간단하게).
 TOPIC_GROUPS = {
+    # 직장인 연말정산/절세 (근로소득 중심)
     "연말정산·절세": [
         "연금저축", "irp", "세액공제", "연말정산", "혼인세액", "절세",
+    ],
+    # 사업/부업 세금 신고 (종합소득세·부가세 중심) — 연말정산과 별개 그룹
+    # 박대홍 피드백: "종합소득세 신고방법"류가 5/17·6/17 반복(월 단위) → 별도 그룹 + 장기 쿨다운
+    "세금·신고": [
+        "종합소득세", "종소세", "부가세", "부가가치세", "신고방법",
+        "세금신고", "원천징수", "사업소득", "기타소득",
     ],
     "청약·대출": [
         "청약", "디딤돌", "버팀목", "전세자금", "전세대출", "주택담보",
         "특별공급", "특공",
     ],
 }
+
+# 좁은 토픽 그룹 쿨다운 깊이.
+# 큰 카테고리(finance 등)가 아니라 위 TOPIC_GROUPS(좁은 주제)에만 적용된다.
+# 박대홍: "하루 5편이면 7편=1.4일이라 너무 짧음" → 편 수 14편으로 확대 +
+#         월 단위 반복까지 잡으려면 일 단위 창도 필요 → 최근 45일을 함께 본다.
+GROUP_COOLDOWN_POSTS = 14   # 최근 14편
+GROUP_COOLDOWN_DAYS  = 45   # + 최근 45일 (월 단위 재출현 차단)
 
 
 def _topic_group(keyword: str):
@@ -467,11 +526,18 @@ def get_seo_optimized_keywords():
     if used_keywords:
         print(f"   [cooldown] 최근 14일 키워드 {len(used_keywords)}개 제외 대상")
 
-    # ── 재테크 세부주제 그룹 쿨다운 상태 (최근 7편 + 이번 회차 누적) ──
-    _recent_7 = _recent_keywords_from_manifest(days=7)
-    used_groups = {g for g in (_topic_group(k) for k in _recent_7) if g}
+    # ── 제목 유사도(강한 겹침) 회피용: 최근 30편 키워드 ──
+    recent_30 = _recent_keywords_by_count(30)
+    if recent_30:
+        print(f"   [유사도] 최근 30편 제목과 핵심토큰 3개+ 겹침 회피")
+
+    # ── 좁은 토픽 그룹 쿨다운 상태 (최근 14편 ∪ 최근 45일 + 이번 회차 누적) ──
+    # 큰 카테고리가 아니라 TOPIC_GROUPS(좁은 주제)에만 걸린다.
+    _recent_group_kws = set(_recent_keywords_by_count(GROUP_COOLDOWN_POSTS)) \
+                        | _recent_keywords_from_manifest(days=GROUP_COOLDOWN_DAYS)
+    used_groups = {g for g in (_topic_group(k) for k in _recent_group_kws) if g}
     if used_groups:
-        print(f"   [그룹 쿨다운] 최근 7편 그룹 점유: {sorted(used_groups)}")
+        print(f"   [그룹 쿨다운] 최근 {GROUP_COOLDOWN_POSTS}편/{GROUP_COOLDOWN_DAYS}일 그룹 점유: {sorted(used_groups)}")
 
     print(f"\n   [SEO 분석] 카테고리 분배: {picked_cats}")
 
@@ -486,6 +552,8 @@ def get_seo_optimized_keywords():
             topic_kw = t["topic"]
             if _group_in_cooldown(topic_kw, used_groups):
                 print(f"   ⤷ [그룹 쿨다운] 트렌드 '{topic_kw}' ({_topic_group(topic_kw)}) 그룹 중복 → 시드 폴백")
+            elif _has_strong_overlap(topic_kw, recent_30):
+                print(f"   ⤷ [유사도] 트렌드 '{topic_kw}' 최근 30편과 핵심토큰 3개+ 겹침 → 시드 폴백")
             elif topic_kw not in used_keywords and not _has_semantic_overlap(topic_kw, used_keywords):
                 used_keywords.add(topic_kw)
                 _g = _topic_group(topic_kw)
@@ -539,6 +607,8 @@ def get_seo_optimized_keywords():
                     continue
                 if _has_semantic_overlap(kw, used_keywords):
                     continue
+                if _has_strong_overlap(kw, recent_30):
+                    continue
                 if _group_in_cooldown(kw, used_groups):
                     continue
                 available.append(s)
@@ -563,8 +633,8 @@ def get_seo_optimized_keywords():
                 })
                 print(f"   ✓ [시드 채택] {cat}: {top['keyword']} (SEO {top['score']}점, 상위 {len(pool)}개 중 가중랜덤)")
             else:
-                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용 + 의미 매칭 + 그룹 쿨다운)
-                cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords) and not _group_in_cooldown(s, used_groups)]
+                # SEO 분석 결과 없음 → 랜덤 폴백 (cooldown 적용 + 의미 매칭 + 유사도 + 그룹 쿨다운)
+                cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords) and not _has_strong_overlap(s, recent_30) and not _group_in_cooldown(s, used_groups)]
                 kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
                 used_keywords.add(kw)
                 _g = _topic_group(kw)
@@ -575,7 +645,7 @@ def get_seo_optimized_keywords():
 
         except Exception as e:
             print(f"   ⚠ [시드 폴백] {cat}: SEO 분석 오류({e})")
-            cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords) and not _group_in_cooldown(s, used_groups)]
+            cooldown_seeds = [s for s in seed_pool if s not in used_keywords and not _has_semantic_overlap(s, used_keywords) and not _has_strong_overlap(s, recent_30) and not _group_in_cooldown(s, used_groups)]
             kw = random.choice(cooldown_seeds if cooldown_seeds else seed_pool)
             used_keywords.add(kw)
             _g = _topic_group(kw)
