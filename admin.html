@@ -498,6 +498,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           <option value="book">📚 책 추천</option>
         </select>
         <button class="refresh-btn" onclick="loadPosts()">↻ 새로고침</button>
+        <button onclick="copyAllIndexUrls()" style="background:#eef5ff;color:#1a56db;border:1px solid #cdddf7;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;" title="발행글 전체의 색인용 한글 주소를 최신순으로 복사 (GSC 색인요청용)">📋 발행글 전체 색인주소 복사</button>
         <button onclick="openNewPost()" style="background:var(--point);color:var(--white);border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">✏️ 새 글 쓰기</button>
         <button onclick="openNaverImport()" style="background:var(--bg2);color:var(--text1);border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">📥 네이버 글 변형</button>
         <button onclick="openCustomRequest()" style="background:var(--bg2);color:var(--text1);border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">✏️ 직접 글 요청</button>
@@ -680,6 +681,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     </div>
     <div class="modal-foot">
       <button class="cancel-btn" onclick="closeModal('previewModal')">닫기</button>
+      <button class="action-btn" id="pvIndexBtn" style="background:#eef5ff;color:#1a56db;border:1px solid #cdddf7;display:none;" onclick="copyPreviewIndexUrl(this)" title="이 글의 색인용 한글 주소 복사 (GSC)">🔗 색인용 주소 복사</button>
       <button class="action-btn btn-edit" id="pvEditBtn" onclick="editFromPreview()">수정</button>
       <button class="action-btn btn-pub" id="pvToggleBtn" onclick="togglePvFromPreview()">발행</button>
       <button class="action-btn btn-delete" id="pvDeleteBtn" onclick="deleteFromPreview()">삭제</button>
@@ -1456,6 +1458,9 @@ function renderTable(posts) {
       <div class="date-cell">${formatDate(p.created_at)}</div>
       <div class="action-cell">
         <button class="action-btn btn-preview" onclick="openPreview('${p.filename}')">보기</button>
+        ${p.status === 'published' && p.slug
+          ? `<button class="action-btn" style="background:#eef5ff;color:#1a56db;border:1px solid #cdddf7;" onclick="event.stopPropagation();copyIndexUrl('${p.filename}',this)" title="색인용 한글 주소 복사 (GSC 색인요청)">🔗 색인주소</button>`
+          : ''}
         ${p.status === 'draft'
           ? `<button class="action-btn btn-publish" onclick="toggleStatus('${p.filename}','published')">발행</button>`
           : (p.status === 'scheduled'
@@ -1484,6 +1489,67 @@ function renderTable(posts) {
 
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escAttr(s) { return String(s||'').replace(/'/g,"\\'"); }
+
+// ── 색인용 주소(한글 슬러그) 복사 ─────────────────────────────
+// GSC 색인요청 시 %EB%85%84 식 인코딩 오류를 피하려고 슬러그를 한글 원문 그대로 복사한다.
+// (encodeURIComponent 하지 않음 / canonical과 동일하게 www 없는 정식 도메인 사용)
+const INDEX_URL_BASE = 'https://koreansalaryman.com/p/';
+function buildIndexUrl(slug) { return INDEX_URL_BASE + slug + '.html'; }
+
+async function copyTextToClipboard(text) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (e) { /* fall through to legacy */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) { return false; }
+}
+
+async function copyIndexUrl(filename, btn) {
+  const post = allPosts.find(p => p.filename === filename);
+  if (!post || !post.slug) { showToast('슬러그가 없는 글입니다 (옛 글).', 'error'); return; }
+  const url = buildIndexUrl(post.slug);
+  const ok = await copyTextToClipboard(url);
+  if (ok) {
+    if (btn) {
+      const prev = btn.innerHTML;
+      btn.innerHTML = '✅ 복사됨!';
+      setTimeout(() => { btn.innerHTML = prev; }, 1200);
+    }
+    showToast('색인용 한글 주소를 복사했습니다. GSC에 붙여넣으세요.', 'success');
+  } else {
+    showToast('복사 실패 — 수동 복사: ' + url, 'error');
+  }
+}
+
+async function copyPreviewIndexUrl(btn) {
+  if (!currentPreviewFilename) return;
+  await copyIndexUrl(currentPreviewFilename, btn);
+}
+
+async function copyAllIndexUrls() {
+  const pub = allPosts
+    .filter(p => p.status === 'published' && p.slug)
+    .slice()
+    .sort((a, b) => String(b.created_at||'').localeCompare(String(a.created_at||''))); // 최신순
+  if (pub.length === 0) { showToast('색인할 발행글(슬러그 보유)이 없습니다.', 'error'); return; }
+  const text = pub.map(p => buildIndexUrl(p.slug)).join('\n');
+  const ok = await copyTextToClipboard(text);
+  if (ok) showToast(`발행글 ${pub.length}편의 색인 주소를 복사했습니다 (최신순, 한글). 메모장에 붙여넣고 GSC에 위에서부터 복붙하세요.`, 'success');
+  else showToast('복사 실패', 'error');
+}
 
 // ── 일괄 작업: 체크박스 / 선택 / 일괄 발행·임시저장·삭제 ─────────
 function getSelectedFilenames() {
@@ -2007,6 +2073,8 @@ async function openPreview(filename) {
   if (!_pvPost) return;
   currentPreviewStatus = _pvPost.status || 'draft';
   document.getElementById('pvToggleBtn').textContent = (currentPreviewStatus === 'published') ? '임시저장' : '발행';
+  const pvIdxBtn = document.getElementById('pvIndexBtn');
+  if (pvIdxBtn) pvIdxBtn.style.display = (currentPreviewStatus === 'published' && _pvPost.slug) ? '' : 'none';
   document.getElementById('pvCat').textContent  = _pvPost.category || '';
   document.getElementById('pvTitle').textContent = _pvPost.title || '';
   document.getElementById('pvMeta').textContent  = `${formatDate(_pvPost.created_at)} · ${_pvPost.status === 'published' ? '발행됨' : '임시저장'}`;
