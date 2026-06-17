@@ -131,9 +131,9 @@
       "대구 AI 테크포트"
     ],
     "created_at": "2026-06-17T07:34:23.198302",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-06-17T13:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260616_223420.png",
