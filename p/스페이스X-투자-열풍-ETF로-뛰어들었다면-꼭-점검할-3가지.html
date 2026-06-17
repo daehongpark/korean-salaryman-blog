@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── Primary SEO (JS로 동적 업데이트) ── -->
+<title>스페이스X 투자 열풍? ETF로 뛰어들었다면 꼭 점검할 3가지 | 직장인 수익일기</title>
+<meta name="description" content="스페이스X에 직접 투자하는 ETF는 없으므로, 관련 테마형 ETF 투자 시 실제 편입 종목과 운용 보수, 유동성을 반드시 확인해야 합니다.
+직장인이라면 높은 변동성에 유의하며, 소액으로 꾸준히 분산 투자하는 것이 가장 현실적인 방법입니다. | 직장인 수익일기">
+<meta name="author" content="박대홍">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://koreansalaryman.com/p/스페이스X-투자-열풍-ETF로-뛰어들었다면-꼭-점검할-3가지.html" id="canonicalTag">
+
+<!-- ── Open Graph (JS로 동적 업데이트) ── -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="직장인 수익일기">
+<meta property="og:title" content="스페이스X 투자 열풍? ETF로 뛰어들었다면 꼭 점검할 3가지 | 직장인 수익일기" id="ogTitle">
+<meta property="og:description" content="스페이스X에 직접 투자하는 ETF는 없으므로, 관련 테마형 ETF 투자 시 실제 편입 종목과 운용 보수, 유동성을 반드시 확인해야 합니다.
+직장인이라면 높은 변동성에 유의하며, 소액으로 꾸준히 분산 투자하는 것이 가장 현실적인 방법입니다. | 직장인 수익일기" id="ogDesc">
+<meta property="og:url" content="https://koreansalaryman.com/p/스페이스X-투자-열풍-ETF로-뛰어들었다면-꼭-점검할-3가지.html" id="ogUrl">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://koreansalaryman.com/posts/thumbnails/thumb_20260616_224215.png" id="ogImage">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://koreansalaryman.com/posts/thumbnails/thumb_20260616_224215.png" id="twImage">
+<meta property="article:author" content="박대홍">
+<meta property="article:published_time" content="2026-06-17T07:42:18.458127" id="ogPublished">
+<meta property="article:section" content="finance" id="ogSection">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="스페이스X 투자 열풍? ETF로 뛰어들었다면 꼭 점검할 3가지 | 직장인 수익일기" id="twTitle">
+<meta name="twitter:description" content="스페이스X에 직접 투자하는 ETF는 없으므로, 관련 테마형 ETF 투자 시 실제 편입 종목과 운용 보수, 유동성을 반드시 확인해야 합니다.
+직장인이라면 높은 변동성에 유의하며, 소액으로 꾸준히 분산 투자하는 것이 가장 현실적인 방법입니다. | 직장인 수익일기" id="twDesc">
+<meta name="twitter:site" content="@koreansalaryman">
+
+<!-- ── 검색엔진 인증 ── -->
+<meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI">
+<meta name="naver-site-verification" content="ad5bce9f4de14cbe7ccf111ca46b1114e52a25ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Chart.js (defer to avoid blocking; charts initialize via DOMContentLoaded inside post body) -->
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;
+  --bg:#f8f7f4;
+  --bg2:#f0ede8;
+  --navy:#1a2640;
+  --navy2:#253352;
+  --point:#c17f3e;
+  --point-light:#f5ead8;
+  --point2:#2d6a4f;
+  --text1:#1a1a1a;
+  --text2:#444444;
+  --text3:#888888;
+  --border:#e8e4de;
+  --border2:#d4cfc8;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* ── Header ─────────────────────────────────────── */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8.5px;color:var(--text3);letter-spacing:0.2em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-sub{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:background 0.15s;}
+.btn-sub:hover{background:var(--navy2);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu a:hover{background:var(--bg);color:var(--navy);}
+.mobile-menu .btn-sub{margin-top:8px;justify-content:center;border-radius:8px;}
+
+/* ── Post Hero ───────────────────────────────────── */
+.post-hero{background:var(--navy);padding:56px 24px 64px;position:relative;overflow:hidden;}
+.post-hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;}
+.post-hero-glow{position:absolute;right:-200px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
+.post-hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.post-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.post-breadcrumb a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.15s;}
+.post-breadcrumb a:hover{color:rgba(255,255,255,0.8);}
+.post-breadcrumb span{font-size:12px;color:rgba(255,255,255,0.25);}
+.post-cat-pill{display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 14px;border-radius:4px;letter-spacing:0.15em;margin-bottom:16px;}
+.post-hero h1{font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;color:var(--white);line-height:1.35;letter-spacing:-0.02em;margin-bottom:20px;}
+.post-hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.post-hero-author{display:flex;align-items:center;gap:10px;}
+.post-author-avatar{width:32px;height:32px;border-radius:50%;background:var(--point);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;color:var(--white);}
+.post-author-name{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500;}
+.post-meta-divider{width:1px;height:12px;background:rgba(255,255,255,0.15);}
+.post-meta-info{font-size:12px;color:rgba(255,255,255,0.4);}
+
+/* ── Layout ──────────────────────────────────────── */
+.post-layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 280px;gap:52px;}
+
+/* ── Article ─────────────────────────────────────── */
+.article-wrap{min-width:0;}
+.article-summary{background:var(--point-light);border:1px solid rgba(193,127,62,0.2);border-radius:12px;padding:20px 24px;margin-bottom:40px;}
+.article-summary-label{font-size:10px;font-weight:700;color:var(--point);letter-spacing:0.2em;margin-bottom:8px;}
+.article-summary p{font-size:14px;color:var(--text2);line-height:1.85;font-weight:400;}
+.article-body{color:var(--text1);font-size:16px;line-height:1.95;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);}
+.article-body p:first-child{font-size:17px;color:var(--text1);font-weight:400;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:40px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:14px 20px;border-radius:0 10px 10px 0;margin:20px 0;font-size:14px;color:var(--text2);line-height:1.8;}
+.article-body figure{margin:28px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:420px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:6px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0;}
+.article-body li{margin-bottom:8px;color:var(--text2);}
+.article-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
+.article-tag{font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:20px;font-weight:500;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;margin-top:40px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.15s;}
+.back-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+/* ── 조회수 & 공유 바 ── */
+.post-meta-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.post-view-count{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);}
+.post-view-icon{font-size:14px;}
+.share-btns{display:flex;align-items:center;gap:8px;}
+.share-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:0.08em;margin-right:4px;}
+.share-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;text-decoration:none;}
+.share-btn.kakao{background:#FEE500;color:#3C1E1E;}
+.share-btn.kakao:hover{background:#f5dc00;}
+.share-btn.twitter{background:#1DA1F2;color:#fff;}
+.share-btn.twitter:hover{background:#1a91da;}
+.share-btn.copy{background:var(--bg2);color:var(--text2);}
+.share-btn.copy:hover{background:var(--border2);}
+
+/* ── 댓글 섹션 ── */
+.comments-section{margin-top:52px;padding-top:40px;border-top:2px solid var(--border);}
+.comments-title{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px;}
+.comment-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:32px;}
+.comment-form-row{display:flex;gap:12px;margin-bottom:12px;}
+.comment-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;}
+.comment-input:focus{border-color:var(--navy);background:var(--white);}
+.comment-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);min-height:100px;resize:vertical;transition:border 0.15s;margin-bottom:10px;}
+.comment-textarea:focus{border-color:var(--navy);background:var(--white);}
+.comment-submit{background:var(--navy);color:var(--white);border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.comment-submit:hover{background:var(--navy2);}
+.comment-list{display:flex;flex-direction:column;gap:16px;}
+.comment-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.comment-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.comment-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--white);flex-shrink:0;}
+.comment-name{font-size:13px;font-weight:700;color:var(--text1);}
+.comment-date{font-size:11px;color:var(--text3);margin-left:auto;}
+.comment-text{font-size:13px;color:var(--text2);line-height:1.8;}
+.comment-empty{text-align:center;padding:32px;color:var(--text3);font-size:13px;}
+
+/* ── 타이포그래피 개선 ── */
+.article-body{color:var(--text1);font-size:16px;line-height:2.0;letter-spacing:-0.01em;}
+.article-body>p:first-child{font-size:18px;line-height:1.9;color:var(--text1);font-weight:400;margin-bottom:2em;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);word-break:keep-all;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:44px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:32px 0 14px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:16px 22px;border-radius:0 10px 10px 0;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.85;font-style:italic;}
+.article-body figure{margin:32px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:440px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:8px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0 24px;}
+.article-body li{margin-bottom:10px;color:var(--text2);line-height:1.8;}
+.article-body strong{color:var(--text1);font-weight:700;}
+
+/* ── 이전/다음 글 ── */
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;}
+.post-nav-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:all 0.15s;display:block;}
+.post-nav-item:hover{border-color:var(--point);transform:translateY(-2px);}
+.post-nav-label{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:0.1em;margin-bottom:6px;}
+.post-nav-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* 사이드바 개선 */
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+
+/* ── 2026 신규 글 구조 (TL;DR / 비교표 / 단계 / 참고자료) ── */
+.article-body .post-tldr{margin:0 0 28px !important;}
+.article-body .post-tldr ul{padding-left:20px !important;margin:0 !important;}
+.article-body .post-comparison{margin:36px 0 24px !important;}
+.article-body .post-comparison table{font-size:14px;}
+.article-body .post-steps ol{padding:0 !important;list-style:none !important;}
+.article-body .post-steps li{margin-bottom:14px !important;}
+.article-body .post-references{margin:36px 0 16px !important;}
+.article-body .post-references ul{margin:0 !important;}
+.article-body .post-references li{margin:8px 0 !important;}
+
+@media(max-width:768px){
+  .post-meta-bar{padding:12px 0;}
+  .share-btns{flex-wrap:wrap;}
+  .comment-form-row{flex-direction:column;}
+  .post-nav{grid-template-columns:1fr;}
+  /* 신규 글 구조 모바일 최적화 */
+  .article-body .post-tldr{padding:14px 16px !important;font-size:14px;}
+  .article-body .post-comparison{overflow-x:auto !important;}
+  .article-body .post-comparison table{min-width:520px;}
+  .article-body .post-steps li{padding:12px !important;}
+  .article-body .post-audience{font-size:12px !important;}
+}
+
+/* ── Sidebar ─────────────────────────────────────── */
+.sidebar{display:flex;flex-direction:column;gap:20px;}
+.widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.wg-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.wg-top h3{font-size:12px;font-weight:700;color:var(--text1);letter-spacing:0.08em;}
+.wg-body{padding:16px 18px;}
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;background:var(--bg);color:var(--text2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-weight:500;}
+.nl-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
+.nl-input{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;margin-bottom:8px;}
+.nl-input:focus{border-color:var(--navy);background:var(--white);}
+.nl-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nl-btn:hover{background:var(--navy2);}
+.rel-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);text-decoration:none;}
+.rel-item:last-child{border-bottom:none;}
+.rel-dot{width:6px;height:6px;border-radius:50%;background:var(--point);flex-shrink:0;margin-top:7px;}
+.rel-title{font-size:12.5px;color:var(--text1);font-weight:500;line-height:1.55;transition:color 0.15s;}
+.rel-title:hover{color:var(--point);}
+.rel-cat{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{background:var(--navy);padding:48px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7;}
+.ft-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.ft-links{display:flex;gap:16px;}
+.ft-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.15s;}
+.ft-links a:hover{color:rgba(255,255,255,0.8);}
+.ft-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ── Skeleton / Error ────────────────────────────── */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.error-box{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:60px 40px;text-align:center;}
+.error-box h2{font-size:20px;color:var(--text1);margin-bottom:12px;}
+.error-box p{font-size:14px;color:var(--text3);margin-bottom:24px;}
+
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .mobile-menu.open{display:flex!important;}
+  .hd{padding:0 16px;}
+  .post-hero{padding:40px 16px 52px;}
+  .post-hero h1{font-size:24px;}
+  .post-layout{grid-template-columns:1fr!important;padding:28px 16px;gap:32px;}
+  .article-body{font-size:15px;}
+  .ft{flex-direction:column;align-items:flex-start;gap:24px;}
+  .ft-right{align-items:flex-start;}
+  .ft-links{flex-wrap:wrap;}
+}
+</style>
+<!-- ── Google Analytics 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D0W7QRLMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D0W7QRLMD', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "스페이스X 투자 열풍? ETF로 뛰어들었다면 꼭 점검할 3가지", "description": "스페이스X에 직접 투자하는 ETF는 없으므로, 관련 테마형 ETF 투자 시 실제 편입 종목과 운용 보수, 유동성을 반드시 확인해야 합니다.\n직장인이라면 높은 변동성에 유의하며, 소액으로 꾸준히 분산 투자하는 것이 가장 현실적인 방법입니다. | 직장인 수익일기", "url": "https://koreansalaryman.com/p/스페이스X-투자-열풍-ETF로-뛰어들었다면-꼭-점검할-3가지.html", "datePublished": "2026-06-17T07:42:18.458127", "dateModified": "2026-06-17T07:42:18.458127", "author": {"@type": "Person", "name": "박대홍", "url": "https://koreansalaryman.com/about.html"}, "publisher": {"@type": "Organization", "name": "직장인 수익일기", "url": "https://koreansalaryman.com"}, "keywords": "스페이스X 투자 열풍? ETF로 투자했다면 놓치지 말아야 할 이것!, finance, 직장인, 테마형 ETF, 혁신 기업 투자, 우주항공", "articleSection": "finance", "inLanguage": "ko-KR", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://koreansalaryman.com/p/스페이스X-투자-열풍-ETF로-뛰어들었다면-꼭-점검할-3가지.html"}}</script>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <a href="/index.html" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <div class="desktop-nav">
+      <a href="/blog.html">블로그</a>
+      <a href="/challenge.html">챌린지</a>
+      <a href="/income.html">수익 공개</a>
+      <a href="/about.html">소개</a>
+      <a href="/class.html">강의</a>
+      <div class="nav-divider"></div>
+      <a href="/index.html#newsletter" class="btn-sub">구독하기</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/blog.html">블로그</a>
+  <a href="/challenge.html">챌린지</a>
+  <a href="/income.html">수익 공개</a>
+  <a href="/about.html">소개</a>
+  <a href="/class.html">강의</a>
+  <a href="/index.html#newsletter" class="btn-sub">구독하기</a>
+</div>
+
+<!-- 포스트 헤더 (JS로 채워짐) -->
+<script>window.__PRERENDERED__ = true;</script>
+<div id="postHero" class="post-hero" style="display:block">
+  <div class="post-hero-texture"></div>
+  <div class="post-hero-glow"></div>
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="/index.html">홈</a>
+      <span>›</span>
+      <span id="heroCat">finance</span>
+    </div>
+    <div id="heroCatPill" class="post-cat-pill">finance</div>
+    <h1 id="heroTitle">스페이스X 투자 열풍? ETF로 뛰어들었다면 꼭 점검할 3가지</h1>
+    <div class="post-hero-meta">
+      <div class="post-hero-author">
+        <div class="post-author-avatar">박</div>
+        <span class="post-author-name">박대홍</span>
+      </div>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroDate">2026년 6월 17일</span>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroReadTime">읽는 시간 24분</span>
+    </div>
+  </div>
+</div>
+
+<!-- 스켈레톤 로딩 -->
+<div id="loadingSkeleton" style="max-width:1080px;margin:40px auto;padding:0 24px;display:none;">
+  <div class="skeleton" style="height:200px;margin-bottom:20px;border-radius:12px;"></div>
+  <div class="skeleton" style="height:24px;width:60%;margin-bottom:12px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;width:80%;"></div>
+</div>
+
+<!-- 포스트 본문 -->
+<div id="postLayout" class="post-layout" style="display:grid">
+  <article class="article-wrap">
+    <div class="article-summary" id="articleSummary"><div class="article-summary-label">SUMMARY</div><p>스페이스X에 직접 투자하는 ETF는 없으므로, 관련 테마형 ETF 투자 시 실제 편입 종목과 운용 보수, 유동성을 반드시 확인해야 합니다.<br>직장인이라면 높은 변동성에 유의하며, 소액으로 꾸준히 분산 투자하는 것이 가장 현실적인 방법입니다.</p></div>
+    <div class="article-body" id="articleBody"><div class="post-updated" style="text-align:right;font-size:12px;color:#999;margin:0 0 12px;">📅 2026.06.17 업데이트</div><aside class="post-tldr" style="background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;"><div style="font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;">한눈에 보기</div><ul style="margin:0;padding-left:20px;color:#1a2640;font-size:15px;"><li style="margin:6px 0;line-height:1.6;">스페이스X 투자 열풍에 올라타 ETF를 골랐다면, 무작정 담기 전에 운용 구조를 꼭 확인해야 합니다.</li><li style="margin:6px 0;line-height:1.6;">테마형 ETF는 특정 섹터에 집중해 수익률 변동성이 크고, 스페이스X 비중이 낮을 수 있다는 맹점이 있어요.</li><li style="margin:6px 0;line-height:1.6;">제가 직접 찾아보니, 투자 목표와 기간에 맞춰 핵심 종목 비중과 운용 보수를 따져봐야 하더라구요.</li></ul></aside><div class="post-audience" style="font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;">👤 이 글은 월급 200~400만원 직장인 중 스페이스X와 같은 혁신 기업 투자에 관심 있는 분들을 위한 글입니다.</div><p>며칠 전 동료 한 명이 물어보더라구요. '형, 스페이스X ETF 수익률 왜 이래?' 저는 좀 의아했습니다. 뉴스에서 스페이스X 가치가 꽤 올랐다는 소식을 봤거든요. 알고 보니 스페이스X 주가는 올랐지만, 국내 상장된 관련 ETF 중 일부는 오히려 손실을 기록하고 있었어요. 이게 어떻게 된 일일까요? 스페이스X 투자 열풍에 휩쓸려 ETF에 뛰어들었다면, 막연한 기대보다는 진짜 '내 돈'이 어디로 가고 있는지 알아야 합니다. 결론부터 말하면, ETF 이름만 보고 덥석 잡으면 안 된다는 겁니다.</p>
+<figure style="margin:32px 0 24px;"><img src="/posts/thumbnails/thumb_20260616_224215.png" alt="스페이스X 투자 열풍? ETF로 뛰어들었다면 꼭 점검할 3가지" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@veliyunusunal" target="_blank" style="color:#888;">Veli Yunus Ünal</a> on Unsplash</figcaption></figure>
+<h2>스페이스X ETF, 무작정 따라가면 안 되는 이유</h2>
+<p>결론부터 말씀드리면, 스페이스X에 직접 투자하는 상장 ETF는 현재 없습니다. 스페이스X는 비상장 기업이거든요. 그래서 흔히 '스페이스X 투자 열풍? ETF로 투자했다면 놓치지 말아야 할 이것!'이라는 키워드로 검색되는 ETF들은 대부분 스페이스X와 관련된 산업, 예를 들어 우주 탐사, 위성 통신, 항공우주 부품 같은 분야의 기업들을 묶어놓은 '테마형 ETF'인 경우가 많습니다. 뉴스에서 스페이스X 가치가 40% 올랐다고 해도, 제가 담은 ETF 수익률이 10% 손실인 건 이런 이유 때문이죠. 저도 처음엔 ETF 이름에 혹해서 '이게 그 스페이스X 관련주인가!' 싶었거든요. 착각하기 정말 쉽습니다. 중요한 건 내가 투자한 ETF에 스페이스X가 직접 편입되어 있는지, 그리고 얼마나 비중을 차지하는지 파악하는 겁니다. 대부분은 스페이스X가 아닌 관련 산업의 다른 기업들로 채워져 있어요. 이 점을 놓치면 기대했던 수익률과는 전혀 다른 결과를 마주할 수 있습니다.</p>
+<blockquote>포인트: ETF 이름에 속지 마세요. 스페이스X는 비상장이고, 대부분의 관련 ETF는 테마형이에요.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1622219999459-ab5b14e5f45a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODE2NDk3Mzd8&ixlib=rb-4.1.0&q=80&w=1080" alt="pink pig coin bank on brown wooden table" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@3dparadise" target="_blank" style="color:#888;">Braňo</a> on Unsplash</figcaption></figure>
+<h2>테마형 ETF, 속을 들여다보니 이렇더라구요</h2>
+<p>테마형 ETF는 특정 산업 트렌드를 따라 투자하는 상품입니다. 예를 들어, 우주항공 테마 ETF는 보잉, 록히드마틴 같은 전통 방산업체부터 위성 서비스 회사까지 다양한 기업들을 담고 있습니다. 제가 작년에 알아봤을 때, 특정 우주 테마 ETF의 경우 스페이스X와의 직접적인 연관성은 거의 없는 기업들이 상위 10개 종목에 70% 이상 비중을 차지하는 경우도 많았어요. 이런 ETF들은 운용 보수가 일반적인 시장 지수 추종 ETF보다 훨씬 높은 경우가 많습니다. 보통 0.5%에서 1.0%가 넘는 경우도 있구요. 이런 보수는 장기 투자 시 수익률을 갉아먹는 요인이 됩니다. 솔직히 말씀드릴게요. 저도 처음에 특정 테마 ETF에 혹했다가 운용 보수를 대충 보고 들어갔다가, 나중에 정산해보니 생각보다 꽤 많은 돈이 수수료로 나간 걸 보고 놀랐습니다. 테마형 ETF는 트렌드에 민감해서 주가 변동성도 상당히 높은 편이구요. 그래서 이름만 보고 투자했다가는 기대와 다른 결과를 볼 확률이 높습니다.</p>
+<blockquote>포인트: 높은 운용 보수와 예상과 다른 종목 비중은 테마형 ETF의 흔한 함정입니다.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1614028674353-b9db2a517013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODE2NDk3Mzd8&ixlib=rb-4.1.0&q=80&w=1080" alt="black smart watch at 10 00" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@techdailyca" target="_blank" style="color:#888;">Tech Daily</a> on Unsplash</figcaption></figure>
+<h2>이런 함정에 빠지지 않으려면</h2>
+<p>테마형 ETF에 투자할 때는 몇 가지 함정을 조심해야 합니다. 첫째, '이름'만 보고 투자하면 안 돼요. ETF가 어떤 종목들을, 어떤 비중으로 담고 있는지 꼭 확인해야 합니다. 우주 테마 ETF라고 해서 스페이스X에 직접 투자하는 건 아니거든요. 대부분은 스페이스X의 협력사나 경쟁사, 혹은 간접적으로 연관된 다른 상장 기업들을 담습니다. 둘째, 높은 운용 보수입니다. 특정 테마를 추종하는 ETF는 시장 전체를 추종하는 ETF보다 운용 보수가 높은 경우가 많아요. 1% 정도의 운용 보수는 매년 내 계좌에서 1%가 사라진다는 의미입니다. 제가 10년 동안 월 50만원씩 투자한다고 가정했을 때, 운용 보수 0.1%와 1%의 차이는 결코 작지 않더라구요. 마지막으로, 유동성도 중요합니다. 거래량이 너무 적은 ETF는 내가 원하는 시점에 매도하기 어려울 수 있어요. 저도 한 번은 거래량이 너무 적은 ETF에 물려있다가 한참을 고생한 적이 있습니다. 답은 간단해요. 투자 전에는 무조건 ETF의 상세 정보를 확인하는 습관을 들여야 합니다.</p>
+<blockquote>포인트: ETF 상세 정보를 꼭 확인하고, 운용 보수와 거래량을 꼼꼼히 따져보세요.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1768839721891-6d9d04f9badd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODE2NDk3Mzh8&ixlib=rb-4.1.0&q=80&w=1080" alt="A teal calculator rests on a white surface." style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@sasun1990" target="_blank" style="color:#888;">Sasun Bughdaryan</a> on Unsplash</figcaption></figure>
+<h2>그럼에도 투자하고 싶다면 고려할 것들</h2>
+<p>스페이스X 같은 혁신 기업의 성장성에 베팅하고 싶은 마음, 저도 충분히 이해합니다. 저 역시 그랬으니까요. 그럼에도 불구하고 테마형 ETF에 투자하고 싶다면, 몇 가지 고려할 점이 있습니다. 첫째, '분산 투자' 관점에서 접근하는 겁니다. 전체 투자 자산의 작은 비중만 테마형 ETF에 할당하고, 나머지 자산은 안정적인 시장 지수 추종 ETF나 다른 자산군에 분산 투자하는 거죠. 둘째, '장기적인 관점'을 유지해야 합니다. 테마형 ETF는 단기 변동성이 매우 크기 때문에, 단기 수익을 노리기보다는 해당 산업의 장기적인 성장을 보고 투자해야 합니다. 셋째, ETF의 '포트폴리오 구성'을 다시 한번 확인하세요. 스페이스X와 가장 유사한 사업 모델을 가진 상장 기업의 비중이 높은 ETF를 고르는 게 그나마 더 나은 선택이 될 수 있습니다. 하지만 순수한 스페이스X 투자는 아니라는 점을 늘 염두에 둬야 합니다. 제 생각엔, 직접 투자가 어려운 비상장 혁신 기업에 대한 열망은 알지만, 현실적으로는 광범위한 혁신 기술 ETF에 투자하는 것이 더 안전한 방법이라고 봅니다.</p>
+<blockquote>포인트: 소액으로 장기 분산 투자하되, ETF의 실제 구성 종목을 반드시 재확인해야 합니다.</blockquote>
+<h2>직장인이라면 이렇게 시작해보세요</h2>
+<p>월급쟁이 직장인에게 혁신 기업 투자는 매력적이지만, 현실적인 제약이 많습니다. 그래서 저는 '꾸준함'과 '분산'을 가장 중요하게 생각합니다. 스페이스X 투자 열풍? ETF로 투자했다면 놓치지 말아야 할 이것!은 바로 '내가 뭘 샀는지 정확히 아는 것'입니다. 섣부른 한 방보다는 월급에서 일정액을 떼어 꾸준히 투자하는 '적립식 투자'를 추천합니다. 매달 10만원이든 20만원이든, 정해진 금액을 꾸준히 매수하는 거죠. 시장 상황에 일희일비하지 않고, 장기적인 안목으로 접근하는 겁니다. 저도 처음엔 욕심이 많아서 몰빵 투자를 하기도 했지만, 결국 가장 꾸준하게 수익을 안겨준 건 매달 같은 금액으로 우량 ETF를 사 모으는 방식이더라구요. 또, 특정 테마 ETF에만 집중하기보다는 S&P500이나 나스닥100 같은 광범위한 지수를 추종하는 ETF에 더 큰 비중을 두는 게 좋습니다. 혁신 기업 투자는 전체 포트폴리오의 10~20% 정도로 제한하는 게 안전하다고 생각합니다. 이게 바로 제가 시행착오를 겪으며 얻은 결론입니다.</p>
+<blockquote>포인트: 욕심내지 말고, 꾸준한 적립식 투자와 분산이 직장인에게 제일 현실적입니다.</blockquote><section class="post-comparison" style="margin:36px 0 24px;overflow-x:auto;"><h2 style="margin-bottom:14px;">한눈에 비교</h2><table style="width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);"><thead><tr><th style="padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;">비교 항목</th><th style="padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;">일반적인 혁신 테마 ETF</th><th style="padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;">순수 우주 산업 ETF (가정)</th></tr></thead><tbody><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">주요 투자 섹터</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">반도체, AI, 클라우드, 일부 우주/방산</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">위성 통신, 로켓 발사, 우주 탐사 장비</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">스페이스X 직접 포함 여부</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">없거나 간접적 연관 기업</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">주로 관련 상장 기업 투자</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">운용 보수 수준</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">0.5% ~ 1.0% 내외</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">1.0% ~ 2.0% 이상 (니치 테마)</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">종목 분산도</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">50~100개 내외</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">20~40개 내외</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">변동성</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">높음</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">매우 높음</td></tr></tbody></table></section>
+
+<section class="faq-section" style="margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;">
+<h2 style="margin-top:0;">이건 더 궁금하실 텐데</h2>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 스페이스X에 직접 투자할 방법은 없나요?</p><p style="margin:0;color:#2a2a2a;">A. 스페이스X는 현재 비상장 기업이기 때문에 개인 투자자가 주식 시장에서 직접 주식을 매수할 수는 없습니다. 간접적으로 투자하는 방법은 있지만, 위험성이 매우 높습니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 테마형 ETF는 일반 ETF와 뭐가 다른가요?</p><p style="margin:0;color:#2a2a2a;">A. 테마형 ETF는 특정 산업 트렌드나 테마에 집중 투자하는 반면, 일반 ETF는 S&P500이나 나스닥100처럼 광범위한 시장 지수를 추종하는 경우가 많습니다. 테마형은 변동성이 크고 운용 보수가 높은 경향이 있습니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. ETF 운용 보수는 얼마나 중요하게 봐야 하나요?</p><p style="margin:0;color:#2a2a2a;">A. 운용 보수는 매년 투자 원금에서 자동으로 차감되는 수수료이므로, 장기 투자 시 수익률에 큰 영향을 미칩니다. 특히 0.1% 미만의 지수 추종 ETF와 1% 이상의 테마형 ETF는 시간이 지날수록 수익률 차이가 벌어집니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 스페이스X 관련 ETF를 장기 투자해도 괜찮을까요?</p><p style="margin:0;color:#2a2a2a;">A. 테마형 ETF는 산업의 변화에 민감하고 변동성이 높기 때문에, 일반적인 시장 지수 추종 ETF보다 위험 부담이 큽니다. 장기 투자를 고려한다면, 전체 포트폴리오의 작은 비중만 할당하고 꾸준히 포트폴리오를 점검하는 것이 좋습니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 혁신 기업 투자, 직장인에게 현실적인 방법은 뭔가요?</p><p style="margin:0;color:#2a2a2a;">A. 가장 현실적인 방법은 꾸준한 적립식 투자와 분산 투자입니다. 특정 테마나 기업에 몰빵하기보다는, S&P500이나 나스닥100 같은 광범위한 혁신 지수를 추종하는 ETF에 더 큰 비중을 두고 투자하는 것을 권합니다.</p></div>
+</section>
+<section class="post-references" style="margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;"><h2 style="margin-top:0;margin-bottom:10px;font-size:18px;">공식 출처</h2><ul style="margin:0;padding-left:20px;"><li style="margin:8px 0;font-size:14px;"><a href="https://www.kofia.or.kr" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">금융투자협회</a></li><li style="margin:8px 0;font-size:14px;"><a href="http://www.koreaex.com" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">한국거래소 ETF 정보</a></li><li style="margin:8px 0;font-size:14px;"><a href="https://finance.naver.com" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">네이버 금융</a></li></ul><div style="margin-top:10px;font-size:12px;color:#888;">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section></div>
+    <!-- 조회수 & 공유 바 -->
+    <div class="post-meta-bar">
+      <div class="post-view-count">
+        <span class="post-view-icon">👁</span>
+        <span id="viewCount">조회 중...</span>
+      </div>
+      <div class="share-btns">
+        <span class="share-label">공유</span>
+        <button class="share-btn kakao" onclick="shareKakao()">카카오</button>
+        <button class="share-btn twitter" onclick="shareTwitter()">트위터</button>
+        <button class="share-btn copy" onclick="copyLink()">링크 복사</button>
+      </div>
+    </div>
+
+    <div class="article-tags" id="articleTags"></div>
+
+    <!-- 이전/다음 글 -->
+    <div class="post-nav" id="postNav"></div>
+
+    <a href="/index.html" class="back-btn">← 목록으로 돌아가기</a>
+
+    <!-- 댓글 섹션 -->
+    <div class="comments-section">
+      <div class="comments-title">댓글 <span id="commentCount" style="color:var(--point);"></span></div>
+      <div class="comment-form">
+        <div class="comment-form-row">
+          <input class="comment-input" type="text" id="commentName" placeholder="닉네임" maxlength="20">
+          <input class="comment-input" type="password" id="commentPw" placeholder="비밀번호 (삭제용)" maxlength="20">
+        </div>
+        <textarea class="comment-textarea" id="commentText" placeholder="댓글을 남겨주세요. 질문, 경험 공유 모두 환영합니다."></textarea>
+        <button class="comment-submit" onclick="submitComment()">댓글 등록</button>
+      </div>
+      <div class="comment-list" id="commentList">
+        <div class="comment-empty">첫 댓글을 남겨보세요.</div>
+      </div>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <div class="wg-top"><h3>ABOUT</h3></div>
+      <div class="wg-body">
+        <p class="about-msg">박대홍 · 블로그 대행 5년차. 월 500만원+ 부업 수익을 만든 직장인의 현실 이야기를 씁니다.</p>
+        <div class="chips">
+          <span class="chip">블로그 대행 대표</span>
+          <span class="chip">직장인 6년차</span>
+          <span class="chip">월 500만원+ 부업</span>
+        </div>
+        <a href="/about.html" style="display:block;margin-top:12px;text-align:center;font-size:12px;color:var(--point);font-weight:600;text-decoration:none;">더 알아보기 →</a>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>뉴스레터</h3></div>
+      <div class="wg-body">
+        <p class="nl-desc">매주 직장인 부업 팁과 수익 업데이트를 받아보세요.</p>
+        <input class="nl-input" type="email" placeholder="이메일 주소 입력">
+        <button class="nl-btn">무료로 구독하기</button>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>같은 카테고리 글</h3></div>
+      <div class="wg-body" id="relatedPosts">
+        <p style="font-size:13px;color:var(--text3);">불러오는 중...</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- 에러 상태 -->
+<div id="errorBox" style="max-width:760px;margin:60px auto;padding:0 24px;display:none">
+  <div class="error-box">
+    <h2>글을 찾을 수 없습니다</h2>
+    <p>요청한 글이 존재하지 않거나 삭제되었습니다.</p>
+    <a href="/index.html" class="back-btn">← 홈으로 돌아가기</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">평범한 직장인의 경제적 자유 프로젝트.<br>SINCE 2022 · koreansalaryman.com</p>
+    </div>
+    <div class="ft-right">
+      <div class="ft-links">
+        <a href="/privacy.html">개인정보처리방침</a>
+        <a href="/terms.html">이용약관</a>
+        <a href="mailto:pride93d@gmail.com">문의하기</a>
+      </div>
+      <div class="ft-copy">© 2026 Korean Salaryman. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── 조회수 (localStorage 기반) ──────────────────────────
+function updateViewCount(postId) {
+  const key = 'views_' + postId;
+  const count = (parseInt(localStorage.getItem(key) || '0')) + 1;
+  localStorage.setItem(key, count);
+  document.getElementById('viewCount').textContent = '조회 ' + count.toLocaleString() + '회';
+}
+
+// ── 공유 버튼 ──────────────────────────────────────────
+function shareKakao() {
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://story.kakao.com/share?url=' + url, '_blank', 'width=600,height=500');
+}
+function shareTwitter() {
+  const title = encodeURIComponent(document.title);
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://twitter.com/intent/tweet?text=' + title + '&url=' + url, '_blank', 'width=600,height=400');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.textContent;
+    btn.textContent = '복사됨 ✓';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+  });
+}
+
+// ── 댓글 (localStorage 기반) ──────────────────────────
+function getComments(postId) {
+  try { return JSON.parse(localStorage.getItem('comments_' + postId) || '[]'); } catch(e) { return []; }
+}
+function saveComments(postId, comments) {
+  localStorage.setItem('comments_' + postId, JSON.stringify(comments));
+}
+function renderComments(postId) {
+  const comments = getComments(postId);
+  const list = document.getElementById('commentList');
+  const countEl = document.getElementById('commentCount');
+  countEl.textContent = comments.length > 0 ? comments.length : '';
+  if (comments.length === 0) {
+    list.innerHTML = '<div class="comment-empty">첫 댓글을 남겨보세요.</div>';
+    return;
+  }
+  list.innerHTML = comments.map((c, i) => `
+    <div class="comment-item">
+      <div class="comment-head">
+        <div class="comment-avatar">${c.name[0]}</div>
+        <div class="comment-name">${escHtml(c.name)}</div>
+        <div class="comment-date">${c.date}</div>
+      </div>
+      <div class="comment-text">${escHtml(c.text).replace(/\n/g,'<br>')}</div>
+    </div>`).join('');
+}
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function submitComment() {
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name) { alert('닉네임을 입력해주세요.'); return; }
+  if (!text) { alert('댓글을 입력해주세요.'); return; }
+  // postId 는 정적으로 주입됨 (전역 사용)
+  const comments = getComments(postId);
+  const now = new Date();
+  comments.push({
+    name, text,
+    date: now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0')
+  });
+  saveComments(postId, comments);
+  document.getElementById('commentName').value = '';
+  document.getElementById('commentText').value = '';
+  renderComments(postId);
+}
+
+// ── 이전/다음 글 ──────────────────────────────────────
+function renderPostNav(manifest, currentId) {
+  const published = manifest.filter(p => p.status === 'published');
+  const idx = published.findIndex(p => p.filename === currentId);
+  if (idx === -1) return;
+  const prev = published[idx - 1];
+  const next = published[idx + 1];
+  const nav = document.getElementById('postNav');
+  if (!nav) return;
+  let html = '';
+  if (prev) {
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(prev.slug || prev.filename.replace(/\.json$/,''))}.html">
+      <div class="post-nav-label">← 이전 글</div>
+      <div class="post-nav-title">${prev.title}</div>
+    </a>`;
+  } else { html += '<div></div>'; }
+  if (next) {
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(next.slug || next.filename.replace(/\.json$/,''))}.html" style="text-align:right;">
+      <div class="post-nav-label">다음 글 →</div>
+      <div class="post-nav-title">${next.title}</div>
+    </a>`;
+  }
+  nav.innerHTML = html;
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+}
+
+function readTime(content) {
+  return Math.max(1, Math.ceil(content.length / 500)) + '분';
+}
+
+// 본문 텍스트를 HTML 단락으로 변환
+function textToHtml(text) {
+  return text
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(p => p.length > 0)
+    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
+// ── 정적 프리렌더 페이지: 인터랙션만 초기화 (fetch 렌더링 제거됨) ──
+const postId = "post_20260616_224218.json";
+updateViewCount(postId);
+renderComments(postId);
+
+fetch('/posts/manifest.json')
+  .then(r => r.json())
+  .then(manifest => {
+    renderPostNav(manifest, postId);
+    const currentCat = "finance";
+    const related = manifest
+      .filter(p => p.status === 'published' && p.filename !== postId && p.category === currentCat)
+      .slice(0, 4);
+    const relBox = document.getElementById('relatedPosts');
+    if (relBox) {
+      if (related.length === 0) {
+        relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
+      } else {
+        relBox.innerHTML = related.map(p => `
+          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
+            <div class="rel-dot"></div>
+            <div>
+              <div class="rel-title">${p.title}</div>
+              <div class="rel-cat">${formatDate(p.created_at)}</div>
+            </div>
+          </a>`).join('');
+      }
+    }
+  })
+  .catch(err => console.error(err));
+</script>
+</body>
+</html>
