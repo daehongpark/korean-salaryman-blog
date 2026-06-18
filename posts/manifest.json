@@ -53,7 +53,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 100.0,
+    "seo_score": 100,
     "monthly_search": 1250
   },
   {
@@ -98,10 +98,10 @@
       "재테크"
     ],
     "created_at": "2026-06-18T07:41:42.719784",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-18T06:04:33.318Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260617_224140.png",
     "has_faq": true,
@@ -125,10 +125,10 @@
       "부업"
     ],
     "created_at": "2026-06-18T07:36:35.128303",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-18T06:04:33.318Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260617_223632.png",
     "has_faq": false,
