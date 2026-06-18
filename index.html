@@ -1111,18 +1111,25 @@ async function handleSubscribe() {
   const orig = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = '구독 중...'; }
   try {
-    await fetch('https://koreansalaryman.substack.com/api/v1/free', {
+    // 우리 폼 → 우리 서버(api/subscribe) → Substack(form-urlencoded+UA+Origin) 대리 호출
+    const res = await fetch('/api/subscribe', {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, first_url: 'koreansalaryman.com', first_referrer: '' })
+      body: JSON.stringify({ email: email, publication: 'ko' })
     });
-    // no-cors라 응답 확인 불가 → 낙관적 성공 처리
-    if (input) input.value = '';
-    alert('구독 신청이 완료되었습니다! 확인 이메일을 보내드렸어요. 메일함에서 구독을 확인해주세요 😊');
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.ok) {
+      if (input) input.value = '';
+      alert('구독 신청이 완료되었습니다! 확인 이메일을 보내드렸어요. 메일함에서 구독을 확인해주세요 😊');
+    } else {
+      // Vercel IP 차단 등으로 대리 호출 실패 → 공식 구독 페이지로 폴백
+      window.open('https://koreansalaryman.substack.com/subscribe', '_blank');
+      alert('구독을 마무리하려면 방금 열린 구독 페이지에서 이메일을 입력해주세요 🙏');
+    }
   } catch (e) {
-    // 실패 시 Substack 페이지로 폴백
+    // 네트워크 에러 → Substack 페이지로 폴백
     window.open('https://koreansalaryman.substack.com/subscribe', '_blank');
+    alert('구독을 마무리하려면 방금 열린 구독 페이지에서 이메일을 입력해주세요 🙏');
   } finally {
     if (btn) { btn.disabled = false; btn.textContent = orig; }
   }
