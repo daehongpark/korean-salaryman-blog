@@ -4,6 +4,13 @@ on:
     branches: [main]
     paths:
       - 'posts/**.json'
+
+# 동시 실행 직렬화 — 같은 그룹은 한 번에 하나만. 앞 실행을 죽이지 않고(false)
+# 큐에 대기시켜 모든 발행분이 순서대로 처리되게 함 → push 경쟁 원천 제거.
+concurrency:
+  group: static-rebuild
+  cancel-in-progress: false
+
 jobs:
   rebuild:
     runs-on: ubuntu-latest
@@ -24,5 +31,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add p/ sitemap.xml posts/manifest.json archive.html
-          git diff --staged --quiet || git commit -m "정적 페이지 재생성 [skip ci]"
-          git push
+          git diff --staged --quiet && echo "변경 없음, 종료" && exit 0
+          git commit -m "정적 페이지 재생성 [skip ci]"
+          # concurrency가 대부분 막지만, 이중 안전망: pull --rebase 후 push 5회 재시도
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && echo "push 성공 (시도 $i)" && exit 0
+            echo "push 재시도 $i 실패, 재시도..."
+            sleep 3
+          done
+          echo "5회 재시도 후에도 push 실패" && exit 1

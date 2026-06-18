@@ -106,5 +106,12 @@ jobs:
           git config user.email "pride93d@gmail.com"
           # posts 폴더 전체 (thumbnails 포함) 추가
           git add posts/ sitemap.xml p/ archive.html
-          git diff --staged --quiet || git commit -m "자동 글 생성: $(date +'%Y-%m-%d') [AUTO_PUBLISH=${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}]"
-          git push
+          git diff --staged --quiet && echo "변경 없음, 종료" && exit 0
+          git commit -m "자동 글 생성: $(date +'%Y-%m-%d') [AUTO_PUBLISH=${{ github.event.inputs.auto_publish || secrets.AUTO_PUBLISH || 'false' }}]"
+          # static_rebuild 등과의 push 경쟁 대비: pull --rebase 후 push 5회 재시도
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && echo "push 성공 (시도 $i)" && exit 0
+            echo "push 재시도 $i 실패, 재시도..."
+            sleep 3
+          done
+          echo "5회 재시도 후에도 push 실패" && exit 1
