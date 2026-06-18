@@ -813,8 +813,9 @@ footer{background:var(--navy3);padding:52px 24px;}
       <div class="wg-top"><h3>무료 뉴스레터</h3></div>
       <div class="wg-body">
         <p class="nl-desc">매주 직장인 재테크·부업 정보와 새 글을 이메일로 받아보세요. 무료 구독, 스팸 없음.</p>
-        <input class="nl-input" type="email" placeholder="이메일 주소 입력">
-        <button class="nl-btn" onclick="handleSubscribe()">무료로 구독하기 →</button>
+        <div class="nl-embed" style="max-width:480px;margin:0 auto;text-align:center;">
+          <div data-supascribe-embed-id="938473434490" data-supascribe-subscribe></div>
+        </div>
       </div>
     </div>
 
@@ -1099,42 +1100,6 @@ function filterByTag(tag) {
   renderPosts(filtered.length ? filtered : allPosts);
 }
 
-// ── 뉴스레터 구독 ──
-async function handleSubscribe() {
-  const input = document.querySelector('.nl-input');
-  const email = (input?.value || '').trim();
-  if (!email || !email.includes('@') || !email.includes('.')) {
-    alert('올바른 이메일 주소를 입력해주세요.');
-    return;
-  }
-  const btn = document.querySelector('.nl-btn');
-  const orig = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = '구독 중...'; }
-  try {
-    // 우리 폼 → 우리 서버(api/subscribe) → Substack(form-urlencoded+UA+Origin) 대리 호출
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, publication: 'ko' })
-    });
-    const data = await res.json().catch(() => ({}));
-    if (res.ok && data.ok) {
-      if (input) input.value = '';
-      alert('구독 신청이 완료되었습니다! 확인 이메일을 보내드렸어요. 메일함에서 구독을 확인해주세요 😊');
-    } else {
-      // Vercel IP 차단 등으로 대리 호출 실패 → 공식 구독 페이지로 폴백
-      window.open('https://koreansalaryman.substack.com/subscribe', '_blank');
-      alert('구독을 마무리하려면 방금 열린 구독 페이지에서 이메일을 입력해주세요 🙏');
-    }
-  } catch (e) {
-    // 네트워크 에러 → Substack 페이지로 폴백
-    window.open('https://koreansalaryman.substack.com/subscribe', '_blank');
-    alert('구독을 마무리하려면 방금 열린 구독 페이지에서 이메일을 입력해주세요 🙏');
-  } finally {
-    if (btn) { btn.disabled = false; btn.textContent = orig; }
-  }
-}
-
 // ── 이달 수익 — admin 데이터 연동 ──
 (function() {
   const now = new Date();
@@ -1268,5 +1233,7 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 </script>
+<!-- Supascribe newsletter embed loader -->
+<script src="https://js.supascribe.com/v1/loader/JkwsA3yFWeR9Lly9cSs6fAyXRMD3.js" async></script>
 </body>
 </html>
