@@ -27,6 +27,9 @@ STATIC_PAGES = [
     ("income.html",    "0.9",  "weekly"),
     ("challenge.html", "0.9",  "weekly"),
     ("class.html",     "0.8",  "monthly"),
+    ("contact.html",   "0.6",  "monthly"),
+    ("privacy.html",   "0.4",  "yearly"),
+    ("terms.html",     "0.4",  "yearly"),
 ]
 
 # 7개 카테고리 페이지 (영문 키 기반)
