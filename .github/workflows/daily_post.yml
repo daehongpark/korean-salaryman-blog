@@ -34,9 +34,23 @@ jobs:
           python-version: '3.11'
 
       - name: 한글 폰트 설치 (썸네일용)
+        # [2026-06-19 fix] 6/18 22:30 UTC 런이 이 스텝(apt)에서 90분 hang → timeout-minutes:90 도달로
+        # 취소 → automation.py가 아예 실행되지 못해 6/19 글 0편. (KST/UTC 가드 버그 아님)
+        # 대책: ① 스텝 자체 timeout으로 행 시 job 전체(90분) 낭비 차단
+        #       ② 미러 타임아웃/재시도로 일시적 apt 장애 흡수
+        #       ③ continue-on-error: 폰트 설치 실패해도 글 생성은 진행(automation.py가 기본폰트로 폴백)
+        continue-on-error: true
+        timeout-minutes: 6
         run: |
-          sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk
+          export DEBIAN_FRONTEND=noninteractive
+          APT_OPTS="-o Acquire::Retries=2 -o Acquire::http::Timeout=25 -o Acquire::https::Timeout=25"
+          for i in 1 2 3; do
+            sudo apt-get $APT_OPTS update -y \
+              && sudo apt-get $APT_OPTS install -y --no-install-recommends fonts-noto-cjk \
+              && echo "폰트 설치 성공" && exit 0
+            echo "apt 실패, 재시도 $i/3..."; sleep 5
+          done
+          echo "폰트 설치 3회 실패 — 기본폰트로 진행(썸네일 한글 폴백)"
 
       - name: 패키지 설치
         run: pip install requests python-dotenv Pillow
