@@ -44,10 +44,10 @@
       "주거비절감"
     ],
     "created_at": "2026-06-19T14:34:09.980150",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-19T08:07:36.218Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260619_053406.png",
     "has_faq": true,
@@ -55,7 +55,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 108.0,
+    "seo_score": 108,
     "monthly_search": 1730
   },
   {
@@ -74,10 +74,10 @@
       "챗GPT"
     ],
     "created_at": "2026-06-19T14:32:59.635591",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-19T08:07:36.218Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260619_053257.png",
     "has_faq": true,
@@ -85,7 +85,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -101,10 +101,10 @@
       "부업"
     ],
     "created_at": "2026-06-19T14:31:44.821388",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-19T08:07:36.218Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260619_053141.png",
     "has_faq": false,
@@ -129,10 +129,10 @@
       "전월세 절약"
     ],
     "created_at": "2026-06-19T14:28:54.634315",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-06-19T08:07:36.218Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260619_052851.png",
     "has_faq": true,
