@@ -341,6 +341,7 @@ ARCHIVE_TEMPLATE = """<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9909990475566196" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>전체 글 보기 | 직장인 수익일기</title>
 <meta name="description" content="직장인 수익일기의 모든 글을 카테고리별로 한눈에. 부업·재테크·투자·정부지원금·AI 활용까지 전체 글 목록.">
