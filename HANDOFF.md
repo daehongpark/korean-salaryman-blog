@@ -5,7 +5,9 @@
 
 ---
 
-## 현재 버전: v3.9 (2026-06-12 ~ 06-19 세션)  *(이전: v3.8 2026-06-07~06-09 — 아래 §0~§9에 보존)*
+## 현재 버전: v4.0 (2026-06-23 세션 — 쓰레드 자동발행 시스템)  *(이전: v3.9 2026-06-12~06-19, v3.8 2026-06-07~06-09 — 아래 보존)*
+
+> v4.0 핵심: 블로그 글 → 쓰레드(@njob_blogosu) 자동 변환·발행 시스템 구축. 상세는 **§v4.0** 참조.
 
 > 이 repo 루트에 HANDOFF.md가 없어 v3.8부터 이 파일로 새로 시작함.
 > v3.7 이하 이력은 백업 repo `daehongpark/blog-automation` 또는 이전 세션 기록 참조.
@@ -202,6 +204,64 @@
 
 ---
 
+## §v4.0 — 쓰레드(Threads) 자동발행 시스템 (2026-06-23)
+
+블로그 글을 **쓰레드 @njob_blogosu** 포스트로 자동 변환·발행하는 파이프라인. 핵심 모듈 **`threads_publisher.py`** 한 파일에 토큰교환/갱신·글선정·변환(Gemini)·발행·상태관리가 모두 들어 있다.
+
+### 구성 / 자격증명
+| 항목 | 값/위치 |
+|---|---|
+| 핵심 모듈 | `threads_publisher.py` |
+| 워크플로 | `.github/workflows/threads_publish.yml` (cron 4개) |
+| 상태파일 | `posts/threads_state.json` — `token_expires_at`, `done_slots`, `last_run_date`. **커밋됨, 비밀 없음** |
+| GitHub Secrets | `THREADS_ACCESS_TOKEN`(60일 장기, 자동갱신), `THREADS_USER_ID=37096544403277101`, `THREADS_APP_SECRET`, `GH_PAT` |
+| 로컬 `.env`(gitignore) | 위 THREADS 3개 + `GEMINI_API_KEY` |
+| API | Threads Graph API `https://graph.threads.net` (2단계 컨테이너: `/threads` → `/threads_publish`) |
+
+- 토큰 교환/발행 단발 테스트: `python threads_publisher.py` (단기→장기 교환 후 테스트글 1개). 장기토큰 전체 출력은 `--show-token`.
+- `GEMINI_API_KEY`는 EN repo `.env`와 동일 키 사용(같은 계정). 로컬에서 dry-run 품질확인 시 필요.
+
+### 발행 사양
+- **하루 4개**, **KST 07/12/18/22시** 각 1개. cron(UTC): `0 22` / `0 3` / `0 9` / `0 13`. 실행은 `--once`로 **슬롯당 1개**.
+- **선정 우선순위**: `force_thread`(admin 예약) → 오늘글(KST) → 트렌드/직접글 **번갈아(쏠림 방지)** 최신순. `thread_published` 제외 + **정적파일 실제 존재**(`_resolve_post_url`)하는 글만.
+- **톤**: 반말 구어체, **이모지 없음**, **해시태그 없음**, 첫줄 "야," 호출 금지, 발견자/분석가 톤(설교조 금지), 80% 법칙, **350자 이내**. 후처리 `_strip_emoji`/`_strip_hashtags`/`_strip_quotes`로 이중 차단.
+- **링크 = 첫 댓글(self-reply)**. 본문엔 링크/해시태그 없음. URL은 **NFC 정규화 + 퍼센트 인코딩**(`_encode_post_url`)으로 한글 경로의 인앱브라우저 404 방지. 존재 확인은 raw 한글 파일명으로.
+- **독서글**(category=`book` 등, `_is_book_post`): **"직장인이 성공하려고 읽는 책"** 각도로 분기 변환(책 제목/저자 살림, 설교조 금지). 일반글은 트렌드/주제 각도.
+- 변환 실패(Gemini 503/429)는 2회 재시도 후 **템플릿 폴백**으로라도 발행.
+
+### 토큰 자동 갱신
+- 매 실행 시 `threads_state.json`의 `token_expires_at` 확인 → 만료 **7일 이내면 `refresh_token`** 자동 호출.
+- 갱신 성공 시 새 토큰을 **`threads_new_token.txt`(gitignore)**에 기록 → 워크플로가 **`gh secret set THREADS_ACCESS_TOKEN`**(stdin, GH_PAT)으로 Secret 갱신 후 파일 삭제. 토큰은 로그/argv 미노출.
+
+### 중복 방지
+- **글 단위**: 발행 성공 시 post JSON에 `thread_published=true`(+`thread_url`) 기록 → 재선정 제외.
+- **슬롯 단위**: `done_slots`에 `날짜#시`(07/12/18/22) 기록 → 같은 슬롯 재실행만 SKIP(`--force`로 무시). 워크플로 `concurrency`로 동시실행 차단.
+
+### admin "🧵 쓰레드 발행" 버튼 (방식 ⓑ)
+- `admin.html` 글 목록 각 행. **published 글만** 노출. 상태별: `쓰레드 발행` → (클릭) → `쓰레드 예약됨`(force_thread) → (발행 후) `쓰레드 발행됨`.
+- `markThread()`가 **기존 발행 버튼과 동일한 `ghGet`→`ghPut`(관리자 본인 PAT)** 로 글 JSON에 `force_thread=true`+`force_thread_at` 기록만 함. **serverless 엔드포인트 없음 → 토큰 노출 0.** 실제 발행/토큰은 다음 슬롯에 Actions가 처리.
+- 발행 시 `_mark_thread_published`가 `force_thread` 소비(false + `force_thread_done=true`)해 재발행 방지.
+
+### CLI 요약
+| 명령 | 동작 |
+|---|---|
+| `python threads_publisher.py` | 토큰 교환 + 테스트글 1개 발행 |
+| `python threads_publisher.py --once` | 현재 슬롯 1개 발행(워크플로가 사용) |
+| `python threads_publisher.py --once --dry-run` | 1개 변환 미리보기(발행 X) |
+| `python threads_publisher.py --dry-run --samples N` | N개 변환 품질 미리보기 |
+| `python threads_publisher.py --daily` | 1회에 N개 일괄(수동/레거시) |
+| `--force` | 슬롯/일일 중복 가드 무시 |
+
+### 주요 커밋
+`58a4e11`(모듈) · `6f0e32c`(인코딩수정) · `5022735`(2단계: 변환+워크플로) · `d85d956`(반말) · `d4e9739`(야/이모지 제거) · `fd623da`(링크404/해시태그/댓글분리) · `4ec5673`(한글URL 퍼센트인코딩) · `64591c6`(독서 각도) · `8278f0c`(admin 버튼)
+
+### 남은/미적용
+- **댓글 수신(자동답글/모니터링) 미구현** — 초반엔 박대홍 직접 소통 권장.
+- 인스타 카드뉴스 자동발행, 네이버 블로그 자동발행, 쓰레드 수익화 기획은 **별도 과제**.
+- 첫 실발행은 Actions 탭에서 `dry_run=true` 1회 확인 후 `false` 권장.
+
+---
+
 ## 운영 규칙 (매 세션 리마인드)
 
 - **강제승인모드가 기본** — 사용자가 "강제승인"이라 하면 작업을 한 방에 끝까지 진행. 중간에 묻지 않는다.
@@ -218,4 +278,4 @@
 
 ---
 
-*v3.9 작성 완료. 다음 세션은 §9b PENDING(v3.9 이후)부터.*
+*v4.0 작성 완료(쓰레드 자동발행 시스템 — §v4.0). 다음 세션은 §9b PENDING + §v4.0 남은/미적용부터.*
