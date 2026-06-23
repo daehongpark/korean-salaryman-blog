@@ -242,9 +242,21 @@ def _hashtags(category: str) -> str:
     return " ".join(out)
 
 
+def _encode_post_url(slug_html: str) -> str:
+    """글 파일명(.html 포함) → 퍼센트 인코딩된 절대 URL.
+    한글 경로가 쓰레드 인앱브라우저에서 인코딩 안 돼 404나는 문제 해결.
+    NFC 정규화(iOS NFD 대응) 후 quote(슬래시/하이픈/점은 유지)."""
+    import unicodedata
+    import urllib.parse
+    fn = unicodedata.normalize("NFC", slug_html)
+    encoded_path = urllib.parse.quote("/p/" + fn, safe="/")  # 한글→%XX, '/'.'-' 등 유지
+    return f"{SITE}{encoded_path}"
+
+
 def _resolve_post_url(post: dict) -> str | None:
-    """실제 존재하는 정적 파일을 가리키는 글 URL을 반환 (404 방지).
+    """실제 존재하는 정적 파일을 가리키는 글 URL(퍼센트 인코딩)을 반환 (404 방지).
     우선순위: ① manifest slug  ② title→make_slug(정적생성과 동일 규칙)  ③ 파일명 스텁.
+    파일 존재 확인은 raw 한글 파일명으로, 내보내는 URL만 인코딩.
     셋 다 p/ 디렉토리에 실파일이 없으면 None(→ 발행 스킵)."""
     candidates = []
     slug = (post.get("slug") or "").strip()
@@ -263,8 +275,8 @@ def _resolve_post_url(post: dict) -> str | None:
     if fn.endswith(".json"):
         candidates.append(fn[:-5])   # /p/post_xxx.html 리다이렉트 스텁
     for c in candidates:
-        if c and (P_DIR / f"{c}.html").exists():
-            return f"{SITE}/p/{c}.html"
+        if c and (P_DIR / f"{c}.html").exists():   # 존재 확인은 raw 파일명
+            return _encode_post_url(f"{c}.html")    # 내보내는 URL만 인코딩
     return None
 
 
@@ -654,7 +666,11 @@ def _publish_thread_with_link(user_id: str, token: str, text: str, url: str) -> 
 
 
 def _print_thread_preview(idx: int, total: int, p: dict, text: str, url: str):
-    exists = bool(url) and (P_DIR / url.rsplit("/p/", 1)[-1]).exists() if url else False
+    import urllib.parse
+    exists = False
+    if url:
+        raw_fn = urllib.parse.unquote(url.rsplit("/p/", 1)[-1])  # 인코딩 해제 후 raw로 확인
+        exists = (P_DIR / raw_fn).exists()
     print("-" * 60)
     print(f"[{idx}/{total}] {p['filename']}  (today={p['_is_today']}, trend={p['_is_trend']}, via={p.get('_convert_via')})")
     print(f"   제목: {p['title'][:50]}")
