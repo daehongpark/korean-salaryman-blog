@@ -11,7 +11,15 @@
 #  ────────────────────────────────────────────────────────────
 import os
 import sys
+import io
 import time
+
+# Windows 한글 콘솔(cp949)에서 유니코드 출력이 죽지 않도록 stdout/stderr 강제 UTF-8
+try:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 import requests
 
@@ -161,9 +169,9 @@ def main():
     user_id = os.getenv("THREADS_USER_ID", "").strip()
     app_secret = os.getenv("THREADS_APP_SECRET", "").strip()
 
-    print("═" * 60)
+    print("=" * 60)
     print(" Threads 발행 모듈 — 테스트 모드")
-    print("═" * 60)
+    print("=" * 60)
     print(f"  THREADS_USER_ID:      {user_id or '(미설정)'}")
     print(f"  THREADS_ACCESS_TOKEN: {_mask(short_token)}")
     print(f"  THREADS_APP_SECRET:   {'설정됨' if app_secret else '(미설정)'}")
@@ -197,13 +205,13 @@ def main():
         print("\n❌ 테스트 발행 실패 (위 로그 확인). 장기토큰 교환은 성공했음.")
         sys.exit(1)
 
-    print("\n" + "═" * 60)
+    print("\n" + "=" * 60)
     print("✅ 성공")
     print(f"   thread id: {result['id']}")
     if result.get("permalink"):
         print(f"   URL:       {result['permalink']}")
     print(f"   본문:      {TEST_TEXT}")
-    print("═" * 60)
+    print("=" * 60)
 
 
 if __name__ == "__main__":
