@@ -1462,6 +1462,13 @@ function renderTable(posts) {
         ${p.status === 'published' && p.slug
           ? `<button class="action-btn" style="background:#eef5ff;color:#1a56db;border:1px solid #cdddf7;" onclick="event.stopPropagation();copyIndexUrl('${p.filename}',this)" title="색인용 한글 주소 복사 (GSC 색인요청)">🔗 색인주소</button>`
           : ''}
+        ${p.status === 'published'
+          ? (p.thread_published
+              ? `<button class="action-btn" disabled style="background:#e8f0ff;color:#1a56db;opacity:.6;cursor:default;" title="이미 쓰레드에 발행됨">🧵 쓰레드 발행됨</button>`
+              : (p.force_thread
+                  ? `<button class="action-btn" disabled style="background:#e8f0ff;color:#1a56db;opacity:.7;cursor:default;" title="다음 발행 시각(07/12/18/22)에 올라갑니다">🧵 쓰레드 예약됨</button>`
+                  : `<button class="action-btn" style="background:#e8f0ff;color:#1a56db;border:1px solid #cdddf7;" onclick="event.stopPropagation();markThread('${p.filename}',this)" title="다음 발행 시각(07/12/18/22)에 쓰레드로 올라갑니다">🧵 쓰레드 발행</button>`))
+          : ''}
         ${p.status === 'draft'
           ? `<button class="action-btn btn-publish" onclick="toggleStatus('${p.filename}','published')">발행</button>`
           : (p.status === 'scheduled'
@@ -2031,6 +2038,46 @@ async function toggleStatus(filename, newStatus) {
     updateStats();
     applyFilters();
     showToast('상태 변경 실패: ' + e.message, 'error');
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ── 쓰레드로 발행 (force_thread 플래그만 박음 → 다음 슬롯에 우선 발행) ──
+// 방식 ⓑ: 토큰 노출 없이 글 JSON에 force_thread=true만 기록. 실제 발행/토큰은
+// GitHub Actions(threads_publish.yml)가 다음 슬롯(07/12/18/22)에 처리.
+// 저장은 기존 admin 패턴(ghGet→ghPut, 관리자 PAT) 그대로 재사용.
+async function markThread(filename, btn) {
+  const post = allPosts.find(p => p.filename === filename);
+  if (!post) { showToast('글을 찾을 수 없습니다.', 'error'); return; }
+
+  showLoading(true);
+  try {
+    const freshFile = await ghGet(`${POSTS_PATH}/${filename}`);
+    const freshContent = decodeURIComponent(escape(atob(freshFile.content.replace(/\n/g, ''))));
+    const freshJson = JSON.parse(freshContent);
+
+    if (freshJson.thread_published) {
+      showToast('이미 쓰레드에 발행된 글입니다.', 'info');
+      if (btn) { btn.textContent = '🧵 쓰레드 발행됨'; btn.disabled = true; btn.style.opacity = '.6'; btn.style.cursor = 'default'; }
+      return;
+    }
+
+    const updated = { ...freshJson, force_thread: true, force_thread_at: new Date().toISOString() };
+    await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(updated, null, 2), freshFile.sha,
+      `쓰레드 발행 예약(force_thread): ${post.title}`);
+
+    post.force_thread = true;  // 로컬 반영
+    if (btn) {
+      btn.textContent = '🧵 쓰레드 예약됨';
+      btn.disabled = true;
+      btn.style.opacity = '.7';
+      btn.style.cursor = 'default';
+      btn.title = '다음 발행 시각(07/12/18/22)에 올라갑니다';
+    }
+    showToast('쓰레드 발행 예약됨. 다음 발행 시각(07/12/18/22)에 올라갑니다.', 'success');
+  } catch (e) {
+    showToast('쓰레드 예약 실패: ' + e.message, 'error');
   } finally {
     showLoading(false);
   }

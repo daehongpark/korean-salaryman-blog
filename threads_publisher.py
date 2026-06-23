@@ -569,15 +569,23 @@ def select_posts_for_threads(count: int = THREADS_PER_DAY) -> list:
             "_is_today":    created[:10] == today,
             "_is_trend":    bool(trend),
             "_is_book":     _looks_like_book(category, keyword, title),
+            "_force":       bool(jp.get("force_thread")),
+            "_force_at":    jp.get("force_thread_at") or "",
         })
 
     # ── 우선순위 정렬 ──
-    # 오늘 글은 최우선(최신순). 나머지는 트렌드/직접글 두 풀을 번갈아(쏠림 방지) 최신순.
+    # ★ force_thread(관리자 '쓰레드로 발행')가 최우선. 여럿이면 찍은 시각 오래된 순.
+    forced = sorted(
+        [c for c in candidates if c["_force"]],
+        key=lambda c: c["_force_at"] or c["created_at"],
+    )
+    # 오늘 글은 그 다음(최신순). 나머지는 트렌드/직접글 번갈아(쏠림 방지) 최신순.
+    non_forced = [c for c in candidates if not c["_force"]]
     today_posts = sorted(
-        [c for c in candidates if c["_is_today"]],
+        [c for c in non_forced if c["_is_today"]],
         key=lambda c: c["created_at"], reverse=True,
     )
-    rest = [c for c in candidates if not c["_is_today"]]
+    rest = [c for c in non_forced if not c["_is_today"]]
     trend_pool  = sorted([c for c in rest if c["_is_trend"]],     key=lambda c: c["created_at"], reverse=True)
     direct_pool = sorted([c for c in rest if not c["_is_trend"]], key=lambda c: c["created_at"], reverse=True)
     interleaved = []
@@ -589,7 +597,7 @@ def select_posts_for_threads(count: int = THREADS_PER_DAY) -> list:
         if i < len(trend_pool):
             interleaved.append(trend_pool[i])
         i += 1
-    ordered = today_posts + interleaved
+    ordered = forced + today_posts + interleaved
 
     # URL 해결(실파일 존재) — 404 가리키는 글은 스킵하고 다음 후보로
     selected = []
@@ -621,13 +629,17 @@ def _save_state(state: dict):
 
 
 def _mark_thread_published(filename: str, url: str):
-    """post JSON에 thread_published 플래그/URL 기록 (재발행 차단)."""
+    """post JSON에 thread_published 플래그/URL 기록 (재발행 차단).
+    force_thread(관리자 예약)가 있었으면 소비 처리(제거)해 재발행 방지."""
     path = POSTS_DIR / filename
     try:
         jp = json.loads(path.read_text(encoding="utf-8"))
         jp["thread_published"] = True
         jp["thread_url"] = url
         jp["thread_published_at"] = _now_kst().strftime("%Y-%m-%dT%H:%M:%S+09:00")
+        if jp.get("force_thread"):
+            jp["force_thread"] = False
+            jp["force_thread_done"] = True
         path.write_text(json.dumps(jp, ensure_ascii=False, indent=2), encoding="utf-8")
     except Exception as e:
         print(f"   [mark] {filename} 플래그 기록 실패: {e}")
@@ -745,7 +757,9 @@ def _print_thread_preview(idx: int, total: int, p: dict, text: str, url: str):
 
 
 def select_one_post_for_thread() -> dict | None:
-    """쓰레드 발행용 글 1개 (최우선순위) 선정."""
+    """쓰레드 발행용 글 1개 (최우선순위) 선정.
+    select_posts_for_threads가 force_thread(관리자 '쓰레드로 발행') 글을 최우선 정렬해
+    반환하므로, 예약된 글이 있으면 그 글이 1순위로 뽑힌다."""
     posts = select_posts_for_threads(1)
     return posts[0] if posts else None
 
