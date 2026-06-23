@@ -482,11 +482,21 @@ def convert_post_to_thread(post: dict) -> str:
     return final
 
 
+# 독서/책 글 식별 키워드 (변환 각도는 기능3에서 활용)
+_BOOK_HINTS = ("독서", "책", "서평", "도서", "리뷰", "book", "review", "읽", "완독")
+
+
+def _looks_like_book(category: str, keyword: str, title: str) -> bool:
+    blob = f"{category} {keyword} {title}".lower()
+    return any(h.lower() in blob for h in _BOOK_HINTS)
+
+
 # ── 발행 대상 글 선정 ────────────────────────────────────────
 def select_posts_for_threads(count: int = THREADS_PER_DAY) -> list:
     """쓰레드 발행용 글 선정.
-       조건: status=published, thread_published 아님.
-       우선순위: 오늘(KST) > 트렌드글 > 최신순. 최대 count개."""
+       조건: status=published, thread_published 아님, 정적파일 존재.
+       풀: 트렌드 글 + 직접 쓴 글(독서/주제, trend_source 없음) 동등 포함.
+       우선순위: ① 오늘(KST) 발행 글  ② 그 외 — 트렌드/직접글 번갈아(쏠림 방지) 최신순."""
     try:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     except Exception as e:
@@ -510,28 +520,47 @@ def select_posts_for_threads(count: int = THREADS_PER_DAY) -> list:
             continue
         created = jp.get("created_at") or entry.get("created_at") or ""
         trend = jp.get("trend_source") or entry.get("trend_source") or ""
+        category = jp.get("category") or entry.get("category", "")
+        keyword = jp.get("keyword") or entry.get("keyword", "")
+        title = entry.get("title") or jp.get("title", "")
         candidates.append({
             "filename":     fn,
-            "title":        entry.get("title") or jp.get("title", ""),
+            "title":        title,
             "slug":         entry.get("slug") or "",
             "tldr":         jp.get("tldr"),
             "summary":      jp.get("summary") or entry.get("summary", ""),
-            "keyword":      jp.get("keyword") or entry.get("keyword", ""),
-            "category":     jp.get("category") or entry.get("category", ""),
+            "keyword":      keyword,
+            "category":     category,
             "trend_source": trend,
             "created_at":   created,
             "_is_today":    created[:10] == today,
             "_is_trend":    bool(trend),
+            "_is_book":     _looks_like_book(category, keyword, title),
         })
 
-    candidates.sort(
-        key=lambda c: (c["_is_today"], c["_is_trend"], c["created_at"]),
-        reverse=True,
+    # ── 우선순위 정렬 ──
+    # 오늘 글은 최우선(최신순). 나머지는 트렌드/직접글 두 풀을 번갈아(쏠림 방지) 최신순.
+    today_posts = sorted(
+        [c for c in candidates if c["_is_today"]],
+        key=lambda c: c["created_at"], reverse=True,
     )
+    rest = [c for c in candidates if not c["_is_today"]]
+    trend_pool  = sorted([c for c in rest if c["_is_trend"]],     key=lambda c: c["created_at"], reverse=True)
+    direct_pool = sorted([c for c in rest if not c["_is_trend"]], key=lambda c: c["created_at"], reverse=True)
+    interleaved = []
+    i = 0
+    while i < len(trend_pool) or i < len(direct_pool):
+        # 직접글 먼저 끼워넣어 트렌드 쏠림을 적극 방지
+        if i < len(direct_pool):
+            interleaved.append(direct_pool[i])
+        if i < len(trend_pool):
+            interleaved.append(trend_pool[i])
+        i += 1
+    ordered = today_posts + interleaved
 
     # URL 해결(실파일 존재) — 404 가리키는 글은 스킵하고 다음 후보로
     selected = []
-    for c in candidates:
+    for c in ordered:
         url = _resolve_post_url(c)
         if not url:
             print(f"   [select] {c['filename']} 정적파일 없음(404 위험) → 스킵")
@@ -672,7 +701,7 @@ def _print_thread_preview(idx: int, total: int, p: dict, text: str, url: str):
         raw_fn = urllib.parse.unquote(url.rsplit("/p/", 1)[-1])  # 인코딩 해제 후 raw로 확인
         exists = (P_DIR / raw_fn).exists()
     print("-" * 60)
-    print(f"[{idx}/{total}] {p['filename']}  (today={p['_is_today']}, trend={p['_is_trend']}, via={p.get('_convert_via')})")
+    print(f"[{idx}/{total}] {p['filename']}  (today={p['_is_today']}, trend={p['_is_trend']}, book={p.get('_is_book')}, via={p.get('_convert_via')})")
     print(f"   제목: {p['title'][:50]}")
     print(f"   ── 본문 (링크/해시태그 없음, {len(text)}자) ──")
     for line in text.split("\n"):
