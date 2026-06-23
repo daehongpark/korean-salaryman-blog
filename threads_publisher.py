@@ -443,11 +443,169 @@ def _mark_thread_published(filename: str, url: str):
         print(f"   [mark] {filename} 플래그 기록 실패: {e}")
 
 
-# ── 일일 발행 엔트리 ─────────────────────────────────────────
+# ── 시간대 슬롯 (하루 4회 분산: KST 07/12/18/22) ──────────────
+SLOTS_KST = [7, 12, 18, 22]
+
+
+def _current_slot() -> str:
+    """현재 KST 시각이 속한 발행 슬롯 id ('YYYY-MM-DD#HH').
+    cron은 정시 또는 그 이후에만 발동하므로 '현재시각 이하의 가장 큰 슬롯'으로 버킷팅."""
+    now = _now_kst()
+    hour = now.hour
+    eligible = [s for s in SLOTS_KST if s <= hour]
+    slot_hour = eligible[-1] if eligible else SLOTS_KST[0]
+    return f"{now.strftime('%Y-%m-%d')}#{slot_hour:02d}"
+
+
+def _slot_done(state: dict, slot: str) -> bool:
+    today = slot.split("#")[0]
+    return slot in state.get("done_slots", {}).get(today, [])
+
+
+def _record_slot(state: dict, slot: str):
+    """슬롯 완료 기록 (오늘 날짜만 유지해 상태파일 비대화 방지)."""
+    today = slot.split("#")[0]
+    done = state.get("done_slots", {}).get(today, [])
+    if slot not in done:
+        done.append(slot)
+    state["done_slots"] = {today: done}  # 과거 날짜 정리
+
+
+# ── 토큰 만료 임박 시 갱신 (공통 헬퍼) ───────────────────────
+def _ensure_token(token: str, state: dict) -> tuple:
+    """만료 임박이면 refresh. (token, refreshed) 반환. state(token_expires_at) 갱신."""
+    refreshed = False
+    exp_iso = state.get("token_expires_at")
+    need_refresh = False
+    if exp_iso:
+        try:
+            exp = datetime.datetime.fromisoformat(exp_iso)
+            left = (exp - _now_kst()).days
+            print(f"   [token] 만료까지 ~{left}일")
+            need_refresh = left <= REFRESH_BEFORE_DAYS
+        except Exception:
+            need_refresh = True
+    else:
+        # 만료시각 미상(외부 Secret 설정) → 갓 설정됐다고 가정하고 기록만
+        state["token_expires_at"] = (
+            _now_kst() + datetime.timedelta(days=TOKEN_LIFETIME_DAYS)
+        ).isoformat()
+        print("   [token] 만료시각 미상 → 신규로 가정해 기록")
+
+    if need_refresh:
+        print("   [token] 만료 임박 → 갱신 시도")
+        nt = refresh_token(token)
+        if nt:
+            token = nt
+            refreshed = True
+            state["token_expires_at"] = (
+                _now_kst() + datetime.timedelta(days=TOKEN_LIFETIME_DAYS)
+            ).isoformat()
+            try:
+                NEW_TOKEN_FILE.write_text(nt, encoding="utf-8")
+                print(f"   [token] ✓ 갱신됨 → {NEW_TOKEN_FILE.name} 기록 (GitHub Secret 갱신용)")
+            except Exception as e:
+                print(f"   [token] 갱신토큰 파일 기록 실패: {e}")
+        else:
+            print("   [token] ⚠ 갱신 실패 → 기존 토큰으로 진행")
+    return token, refreshed
+
+
+def _print_thread_preview(idx: int, total: int, p: dict, text: str, url: str):
+    print("-" * 60)
+    print(f"[{idx}/{total}] {p['filename']}  (today={p['_is_today']}, trend={p['_is_trend']}, via={p.get('_convert_via')})")
+    print(f"   제목: {p['title'][:50]}")
+    print(f"   URL : {url}")
+    print(f"   ── 변환된 쓰레드 텍스트 ({len(text)}자) ──")
+    for line in text.split("\n"):
+        print(f"   | {line}")
+
+
+def select_one_post_for_thread() -> dict | None:
+    """쓰레드 발행용 글 1개 (최우선순위) 선정."""
+    posts = select_posts_for_threads(1)
+    return posts[0] if posts else None
+
+
+# ── DRY-RUN 미리보기 (실제 Gemini 변환 품질 확인용) ──────────
+def preview_samples(n: int = 4):
+    print("=" * 60)
+    print(f" Threads 변환 미리보기 (DRY-RUN, {n}개) — 발행 안 함")
+    has_key = "ON(Gemini)" if os.getenv("GEMINI_API_KEY", "").strip() else "OFF(템플릿폴백)"
+    print(f" GEMINI_API_KEY: {has_key}")
+    print("=" * 60)
+    posts = select_posts_for_threads(n)
+    if not posts:
+        print("   발행 대상 글 없음")
+        return
+    for i, p in enumerate(posts, 1):
+        url = _post_url(p)
+        text = convert_post_to_thread(p)
+        _print_thread_preview(i, len(posts), p, text, url)
+    print("\n" + "=" * 60)
+    print(f"✅ 미리보기 완료 — {len(posts)}개 (발행 안 함)")
+    print("=" * 60)
+
+
+# ── 1개 발행 엔트리 (--once): 시간대 슬롯당 1개 ──────────────
+def publish_one_thread(dry_run: bool = False, force: bool = False):
+    mode = "DRY-RUN (발행 안 함)" if dry_run else "실발행"
+    slot = _current_slot()
+    print("=" * 60)
+    print(f" Threads 1개 발행 [{slot}] — {mode}")
+    print("=" * 60)
+
+    user_id = os.getenv("THREADS_USER_ID", "").strip()
+    token   = os.getenv("THREADS_ACCESS_TOKEN", "").strip()
+    if not dry_run and not (user_id and token):
+        print("❌ THREADS_USER_ID / THREADS_ACCESS_TOKEN 누락 → 중단")
+        sys.exit(1)
+
+    state = _load_state()
+
+    # ── 시간대 슬롯 중복 가드 (같은 슬롯 재실행만 차단, 다른 슬롯은 발행) ──
+    if not dry_run and not force and _slot_done(state, slot):
+        print(f"⏭  슬롯 {slot} 이미 발행됨 → 중복 방지 SKIP (강제: --force)")
+        return
+
+    refreshed = False
+    if not dry_run:
+        token, refreshed = _ensure_token(token, state)
+
+    p = select_one_post_for_thread()
+    if not p:
+        print("   발행할 신규 글 없음 (모두 thread_published 이거나 published 글 없음)")
+        return
+
+    url = _post_url(p)
+    text = convert_post_to_thread(p)
+    _print_thread_preview(1, 1, p, text, url)
+
+    if dry_run:
+        print("\n✅ DRY-RUN 완료 (발행 안 함)")
+        return
+
+    res = publish_text(user_id, token, text)
+    _record_slot(state, slot)  # cron 중복발동 대비: 시도한 슬롯은 기록
+    if res:
+        _mark_thread_published(p["filename"], res.get("permalink") or url)
+        print(f"   ✓ 발행 성공: {res.get('permalink') or res['id']}")
+    else:
+        print("   ✗ 발행 실패")
+    _save_state(state)
+
+    print("\n" + "=" * 60)
+    print(f"✅ 슬롯 {slot} 처리 완료 ({'성공' if res else '실패'})")
+    if refreshed:
+        print(f"   ★ 토큰 갱신됨 → GitHub Secret THREADS_ACCESS_TOKEN 갱신 필요 ({NEW_TOKEN_FILE.name})")
+    print("=" * 60)
+
+
+# ── 일괄 발행 엔트리 (--daily): 1회 실행에 N개 (수동/레거시) ──
 def run_daily_threads(dry_run: bool = False, force: bool = False):
     mode = "DRY-RUN (발행 안 함)" if dry_run else "실발행"
     print("=" * 60)
-    print(f" Threads 일일 발행 — {mode}")
+    print(f" Threads 일괄 발행 ({THREADS_PER_DAY}개) — {mode}")
     print("=" * 60)
 
     user_id = os.getenv("THREADS_USER_ID", "").strip()
@@ -460,50 +618,14 @@ def run_daily_threads(dry_run: bool = False, force: bool = False):
     state = _load_state()
     today = _today_kst()
 
-    # ── 중복 실행 가드 (작업 3) ──
     if not dry_run and not force and state.get("last_run_date") == today:
-        print(f"⏭  오늘({today}) 이미 실행됨 → 중복 발행 방지 SKIP")
-        print("   (강제 실행: --force)")
+        print(f"⏭  오늘({today}) 이미 일괄실행됨 → 중복 방지 SKIP (강제: --force)")
         return
 
-    # ── 토큰 만료 임박 시 갱신 ──
     refreshed = False
     if not dry_run:
-        exp_iso = state.get("token_expires_at")
-        need_refresh = False
-        if exp_iso:
-            try:
-                exp = datetime.datetime.fromisoformat(exp_iso)
-                left = (exp - _now_kst()).days
-                print(f"   [token] 만료까지 ~{left}일")
-                need_refresh = left <= REFRESH_BEFORE_DAYS
-            except Exception:
-                need_refresh = True
-        else:
-            # 만료시각 미상(외부 Secret 설정) → 갓 설정됐다고 가정하고 기록만
-            state["token_expires_at"] = (
-                _now_kst() + datetime.timedelta(days=TOKEN_LIFETIME_DAYS)
-            ).isoformat()
-            print("   [token] 만료시각 미상 → 신규로 가정해 기록")
+        token, refreshed = _ensure_token(token, state)
 
-        if need_refresh:
-            print("   [token] 만료 임박 → 갱신 시도")
-            nt = refresh_token(token)
-            if nt:
-                token = nt
-                refreshed = True
-                state["token_expires_at"] = (
-                    _now_kst() + datetime.timedelta(days=TOKEN_LIFETIME_DAYS)
-                ).isoformat()
-                try:
-                    NEW_TOKEN_FILE.write_text(nt, encoding="utf-8")
-                    print(f"   [token] ✓ 갱신됨 → {NEW_TOKEN_FILE.name} 기록 (GitHub Secret 갱신용)")
-                except Exception as e:
-                    print(f"   [token] 갱신토큰 파일 기록 실패: {e}")
-            else:
-                print("   [token] ⚠ 갱신 실패 → 기존 토큰으로 진행")
-
-    # ── 대상 선정 ──
     posts = select_posts_for_threads(THREADS_PER_DAY)
     print(f"\n   선정된 글 {len(posts)}개 (최대 {THREADS_PER_DAY})\n")
     if not posts:
@@ -514,13 +636,7 @@ def run_daily_threads(dry_run: bool = False, force: bool = False):
     for i, p in enumerate(posts, 1):
         url = _post_url(p)
         text = convert_post_to_thread(p)
-        print("-" * 60)
-        print(f"[{i}/{len(posts)}] {p['filename']}  (today={p['_is_today']}, trend={p['_is_trend']}, via={p.get('_convert_via')})")
-        print(f"   제목: {p['title'][:50]}")
-        print(f"   URL : {url}")
-        print(f"   ── 변환된 쓰레드 텍스트 ({len(text)}자) ──")
-        for line in text.split("\n"):
-            print(f"   | {line}")
+        _print_thread_preview(i, len(posts), p, text, url)
 
         if dry_run:
             continue
@@ -608,11 +724,26 @@ def main():
     print("=" * 60)
 
 
+def _int_arg(name: str, default: int) -> int:
+    if name in sys.argv:
+        try:
+            return int(sys.argv[sys.argv.index(name) + 1])
+        except (ValueError, IndexError):
+            return default
+    return default
+
+
 if __name__ == "__main__":
-    if "--daily" in sys.argv:
-        run_daily_threads(
-            dry_run="--dry-run" in sys.argv,
-            force="--force" in sys.argv,
-        )
+    _dry = "--dry-run" in sys.argv
+    _force = "--force" in sys.argv
+    if "--once" in sys.argv:
+        # 시간대 슬롯당 1개 발행 (cron 4회 분산용)
+        publish_one_thread(dry_run=_dry, force=_force)
+    elif "--daily" in sys.argv:
+        # 1회 실행에 N개 일괄 발행 (수동/레거시)
+        run_daily_threads(dry_run=_dry, force=_force)
+    elif _dry:
+        # 변환 품질 미리보기 (--samples N, 기본 4)
+        preview_samples(_int_arg("--samples", 4))
     else:
         main()

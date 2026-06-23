@@ -2,7 +2,11 @@ name: 쓰레드 자동 발행
 
 on:
   schedule:
-    - cron: '0 10 * * *'   # 19:00 KST (직장인 퇴근/저녁 노출). GitHub Actions 지연 감안
+    # 하루 4회 시간대 분산 — 각 실행은 1개만 발행(--once). KST = UTC+9
+    - cron: '0 22 * * *'   # KST 07:00 (전날 UTC 22:00) 출근길
+    - cron: '0 3 * * *'    # KST 12:00 (UTC 03:00) 점심
+    - cron: '0 9 * * *'    # KST 18:00 (UTC 09:00) 퇴근길
+    - cron: '0 13 * * *'   # KST 22:00 (UTC 13:00) 취침 전
   workflow_dispatch:
     inputs:
       dry_run:
@@ -41,9 +45,9 @@ jobs:
       - name: 패키지 설치
         run: pip install requests python-dotenv
 
-      - name: 쓰레드 발행 실행
+      - name: 쓰레드 발행 실행 (시간대 슬롯당 1개)
         run: |
-          ARGS="--daily"
+          ARGS="--once"
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           echo "실행 인자: $ARGS"
