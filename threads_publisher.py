@@ -98,8 +98,9 @@ def refresh_token(long_token: str) -> str | None:
 
 
 # ── 3. 텍스트 글 발행 (2단계 컨테이너 모델) ──────────────────
-def publish_text(user_id: str, token: str, text: str) -> dict | None:
-    """텍스트 글을 발행. 성공 시 {'id': thread_id, 'permalink': url} 반환, 실패 시 None."""
+def publish_text(user_id: str, token: str, text: str, reply_to_id: str | None = None) -> dict | None:
+    """텍스트 글을 발행. reply_to_id 주면 해당 글의 답글로 발행.
+    성공 시 {'id': thread_id, 'permalink': url} 반환, 실패 시 None."""
     # 1단계: 컨테이너 생성
     create_url = f"{GRAPH}/{API_VERSION}/{user_id}/threads"
     create_params = {
@@ -107,6 +108,8 @@ def publish_text(user_id: str, token: str, text: str) -> dict | None:
         "text": text,
         "access_token": token,
     }
+    if reply_to_id:
+        create_params["reply_to_id"] = reply_to_id
     try:
         r = requests.post(create_url, data=create_params, timeout=TIMEOUT)
         if r.status_code != 200:
@@ -167,6 +170,7 @@ from pathlib import Path
 
 ROOT          = Path(__file__).resolve().parent
 POSTS_DIR     = ROOT / "posts"
+P_DIR         = ROOT / "p"                          # 정적 글 페이지(/p/{slug}.html)
 MANIFEST_PATH = POSTS_DIR / "manifest.json"
 STATE_PATH    = POSTS_DIR / "threads_state.json"   # 커밋됨(시크릿 없음): 중복실행/만료 가드
 NEW_TOKEN_FILE = ROOT / "threads_new_token.txt"    # gitignore: 갱신토큰 임시 전달용
@@ -238,19 +242,39 @@ def _hashtags(category: str) -> str:
     return " ".join(out)
 
 
-def _post_url(post: dict) -> str:
-    """글 공개 URL. slug(매니페스트) 우선, 없으면 파일명 스텁(/p/post_xxx.html 리다이렉트 존재)."""
+def _resolve_post_url(post: dict) -> str | None:
+    """실제 존재하는 정적 파일을 가리키는 글 URL을 반환 (404 방지).
+    우선순위: ① manifest slug  ② title→make_slug(정적생성과 동일 규칙)  ③ 파일명 스텁.
+    셋 다 p/ 디렉토리에 실파일이 없으면 None(→ 발행 스킵)."""
+    candidates = []
     slug = (post.get("slug") or "").strip()
     if slug:
-        return f"{SITE}/p/{slug}.html"
+        candidates.append(slug)
+    title = post.get("title") or ""
+    if title:
+        try:
+            from generate_static_posts import make_slug  # 정적 생성과 동일 규칙 재사용
+            ms = make_slug(title, set())
+            if ms and ms not in candidates:
+                candidates.append(ms)
+        except Exception as e:
+            print(f"   [url] make_slug 재사용 실패(무시): {e}")
     fn = (post.get("filename") or "").strip()
     if fn.endswith(".json"):
-        return f"{SITE}/p/{fn[:-5]}.html"
-    return SITE
+        candidates.append(fn[:-5])   # /p/post_xxx.html 리다이렉트 스텁
+    for c in candidates:
+        if c and (P_DIR / f"{c}.html").exists():
+            return f"{SITE}/p/{c}.html"
+    return None
+
+
+def _post_url(post: dict) -> str | None:
+    """이미 select 단계에서 해결된 url이 있으면 그대로, 없으면 재해결."""
+    return post.get("url") or _resolve_post_url(post)
 
 
 # ── 글 변환: 블로그 글 JSON → 쓰레드 포스트 텍스트 ───────────
-def _build_thread_prompt(post: dict, url: str) -> str:
+def _build_thread_prompt(post: dict) -> str:
     title   = post.get("title", "")
     tldr    = _as_text(post.get("tldr"))
     summary = _as_text(post.get("summary"))
@@ -297,18 +321,18 @@ def _build_thread_prompt(post: dict, url: str) -> str:
         "  · (O) '동탄 9.5% 올랐대. 지금 들어가도 되나?'\n"
         "  · 굳이 부르려면 '직장인이라면', '월급쟁이들' 정도만 가끔.\n"
         "- ★ 이모지·이모티콘 절대 쓰지 말 것(🙄🤯🥚😮 등 전부 금지). 깔끔한 텍스트로만.\n"
+        "- ★ 해시태그(#...) 절대 쓰지 말 것.\n"
+        "- ★ 링크/URL 넣지 마라. 링크는 별도 답글로 따로 단다.\n"
         "- 직장인 1인칭 공감 ('나도', '우리 직장인'). 단 반말로.\n"
-        "- 길이: 350자 이내(짧을수록 좋음).\n"
-        "- 해시태그 2~3개(#직장인 등 관련).\n"
-        f"- 맨 끝 줄에 반드시 이 링크를 그대로: {url}\n\n"
+        "- 길이: 350자 이내(짧을수록 좋음).\n\n"
         "[출력] 쓰레드 포스트 텍스트만 출력. 설명·머리말 금지. "
         "재료의 라벨('제목:', 'TLDR:', '핵심요약:', '요약:', '키워드:' 등)을 그대로 쓰지 마라. "
         "전체를 따옴표로 감싸지 말고, 첫 줄 맨 앞에 따옴표(\"나 ')도 붙이지 마라."
     )
 
 
-def _gemini_convert(post: dict, url: str) -> str | None:
-    """Gemini로 쓰레드 텍스트 생성. 키 없거나 실패 시 None."""
+def _gemini_convert(post: dict) -> str | None:
+    """Gemini로 쓰레드 본문 생성(링크/해시태그 없음). 키 없거나 실패 시 None."""
     key = os.getenv("GEMINI_API_KEY", "").strip()
     if not key:
         return None
@@ -317,7 +341,7 @@ def _gemini_convert(post: dict, url: str) -> str | None:
         f"gemini-2.5-flash:generateContent?key={key}"
     )
     payload = {
-        "contents": [{"parts": [{"text": _build_thread_prompt(post, url)}]}],
+        "contents": [{"parts": [{"text": _build_thread_prompt(post)}]}],
         "generationConfig": {
             "temperature": 0.85,
             "topP": 0.95,
@@ -349,8 +373,8 @@ def _gemini_convert(post: dict, url: str) -> str | None:
     return None
 
 
-def _fallback_thread_text(post: dict, url: str) -> str:
-    """Gemini 미사용/실패 시 템플릿 기반 쓰레드 텍스트 (프로덕션 폴백 겸용)."""
+def _fallback_thread_text(post: dict) -> str:
+    """Gemini 미사용/실패 시 템플릿 기반 본문 (링크/해시태그 없음 — 링크는 답글로)."""
     title = _as_text(post.get("title"))
     hook = _first_sentence(post.get("tldr") or post.get("summary")) or title
     body = ""
@@ -358,8 +382,7 @@ def _fallback_thread_text(post: dict, url: str) -> str:
     # 훅과 앞부분이 거의 같으면(중복 느낌) 본문 생략
     if summ and summ[:12] != hook[:12]:
         body = summ
-    tags = _hashtags(post.get("category"))
-    parts = [p for p in [hook, body, "👉 자세한 건 블로그에 정리해놨어.", url, tags] if p]
+    parts = [p for p in [hook, body] if p]
     return "\n\n".join(parts)
 
 
@@ -409,33 +432,40 @@ def _strip_emoji(text: str) -> str:
     return "\n".join(cleaned).strip()
 
 
-def _finalize_thread_text(text: str, url: str) -> str:
-    """링크 보장 + 길이 안전화 (URL은 항상 보존)."""
-    t = _strip_emoji(_strip_quotes(text))
-    if url and url not in t:
-        t = t.rstrip() + "\n\n" + url
-    if len(t) <= THREAD_MAX_LEN:
-        return t
-    # 너무 길면: URL 줄을 떼어내고 본문만 컷 후 재결합
-    if url in t:
-        body = t.replace(url, "").rstrip()
-        keep = THREAD_MAX_LEN - len(url) - 4
-        body = body[:max(keep, 0)].rstrip()
-        t = body + "\n\n" + url
-    else:
+def _strip_hashtags(text: str) -> str:
+    """결과에서 해시태그 제거 (해시태그-only 줄 통째 제거 + 인라인 #태그 제거)."""
+    if not text:
+        return text
+    out = []
+    for ln in text.split("\n"):
+        stripped = ln.strip()
+        # 해시태그만 있는 줄은 통째 제거
+        if stripped and all(tok.startswith("#") for tok in stripped.split()):
+            continue
+        ln = _re.sub(r"#\S+", "", ln)               # 인라인 해시태그 제거
+        ln = _re.sub(r"[ \t]{2,}", " ", ln).rstrip()
+        out.append(ln)
+    res = "\n".join(out)
+    return _re.sub(r"\n{3,}", "\n\n", res).strip()
+
+
+def _finalize_body(text: str) -> str:
+    """본문 정리: 따옴표/이모지/해시태그 제거 + 길이 안전화 (링크는 본문에 없음)."""
+    t = _strip_hashtags(_strip_emoji(_strip_quotes(text)))
+    t = _re.sub(r"\n{3,}", "\n\n", t).strip()
+    if len(t) > THREAD_MAX_LEN:
         t = t[:THREAD_MAX_LEN].rstrip()
     return t
 
 
 def convert_post_to_thread(post: dict) -> str:
-    """블로그 글(dict) → 쓰레드 포스트 텍스트. Gemini 우선, 실패 시 템플릿 폴백."""
-    url = _post_url(post)
-    text = _gemini_convert(post, url)
+    """블로그 글(dict) → 쓰레드 본문(링크/해시태그 없음). Gemini 우선, 실패 시 템플릿 폴백."""
+    text = _gemini_convert(post)
     used = "Gemini"
     if not text:
-        text = _fallback_thread_text(post, url)
+        text = _fallback_thread_text(post)
         used = "템플릿폴백"
-    final = _finalize_thread_text(text, url)
+    final = _finalize_body(text)
     post["_convert_via"] = used
     return final
 
@@ -486,7 +516,19 @@ def select_posts_for_threads(count: int = THREADS_PER_DAY) -> list:
         key=lambda c: (c["_is_today"], c["_is_trend"], c["created_at"]),
         reverse=True,
     )
-    return candidates[:count]
+
+    # URL 해결(실파일 존재) — 404 가리키는 글은 스킵하고 다음 후보로
+    selected = []
+    for c in candidates:
+        url = _resolve_post_url(c)
+        if not url:
+            print(f"   [select] {c['filename']} 정적파일 없음(404 위험) → 스킵")
+            continue
+        c["url"] = url
+        selected.append(c)
+        if len(selected) >= count:
+            break
+    return selected
 
 
 # ── 상태 파일 (중복실행/토큰만료 가드) ───────────────────────
@@ -585,14 +627,43 @@ def _ensure_token(token: str, state: dict) -> tuple:
     return token, refreshed
 
 
+REPLY_GAP_SEC = 5  # 본문 발행 후 답글(링크) 발행 전 대기
+
+
+def _reply_link_text(url: str) -> str:
+    """본문에 달 답글(링크) 텍스트 — 반말, 이모지 없이."""
+    return f"전체 글은 여기. {url}"
+
+
+def _publish_thread_with_link(user_id: str, token: str, text: str, url: str) -> dict | None:
+    """본문 발행 → (5초 후) 같은 글에 링크 답글(self-reply) 발행.
+    본문 성공 시 result 반환(reply 실패해도 본문은 유효). 본문 실패 시 None."""
+    res = publish_text(user_id, token, text)
+    if not res:
+        return None
+    if url:
+        print(f"   [reply] {REPLY_GAP_SEC}초 후 링크 답글 발행...")
+        time.sleep(REPLY_GAP_SEC)
+        rep = publish_text(user_id, token, _reply_link_text(url), reply_to_id=res["id"])
+        if rep:
+            res["reply_id"] = rep["id"]
+            print(f"   [reply] ✓ 링크 답글 발행 reply_id={rep['id']}")
+        else:
+            print("   [reply] ⚠ 링크 답글 실패 (본문은 정상 발행됨)")
+    return res
+
+
 def _print_thread_preview(idx: int, total: int, p: dict, text: str, url: str):
+    exists = bool(url) and (P_DIR / url.rsplit("/p/", 1)[-1]).exists() if url else False
     print("-" * 60)
     print(f"[{idx}/{total}] {p['filename']}  (today={p['_is_today']}, trend={p['_is_trend']}, via={p.get('_convert_via')})")
     print(f"   제목: {p['title'][:50]}")
-    print(f"   URL : {url}")
-    print(f"   ── 변환된 쓰레드 텍스트 ({len(text)}자) ──")
+    print(f"   ── 본문 (링크/해시태그 없음, {len(text)}자) ──")
     for line in text.split("\n"):
         print(f"   | {line}")
+    print(f"   ── 답글(링크) ──")
+    print(f"   | {_reply_link_text(url) if url else '(URL 미해결 → 발행 스킵)'}")
+    print(f"   링크 파일 실제 존재: {exists}  ({url})")
 
 
 def select_one_post_for_thread() -> dict | None:
@@ -659,7 +730,7 @@ def publish_one_thread(dry_run: bool = False, force: bool = False):
         print("\n✅ DRY-RUN 완료 (발행 안 함)")
         return
 
-    res = publish_text(user_id, token, text)
+    res = _publish_thread_with_link(user_id, token, text, url)
     _record_slot(state, slot)  # cron 중복발동 대비: 시도한 슬롯은 기록
     if res:
         _mark_thread_published(p["filename"], res.get("permalink") or url)
@@ -715,7 +786,7 @@ def run_daily_threads(dry_run: bool = False, force: bool = False):
         if dry_run:
             continue
 
-        res = publish_text(user_id, token, text)
+        res = _publish_thread_with_link(user_id, token, text, url)
         if res:
             ok += 1
             _mark_thread_published(p["filename"], res.get("permalink") or url)
