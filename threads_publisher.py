@@ -291,9 +291,14 @@ def _build_thread_prompt(post: dict, url: str) -> str:
         "- 훅 4요소 중 가능한 것 적용: 숫자(구체적 수치), 권위(출처/기관), 두려움(놓치면 손해), 출처(근거).\n"
         "- 80% 정보 법칙: 핵심을 다 말하지 말고 궁금하게 남겨 링크 클릭을 유도.\n"
         "- 첫 줄(훅)이 생명: 스크롤을 멈추게. 첫 문장에서 '어?' 하게 만들어라.\n"
+        "- ★ 첫 줄 '야,'로 시작 금지(무례하고 패턴 뻔함). 부르는 말 없이 바로 본론·훅으로 시작해라.\n"
+        "  · (X) '야, 5대 은행 가계대출 6조 늘었대'\n"
+        "  · (O) '5대 은행 가계대출, 두 달 새 6조 늘었대'\n"
+        "  · (O) '동탄 9.5% 올랐대. 지금 들어가도 되나?'\n"
+        "  · 굳이 부르려면 '직장인이라면', '월급쟁이들' 정도만 가끔.\n"
+        "- ★ 이모지·이모티콘 절대 쓰지 말 것(🙄🤯🥚😮 등 전부 금지). 깔끔한 텍스트로만.\n"
         "- 직장인 1인칭 공감 ('나도', '우리 직장인'). 단 반말로.\n"
         "- 길이: 350자 이내(짧을수록 좋음).\n"
-        "- 이모지 1~2개만 자연스럽게.\n"
         "- 해시태그 2~3개(#직장인 등 관련).\n"
         f"- 맨 끝 줄에 반드시 이 링크를 그대로: {url}\n\n"
         "[출력] 쓰레드 포스트 텍스트만 출력. 설명·머리말 금지. "
@@ -372,9 +377,41 @@ def _strip_quotes(text: str) -> str:
     return t
 
 
+import re as _re
+
+# 이모지/이모티콘 유니코드 범위 (해시태그 '#'는 ASCII라 영향 없음)
+_EMOJI_RE = _re.compile(
+    "["
+    "\U0001F000-\U0001FAFF"   # 이모티콘/기호/그림/보충 심볼 (대부분의 이모지)
+    "\U00002600-\U000027BF"   # 기타 기호 + 딩뱃
+    "\U00002B00-\U00002BFF"   # 기타 기호/별/화살표
+    "\U00002300-\U000023FF"   # 기술 기호 (⌚⏰⏳ 등)
+    "\U0000FE00-\U0000FE0F"   # 변이 선택자 (emoji presentation)
+    "\U0000200D"              # ZWJ (이모지 결합용)
+    "\U000024C2"              # Ⓜ
+    "\U00002122\U00002139"    # ™ ℹ
+    "]+",
+    flags=_re.UNICODE,
+)
+
+
+def _strip_emoji(text: str) -> str:
+    """변환 결과에서 이모지/이모티콘 제거 (분석가 톤 유지). 해시태그 '#'는 유지."""
+    if not text:
+        return text
+    t = _EMOJI_RE.sub("", text)
+    # 이모지 제거로 생긴 잉여 공백 정리 (줄 단위)
+    cleaned = []
+    for ln in t.split("\n"):
+        ln = _re.sub(r"[ \t]{2,}", " ", ln)
+        ln = _re.sub(r" +([.,!?…])", r"\1", ln)   # 이모지 제거로 생긴 '문장 .' → '문장.'
+        cleaned.append(ln.rstrip())
+    return "\n".join(cleaned).strip()
+
+
 def _finalize_thread_text(text: str, url: str) -> str:
     """링크 보장 + 길이 안전화 (URL은 항상 보존)."""
-    t = _strip_quotes(text)
+    t = _strip_emoji(_strip_quotes(text))
     if url and url not in t:
         t = t.rstrip() + "\n\n" + url
     if len(t) <= THREAD_MAX_LEN:
