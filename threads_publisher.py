@@ -307,18 +307,28 @@ def _gemini_convert(post: dict, url: str) -> str | None:
             "thinkingConfig": {"thinkingBudget": 0},
         },
     }
-    try:
-        r = requests.post(api, headers={"Content-Type": "application/json"},
-                          json=payload, timeout=45)
-        if r.status_code != 200:
-            print(f"   [convert] Gemini {r.status_code}: {r.text[:200]}")
+    # 503(high demand)/429는 일시적 → 짧게 재시도, 그래도 실패면 템플릿 폴백
+    for attempt in range(3):
+        try:
+            r = requests.post(api, headers={"Content-Type": "application/json"},
+                              json=payload, timeout=45)
+            if r.status_code == 200:
+                data = r.json()
+                text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
+                return text or None
+            if r.status_code in (429, 503) and attempt < 2:
+                print(f"   [convert] Gemini {r.status_code} 일시적 → 재시도 {attempt + 1}/2")
+                time.sleep(4)
+                continue
+            print(f"   [convert] Gemini {r.status_code}: {r.text[:150]}")
             return None
-        data = r.json()
-        text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
-        return text or None
-    except Exception as e:
-        print(f"   [convert] Gemini 예외: {e}")
-        return None
+        except Exception as e:
+            print(f"   [convert] Gemini 예외: {e}")
+            if attempt < 2:
+                time.sleep(4)
+                continue
+            return None
+    return None
 
 
 def _fallback_thread_text(post: dict, url: str) -> str:
