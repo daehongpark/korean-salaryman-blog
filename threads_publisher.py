@@ -285,6 +285,13 @@ def _post_url(post: dict) -> str | None:
     return post.get("url") or _resolve_post_url(post)
 
 
+def _is_book_post(post: dict) -> bool:
+    """독서글 여부. select가 넣어준 _is_book 우선, 없으면 즉석 판정."""
+    if "_is_book" in post:
+        return bool(post["_is_book"])
+    return _looks_like_book(post.get("category", ""), post.get("keyword", ""), post.get("title", ""))
+
+
 # ── 글 변환: 블로그 글 JSON → 쓰레드 포스트 텍스트 ───────────
 def _build_thread_prompt(post: dict) -> str:
     title   = post.get("title", "")
@@ -307,10 +314,30 @@ def _build_thread_prompt(post: dict) -> str:
         materials.append(f"카테고리: {category}")
     material_block = "\n".join(materials)
 
+    if _is_book_post(post):
+        # 독서글 — '직장인 성공 독서' 각도
+        intro = (
+            "너는 '직장인 수익일기'(njob_blogosu) 운영자다. 아래는 네가 읽은 책에 대한 블로그 글이다. "
+            "이걸 '직장인이 성공하려고 읽는 책' 관점의 Threads 포스트 1개로 변환하라.\n\n"
+            f"[입력 재료]\n{material_block}\n\n"
+            "[독서글 변환 각도 — '직장인 성공 독서']\n"
+            "- 프레임: '직장인이 성공하기 위해 읽는 책' 관점. 이 책이 직장인/부업/성장에 왜 도움되는지.\n"
+            "- 책 제목·저자가 재료에 있으면 자연스럽게 살려라(없으면 억지로 지어내지 마라).\n"
+            "- 첫 줄 훅: 책 제목을 들이대지 말고, 그 책이 준 핵심 통찰/문제의식으로 시작해 궁금하게.\n"
+            "  · (X) 'OO이라는 책을 읽었다'\n"
+            "  · (O) '퇴근하고 1시간, 뭘 해야 하나 막막했는데 이 책이 답을 줬어'\n"
+            "- 80% 법칙(책 버전): 책 핵심 메시지 1개만 살짝 풀고, 구체적 방법·사례는 블로그로 넘겨라.\n"
+            "- ★ 자기계발 설교조 절대 금지. '이 책 이래서 쓸모 있더라' 식 발견자·분석가 톤.\n\n"
+        )
+    else:
+        intro = (
+            "너는 '직장인 수익일기'(njob_blogosu) 운영자다. 아래 블로그 글을 Threads(쓰레드) "
+            "포스트 1개로 변환하라.\n\n"
+            f"[입력 재료]\n{material_block}\n\n"
+        )
+
     return (
-        "너는 '직장인 수익일기'(njob_blogosu) 운영자다. 아래 블로그 글을 Threads(쓰레드) "
-        "포스트 1개로 변환하라.\n\n"
-        f"[입력 재료]\n{material_block}\n\n"
+        intro +
         "[말투 — 가장 중요]\n"
         "- ★ 반드시 반말 구어체로 써라. 존댓말('~습니다/~합니다/~하세요/~예요/~해요/~하죠/~죠/~네요') 절대 금지.\n"
         "- 친한 친구한테 정보 공유하듯이. 혼잣말하듯 툭 던지는 느낌도 좋다.\n"
@@ -482,12 +509,18 @@ def convert_post_to_thread(post: dict) -> str:
     return final
 
 
-# 독서/책 글 식별 키워드 (변환 각도는 기능3에서 활용)
-_BOOK_HINTS = ("독서", "책", "서평", "도서", "리뷰", "book", "review", "읽", "완독")
+# 독서/책 글 식별. category=='book'이 1차 신호.
+# (주의: '책' 단독 매칭은 '정책'을, '읽' 단독은 '읽기'를 오탐 → 정밀 구절만 사용)
+_BOOK_HINTS = (
+    "독서", "서평", "독후감", "완독", "북리뷰", "북 리뷰",
+    "책추천", "책 추천", "책 리뷰", "도서 리뷰", "읽은 책", "이 책", "book review",
+)
 
 
 def _looks_like_book(category: str, keyword: str, title: str) -> bool:
-    blob = f"{category} {keyword} {title}".lower()
+    if (category or "").strip().lower() == "book":
+        return True
+    blob = f"{keyword} {title}".lower()
     return any(h.lower() in blob for h in _BOOK_HINTS)
 
 
