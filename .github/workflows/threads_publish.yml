@@ -1,0 +1,83 @@
+name: 쓰레드 자동 발행
+
+on:
+  schedule:
+    - cron: '0 10 * * *'   # 19:00 KST (직장인 퇴근/저녁 노출). GitHub Actions 지연 감안
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'true=변환 미리보기만(발행X) / false=실발행'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['true', 'false']
+      force:
+        description: '같은 날 중복 실행 가드 무시'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['true', 'false']
+
+# 같은 워크플로 중복 동시 실행 방지
+concurrency:
+  group: threads-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Python 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 패키지 설치
+        run: pip install requests python-dotenv
+
+      - name: 쓰레드 발행 실행
+        run: |
+          ARGS="--daily"
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          echo "실행 인자: $ARGS"
+          python threads_publisher.py $ARGS
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID:      ${{ secrets.THREADS_USER_ID }}
+          THREADS_APP_SECRET:   ${{ secrets.THREADS_APP_SECRET }}
+          GEMINI_API_KEY:       ${{ secrets.GEMINI_API_KEY }}
+
+      - name: 갱신된 토큰을 GitHub Secret에 반영
+        if: hashFiles('threads_new_token.txt') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          echo "토큰 갱신 감지 → THREADS_ACCESS_TOKEN Secret 업데이트"
+          # 값은 stdin으로 전달 → argv/로그에 토큰 미노출
+          gh secret set THREADS_ACCESS_TOKEN --repo daehongpark/korean-salaryman-blog < threads_new_token.txt
+          rm -f threads_new_token.txt
+          echo "Secret 갱신 완료"
+
+      - name: 발행 플래그/상태 커밋
+        run: |
+          git config user.name  "쓰레드 자동발행"
+          git config user.email "pride93d@gmail.com"
+          # 안전: 갱신 토큰 임시파일이 남아 있어도 절대 커밋 안 되게 제거
+          rm -f threads_new_token.txt
+          git add posts/
+          git diff --staged --quiet && echo "변경 없음, 종료" && exit 0
+          git commit -m "쓰레드 발행 기록: $(date +'%Y-%m-%d')"
+          # 다른 워크플로와의 push 경쟁 대비 pull --rebase 후 push 5회 재시도
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && echo "push 성공 (시도 $i)" && exit 0
+            echo "push 재시도 $i 실패, 재시도..."
+            sleep 3
+          done
+          echo "5회 재시도 후에도 push 실패" && exit 1

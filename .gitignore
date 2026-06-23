@@ -11,3 +11,6 @@ __pycache__/
 # 일회성 마이그레이션/생성 스크립트 (커밋 X)
 _gen_category_pages.py
 _migrate_categories.py
+
+# 쓰레드 갱신 토큰 임시 파일 (절대 commit 금지)
+threads_new_token.txt
