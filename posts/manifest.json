@@ -87,35 +87,6 @@
     "monthly_search": null
   },
   {
-    "filename": "post_20260623_223626.json",
-    "title": "직장인 부수입, 1인 사업으로 키우는 현실적인 방법",
-    "category": "startup",
-    "keyword": "부수입",
-    "summary": "직장인 부수입은 단순히 용돈벌이가 아니라, 체계적인 접근과 1인 사업자 등록을 통해 더 큰 수익과 성취감을 안겨줄 수 있습니다. 세금, 건강보험료 등 간과하기 쉬운 부분을 미리 챙기고, 나에게 맞는 부수입 모델을 꾸준히 키워나가는 것이 중요합니다.",
-    "tags": [
-      "부수입",
-      "startup",
-      "직장인",
-      "1인사업",
-      "세금",
-      "건강보험"
-    ],
-    "created_at": "2026-06-24T07:36:26.072789",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260623_223624.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": false,
-    "has_steps": true,
-    "has_references": true,
-    "seo_score": 78,
-    "monthly_search": 540
-  },
-  {
     "filename": "post_20260623_223404.json",
     "title": "내 전세금 지키는 법: 사기 수법 피하는 직장인 필승 예방법",
     "category": "realestate",
@@ -289,36 +260,6 @@
     "has_references": true,
     "seo_score": null,
     "monthly_search": null
-  },
-  {
-    "filename": "post_20260621_224003.json",
-    "title": "세법개정안 발표, 2026년 직장인 연말정산 미리보기",
-    "category": "trending",
-    "keyword": "세법개정안 발표",
-    "summary": "2026년 세법개정안은 근로소득 공제 축소와 일부 세액공제 한도 조정이 주요 내용으로, 직장인들의 연말정산 환급액에 직접적인 영향을 미칠 겁니다.\n따라서 본인의 소득과 지출 패턴을 파악하고, 변경된 기준에 맞춰 미리 절세 전략을 세워두는 것이 중요합니다.",
-    "tags": [
-      "세법개정안 발표",
-      "연말정산",
-      "직장인 세금",
-      "절세",
-      "소득공제",
-      "세액공제",
-      "2026세법"
-    ],
-    "created_at": "2026-06-22T07:40:03.034415",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260621_224001.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": true,
-    "has_steps": false,
-    "has_references": true,
-    "seo_score": 87,
-    "monthly_search": 40
   },
   {
     "filename": "post_20260621_223845.json",
@@ -527,33 +468,6 @@
     "seo_score": null,
     "monthly_search": null,
     "slug": "직장인-가계대출-6조-증가-현명하게-관리하는-3가지-방법"
-  },
-  {
-    "filename": "post_20260620_223907.json",
-    "title": "1인 사업자 4대보험료, 직장인 전환 전 이걸 봐야죠",
-    "category": "startup",
-    "keyword": "1인 사업자 4대보험료",
-    "summary": "1인 사업자 전환을 고려하는 직장인이라면 4대보험료 부담이 크게 달라진다는 점을 명심해야 합니다.\n특히 건강보험은 재산까지 고려하는 지역가입자 산정 방식 때문에 피부양자 자격 유지가 핵심입니다.",
-    "tags": [
-      "1인 사업자 4대보험료",
-      "startup",
-      "직장인",
-      "부업"
-    ],
-    "created_at": "2026-06-21T07:39:07.272275",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260620_223905.png",
-    "has_faq": false,
-    "has_tldr": false,
-    "has_comparison": false,
-    "has_steps": false,
-    "has_references": false,
-    "seo_score": 101.4,
-    "monthly_search": 15
   },
   {
     "filename": "post_20260620_223751.json",
