@@ -80,7 +80,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 78.0,
+    "seo_score": 78,
     "monthly_search": 2560
   },
   {
@@ -321,7 +321,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -552,7 +552,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 156.0,
+    "seo_score": 156,
     "monthly_search": 720
   },
   {
@@ -949,7 +949,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 108.0,
+    "seo_score": 108,
     "monthly_search": 750
   },
   {
@@ -1165,10 +1165,10 @@
       "부업"
     ],
     "created_at": "2026-06-23T07:38:55.516567",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-01T06:37:42.635Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260622_223847.png",
     "has_faq": false,
@@ -1192,10 +1192,10 @@
       "부업"
     ],
     "created_at": "2026-06-23T07:37:31.974409",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-01T06:37:42.635Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260622_223729.png",
     "has_faq": false,
@@ -1223,10 +1223,10 @@
       "목돈마련"
     ],
     "created_at": "2026-06-23T07:36:19.944754",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-01T06:37:42.635Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260622_223616.png",
     "has_faq": true,
@@ -1255,10 +1255,10 @@
       "운동"
     ],
     "created_at": "2026-06-23T07:35:07.244676",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-01T06:37:42.635Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260622_223504.png",
     "has_faq": true,
@@ -1282,10 +1282,10 @@
       "부업"
     ],
     "created_at": "2026-06-22T07:38:45.482836",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-01T06:37:42.635Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260621_223841.png",
     "has_faq": false,
