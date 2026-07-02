@@ -419,9 +419,9 @@
       "재테크"
     ],
     "created_at": "2026-06-30T07:34:24.409708",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-07-02T21:30:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260629_223422.png",
@@ -478,9 +478,9 @@
       "부업"
     ],
     "created_at": "2026-06-29T07:37:28.468511",
-    "status": "scheduled",
+    "status": "draft",
     "source": "auto",
-    "scheduled_at": "2026-07-02T14:30:00.000Z",
+    "scheduled_at": null,
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260628_223727.png",
