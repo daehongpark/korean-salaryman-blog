@@ -202,6 +202,10 @@
     }
   },
   "published_at": "2026-07-01T06:39:46.267Z",
-  "force_thread": true,
-  "force_thread_at": "2026-07-02T02:38:33.449Z"
+  "force_thread": false,
+  "force_thread_at": "2026-07-02T02:38:33.449Z",
+  "thread_published": true,
+  "thread_url": "https://www.threads.com/@njob_blogosu/post/DaR8prtlbVz",
+  "thread_published_at": "2026-07-02T15:28:30+09:00",
+  "force_thread_done": true
 }
