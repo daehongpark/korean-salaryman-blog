@@ -201,5 +201,7 @@
       ]
     }
   },
-  "published_at": "2026-07-01T06:39:46.267Z"
+  "published_at": "2026-07-01T06:39:46.267Z",
+  "force_thread": true,
+  "force_thread_at": "2026-07-02T02:38:33.449Z"
 }
