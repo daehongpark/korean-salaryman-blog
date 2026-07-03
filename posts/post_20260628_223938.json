@@ -257,5 +257,8 @@
     }
   },
   "scheduled_at": "2026-07-02T12:00:00.000Z",
-  "published_at": "2026-07-02T12:02:35.120Z"
+  "published_at": "2026-07-02T12:02:35.120Z",
+  "thread_published": true,
+  "thread_url": "https://www.threads.com/@njob_blogosu/post/DaVEguAIL1a",
+  "thread_published_at": "2026-07-03T20:34:57+09:00"
 }
