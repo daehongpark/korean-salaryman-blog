@@ -48,7 +48,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -195,7 +195,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 78.0,
+    "seo_score": 78,
     "monthly_search": null
   },
   {
@@ -430,7 +430,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 108.0,
+    "seo_score": 108,
     "monthly_search": 1470
   },
   {
@@ -462,7 +462,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -686,10 +686,10 @@
       "절세팁"
     ],
     "created_at": "2026-07-03T07:35:21.636109",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-07T08:09:17.244Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260702_223518.png",
     "has_faq": true,
@@ -713,10 +713,10 @@
       "부업"
     ],
     "created_at": "2026-07-03T07:34:08.304832",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-07T08:09:17.244Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260702_223405.png",
     "has_faq": false,
@@ -763,10 +763,10 @@
     "summary": "",
     "tags": [],
     "created_at": "2026-07-02T07:44:09.806345",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-07T08:09:17.244Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260701_224405.png",
     "has_faq": false,
@@ -794,10 +794,10 @@
       "trending"
     ],
     "created_at": "2026-07-02T07:42:56.392131",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-07T08:09:17.244Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260701_224252.png",
     "has_faq": true,
@@ -823,10 +823,10 @@
       "부업"
     ],
     "created_at": "2026-07-02T07:41:38.512534",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-07T08:09:17.244Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260701_224134.png",
     "has_faq": true,
@@ -878,10 +878,10 @@
       "부업"
     ],
     "created_at": "2026-07-01T07:40:25.797852",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-07T08:09:17.244Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260630_224023.png",
     "has_faq": false,
@@ -947,7 +947,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 78.0,
+    "seo_score": 78,
     "monthly_search": 2560
   },
   {
