@@ -84,7 +84,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 169.0,
+    "seo_score": 169,
     "monthly_search": 1520
   },
   {
@@ -338,7 +338,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -1234,35 +1234,6 @@
     "seo_score": null,
     "monthly_search": null,
     "slug": "AI-시대-전력-폭증에-투자하는-법-직장인-간접-투자-이것부터-보세요"
-  },
-  {
-    "filename": "post_20260630_223648.json",
-    "title": "직장인 부업, 1인 사업자로 전환할 때 알아야 할 것",
-    "category": "startup",
-    "keyword": "직장인 부업",
-    "summary": "직장인 부업에서 1인 사업자로의 전환은 수익 확대뿐 아니라 법적 지위, 세금, 확장성 등 여러 측면에서 큰 변화를 가져옵니다. 철저한 사전 준비와 현실적인 판단이 성공적인 전환의 열쇠입니다.",
-    "tags": [
-      "직장인 부업",
-      "startup",
-      "1인 사업자",
-      "사업자등록",
-      "직장인",
-      "부업"
-    ],
-    "created_at": "2026-07-01T07:36:48.897763",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260630_223647.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": true,
-    "has_steps": false,
-    "has_references": true,
-    "seo_score": 78.0,
-    "monthly_search": 2560
   },
   {
     "filename": "post_20260630_223539.json",
