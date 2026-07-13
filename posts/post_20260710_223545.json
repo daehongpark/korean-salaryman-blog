@@ -227,5 +227,7 @@
       ]
     }
   },
-  "published_at": "2026-07-13T03:35:19.007Z"
+  "published_at": "2026-07-13T03:35:19.007Z",
+  "force_thread": true,
+  "force_thread_at": "2026-07-13T05:02:37.444Z"
 }
