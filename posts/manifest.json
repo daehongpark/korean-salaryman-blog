@@ -141,7 +141,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 143.0,
+    "seo_score": 143,
     "monthly_search": 2530
   },
   {
@@ -172,7 +172,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -188,10 +188,10 @@
       "부업"
     ],
     "created_at": "2026-07-14T07:42:32.707444",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-14T08:43:44.878Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260713_224229.png",
     "has_faq": false,
@@ -248,10 +248,10 @@
       "건강관리"
     ],
     "created_at": "2026-07-14T07:34:23.563274",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-14T08:43:44.878Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260713_223421.png",
     "has_faq": true,
@@ -309,10 +309,10 @@
       "머니"
     ],
     "created_at": "2026-07-13T07:44:11.363100",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-14T08:43:44.878Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260712_224407.png",
     "has_faq": true,
@@ -338,10 +338,10 @@
       "청약"
     ],
     "created_at": "2026-07-13T07:41:05.175834",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-14T08:43:44.878Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260712_224101.png",
     "has_faq": true,
@@ -399,10 +399,10 @@
       "자세 교정"
     ],
     "created_at": "2026-07-12T07:40:32.849109",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-14T08:43:44.878Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260711_224030.png",
     "has_faq": true,
