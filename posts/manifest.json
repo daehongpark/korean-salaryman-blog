@@ -31,34 +31,6 @@
     "monthly_search": 10
   },
   {
-    "filename": "post_20260713_224352.json",
-    "title": "청년내일채움공제, 2026년에도 진짜 쓸만할까요?",
-    "category": "money",
-    "keyword": "청년내일채움공제",
-    "summary": "청년내일채움공제는 중소기업 청년이 목돈을 마련하고 장기근속을 할 수 있도록 돕는 정부 지원금입니다.\n2~3년 만기 시 수천만원의 목돈을 만들 수 있지만, 가입 조건과 중도 해지 리스크를 꼼꼼히 따져봐야 합니다.",
-    "tags": [
-      "청년내일채움공제",
-      "money",
-      "직장인",
-      "청년지원금",
-      "재테크"
-    ],
-    "created_at": "2026-07-14T07:43:52.378992",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260713_224349.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": true,
-    "has_steps": false,
-    "has_references": true,
-    "seo_score": 130,
-    "monthly_search": 12660
-  },
-  {
     "filename": "post_20260713_224232.json",
     "title": "챗GPT 최신 모델 활용법, 업무 난제 AI 사고력으로 넘는 법",
     "category": "ai",
@@ -143,36 +115,6 @@
     "has_steps": true,
     "has_references": true,
     "seo_score": null,
-    "monthly_search": null
-  },
-  {
-    "filename": "post_20260712_224745.json",
-    "title": "퍼플렉시티 AI, 출처 찾아 헤매던 제게 한 줄기 빛이었습니다",
-    "category": "ai",
-    "keyword": "Perplexity AI",
-    "summary": "Perplexity AI는 출처 기반 실시간 검색으로 직장인의 정보 탐색 시간을 획기적으로 줄여주는 AI 검색 엔진입니다. 기존 AI 챗봇의 한계를 보완해 신뢰도 높은 정보를 제공하며, 업무 리서치와 보고서 작성에 큰 도움을 줍니다.",
-    "tags": [
-      "Perplexity AI",
-      "ai",
-      "직장인",
-      "AI 챗봇",
-      "검색 엔진",
-      "정보 탐색",
-      "업무 효율"
-    ],
-    "created_at": "2026-07-13T07:47:45.334184",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260712_224742.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": true,
-    "has_steps": false,
-    "has_references": true,
-    "seo_score": 91,
     "monthly_search": null
   },
   {
