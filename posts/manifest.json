@@ -140,7 +140,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 130.0,
+    "seo_score": 130,
     "monthly_search": 45800
   },
   {
@@ -195,7 +195,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
@@ -329,10 +329,10 @@
       "내 집 마련"
     ],
     "created_at": "2026-07-14T12:55:58.574450",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-16T03:20:14.186Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260714_035556.png",
     "has_faq": true,
@@ -357,10 +357,10 @@
       "직장인 부동산"
     ],
     "created_at": "2026-07-14T12:54:43.118371",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-16T03:20:14.186Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260714_035441.png",
     "has_faq": true,
@@ -388,10 +388,10 @@
       "인공지능 활용"
     ],
     "created_at": "2026-07-14T12:53:24.317247",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-16T03:20:14.186Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260714_035320.png",
     "has_faq": true,
@@ -418,10 +418,10 @@
       "경기도"
     ],
     "created_at": "2026-07-14T12:52:07.144783",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-16T03:20:14.186Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260714_035203.png",
     "has_faq": true,
@@ -429,7 +429,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 143.0,
+    "seo_score": 143,
     "monthly_search": 2530
   },
   {
@@ -449,10 +449,10 @@
       "버그 탐지"
     ],
     "created_at": "2026-07-14T07:45:05.541411",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
-    "published_at": null,
+    "published_at": "2026-07-16T03:20:14.186Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260713_224502.png",
     "has_faq": true,
@@ -460,7 +460,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
