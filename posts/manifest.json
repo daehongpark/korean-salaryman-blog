@@ -331,9 +331,9 @@
       "투자 전략"
     ],
     "created_at": "2026-07-17T07:41:31.171345",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-07-20T08:30:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260716_224128.png",
