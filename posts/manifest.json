@@ -276,9 +276,9 @@
       "적립식 투자"
     ],
     "created_at": "2026-07-18T07:35:29.875631",
-    "status": "draft",
+    "status": "scheduled",
     "source": "auto",
-    "scheduled_at": null,
+    "scheduled_at": "2026-07-20T09:00:00.000Z",
     "published_at": null,
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260717_223526.png",
