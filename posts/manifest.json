@@ -28,35 +28,6 @@
     "monthly_search": null
   },
   {
-    "filename": "post_20260719_223719.json",
-    "title": "자꾸 밤늦게 야식 유혹? 직장인 야근에도 건강 지키는 식사 시간 관리법",
-    "category": "trending",
-    "keyword": "자꾸 밤늦게 야식 유혹? 직장인 밤샘 야근에도 건강 지키는 식사 시간 관리법",
-    "summary": "잦은 야근과 늦은 퇴근으로 인한 야식 유혹은 단순 체중 증가를 넘어 신체 리듬과 호르몬 균형을 깨트려 건강을 해칠 수 있습니다.\n미리 저녁을 가볍게 먹거나 야근 전 건강한 간식을 챙겨 먹고, 늦은 밤에는 소화 부담이 적은 음식을 선택하는 등 나에게 맞는 식사 시간 관리법을 찾아 꾸준히 실천하는 것이 중요합니다.",
-    "tags": [
-      "직장인 밤샘 야근",
-      "야식 유혹",
-      "건강 식사 시간 관리",
-      "생체 시계",
-      "시간 제한 식사",
-      "직장인 건강"
-    ],
-    "created_at": "2026-07-20T07:37:19.128915",
-    "status": "draft",
-    "source": "auto",
-    "scheduled_at": null,
-    "published_at": null,
-    "has_image": true,
-    "thumbnail": "/posts/thumbnails/thumb_20260719_223717.png",
-    "has_faq": true,
-    "has_tldr": true,
-    "has_comparison": false,
-    "has_steps": true,
-    "has_references": true,
-    "seo_score": null,
-    "monthly_search": null
-  },
-  {
     "filename": "post_20260719_223610.json",
     "title": "경기도 입주 물량 이슈, 직장인 전월세 시장 이렇게 바꿉니다",
     "category": "realestate",
@@ -302,7 +273,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
@@ -420,7 +391,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 100.0,
+    "seo_score": 100,
     "monthly_search": 1270
   },
   {
@@ -714,7 +685,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 130.0,
+    "seo_score": 130,
     "monthly_search": 45800
   },
   {
@@ -769,7 +740,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
