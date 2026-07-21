@@ -69,10 +69,10 @@
       "임대주택"
     ],
     "created_at": "2026-07-20T07:34:55.606236",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-21T14:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-07-21T14:30:23.569Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260719_223452.png",
     "has_faq": true,
