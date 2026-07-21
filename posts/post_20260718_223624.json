@@ -207,5 +207,8 @@
     }
   },
   "scheduled_at": "2026-07-20T11:00:00.000Z",
-  "published_at": "2026-07-20T11:18:43.673Z"
+  "published_at": "2026-07-20T11:18:43.673Z",
+  "thread_published": true,
+  "thread_url": "https://www.threads.com/@njob_blogosu/post/DbD0cOkGhih",
+  "thread_published_at": "2026-07-22T00:18:48+09:00"
 }
