@@ -34,18 +34,28 @@ BLOCK_KEYWORDS = [
 ]
 
 # ── 카테고리별 구글 뉴스 RSS 토픽 ──
+# trending: HEALTH 토픽(건강/라이프) → 톱 헤드라인으로 교체 (발행구조 Phase 2, 2026-07-23)
+#   "누구보다 빠르게" 컨셉이라 라이프스타일이 아니라 지금 뜨는 전체 이슈를 봐야 함.
 GOOGLE_NEWS_FEEDS = {
     "finance":    "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=ko&gl=KR&ceid=KR:ko",
     "ai":         "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=ko&gl=KR&ceid=KR:ko",
-    "trending":   "https://news.google.com/rss/headlines/section/topic/HEALTH?hl=ko&gl=KR&ceid=KR:ko",
+    "trending":   "https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko",
 }
 
 # ── 카테고리별 구글 뉴스 '검색' RSS (토픽보다 카테고리 적중률 높음) ──
 # TECHNOLOGY 토픽은 일반 IT 뉴스라 AI 비중이 낮아 → AI 전용 검색 RSS 추가 (박대홍 지시)
+# trending: 정책/이슈/딜 3갈래 검색 RSS 신설 (발행구조 Phase 2, 2026-07-23)
+#   수집 우선순위: (1) 아래 실시간 검색 RSS + POLICY_FEEDS 정부 1차 소스가 최우선,
+#   (2) CATEGORY_DATALAB_GROUPS(trend_crawler.py) 씨앗은 결과가 부족할 때만 보조로 쓴다.
 SEARCH_FEEDS = {
     "ai": [
         "https://news.google.com/rss/search?q=AI%20인공지능%20when:7d&hl=ko&gl=KR&ceid=KR:ko",
         "https://news.google.com/rss/search?q=ChatGPT%20OR%20Gemini%20OR%20Claude%20when:7d&hl=ko&gl=KR&ceid=KR:ko",
+    ],
+    "trending": [
+        "https://news.google.com/rss/search?q=(지원금 OR 보조금 OR 신청 OR 감면 OR 특례대출 OR 청년 OR 신혼부부) when:3d&hl=ko&gl=KR&ceid=KR:ko",
+        "https://news.google.com/rss/search?q=(물가 OR 금리 OR 대출규제 OR 분양 OR 세금 OR 고용 OR 연봉) when:3d&hl=ko&gl=KR&ceid=KR:ko",
+        "https://news.google.com/rss/search?q=(항공권 특가 OR 얼리버드 예매 OR 캐시백 이벤트 OR 사전예매 할인) when:7d&hl=ko&gl=KR&ceid=KR:ko",
     ],
 }
 
@@ -57,6 +67,8 @@ PRESS_FEEDS = {
 
 # 정책/부동산 소스 (money, realestate용 — 카테고리별 분리)
 # ※ 연합부동산 RSS는 404 (폐지) → 구글뉴스 검색 RSS로 대체
+# trending도 정책브리핑(정부 1차 소스) 연결 (발행구조 Phase 2, 2026-07-23)
+#   뉴스보다 정부 공고가 먼저 뜬다 = "누구보다 빠르게"의 핵심.
 POLICY_FEEDS = {
     "money": {
         "정책브리핑":   "https://www.korea.kr/rss/policy.xml",
@@ -65,6 +77,9 @@ POLICY_FEEDS = {
     "realestate": {
         "정책브리핑":   "https://www.korea.kr/rss/policy.xml",
         "부동산뉴스":   "https://news.google.com/rss/search?q=부동산+청약&hl=ko&gl=KR&ceid=KR:ko",
+    },
+    "trending": {
+        "정책브리핑":   "https://www.korea.kr/rss/policy.xml",
     },
 }
 
@@ -183,7 +198,7 @@ def convert_trends_to_topics(category: str, news_items: list, max_topics: int = 
         "ai":         "직장인 실무 활용 또는 사업 활용 관점. 새 AI 도구면 직장인이 어떻게 쓰는지.",
         "money":      "직장인이 받을 수 있는 지원금/복지/절약 꿀팁 관점.",
         "realestate": "직장인 내집마련/청약/전월세/대출 관점. 실시간 지역 이슈 포함.",
-        "trending":   "직장인 건강/라이프/자기계발 관점.",
+        "trending":   "직장인의 돈·정책·혜택 각도의 '지금 이슈'만. 건강·운동·연예·라이프스타일 제외. 신청 가능하거나 마감 있는 것 우선.",
     }
     guide = angle_guide.get(category, "직장인 관점")
 
