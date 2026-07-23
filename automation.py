@@ -16,7 +16,7 @@ load_dotenv()
 GEMINI_API_KEY  = os.getenv("GEMINI_API_KEY")
 BLOG_TITLE      = os.getenv("BLOG_TITLE", "직장인 수익일기")
 AUTO_PUBLISH    = os.getenv("AUTO_PUBLISH", "false").lower() == "true"
-POSTS_PER_DAY   = int(os.getenv("POSTS_PER_DAY", "5"))
+POSTS_PER_DAY   = int(os.getenv("POSTS_PER_DAY", "2"))
 UNSPLASH_KEY    = os.getenv("UNSPLASH_ACCESS_KEY", "")   # 선택사항
 
 # ── 경로 설정 ─────────────────────────────────────────
@@ -326,6 +326,12 @@ def _group_in_cooldown(keyword: str, used_groups) -> bool:
 VALID_CATEGORIES = {"money", "ai", "startup", "finance", "realestate", "trending", "book"}
 FALLBACK_CATEGORY = "trending"  # 알 수 없는 카테고리 도착 시 보낼 곳
 
+# ── 발행구조 Phase 1 (2026-07-23, 박대홍 결정) ──────────
+# 자동 생성 풀을 finance/ai로 축소. startup/money/realestate/trending은
+# 자동에서만 제외(삭제 아님) — Phase 2~4에서 반자동으로 복구 예정이므로
+# VALID_CATEGORIES / KEYWORD_POOL은 그대로 둔다.
+AUTO_CATEGORY_POOL = ["finance", "ai"]
+
 
 def normalize_category(cat: str) -> str:
     """7개 영문 키 외의 값이 들어오면 LEGACY_CATEGORY_MAP으로 변환, 그래도 안 잡히면 fallback."""
@@ -348,8 +354,8 @@ def _pick_balanced_categories(n: int) -> list:
     """
     import random
     import datetime
-    # ★ book은 자동 글 생성 제외 (박대홍 5/17 결정 - 박대홍 직접 작성)
-    cats    = [c for c in KEYWORD_POOL.keys() if c != 'book']
+    # ★ 자동 생성 풀 = finance/ai만 (Phase 1, 2026-07-23) — book은 원래부터 제외
+    cats    = [c for c in AUTO_CATEGORY_POOL if c in KEYWORD_POOL]
     weights = [CATEGORY_BALANCE.get(c, 1.0 / len(cats)) for c in cats]
 
     # 최근 7일(주간 쿼터) 카테고리 분포 확인
@@ -445,10 +451,10 @@ def get_seo_optimized_keywords():
 
     # 카테고리는 균형 발행 비율로 선택
     picked_cats   = _pick_balanced_categories(POSTS_PER_DAY)
-    # ★ 이중 안전망: book이 어떤 경로로든 섞이지 않게 (5/17 박대홍 결정)
-    picked_cats = [c for c in picked_cats if c != 'book']
+    # ★ 이중 안전망: AUTO_CATEGORY_POOL 밖 카테고리가 어떤 경로로든 섞이지 않게 (Phase 1, 2026-07-23)
+    picked_cats = [c for c in picked_cats if c in AUTO_CATEGORY_POOL]
     while len(picked_cats) < POSTS_PER_DAY:
-        other_cats = [c for c in KEYWORD_POOL.keys() if c != 'book']
+        other_cats = [c for c in AUTO_CATEGORY_POOL if c in KEYWORD_POOL]
         picked_cats.append(random.choice(other_cats))
 
     # ── 트렌드 주제 사전 수집 (2-B) ──
@@ -456,9 +462,9 @@ def get_seo_optimized_keywords():
     trend_topics_by_cat = {}
     TREND_CATS = {"finance", "ai", "money", "realestate", "trending"}
     try:
-        # ★ 트렌드 수집 카테고리 확대: picked_cats와 무관하게 5개 전부 수집(book 제외)
-        #   → 채택 여력 확보 + 아래 '트렌드 최소 채택 보장' 로직이 풀을 활용
-        needed = set(TREND_CATS)
+        # ★ Phase 1(2026-07-23): 자동 레인은 트렌드 미사용 — 수집 자체를 건너뜀.
+        #   TREND_CATS는 Phase 2~4 반자동 복구용으로 남겨둔다.
+        needed = set()
         if needed:
             from trend_pipeline import fetch_category_news, convert_trends_to_topics
             _recent_for_trend = _recent_keywords_from_manifest(days=14)
@@ -491,7 +497,8 @@ def get_seo_optimized_keywords():
 
     # ── 트렌드 최소 채택 보장 (POSTS_PER_DAY 중 최소 3편을 트렌드에서) ──
     #   변환이 그만큼 확보됐을 때만 발동 (확보분 한도 내). 부족하면 가능한 만큼만.
-    TREND_MIN = min(3, POSTS_PER_DAY)
+    #   Phase 1(2026-07-23): 자동 레인엔 트렌드 없음 — 강제 0 (위 needed=set()과 이중 안전망).
+    TREND_MIN = 0
     _avail = {c: len(v) for c, v in trend_topics_by_cat.items() if v}
     _total_trend = sum(_avail.values())
     if _total_trend > 0:
@@ -514,7 +521,7 @@ def get_seo_optimized_keywords():
         remaining = POSTS_PER_DAY - len(trend_slots)
         picked_cats = trend_slots + list(picked_cats)[:max(0, remaining)]
         while len(picked_cats) < POSTS_PER_DAY:
-            picked_cats.append(random.choice([c for c in KEYWORD_POOL.keys() if c != 'book']))
+            picked_cats.append(random.choice([c for c in AUTO_CATEGORY_POOL if c in KEYWORD_POOL]))
         picked_cats = picked_cats[:POSTS_PER_DAY]
         random.shuffle(picked_cats)
         print(f"   [트렌드 보장] 확보 {_total_trend}개 → 최소 {guaranteed}편 트렌드 슬롯 배정 (분포: {_avail})")
@@ -2076,8 +2083,41 @@ def finalize_article(article: dict, hero_image: dict | None = None, body_images:
     return article
 
 
+# ── 랜덤 예약 시각 (발행구조 Phase 1, 2026-07-23) ─────────
+def _random_schedule_time(slot_index: int, total_slots: int) -> str:
+    """자동 레인 글의 예약 발행 시각을 KST 09:00~23:30 구간에서 랜덤 산정.
+    total_slots개로 구간을 나눠 slot_index번째 구간 안에서 랜덤 픽 → 쏠림 방지.
+    scheduled-publish.js가 `scheduled_at <= new Date().toISOString()`로 비교하므로
+    반드시 UTC ISO(Z) 문자열로 반환해야 한다 (created_at의 KST naive 포맷과 다름)."""
+    import random
+    from datetime import timezone as _tz, timedelta as _td
+
+    KST = _tz(_td(hours=9))
+    now_kst    = datetime.now(KST)
+    day_start  = now_kst.replace(hour=9,  minute=0,  second=0, microsecond=0)
+    day_end    = now_kst.replace(hour=23, minute=30, second=0, microsecond=0)
+    window_start = max(now_kst + _td(minutes=20), day_start)
+    if window_start >= day_end:
+        # 늦은 시각 실행(수동 dispatch 등) → 다음날 창으로 넘김
+        window_start = day_start + _td(days=1)
+        day_end      = day_end   + _td(days=1)
+
+    span = (day_end - window_start).total_seconds()
+    seg  = span / total_slots
+    seg_start = window_start + _td(seconds=seg * slot_index)
+    seg_end   = window_start + _td(seconds=seg * (slot_index + 1))
+    pad = (seg_end - seg_start) * 0.1  # 구간 양끝 10% 여백 (다른 슬롯과 너무 붙지 않게)
+    pick_start = seg_start + pad
+    pick_end   = seg_end - pad
+    target = pick_start + _td(seconds=random.uniform(0, max((pick_end - pick_start).total_seconds(), 0)))
+
+    target_utc = target.astimezone(_tz.utc)
+    return target_utc.strftime("%Y-%m-%dT%H:%M:%S.") + f"{target_utc.microsecond // 1000:03d}Z"
+
+
 # ── 글 저장 ──────────────────────────────────────────
-def save_article(article: dict, hero_image: dict | None = None, body_images: list | None = None) -> str | None:
+def save_article(article: dict, hero_image: dict | None = None, body_images: list | None = None,
+                  schedule_slot: tuple | None = None) -> str | None:
     if not article:
         return None
 
@@ -2090,11 +2130,20 @@ def save_article(article: dict, hero_image: dict | None = None, body_images: lis
     if not article:
         return None
 
+    # draft(=AUTO_PUBLISH false)로 나온 자동 레인 글은 즉시발행/방치 대신
+    # 랜덤 시각 예약발행으로 전환 (scheduled_publish.yml이 30분마다 체크)
+    if schedule_slot is not None and article.get("status") == "draft":
+        idx, total = schedule_slot
+        article["status"]       = "scheduled"
+        article["scheduled_at"] = _random_schedule_time(idx, total)
+
     filepath.write_text(
         json.dumps(article, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    status_label = "발행" if AUTO_PUBLISH else "임시저장"
+    status_label = {"published": "발행", "scheduled": f"예약 → {article.get('scheduled_at','')}"}.get(
+        article.get("status"), "임시저장"
+    )
     print(f"   [{status_label}] {filename}")
     print(f"   제목: {article['title']}")
     print(f"   카테고리: {article['category']}")
@@ -2200,30 +2249,10 @@ except Exception as _e:
     TREND_CRAWLER_AVAILABLE = False
 
 def get_keywords_for_today_with_trends():
-    import random
-    base = get_keywords_for_today()
-    if not TREND_CRAWLER_AVAILABLE:
-        return base
-    try:
-        base_keywords = [item["keyword"] for item in base]
-        raw_trends = get_keywords_with_trends(
-            base_pool=base_keywords, top_n_trend=50, max_total=100, trending_ratio=0.6,
-        )
-        filtered = [kw for kw in raw_trends if is_relevant_keyword(kw)]
-        print(f"   [트렌드] 원본 {len(raw_trends)}개 → 필터 후 {len(filtered)}개")
-        if not filtered:
-            print("   [트렌드] 관련 키워드 없음 → KEYWORD_POOL 사용")
-            return base
-        cats = list(KEYWORD_POOL.keys())
-        kw2cat = {item["keyword"]: item["category"] for item in base}
-        result = []
-        for kw in filtered[:POSTS_PER_DAY]:
-            cat = kw2cat.get(kw, random.choice(cats))
-            result.append({"category": cat, "keyword": kw})
-        return result if result else base
-    except Exception as _e:
-        print(f"[WARN] 트렌드 병합 실패 → KEYWORD_POOL 사용: {_e}")
-        return base
+    """Phase 1(2026-07-23): 자동 레인은 트렌드 미사용 — 시드 기반 base만 반환.
+    (트렌드 병합 시 kw2cat 미매칭 키워드가 AUTO_CATEGORY_POOL 밖 카테고리로
+    새는 경로였음. 병합 로직은 Phase 2~4 반자동 복구 시 되살릴 것.)"""
+    return get_keywords_for_today()
 
 
 # ── 메인 실행 ─────────────────────────────────────────
@@ -2418,8 +2447,8 @@ def run_daily():
             print(f"   본문 이미지 {target_img}장 가져오는 중... (소제목 {heading_count}개 감지)")
             body_images = get_body_images(item["category"], target_img)
 
-        # 저장
-        if save_article(article, hero_image, body_images):
+        # 저장 (랜덤 예약: 이번 슬롯 = success_count번째 / 총 target_count편)
+        if save_article(article, hero_image, body_images, schedule_slot=(success_count, target_count)):
             success_count += 1
             attempt_log.append((kw, 'success'))
 
@@ -2435,6 +2464,8 @@ def run_daily():
             recent_kws = _recent_keywords_from_manifest(days=14)
             all_seeds = []
             for cat, seeds in KEYWORD_POOL.items():
+                if cat not in AUTO_CATEGORY_POOL:
+                    continue
                 for s in seeds:
                     if s not in recent_kws and s not in used_in_run:
                         all_seeds.append((cat, s))
@@ -2450,7 +2481,7 @@ def run_daily():
                     continue
                 title = article.get("title", kw)
                 hero_image = get_hero_image(cat, kw, title)
-                if save_article(article, hero_image, []):
+                if save_article(article, hero_image, [], schedule_slot=(success_count, target_count)):
                     success_count += 1
                     print(f"   ✓ 폴백 성공 ({success_count}/{target_count})")
                     if success_count < target_count:
