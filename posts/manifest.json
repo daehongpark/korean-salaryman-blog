@@ -131,10 +131,10 @@
       "배당주"
     ],
     "created_at": "2026-07-23T07:33:15.259252",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-23T10:30:00.000Z",
-    "published_at": null,
+    "published_at": "2026-07-23T12:08:09.945Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260722_223310.png",
     "has_faq": true,
