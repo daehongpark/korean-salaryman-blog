@@ -65,21 +65,31 @@ PRESS_FEEDS = {
     "전자신문":   "https://rss.etnews.com/Section901.xml",
 }
 
-# 정책/부동산 소스 (money, realestate용 — 카테고리별 분리)
+# 정책/부동산 소스 (money, realestate, trending용 — 카테고리별 분리)
 # ※ 연합부동산 RSS는 404 (폐지) → 구글뉴스 검색 RSS로 대체
-# trending도 정책브리핑(정부 1차 소스) 연결 (발행구조 Phase 2, 2026-07-23)
-#   뉴스보다 정부 공고가 먼저 뜬다 = "누구보다 빠르게"의 핵심.
+# ※ korea.kr/rss/*.xml 전체 폐지 확인 (발행구조 Phase 2.5, 2026-07-23):
+#   공식 공지 "정책브리핑 RSS 서비스 제공 중단 안내"(중단일 2026.7.1, 사유: 저작권 정책 변경).
+#   www 유무/UA 헤더 유무 무관 전부 404, /etc/rss.do 안내 페이지에도 .xml 링크 0개로 재확인함.
+#   대체: site:korea.kr 구글뉴스 검색으로 정책브리핑에 실제 게재된 부처별 기사를 간접 수집
+#   (뉴스보다 정부 발표가 먼저 뜨는 "1차 소스" 효과는 유지 + 기존 SEARCH_FEEDS와 동일 메커니즘이라
+#    GitHub Actions에서도 안정적으로 동작).
 POLICY_FEEDS = {
     "money": {
-        "정책브리핑":   "https://www.korea.kr/rss/policy.xml",
+        "국세청":       "https://news.google.com/rss/search?q=site:korea.kr 국세청 (연말정산 OR 종합소득세 OR 세금) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "고용노동부":   "https://news.google.com/rss/search?q=site:korea.kr 고용노동부 (청년 OR 고용 OR 지원금) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "금융위":       "https://news.google.com/rss/search?q=site:korea.kr 금융위 (대출 OR 금융지원) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "기획재정부":   "https://news.google.com/rss/search?q=site:korea.kr 기획재정부 (세금 OR 경제정책) when:7d&hl=ko&gl=KR&ceid=KR:ko",
         "지원금뉴스":   "https://news.google.com/rss/search?q=정부지원금+정책&hl=ko&gl=KR&ceid=KR:ko",
     },
     "realestate": {
-        "정책브리핑":   "https://www.korea.kr/rss/policy.xml",
+        "국토교통부":   "https://news.google.com/rss/search?q=site:korea.kr 국토교통부 (청약 OR 특례대출 OR 주거지원) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "금융위":       "https://news.google.com/rss/search?q=site:korea.kr 금융위 (대출규제 OR DSR) when:7d&hl=ko&gl=KR&ceid=KR:ko",
         "부동산뉴스":   "https://news.google.com/rss/search?q=부동산+청약&hl=ko&gl=KR&ceid=KR:ko",
     },
     "trending": {
-        "정책브리핑":   "https://www.korea.kr/rss/policy.xml",
+        "보건복지부":       "https://news.google.com/rss/search?q=site:korea.kr 보건복지부 (복지 OR 육아지원) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "여성가족부":       "https://news.google.com/rss/search?q=site:korea.kr 여성가족부 (신혼 OR 가족지원) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        "저출산고령사회위": "https://news.google.com/rss/search?q=site:korea.kr 저출산고령사회위원회 (신혼 OR 출산지원) when:7d&hl=ko&gl=KR&ceid=KR:ko",
     },
 }
 
