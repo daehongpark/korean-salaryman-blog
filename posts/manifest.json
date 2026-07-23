@@ -159,7 +159,7 @@
       "분양준비"
     ],
     "created_at": "2026-07-22T07:39:50.441776",
-    "status": "draft",
+    "status": "published",
     "source": "auto",
     "scheduled_at": null,
     "published_at": null,
@@ -200,7 +200,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 19320
   },
   {
