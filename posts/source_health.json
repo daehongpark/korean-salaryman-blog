@@ -1,0 +1,22 @@
+{
+  "gov24_bulk": {
+    "consecutive_fail": 0,
+    "last_status": "OK",
+    "last_checked": "2026-07-24T12:13:22.626494+09:00"
+  },
+  "gemini_api": {
+    "consecutive_fail": 0,
+    "last_status": "OK",
+    "last_checked": "2026-07-24T12:13:56.291168+09:00"
+  },
+  "deal_feed": {
+    "consecutive_fail": 0,
+    "last_status": "OK",
+    "last_checked": "2026-07-24T12:13:53.888270+09:00"
+  },
+  "gov24_detail": {
+    "consecutive_fail": 0,
+    "last_status": "OK",
+    "last_checked": "2026-07-24T12:13:59.005385+09:00"
+  }
+}

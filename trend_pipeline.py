@@ -47,6 +47,12 @@ GOOGLE_NEWS_FEEDS = {
 # trending: 정책/이슈/딜 3갈래 검색 RSS 신설 (발행구조 Phase 2, 2026-07-23)
 #   수집 우선순위: (1) 아래 실시간 검색 RSS + POLICY_FEEDS 정부 1차 소스가 최우선,
 #   (2) CATEGORY_DATALAB_GROUPS(trend_crawler.py) 씨앗은 결과가 부족할 때만 보조로 쓴다.
+# "딜" 전용 검색 RSS (발행구조 Phase2, 2026-07-23 신설).
+# Phase3 scorecard.py의 "딜 레인" 입력으로 그대로 재사용한다(별도 쿼리 신설 금지 — 호출/쿼터 절약).
+DEAL_SEARCH_FEEDS = [
+    "https://news.google.com/rss/search?q=(항공권 특가 OR 얼리버드 예매 OR 캐시백 이벤트 OR 사전예매 할인) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+]
+
 SEARCH_FEEDS = {
     "ai": [
         "https://news.google.com/rss/search?q=AI%20인공지능%20when:7d&hl=ko&gl=KR&ceid=KR:ko",
@@ -55,7 +61,7 @@ SEARCH_FEEDS = {
     "trending": [
         "https://news.google.com/rss/search?q=(지원금 OR 보조금 OR 신청 OR 감면 OR 특례대출 OR 청년 OR 신혼부부) when:3d&hl=ko&gl=KR&ceid=KR:ko",
         "https://news.google.com/rss/search?q=(물가 OR 금리 OR 대출규제 OR 분양 OR 세금 OR 고용 OR 연봉) when:3d&hl=ko&gl=KR&ceid=KR:ko",
-        "https://news.google.com/rss/search?q=(항공권 특가 OR 얼리버드 예매 OR 캐시백 이벤트 OR 사전예매 할인) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+        *DEAL_SEARCH_FEEDS,
     ],
 }
 
@@ -125,6 +131,7 @@ def _fetch_rss(url: str, limit: int = 20):
         for it in root.findall(".//item")[:limit]:
             title_el = it.find("title")
             desc_el = it.find("description")
+            link_el = it.find("link")
             import html as _html
             title = ""
             if title_el is not None and title_el.text:
@@ -134,8 +141,11 @@ def _fetch_rss(url: str, limit: int = 20):
                 # HTML 태그 제거 + 엔티티 정리
                 desc = re.sub(r"<[^>]+>", "", desc_el.text)
                 desc = _html.unescape(desc).strip()[:300]
+            link = ""
+            if link_el is not None and link_el.text:
+                link = link_el.text.strip()
             if title:
-                items.append({"title": title, "desc": desc})
+                items.append({"title": title, "desc": desc, "link": link})
         return items
     except Exception as e:
         print(f"   [trend] RSS 실패 {url[:40]}: {e}")
@@ -147,6 +157,16 @@ def fetch_google_trends(limit: int = 15):
     items = _fetch_rss(GOOGLE_TREND_RSS, limit=limit)
     safe = [it for it in items if _is_safe(it["title"])]
     return safe
+
+
+def fetch_deal_news(limit: int = 20):
+    """'딜' 레인 전용 수집 (Phase2 DEAL_SEARCH_FEEDS 재사용). scorecard.py의 딜 레인 입력."""
+    results = []
+    for url in DEAL_SEARCH_FEEDS:
+        for it in _fetch_rss(url, limit=limit):
+            if _is_safe(it["title"]) and _is_safe(it["desc"]):
+                results.append(it)
+    return results
 
 
 def fetch_category_news(category: str, limit: int = 15):

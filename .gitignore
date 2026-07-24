@@ -14,3 +14,8 @@ _migrate_categories.py
 
 # 쓰레드 갱신 토큰 임시 파일 (절대 commit 금지)
 threads_new_token.txt
+
+# Phase3 보조금24 캐시(전량 벌크 조인본, 수십MB) — 매일 재생성되므로 커밋 대상 아님.
+# gov24_snapshot.json(신규ID 비교용)·source_health.json(연속실패 감지용)은 상태 영속이 목적이라 커밋 유지.
+posts/gov24_cache.json
+posts/gov24_quota.json
