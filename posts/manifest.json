@@ -124,10 +124,10 @@
       "직장인"
     ],
     "created_at": "2026-07-24T07:35:19.121087",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-24T01:16:23.355Z",
-    "published_at": null,
+    "published_at": "2026-07-24T01:50:23.110Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260723_223516.png",
     "has_faq": true,
