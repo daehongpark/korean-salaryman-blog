@@ -98,10 +98,10 @@
       "노코드"
     ],
     "created_at": "2026-07-24T07:36:24.328287",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-24T05:07:06.700Z",
-    "published_at": null,
+    "published_at": "2026-07-24T05:12:08.242Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260723_223623.png",
     "has_faq": true,
