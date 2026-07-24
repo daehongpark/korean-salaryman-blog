@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9909990475566196" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ── Primary SEO (JS로 동적 업데이트) ── -->
+<title>Claude vs ChatGPT 코딩 비교, 30분 아끼는 법 | 직장인 수익일기</title>
+<meta name="description" content="2026년에는 Claude 4.0과 ChatGPT-5.5가 각각 보안과 범용성이라는 다른 코딩 강점을 내세울 것으로 예상됩니다. 긴 컨텍스트가 필요한 작업에는 Claude, 빠르고 다양한 개발에는 ChatGPT가 더 유리합니다. | 직장인 수익일기">
+<meta name="author" content="박대홍">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://koreansalaryman.com/p/Claude-vs-ChatGPT-코딩-비교-30분-아끼는-법.html" id="canonicalTag">
+
+<!-- ── Open Graph (JS로 동적 업데이트) ── -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="직장인 수익일기">
+<meta property="og:title" content="Claude vs ChatGPT 코딩 비교, 30분 아끼는 법 | 직장인 수익일기" id="ogTitle">
+<meta property="og:description" content="2026년에는 Claude 4.0과 ChatGPT-5.5가 각각 보안과 범용성이라는 다른 코딩 강점을 내세울 것으로 예상됩니다. 긴 컨텍스트가 필요한 작업에는 Claude, 빠르고 다양한 개발에는 ChatGPT가 더 유리합니다. | 직장인 수익일기" id="ogDesc">
+<meta property="og:url" content="https://koreansalaryman.com/p/Claude-vs-ChatGPT-코딩-비교-30분-아끼는-법.html" id="ogUrl">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://koreansalaryman.com/posts/thumbnails/thumb_20260723_223516.png" id="ogImage">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://koreansalaryman.com/posts/thumbnails/thumb_20260723_223516.png" id="twImage">
+<meta property="article:author" content="박대홍">
+<meta property="article:published_time" content="2026-07-24T07:35:19.121087" id="ogPublished">
+<meta property="article:section" content="ai" id="ogSection">
+
+<!-- ── Twitter Card ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude vs ChatGPT 코딩 비교, 30분 아끼는 법 | 직장인 수익일기" id="twTitle">
+<meta name="twitter:description" content="2026년에는 Claude 4.0과 ChatGPT-5.5가 각각 보안과 범용성이라는 다른 코딩 강점을 내세울 것으로 예상됩니다. 긴 컨텍스트가 필요한 작업에는 Claude, 빠르고 다양한 개발에는 ChatGPT가 더 유리합니다. | 직장인 수익일기" id="twDesc">
+<meta name="twitter:site" content="@koreansalaryman">
+
+<!-- ── 검색엔진 인증 ── -->
+<meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI">
+<meta name="naver-site-verification" content="ad5bce9f4de14cbe7ccf111ca46b1114e52a25ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Chart.js (defer to avoid blocking; charts initialize via DOMContentLoaded inside post body) -->
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;
+  --bg:#f8f7f4;
+  --bg2:#f0ede8;
+  --navy:#1a2640;
+  --navy2:#253352;
+  --point:#c17f3e;
+  --point-light:#f5ead8;
+  --point2:#2d6a4f;
+  --text1:#1a1a1a;
+  --text2:#444444;
+  --text3:#888888;
+  --border:#e8e4de;
+  --border2:#d4cfc8;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text1);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* ── Header ─────────────────────────────────────── */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.hd{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;flex-direction:column;text-decoration:none;}
+.logo-kr{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;}
+.logo-kr span{color:var(--point);}
+.logo-en{font-size:8.5px;color:var(--text3);letter-spacing:0.2em;margin-top:1px;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;transition:all 0.15s;}
+.desktop-nav a:hover{color:var(--navy);background:var(--bg);}
+.nav-divider{width:1px;height:14px;background:var(--border2);margin:0 6px;}
+.btn-sub{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:7px 16px;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:background 0.15s;}
+.btn-sub:hover{background:var(--navy2);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--navy);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:12px 20px 20px;flex-direction:column;gap:2px;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:15px;font-weight:500;padding:12px 16px;border-radius:8px;display:block;}
+.mobile-menu a:hover{background:var(--bg);color:var(--navy);}
+.mobile-menu .btn-sub{margin-top:8px;justify-content:center;border-radius:8px;}
+
+/* ── Post Hero ───────────────────────────────────── */
+.post-hero{background:var(--navy);padding:56px 24px 64px;position:relative;overflow:hidden;}
+.post-hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:32px 32px;}
+.post-hero-glow{position:absolute;right:-200px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(193,127,62,0.12),transparent 65%);}
+.post-hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.post-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.post-breadcrumb a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.15s;}
+.post-breadcrumb a:hover{color:rgba(255,255,255,0.8);}
+.post-breadcrumb span{font-size:12px;color:rgba(255,255,255,0.25);}
+.post-cat-pill{display:inline-block;background:var(--point);color:var(--white);font-size:10px;font-weight:700;padding:4px 14px;border-radius:4px;letter-spacing:0.15em;margin-bottom:16px;}
+.post-hero h1{font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;color:var(--white);line-height:1.35;letter-spacing:-0.02em;margin-bottom:20px;}
+.post-hero-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.post-hero-author{display:flex;align-items:center;gap:10px;}
+.post-author-avatar{width:32px;height:32px;border-radius:50%;background:var(--point);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:13px;font-weight:700;color:var(--white);}
+.post-author-name{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500;}
+.post-meta-divider{width:1px;height:12px;background:rgba(255,255,255,0.15);}
+.post-meta-info{font-size:12px;color:rgba(255,255,255,0.4);}
+
+/* ── Layout ──────────────────────────────────────── */
+.post-layout{max-width:1080px;margin:0 auto;padding:52px 24px;display:grid;grid-template-columns:1fr 280px;gap:52px;}
+
+/* ── Article ─────────────────────────────────────── */
+.article-wrap{min-width:0;}
+.article-summary{background:var(--point-light);border:1px solid rgba(193,127,62,0.2);border-radius:12px;padding:20px 24px;margin-bottom:40px;}
+.article-summary-label{font-size:10px;font-weight:700;color:var(--point);letter-spacing:0.2em;margin-bottom:8px;}
+.article-summary p{font-size:14px;color:var(--text2);line-height:1.85;font-weight:400;}
+.article-body{color:var(--text1);font-size:16px;line-height:1.95;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);}
+.article-body p:first-child{font-size:17px;color:var(--text1);font-weight:400;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:40px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:28px 0 12px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:14px 20px;border-radius:0 10px 10px 0;margin:20px 0;font-size:14px;color:var(--text2);line-height:1.8;}
+.article-body figure{margin:28px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:420px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:6px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0;}
+.article-body li{margin-bottom:8px;color:var(--text2);}
+.article-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);}
+.article-tag{font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:20px;font-weight:500;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;margin-top:40px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;padding:10px 20px;background:var(--white);border:1px solid var(--border);border-radius:8px;transition:all 0.15s;}
+.back-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+/* ── 조회수 & 공유 바 ── */
+.post-meta-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.post-view-count{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);}
+.post-view-icon{font-size:14px;}
+.share-btns{display:flex;align-items:center;gap:8px;}
+.share-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:0.08em;margin-right:4px;}
+.share-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.15s;text-decoration:none;}
+.share-btn.kakao{background:#FEE500;color:#3C1E1E;}
+.share-btn.kakao:hover{background:#f5dc00;}
+.share-btn.twitter{background:#1DA1F2;color:#fff;}
+.share-btn.twitter:hover{background:#1a91da;}
+.share-btn.copy{background:var(--bg2);color:var(--text2);}
+.share-btn.copy:hover{background:var(--border2);}
+
+/* ── 댓글 섹션 ── */
+.comments-section{margin-top:52px;padding-top:40px;border-top:2px solid var(--border);}
+.comments-title{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px;}
+.comment-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:32px;}
+.comment-form-row{display:flex;gap:12px;margin-bottom:12px;}
+.comment-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;}
+.comment-input:focus{border-color:var(--navy);background:var(--white);}
+.comment-textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);min-height:100px;resize:vertical;transition:border 0.15s;margin-bottom:10px;}
+.comment-textarea:focus{border-color:var(--navy);background:var(--white);}
+.comment-submit{background:var(--navy);color:var(--white);border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.comment-submit:hover{background:var(--navy2);}
+.comment-list{display:flex;flex-direction:column;gap:16px;}
+.comment-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.comment-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.comment-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--white);flex-shrink:0;}
+.comment-name{font-size:13px;font-weight:700;color:var(--text1);}
+.comment-date{font-size:11px;color:var(--text3);margin-left:auto;}
+.comment-text{font-size:13px;color:var(--text2);line-height:1.8;}
+.comment-empty{text-align:center;padding:32px;color:var(--text3);font-size:13px;}
+
+/* ── 타이포그래피 개선 ── */
+.article-body{color:var(--text1);font-size:16px;line-height:2.0;letter-spacing:-0.01em;}
+.article-body>p:first-child{font-size:18px;line-height:1.9;color:var(--text1);font-weight:400;margin-bottom:2em;}
+.article-body p{margin-bottom:1.6em;color:var(--text2);word-break:keep-all;}
+.article-body h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;color:var(--navy);margin:44px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.article-body h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin:32px 0 14px;}
+.article-body blockquote{border-left:4px solid var(--point);background:var(--point-light);padding:16px 22px;border-radius:0 10px 10px 0;margin:24px 0;font-size:14px;color:var(--text2);line-height:1.85;font-style:italic;}
+.article-body figure{margin:32px 0;}
+.article-body figure img{width:100%;border-radius:12px;object-fit:cover;max-height:440px;}
+.article-body figcaption{font-size:11px;color:var(--text3);margin-top:8px;text-align:right;}
+.article-body ul,.article-body ol{padding-left:24px;margin:16px 0 24px;}
+.article-body li{margin-bottom:10px;color:var(--text2);line-height:1.8;}
+.article-body strong{color:var(--text1);font-weight:700;}
+
+/* ── 이전/다음 글 ── */
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px;}
+.post-nav-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:all 0.15s;display:block;}
+.post-nav-item:hover{border-color:var(--point);transform:translateY(-2px);}
+.post-nav-label{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:0.1em;margin-bottom:6px;}
+.post-nav-title{font-size:13px;font-weight:600;color:var(--navy);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* 사이드바 개선 */
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+
+/* ── 2026 신규 글 구조 (TL;DR / 비교표 / 단계 / 참고자료) ── */
+.article-body .post-tldr{margin:0 0 28px !important;}
+.article-body .post-tldr ul{padding-left:20px !important;margin:0 !important;}
+.article-body .post-comparison{margin:36px 0 24px !important;}
+.article-body .post-comparison table{font-size:14px;}
+.article-body .post-steps ol{padding:0 !important;list-style:none !important;}
+.article-body .post-steps li{margin-bottom:14px !important;}
+.article-body .post-references{margin:36px 0 16px !important;}
+.article-body .post-references ul{margin:0 !important;}
+.article-body .post-references li{margin:8px 0 !important;}
+
+@media(max-width:768px){
+  .post-meta-bar{padding:12px 0;}
+  .share-btns{flex-wrap:wrap;}
+  .comment-form-row{flex-direction:column;}
+  .post-nav{grid-template-columns:1fr;}
+  /* 신규 글 구조 모바일 최적화 */
+  .article-body .post-tldr{padding:14px 16px !important;font-size:14px;}
+  .article-body .post-comparison{overflow-x:auto !important;}
+  .article-body .post-comparison table{min-width:520px;}
+  .article-body .post-steps li{padding:12px !important;}
+  .article-body .post-audience{font-size:12px !important;}
+}
+
+/* ── Sidebar ─────────────────────────────────────── */
+.sidebar{display:flex;flex-direction:column;gap:20px;}
+.widget{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.wg-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.wg-top h3{font-size:12px;font-weight:700;color:var(--text1);letter-spacing:0.08em;}
+.wg-body{padding:16px 18px;}
+.about-msg{font-size:13px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;background:var(--bg);color:var(--text2);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-weight:500;}
+.nl-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
+.nl-input{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:inherit;outline:none;color:var(--text1);background:var(--bg);transition:border 0.15s;margin-bottom:8px;}
+.nl-input:focus{border-color:var(--navy);background:var(--white);}
+.nl-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nl-btn:hover{background:var(--navy2);}
+.rel-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);text-decoration:none;}
+.rel-item:last-child{border-bottom:none;}
+.rel-dot{width:6px;height:6px;border-radius:50%;background:var(--point);flex-shrink:0;margin-top:7px;}
+.rel-title{font-size:12.5px;color:var(--text1);font-weight:500;line-height:1.55;transition:color 0.15s;}
+.rel-title:hover{color:var(--point);}
+.rel-cat{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{background:var(--navy);padding:48px 24px;}
+.ft{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.ft-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.ft-logo span{color:var(--point);}
+.ft-tagline{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7;}
+.ft-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.ft-links{display:flex;gap:16px;}
+.ft-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.15s;}
+.ft-links a:hover{color:rgba(255,255,255,0.8);}
+.ft-copy{font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ── Skeleton / Error ────────────────────────────── */
+.skeleton{background:linear-gradient(90deg,var(--bg2) 25%,var(--border) 50%,var(--bg2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.error-box{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:60px 40px;text-align:center;}
+.error-box h2{font-size:20px;color:var(--text1);margin-bottom:12px;}
+.error-box p{font-size:14px;color:var(--text3);margin-bottom:24px;}
+
+@media(max-width:768px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex!important;}
+  .mobile-menu.open{display:flex!important;}
+  .hd{padding:0 16px;}
+  .post-hero{padding:40px 16px 52px;}
+  .post-hero h1{font-size:24px;}
+  .post-layout{grid-template-columns:1fr!important;padding:28px 16px;gap:32px;}
+  .article-body{font-size:15px;}
+  .ft{flex-direction:column;align-items:flex-start;gap:24px;}
+  .ft-right{align-items:flex-start;}
+  .ft-links{flex-wrap:wrap;}
+}
+</style>
+<!-- ── Google Analytics 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D0W7QRLMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5D0W7QRLMD', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Claude vs ChatGPT 코딩 비교, 30분 아끼는 법", "description": "2026년에는 Claude 4.0과 ChatGPT-5.5가 각각 보안과 범용성이라는 다른 코딩 강점을 내세울 것으로 예상됩니다. 긴 컨텍스트가 필요한 작업에는 Claude, 빠르고 다양한 개발에는 ChatGPT가 더 유리합니다. | 직장인 수익일기", "url": "https://koreansalaryman.com/p/Claude-vs-ChatGPT-코딩-비교-30분-아끼는-법.html", "datePublished": "2026-07-24T07:35:19.121087", "dateModified": "2026-07-24T07:35:19.121087", "author": {"@type": "Person", "name": "박대홍", "url": "https://koreansalaryman.com/about.html"}, "publisher": {"@type": "Organization", "name": "직장인 수익일기", "url": "https://koreansalaryman.com"}, "keywords": "Claude vs ChatGPT 코딩 비교, ai, 직장인", "articleSection": "ai", "inLanguage": "ko-KR", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://koreansalaryman.com/p/Claude-vs-ChatGPT-코딩-비교-30분-아끼는-법.html"}}</script>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <a href="/index.html" class="logo">
+      <div class="logo-kr">직장인 <span>수익일기</span></div>
+      <div class="logo-en">KOREAN SALARYMAN · INCOME DIARY</div>
+    </a>
+    <div class="desktop-nav">
+      <a href="/blog.html">블로그</a>
+      <a href="/challenge.html">챌린지</a>
+      <a href="/income.html">수익 공개</a>
+      <a href="/about.html">소개</a>
+      <a href="/class.html">강의</a>
+      <div class="nav-divider"></div>
+      <a href="/index.html#newsletter" class="btn-sub">구독하기</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/blog.html">블로그</a>
+  <a href="/challenge.html">챌린지</a>
+  <a href="/income.html">수익 공개</a>
+  <a href="/about.html">소개</a>
+  <a href="/class.html">강의</a>
+  <a href="/index.html#newsletter" class="btn-sub">구독하기</a>
+</div>
+
+<!-- 포스트 헤더 (JS로 채워짐) -->
+<script>window.__PRERENDERED__ = true;</script>
+<div id="postHero" class="post-hero" style="display:block">
+  <div class="post-hero-texture"></div>
+  <div class="post-hero-glow"></div>
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="/index.html">홈</a>
+      <span>›</span>
+      <span id="heroCat">ai</span>
+    </div>
+    <div id="heroCatPill" class="post-cat-pill">ai</div>
+    <h1 id="heroTitle">Claude vs ChatGPT 코딩 비교, 30분 아끼는 법</h1>
+    <div class="post-hero-meta">
+      <div class="post-hero-author">
+        <div class="post-author-avatar">박</div>
+        <span class="post-author-name">박대홍</span>
+      </div>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroDate">2026년 7월 24일</span>
+      <div class="post-meta-divider"></div>
+      <span class="post-meta-info" id="heroReadTime">읽는 시간 25분</span>
+    </div>
+  </div>
+</div>
+
+<!-- 스켈레톤 로딩 -->
+<div id="loadingSkeleton" style="max-width:1080px;margin:40px auto;padding:0 24px;display:none;">
+  <div class="skeleton" style="height:200px;margin-bottom:20px;border-radius:12px;"></div>
+  <div class="skeleton" style="height:24px;width:60%;margin-bottom:12px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;margin-bottom:10px;"></div>
+  <div class="skeleton" style="height:16px;width:80%;"></div>
+</div>
+
+<!-- 포스트 본문 -->
+<div id="postLayout" class="post-layout" style="display:grid">
+  <article class="article-wrap">
+    <div class="article-summary" id="articleSummary"><div class="article-summary-label">SUMMARY</div><p>2026년에는 Claude 4.0과 ChatGPT-5.5가 각각 보안과 범용성이라는 다른 코딩 강점을 내세울 것으로 예상됩니다. 긴 컨텍스트가 필요한 작업에는 Claude, 빠르고 다양한 개발에는 ChatGPT가 더 유리합니다.</p></div>
+    <div class="article-body" id="articleBody"><div class="post-updated" style="text-align:right;font-size:12px;color:#999;margin:0 0 12px;">📅 2026.07.24 업데이트</div><aside class="post-tldr" style="background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;"><div style="font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;">한눈에 보기</div><ul style="margin:0;padding-left:20px;color:#1a2640;font-size:15px;"><li style="margin:6px 0;line-height:1.6;">2026년 기준, ChatGPT-5.5는 범용적이고 빠른 코드 생성에, Claude 4.0은 긴 컨텍스트와 보안/윤리적 코딩에 강합니다.</li><li style="margin:6px 0;line-height:1.6;">업무 성격에 따라 필요한 AI를 선택하는 것이 중요하며, ChatGPT는 다양한 플러그인, Claude는 특정 도메인 전문성이 특징입니다.</li><li style="margin:6px 0;line-height:1.6;">API 요금, 컨텍스트 윈도우 크기를 비교하고, AI가 생성한 코드는 반드시 직접 검토해야 오작동과 보안 문제를 피할 수 있습니다.</li></ul></aside><div class="post-audience" style="font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;">👤 이 글은 업무에 AI 코딩 도구를 활용하고 싶은 직장인을 위한 글입니다.</div><p>ChatGPT만 쓰던 시절보다 30분이 줄었습니다. 코딩에 AI를 써본 직장인이라면 이 시간을 아끼는 게 얼마나 중요한지 아실 거예요. 2026년, Claude 4.0과 ChatGPT-5.5가 어떻게 진화할지 미리 짚어보면, 우리 업무 효율을 한 단계 더 올릴 수 있습니다. 결국, 내 업무 스타일에 맞는 AI를 고르는 게 핵심이죠.</p>
+<figure style="margin:32px 0 24px;"><img src="/posts/thumbnails/thumb_20260723_223516.png" alt="Claude vs ChatGPT 코딩 비교, 30분 아끼는 법" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@brett_jordan" target="_blank" style="color:#888;">Brett Jordan</a> on Unsplash</figcaption></figure>
+<h2>코딩, AI 도움받으려니 늘 아쉬웠던 점</h2>
+<p>솔직히 저는 개발자가 아닙니다. 간단한 스크립트나 데이터 처리 코드는 짜지만, 복잡한 백엔드 API 개발 같은 건 엄두도 못 냈죠. 그런데 몇 년 전부터 ChatGPT 같은 AI가 나오면서 코딩에 대한 부담이 확 줄었어요. 처음에는 단순 반복 작업 코드를 만드는 데만 썼습니다. 근데 문제가 하나 있었습니다. 특정 비즈니스 로직이나 보안이 중요한 코드에서는 AI가 엉뚱한 답을 주거나, 제가 원하는 깊이 있는 코드를 못 만들어주는 경우가 많았어요. 이걸 일일이 수정하고 디버깅하는 데 시간이 너무 많이 들더라고요. 진짜 피곤했습니다. 그래서 더 정교하고 안전하게 코드를 짜줄 수 있는 AI는 없을까 늘 궁금했습니다. 동료들과 얘기하다 보니 저만 이런 고민을 하는 게 아니더라고요. 다들 비슷한 벽에 부딪히는 걸 봤습니다. 그래서 2026년 기준으로 Claude와 ChatGPT가 얼마나 발전했는지 직접 자료를 찾아보고 비교해봤죠. 제 코딩 업무 효율을 높이는 게 목표였습니다. 저처럼 헤매는 직장인들이 많을 것 같아 정리했습니다.</p>
+<blockquote>포인트: AI 코딩, 단순 반복은 쉽지만, 복잡하고 중요한 코딩에선 한계가 있었어요.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1587400563461-653fb6c914c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODQ4NDYxMTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="black and white digital device" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@kobuagency" target="_blank" style="color:#888;">KOBU Agency</a> on Unsplash</figcaption></figure>
+<h2>Claude 4.0과 ChatGPT-5.5, 무엇이 달라졌나</h2>
+<p>두 AI는 각각 다른 강점을 내세우며 발전했습니다. 2026년 기준, OpenAI의 ChatGPT는 ChatGPT-5.5 버전으로, Anthropic의 Claude는 Claude 4.0 버전으로 예상됩니다. ChatGPT-5.5는 최적화된 대규모 코드 베이스를 학습해서 Python, Java, C++, JavaScript 등 다양한 언어의 코드 생성 및 디버깅 능력이 향상됐다고 합니다. 특히 복잡한 알고리즘 구현에 강점을 보입니다. 제가 작년에 겪었던 에러 디버깅 문제도 많이 개선됐을 거라고 기대하고 있습니다. 반면 Claude 4.0은 안전성과 윤리적 코딩을 강조하고, 장문 컨텍스트 기반의 정교한 코드 생성에 특화됐다고 합니다. 특히 Rust, Go 같은 고성능 언어 지원이 강화됐습니다. 규제가 엄격한 산업군, 예를 들면 금융이나 의료 분야 코딩에 강점을 보인다고 하네요.</p>
+<p>컨텍스트 윈도우 크기도 중요한 차이점입니다. ChatGPT-5.5는 최대 2M 토큰을 지원할 것으로 예상됩니다(공식 자료 확인 필요). 반면 Claude 4.0은 최대 4M 토큰까지 지원할 것으로 보입니다(공식 자료 확인 필요). 긴 코드를 한 번에 분석하고 처리하는 능력에서 Claude가 더 앞설 수 있다는 의미입니다. API 요금도 차이가 있는데, ChatGPT-5.5는 토큰당 약 0.005 USD, Claude 4.0은 토큰당 약 0.008 USD 수준으로 예상됩니다(모두 공식 자료 확인 필요). 장문 코딩 작업이 잦다면 비용도 고려해야 할 부분입니다. 저는 긴 코드를 볼 일이 많아서 컨텍스트 윈도우가 큰 쪽이 더 끌리더라고요. 비용은 조금 더 비싸도 시간 아끼는 게 더 중요하니까요.</p>
+<blockquote>포인트: ChatGPT는 범용성과 속도, Claude는 안정성과 긴 컨텍스트에 힘을 줬어요.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1591453089816-0fbb971b454c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODQ4NDYxMTh8&ixlib=rb-4.1.0&q=80&w=1080" alt="a close up of a typewriter with a paper reading machine learning" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@markuswinkler" target="_blank" style="color:#888;">Markus Winkler</a> on Unsplash</figcaption></figure>
+<h2>어떤 업무에 어떤 AI를 써야 좋을까</h2>
+<p>두 AI의 강점이 명확하다 보니, 활용 분야도 좀 나뉩니다. ChatGPT-5.5는 백엔드 API 개발이나 복잡한 데이터 분석 스크립트 작성에 아주 유용합니다. 기존 레거시 시스템을 새로운 환경으로 마이그레이션할 때도 도움을 받을 수 있습니다. 예를 들어, 제가 작년에 파이썬으로 짜여진 복잡한 웹 스크래핑 코드를 고도화할 때, ChatGPT가 초안을 빠르게 만들어주고 오류를 잡아줘서 시간을 많이 아꼈어요. 다양한 플러그인과 IDE 통합(VS Code, IntelliJ 등)도 강화돼서 개발 생산성을 높이는 데 유리합니다.</p>
+<p>Claude 4.0은 금융 시스템 보안 감사 코드, 규제 준수 웹 서비스 백엔드, 의료 데이터 처리 알고리즘 개발처럼 보안과 정확성이 최우선인 작업에 더 적합합니다. 저처럼 보안 관련 코드를 다루는 직장인들에게는 아주 매력적인 선택지죠. 특정 도메인에 대한 전문성이 강화된 전용 모듈도 출시될 예정이라, 전문 분야 코딩에 특화된 도움을 받을 수 있을 겁니다. 예를 들어, 개인 정보가 포함된 데이터를 처리하는 알고리즘을 짤 때, Claude가 제시하는 윤리적/안전한 코딩 가이드는 아주 큰 도움이 될 겁니다. 강화된 논리 추론 능력 덕분에 코드 설계 단계부터 함께 고민하는 파트너처럼 활용할 수 있다는 점도 눈여겨볼 만합니다.</p>
+<blockquote>포인트: 범용적이고 빠른 개발엔 ChatGPT, 보안·규제가 중요하면 Claude가 더 맞아요.</blockquote>
+<figure style="margin:28px 0 28px;"><img src="https://images.unsplash.com/photo-1545670723-196ed0954986?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODQ4NDYxMTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="turned-on MacBook Air" style="width:100%;border-radius:12px;object-fit:cover;max-height:420px;" loading="lazy"><figcaption style="font-size:11px;color:#888;margin-top:6px;text-align:right;">Photo by <a href="https://unsplash.com/@goshua13" target="_blank" style="color:#888;">Joshua Aragon</a> on Unsplash</figcaption></figure>
+<h2>두 AI, 무엇을 고를지 한눈에 비교해볼까요?</h2>
+<p>어떤 AI를 선택할지 고민이 될 때는 각자의 강점과 약점을 비교해보는 게 제일 좋습니다. 제가 직접 자료를 찾아보면서 정리한 내용을 바탕으로 핵심만 비교표로 만들어봤습니다. 제가 작년에 AI 코딩 도구를 고를 때 이런 표가 있었으면 훨씬 편했겠다 싶더라고요. 아무리 좋다고 해도 내 업무랑 안 맞으면 무용지물입니다. 아래 표를 보면서 자신의 업무 스타일에 어떤 AI가 더 잘 맞을지 한번 생각해보세요.</p>
+<blockquote>포인트: 내 업무 스타일에 맞춰야 후회가 없어요. 직접 비교해보세요.</blockquote>
+<h2>AI 코딩, 믿기 전에 확인해야 할 것들</h2>
+<p>AI 코딩 도구는 분명 혁신적이지만, 맹신해서는 안 됩니다. 저도 작년에 AI가 짜준 코드를 그대로 썼다가 작은 오류 때문에 고생한 적이 있어요. ChatGPT의 경우, 광범위한 데이터를 기반으로 하는 만큼 특정 도메인에 대한 깊이 있는 이해가 부족할 때가 있습니다. 복잡한 환경 설정에서는 예상치 못한 에러를 뱉어내기도 하고요. Claude는 긴 컨텍스트와 안전성에 강하지만, ChatGPT만큼 범용적이지 않다는 단점이 있습니다. 새로운 기술 스택을 빠르게 학습하는 데는 아직 한계가 있을 수 있다는 의견도 있더라고요. 제 생각엔, AI가 아무리 발전해도 결국 최종 검토는 사람이 해야 합니다. 특히 보안 취약점이나 논리적 오류는 AI가 잡아내지 못하는 경우가 분명 존재합니다. 2026년에는 DevSecOps와 AI의 통합으로 보안 취약점 분석이 자동화되는 트렌드가 강화될 거라고 하지만, 완벽할 순 없죠. AI가 제안하는 코드를 그대로 복사-붙여넣기 하기보다는, 항상 한 번 더 점검하고 개선하는 습관을 들이는 게 중요합니다. 결국 AI는 우리의 생산성을 높여주는 도구일 뿐, 우리의 업무를 완전히 대체하는 건 아니니까요.</p>
+<blockquote>포인트: AI 코딩은 편리하지만, 최종 검토는 무조건 내가 해야 합니다. 그래야 실수 안 해요.</blockquote><section class="post-comparison" style="margin:36px 0 24px;overflow-x:auto;"><h2 style="margin-bottom:14px;">한눈에 비교</h2><table style="width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);"><thead><tr><th style="padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;">항목</th><th style="padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;">ChatGPT-5.5 (OpenAI)</th><th style="padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;">Claude 4.0 (Anthropic)</th></tr></thead><tbody><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">예상 버전 (2026년)</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">ChatGPT-5.5</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">Claude 4.0</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">컨텍스트 윈도우</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">최대 2M 토큰 (공식 자료 확인 필요)</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">최대 4M 토큰 (공식 자료 확인 필요)</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">API 요금 (예상)</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">토큰당 0.005 USD (공식 자료 확인 필요)</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">토큰당 0.008 USD (공식 자료 확인 필요)</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">주요 강점</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">광범위한 데이터 기반 범용성, 빠른 코드 생성, 다양한 플러그인</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">긴 컨텍스트, 윤리적/안전한 코드 강조, 특정 도메인 전문성, 논리 추론 능력</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">주요 약점</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">특정 도메인 깊이 부족, 복잡한 환경 설정 에러 가능성</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;">상대적 범용성 부족, 새로운 기술 스택 학습 속도</td></tr><tr><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">활용 예시</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">백엔드 API 개발, 데이터 분석 스크립트, 레거시 마이그레이션</td><td style="padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;">금융 시스템 보안 감사, 규제 준수 웹 서비스, 의료 데이터 처리 알고리즘</td></tr></tbody></table></section>
+
+<section class="faq-section" style="margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;">
+<h2 style="margin-top:0;">자주 묻는 질문</h2>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 코딩 초보자에게 어떤 AI가 더 좋을까요?</p><p style="margin:0;color:#2a2a2a;">A. 코딩 초보자라면 ChatGPT-5.5가 더 접근하기 쉬울 수 있습니다. 다양한 언어와 범용적인 코드 생성 능력 덕분에 학습에 유리하죠. 하지만 기본적인 문법 이해는 필수입니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 두 AI 모두 유료로만 사용할 수 있나요?</p><p style="margin:0;color:#2a2a2a;">A. 기본적으로 두 모델 모두 상위 버전이나 고급 기능은 유료 API 형태로 제공될 가능성이 높습니다. 무료 체험 버전이 있을 수 있지만, 본격적인 업무 활용을 위해서는 유료 플랜을 고려해야 합니다.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 보안이 중요한 프로젝트에는 어떤 AI를 써야 할까요?</p><p style="margin:0;color:#2a2a2a;">A. 금융, 의료처럼 보안과 규제 준수가 중요한 프로젝트라면 Claude 4.0이 더 적합합니다. 윤리적이고 안전한 코딩을 강조하며, 특정 도메인 전문성이 강화되어 있어서 심층적인 분석에 강하거든요.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 2026년 코딩 트렌드 중 'AI 페어 프로그래밍'은 뭔가요?</p><p style="margin:0;color:#2a2a2a;">A. AI 페어 프로그래밍은 AI가 실시간으로 개발자와 함께 코딩하며 오류를 수정하고 더 나은 코드 작성을 제안하는 방식입니다. 마치 옆에 숙련된 동료 개발자가 앉아있는 것처럼 도움을 주는 거죠.</p></div>
+<div style="margin:20px 0;"><p style="font-weight:700;color:#1a2640;margin:0 0 8px 0;">Q. 기존 코드를 분석하고 고치는 데 더 유리한 AI는요?</p><p style="margin:0;color:#2a2a2a;">A. 기존 코드 분석 및 리팩토링 능력은 두 AI 모두 발전했지만, 특히 보안 취약점 분석이나 규정 준수 검토에는 Claude 4.0이 강점을 보입니다. ChatGPT-5.5는 불필요한 코드 제거 및 성능 최적화에 능합니다.</p></div>
+</section>
+<section class="post-references" style="margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;"><h2 style="margin-top:0;margin-bottom:10px;font-size:18px;">근거 자료</h2><ul style="margin:0;padding-left:20px;"><li style="margin:8px 0;font-size:14px;"><a href="https://openai.com/blog" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">OpenAI 공식 블로그</a></li><li style="margin:8px 0;font-size:14px;"><a href="https://www.anthropic.com/news" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">Anthropic 공식 문서</a></li><li style="margin:8px 0;font-size:14px;"><a href="https://github.com/features/copilot" target="_blank" rel="nofollow noopener" style="color:#1a2640;text-decoration:underline;">GitHub Co-pilot (참고)</a></li></ul><div style="margin-top:10px;font-size:12px;color:#888;">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section></div>
+    <!-- 조회수 & 공유 바 -->
+    <div class="post-meta-bar">
+      <div class="post-view-count">
+        <span class="post-view-icon">👁</span>
+        <span id="viewCount">조회 중...</span>
+      </div>
+      <div class="share-btns">
+        <span class="share-label">공유</span>
+        <button class="share-btn kakao" onclick="shareKakao()">카카오</button>
+        <button class="share-btn twitter" onclick="shareTwitter()">트위터</button>
+        <button class="share-btn copy" onclick="copyLink()">링크 복사</button>
+      </div>
+    </div>
+
+    <div class="article-tags" id="articleTags"></div>
+
+    <!-- 이전/다음 글 -->
+    <div class="post-nav" id="postNav"></div>
+
+    <a href="/index.html" class="back-btn">← 목록으로 돌아가기</a>
+
+    <!-- 댓글 섹션 -->
+    <div class="comments-section">
+      <div class="comments-title">댓글 <span id="commentCount" style="color:var(--point);"></span></div>
+      <div class="comment-form">
+        <div class="comment-form-row">
+          <input class="comment-input" type="text" id="commentName" placeholder="닉네임" maxlength="20">
+          <input class="comment-input" type="password" id="commentPw" placeholder="비밀번호 (삭제용)" maxlength="20">
+        </div>
+        <textarea class="comment-textarea" id="commentText" placeholder="댓글을 남겨주세요. 질문, 경험 공유 모두 환영합니다."></textarea>
+        <button class="comment-submit" onclick="submitComment()">댓글 등록</button>
+      </div>
+      <div class="comment-list" id="commentList">
+        <div class="comment-empty">첫 댓글을 남겨보세요.</div>
+      </div>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="widget">
+      <div class="wg-top"><h3>ABOUT</h3></div>
+      <div class="wg-body">
+        <p class="about-msg">박대홍 · 블로그 대행 5년차. 월 500만원+ 부업 수익을 만든 직장인의 현실 이야기를 씁니다.</p>
+        <div class="chips">
+          <span class="chip">블로그 대행 대표</span>
+          <span class="chip">직장인 6년차</span>
+          <span class="chip">월 500만원+ 부업</span>
+        </div>
+        <a href="/about.html" style="display:block;margin-top:12px;text-align:center;font-size:12px;color:var(--point);font-weight:600;text-decoration:none;">더 알아보기 →</a>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>뉴스레터</h3></div>
+      <div class="wg-body">
+        <p class="nl-desc">매주 직장인 재테크·부업 정보와 새 글을 이메일로 받아보세요. 무료 구독, 스팸 없음.</p>
+        <div data-supascribe-embed-id="938473434490" data-supascribe-subscribe></div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="wg-top"><h3>같은 카테고리 글</h3></div>
+      <div class="wg-body" id="relatedPosts">
+        <p style="font-size:13px;color:var(--text3);">불러오는 중...</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- 에러 상태 -->
+<div id="errorBox" style="max-width:760px;margin:60px auto;padding:0 24px;display:none">
+  <div class="error-box">
+    <h2>글을 찾을 수 없습니다</h2>
+    <p>요청한 글이 존재하지 않거나 삭제되었습니다.</p>
+    <a href="/index.html" class="back-btn">← 홈으로 돌아가기</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">직장인 <span>수익일기</span></div>
+      <p class="ft-tagline">평범한 직장인의 경제적 자유 프로젝트.<br>SINCE 2022 · koreansalaryman.com</p>
+    </div>
+    <div class="ft-right">
+      <div class="ft-links">
+        <a href="/privacy.html">개인정보처리방침</a>
+        <a href="/terms.html">이용약관</a>
+        <a href="mailto:pride93d@gmail.com">문의하기</a>
+      </div>
+      <div class="ft-copy">© 2026 Korean Salaryman. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── 조회수 (localStorage 기반) ──────────────────────────
+function updateViewCount(postId) {
+  const key = 'views_' + postId;
+  const count = (parseInt(localStorage.getItem(key) || '0')) + 1;
+  localStorage.setItem(key, count);
+  document.getElementById('viewCount').textContent = '조회 ' + count.toLocaleString() + '회';
+}
+
+// ── 공유 버튼 ──────────────────────────────────────────
+function shareKakao() {
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://story.kakao.com/share?url=' + url, '_blank', 'width=600,height=500');
+}
+function shareTwitter() {
+  const title = encodeURIComponent(document.title);
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://twitter.com/intent/tweet?text=' + title + '&url=' + url, '_blank', 'width=600,height=400');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.textContent;
+    btn.textContent = '복사됨 ✓';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#fff';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+  });
+}
+
+// ── 댓글 (localStorage 기반) ──────────────────────────
+function getComments(postId) {
+  try { return JSON.parse(localStorage.getItem('comments_' + postId) || '[]'); } catch(e) { return []; }
+}
+function saveComments(postId, comments) {
+  localStorage.setItem('comments_' + postId, JSON.stringify(comments));
+}
+function renderComments(postId) {
+  const comments = getComments(postId);
+  const list = document.getElementById('commentList');
+  const countEl = document.getElementById('commentCount');
+  countEl.textContent = comments.length > 0 ? comments.length : '';
+  if (comments.length === 0) {
+    list.innerHTML = '<div class="comment-empty">첫 댓글을 남겨보세요.</div>';
+    return;
+  }
+  list.innerHTML = comments.map((c, i) => `
+    <div class="comment-item">
+      <div class="comment-head">
+        <div class="comment-avatar">${c.name[0]}</div>
+        <div class="comment-name">${escHtml(c.name)}</div>
+        <div class="comment-date">${c.date}</div>
+      </div>
+      <div class="comment-text">${escHtml(c.text).replace(/\n/g,'<br>')}</div>
+    </div>`).join('');
+}
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function submitComment() {
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name) { alert('닉네임을 입력해주세요.'); return; }
+  if (!text) { alert('댓글을 입력해주세요.'); return; }
+  // postId 는 정적으로 주입됨 (전역 사용)
+  const comments = getComments(postId);
+  const now = new Date();
+  comments.push({
+    name, text,
+    date: now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0')
+  });
+  saveComments(postId, comments);
+  document.getElementById('commentName').value = '';
+  document.getElementById('commentText').value = '';
+  renderComments(postId);
+}
+
+// ── 이전/다음 글 ──────────────────────────────────────
+function renderPostNav(manifest, currentId) {
+  const published = manifest.filter(p => p.status === 'published');
+  const idx = published.findIndex(p => p.filename === currentId);
+  if (idx === -1) return;
+  const prev = published[idx - 1];
+  const next = published[idx + 1];
+  const nav = document.getElementById('postNav');
+  if (!nav) return;
+  let html = '';
+  if (prev) {
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(prev.slug || prev.filename.replace(/\.json$/,''))}.html">
+      <div class="post-nav-label">← 이전 글</div>
+      <div class="post-nav-title">${prev.title}</div>
+    </a>`;
+  } else { html += '<div></div>'; }
+  if (next) {
+    html += `<a class="post-nav-item" href="/p/${encodeURIComponent(next.slug || next.filename.replace(/\.json$/,''))}.html" style="text-align:right;">
+      <div class="post-nav-label">다음 글 →</div>
+      <div class="post-nav-title">${next.title}</div>
+    </a>`;
+  }
+  nav.innerHTML = html;
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+}
+
+function readTime(content) {
+  return Math.max(1, Math.ceil(content.length / 500)) + '분';
+}
+
+// 본문 텍스트를 HTML 단락으로 변환
+function textToHtml(text) {
+  return text
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(p => p.length > 0)
+    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
+// ── 정적 프리렌더 페이지: 인터랙션만 초기화 (fetch 렌더링 제거됨) ──
+const postId = "post_20260723_223519.json";
+updateViewCount(postId);
+renderComments(postId);
+
+fetch('/posts/manifest.json')
+  .then(r => r.json())
+  .then(manifest => {
+    renderPostNav(manifest, postId);
+    const currentCat = "ai";
+    const related = manifest
+      .filter(p => p.status === 'published' && p.filename !== postId && p.category === currentCat)
+      .slice(0, 4);
+    const relBox = document.getElementById('relatedPosts');
+    if (relBox) {
+      if (related.length === 0) {
+        relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
+      } else {
+        relBox.innerHTML = related.map(p => `
+          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
+            <div class="rel-dot"></div>
+            <div>
+              <div class="rel-title">${p.title}</div>
+              <div class="rel-cat">${formatDate(p.created_at)}</div>
+            </div>
+          </a>`).join('');
+      }
+    }
+  })
+  .catch(err => console.error(err));
+</script>
+<!-- Supascribe newsletter embed loader -->
+<script src="https://js.supascribe.com/v1/loader/JkwsA3yFWeR9Lly9cSs6fAyXRMD3.js" async></script>
+</body>
+</html>
