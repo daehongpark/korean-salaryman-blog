@@ -69,10 +69,10 @@
       "자산관리"
     ],
     "created_at": "2026-07-24T07:37:40.544240",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-24T06:27:28.132Z",
-    "published_at": null,
+    "published_at": "2026-07-24T07:43:57.002Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260723_223737.png",
     "has_faq": true,
