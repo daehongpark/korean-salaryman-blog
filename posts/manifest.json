@@ -44,10 +44,10 @@
       "finance"
     ],
     "created_at": "2026-07-25T07:37:54.550993",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-25T09:40:33.930Z",
-    "published_at": null,
+    "published_at": "2026-07-25T10:51:38.568Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260724_223752.png",
     "has_faq": true,
