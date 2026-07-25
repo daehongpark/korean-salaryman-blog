@@ -24,7 +24,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -82,7 +82,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 91.0,
+    "seo_score": 91,
     "monthly_search": null
   },
   {
@@ -133,10 +133,10 @@
       "투자"
     ],
     "created_at": "2026-07-25T07:34:12.865639",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-25T01:37:40.297Z",
-    "published_at": null,
+    "published_at": "2026-07-25T02:04:06.046Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260724_223410.png",
     "has_faq": true,
@@ -144,7 +144,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 35
   },
   {
