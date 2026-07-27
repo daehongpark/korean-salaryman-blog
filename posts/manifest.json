@@ -14,10 +14,10 @@
       "자동이체"
     ],
     "created_at": "2026-07-27T07:40:06.632197",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-27T12:51:55.235Z",
-    "published_at": null,
+    "published_at": "2026-07-27T15:20:43.779Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260726_224004.png",
     "has_faq": true,
