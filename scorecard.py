@@ -75,7 +75,6 @@ HEALTH_PATH = POSTS_DIR / "source_health.json"
 
 ALLOCATION = {"trending": 3, "money": 3, "realestate": 2}
 TRENDING_DEAL_MIN = 2
-FRESHNESS_WINDOW_DAYS = 30  # 마감임박/수정일시 신선도 훅 판정 기준 (박대홍 지시 2026-07-27)
 
 
 # ═══════════════════════════════════════════════════════
@@ -83,12 +82,41 @@ FRESHNESS_WINDOW_DAYS = 30  # 마감임박/수정일시 신선도 훅 판정 기
 #  ✅는 "연 3천~맞벌이 직장인이 명백히 대상"일 때만. 아래 중 하나라도 있으면 ⚠️로 낮춘다.
 # ═══════════════════════════════════════════════════════
 
-_INCOME_CAP_PATTERN = re.compile(r"(부부합산|가구|연소득|총소득)[^.]{0,20}?(\d+(?:\.\d+)?)\s*(천만원|억원|만원)\s*이하")
+_INCOME_CAP_KEYWORD_PATTERN = re.compile(r"(부부합산|가구|연소득|총소득)")
 _MEDIAN_INCOME_KEYWORDS = ["중위소득 100%", "기준 중위소득 100%", "중위소득 100퍼센트"]
 _INDUSTRY_SIZE_KEYWORDS = ["제조업", "건설업", "제조·건설업", "50인 미만", "5인 이상", "중소기업", "소기업", "중견기업"]
-_AGE_CAP_PATTERN = re.compile(r"만\s*(\d{1,2})\s*세")
+# "만 19세 이상"처럼 성인 기준 하한(플로어)은 사실상 전 국민이 충족하므로 상한이 아니다.
+# "이하/미만"이 바로 뒤에 붙는 경우만 진짜 연령 상한으로 본다.
+_AGE_CAP_PATTERN = re.compile(r"만\s*(\d{1,2})\s*세\s*(?:이하|미만)")
 
-_INCOME_UNIT_TO_MANWON = {"천만원": 1000, "억원": 10000, "만원": 1}
+
+_INCOME_SCALE_UNITS = {"천만", "억"}  # 가구 연소득은 늘 이 단위로 표현됨. "만원"/"백만원"은
+# 지원금·한도 액수(예: "보증료 40만원 상한")일 확률이 높아 소득 상한 판정에서 제외한다.
+
+
+def _find_income_cap_restriction(text: str) -> str:
+    """소득 상한 문구를 찾는다. 정부 문서는 흔히 '연소득 청년 5천만원, 신혼부부 7.5천만원,
+    청년 외 6천만원 이하'처럼 '이하'를 여러 금액 뒤에 한 번만 붙이므로, 키워드~문장 끝(또는
+    다음 60자) 구간을 통째로 보고 그 구간에 '이하/미만'이 있으면 구간 내 모든 금액 중
+    최솟값을 기준으로 판정한다."""
+    for km in _INCOME_CAP_KEYWORD_PATTERN.finditer(text):
+        window = text[km.end():km.end() + 60]
+        # 문장 끝에서 자르되 "7.5천만원" 같은 소수점은 마침표로 오인하지 않는다
+        window = re.split(r"\.(?!\d)|\n", window, maxsplit=1)[0]
+        if "이하" not in window and "미만" not in window:
+            continue
+        amounts = []
+        for am in _AMOUNT_WON_PATTERN.finditer(window):
+            if am.group(2) not in _INCOME_SCALE_UNITS:
+                continue
+            num = float(am.group(1).replace(",", ""))
+            amounts.append((num * _AMOUNT_UNIT_TO_MANWON[am.group(2)], am.group(0)))
+        if not amounts:
+            continue
+        min_manwon, min_text = min(amounts, key=lambda x: x[0])
+        if min_manwon <= 7000:
+            return f"소득 상한 {km.group(1)} {min_text} 이하"
+    return ""
 
 
 def detect_eligibility_restrictions(item: dict, income_gate: dict, fields: dict = None) -> list:
@@ -101,11 +129,9 @@ def detect_eligibility_restrictions(item: dict, income_gate: dict, fields: dict 
                       (fields or {}).get("조건_소득자격") or ""])
     restrictions = []
 
-    m = _INCOME_CAP_PATTERN.search(text)
-    if m:
-        manwon = float(m.group(2)) * _INCOME_UNIT_TO_MANWON[m.group(3)]
-        if manwon <= 7000:
-            restrictions.append(f"소득 상한 {m.group(1)} {m.group(2)}{m.group(3)} 이하")
+    income_cap = _find_income_cap_restriction(text)
+    if income_cap:
+        restrictions.append(income_cap)
 
     if any(k in text for k in _MEDIAN_INCOME_KEYWORDS) or income_gate.get("tier") in ("boundary", "low_only"):
         restrictions.append("중위소득 100% 이하 조건")
@@ -141,18 +167,18 @@ def _parse_update_date(value) -> "date | None":
 
 
 def has_freshness_hook(entry: dict, news_blob: str, today: "date") -> "str | None":
-    """정책 후보 카드 승격 조건: (a) 신규 등장 (b) 마감 30일 이내 (c) 최근 제도 변경(수정일시)
-    또는 최근 공고 뉴스와 매칭. 하나도 없으면 None(= 상시 전용, 보관 대상)."""
+    """정책 후보 카드 승격 조건(Phase3.6, 박대홍 지시 2026-07-27): 아래 3가지만 훅으로 인정한다.
+    (a) 스냅샷 신규 등장 (b) 마감 30일 이내 (c) 최근 공고 뉴스와 매칭.
+    '수정일시'는 보조금24가 배치로 일괄 갱신하는 경우가 많아 신선도 신호로 부적합 →
+    승격 근거에서 제외하고 점수 동점 미세조정(score_gov24_candidate)에만 쓴다.
+    하나도 없으면 None(= 상시 전용, 보관 대상)."""
     if entry["is_new"]:
         return "신규 등장"
     if entry["gate"]["deadline"]["status"] == "urgent":
         return "마감 30일 이내"
-    updated = _parse_update_date(entry["item"].get("수정일시"))
-    if updated and 0 <= (today - updated).days <= FRESHNESS_WINDOW_DAYS:
-        return f"최근 제도 변경(수정일시 {updated.isoformat()})"
     name = entry["item"].get("서비스명", "")
     if news_blob and len(name) >= 4 and name in news_blob:
-        return "최근 제도 변경/공고 뉴스 매칭"
+        return "최근 공고 뉴스 매칭"
     return None
 
 
@@ -234,6 +260,48 @@ def classify_gov24_category(item: dict) -> str:
     if field in _TRENDING_FIELDS:
         return "trending"
     return "trending"
+
+
+# ═══════════════════════════════════════════════════════
+#  Phase3.6 — 소스 오염 제거 (박대홍 지시 2026-07-27)
+#  "평범한 직장인 대상" 밖의 특수대상/지역특화 정책은 후보 풀 진입 전에 제외한다.
+#  제외 키워드는 상수로 분리해 나중에 조정 가능하게 유지.
+# ═══════════════════════════════════════════════════════
+
+_SCOPE_EXCLUDE_KEYWORDS = [
+    "국가유공자", "보훈", "제대군인", "상이유공자", "상이등급", "참전유공자", "참전용사",
+    "독립유공자", "5·18", "5.18", "특수임무유공자", "특수임무수행자", "전몰군경", "전몰",
+    "순직", "고엽제후유의증",
+]
+
+_REGION_NAME_KEYWORDS = [
+    "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
+    "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주",
+    "수원", "성남", "고양", "용인", "청주", "전주", "포항", "창원", "안산", "안양", "천안", "김해",
+]
+_REGIONAL_ORG_TYPES = {"광역시도", "시군구"}
+
+
+def detect_out_of_scope(item: dict) -> str:
+    """평범한 직장인 대상 밖의 특수대상(보훈 계열) 정책이면 제외 사유를 반환, 해당 없으면 빈 문자열."""
+    text = f"{item.get('서비스명', '')} {item.get('지원대상', '')}"
+    for kw in _SCOPE_EXCLUDE_KEYWORDS:
+        if kw in text:
+            return f"특수대상(보훈 계열) 제외: {kw}"
+    return ""
+
+
+def detect_regional_specific(item: dict) -> str:
+    """소관기관이 광역/시군구 단위이고 서비스명에 특정 지역명이 있으면(=전국 공통이 아님)
+    제외 사유를 반환, 해당 없으면 빈 문자열. 중앙행정기관/공공기관 소관은 지역명이 있어도 제외 대상 아님."""
+    org_type = (item.get("소관기관유형") or "").strip()
+    if org_type not in _REGIONAL_ORG_TYPES:
+        return ""
+    name = item.get("서비스명", "")
+    for region in _REGION_NAME_KEYWORDS:
+        if region in name:
+            return f"지역특화 제외(전국 공통 아님): {region}"
+    return ""
 
 
 # ═══════════════════════════════════════════════════════
@@ -425,14 +493,15 @@ def score_gov24_candidate(item: dict, gate: dict, is_new: bool, fields: dict,
         # 마감이 가까울수록 가점(최대 5.0, 30일 남으면 4.0)
         timeliness = round(4.0 + (1 - min(deadline["days_left"], 30) / 30), 2)
     else:
-        # 훅 풀에 속한다는 것 자체가 신규/마감임박이 아니면 수정일시(최근 제도 변경) 또는
-        # 뉴스 매칭으로 들어온 것 — 수정일시 최근일수록 가점(변별력 확보, 동점 방지)
+        # 훅 풀에 속한다는 것 자체가 신규/마감임박이 아니면 뉴스 매칭으로 들어온 것.
+        # 기본 시의성은 고정 baseline이고, 수정일시는 승격 근거가 아니라 동점 미세조정에만
+        # 쓴다(Phase3.6, 박대홍 지시 2026-07-27 — 보조금24 배치 일괄 갱신은 신선도 신호로 부적합).
+        timeliness = 2.5
         updated = _parse_update_date(item.get("수정일시"))
         days_since = (gov24_client.today_kst_date() - updated).days if updated else None
-        if days_since is not None and 0 <= days_since <= FRESHNESS_WINDOW_DAYS:
-            timeliness = round(2.0 + (1 - days_since / FRESHNESS_WINDOW_DAYS) * 1.5, 2)
-        else:
-            timeliness = 1.0  # 수정일시 정보 없음/오래됨 → 뉴스 매칭 훅으로 들어온 경우
+        if days_since is not None and 0 <= days_since <= 365:
+            timeliness += (1 - days_since / 365) * 0.5  # 최대 +0.5, 미세조정용
+        timeliness = round(timeliness, 2)
 
     benefit_score = _benefit_score_generic(fields.get("실이득_얼마", ""))
     eligibility_score = {0: 5.0, 1: 3.0}.get(len(restrictions), 1.5)
@@ -473,7 +542,8 @@ def score_external_candidate(fields: dict, has_link: bool, is_deal: bool) -> flo
 # ═══════════════════════════════════════════════════════
 
 def build_gov24_pool(cache: dict, snapshot_diff: dict, news_blob: str = "", allow_low_income: bool = False):
-    """GATE 통과분을 신선도 훅 유무로 나눈다 (Phase3.5, 박대홍 지시 2026-07-27).
+    """소스 오염 제거(보훈 계열/지역특화 사전 제외, Phase3.6) 후 GATE 통과분을 신선도 훅 유무로
+    나눈다 (Phase3.5, 박대홍 지시 2026-07-27).
     - passed:    훅 있는 후보(카드 승격 대상)
     - evergreen: 훅 없는 상시 프로그램(보관 — 할당량 미달시에만 명시적으로 백필)
     """
@@ -485,8 +555,17 @@ def build_gov24_pool(cache: dict, snapshot_diff: dict, news_blob: str = "", allo
     evergreen = {"trending": [], "money": [], "realestate": []}
     rejected_samples = []
     archived_samples = []
+    scope_excluded_samples = []
 
     for sid, item in services.items():
+        scope_reason = detect_out_of_scope(item) or detect_regional_specific(item)
+        if scope_reason:
+            # 전체 건수를 정확히 세기 위해 캡 없이 누적(문자열 3개짜리 dict라 메모리 부담 적음)
+            scope_excluded_samples.append({
+                "서비스ID": sid, "서비스명": item.get("서비스명"), "사유": scope_reason,
+            })
+            continue
+
         gate = gov24_client.apply_gates(item, today=today)
         ok = gate["pass"]
         if not ok and allow_low_income and gate["income"]["tier"] == "low_only" \
@@ -515,7 +594,7 @@ def build_gov24_pool(cache: dict, snapshot_diff: dict, news_blob: str = "", allo
                     "사유": "상시 전용(신선도 훅 없음) → 보관",
                 })
 
-    return passed, evergreen, rejected_samples, archived_samples
+    return passed, evergreen, rejected_samples, archived_samples, scope_excluded_samples
 
 
 # ═══════════════════════════════════════════════════════
@@ -531,6 +610,34 @@ def _format_deadline_label(deadline: dict) -> str:
     return f"{label} {deadline['next_date']} (D-{deadline['days_left']})"
 
 
+_BENEFIT_LINE_KEYWORDS = ("지원내용", "지원금", "지급", "지원액", "혜택", "지원사항", "지원규모")
+_ELIGIBILITY_LINE_KEYWORDS = ("대상", "자격", "재산", "소득기준", "요건", "기준중위소득")
+
+
+def _fallback_benefit_from_text(item: dict) -> str:
+    """Gemini가 '확인필요'로 남겼어도 원문(지원내용)에 금액/할인율이 있으면 그 문장을 그대로
+    뽑아 쓴다. LLM 샘플링 변동성에 기대지 않는 결정적 백업(박대홍 지시 2026-07-27,
+    '확인필요' 카드가 3개 이상 나오면 안 된다는 검증 기준을 충족하기 위함).
+    금액이 있는 줄이 여러 개면 '참여대상: ... 재산 4억원 이하' 같은 자격조건 설명 줄이 아니라
+    '지원내용/지급' 같은 혜택 설명 줄을 우선한다."""
+    text = item.get("지원내용") or ""
+    lines = [l for l in re.split(r"[\r\n]+", text)
+             if _AMOUNT_WON_PATTERN.search(l) or _PERCENT_PATTERN.search(l)]
+    if not lines:
+        return ""
+
+    def rank(line: str) -> int:
+        if any(k in line for k in _BENEFIT_LINE_KEYWORDS):
+            return 0
+        if any(k in line for k in _ELIGIBILITY_LINE_KEYWORDS):
+            return 2
+        return 1
+
+    lines.sort(key=rank)
+    snippet = lines[0].strip(" \r\t○-·ㆍ")
+    return snippet[:150] if snippet else ""
+
+
 def make_gov24_card(entry: dict, fields: dict, category: str, evergreen_fill: bool = False) -> dict:
     item, gate = entry["item"], entry["gate"]
     income = gate["income"]
@@ -542,12 +649,19 @@ def make_gov24_card(entry: dict, fields: dict, category: str, evergreen_fill: bo
         eligible = "✅"
         disqualifier = "뚜렷한 제한 없음(세부조건은 신청 시 확인)"
 
+    benefit_text = fields.get("실이득_얼마") or "확인필요"
+    if "확인필요" in benefit_text:
+        fallback = _fallback_benefit_from_text(item)
+        if fallback:
+            benefit_text = fallback
+            fields = {**fields, "실이득_얼마": fallback}
+
     red_flags = []
     if evergreen_fill:
         red_flags.append("상시 전용(신선도 훅 없음, 할당량 채움용)")
     if income["tier"] == "low_only":
         red_flags.append("저소득 전용 항목(GATE 완화 적용)")
-    if not fields.get("실이득_얼마") or "확인필요" in (fields.get("실이득_얼마") or ""):
+    if "확인필요" in benefit_text:
         red_flags.append("실이득 금액 확인필요")
 
     source_url = item.get("상세조회URL") or ""
@@ -558,7 +672,7 @@ def make_gov24_card(entry: dict, fields: dict, category: str, evergreen_fill: bo
         "카테고리": category,
         "레인": "정책",
         "세그먼트": fields.get("세그먼트", "확인필요") or "확인필요",
-        "실이득_얼마": fields.get("실이득_얼마", "확인필요") or "확인필요",
+        "실이득_얼마": benefit_text,
         "조건_소득자격": fields.get("조건_소득자격", "확인필요") or "확인필요",
         "신청법": fields.get("신청법", item.get("신청방법", "")) or "확인필요",
         "적격": eligible,
@@ -712,11 +826,12 @@ def run_pipeline(verbose: bool = True) -> dict:
     if not gov24_down:
         snapshot_diff = gov24_client.diff_snapshot(list(cache.get("services", {}).keys()))
 
-    # ── STEP2 GATE 1차 통과 (신선도 훅 유무로 분리: 훅 없으면 상시 전용 → 보관) ──
-    pool, evergreen, rejected_samples, archived_samples = build_gov24_pool(
+    # ── STEP1.5 소스 오염 제거 + STEP2 GATE 1차 통과 (신선도 훅 유무로 분리: 훅 없으면 상시 전용 → 보관) ──
+    pool, evergreen, rejected_samples, archived_samples, scope_excluded_samples = build_gov24_pool(
         cache, snapshot_diff, news_blob, allow_low_income=False)
     pool_counts = {k: len(v) for k, v in pool.items()}
     evergreen_counts = {k: len(v) for k, v in evergreen.items()}
+    logger.info(f"gov24 소스 오염 제거(보훈/지역특화): {len(scope_excluded_samples)}건 제외")
     logger.info(f"gov24 GATE 통과(훅 있음, 승격 대상): {pool_counts}")
     logger.info(f"gov24 상시 전용(훅 없음, 보관): {evergreen_counts}")
 
@@ -724,7 +839,7 @@ def run_pipeline(verbose: bool = True) -> dict:
     for cat, need in ALLOCATION.items():
         if len(pool[cat]) < need:
             logger.warning(f"{cat} 훅 있는 후보 미달({len(pool[cat])}/{need}) → 소득 GATE 완화 재시도")
-            pool2, _, _, _ = build_gov24_pool(cache, snapshot_diff, news_blob, allow_low_income=True)
+            pool2, _, _, _, _ = build_gov24_pool(cache, snapshot_diff, news_blob, allow_low_income=True)
             existing_ids = {e["item"]["서비스ID"] for e in pool[cat]}
             for e in pool2[cat]:
                 if e["item"]["서비스ID"] not in existing_ids:
@@ -891,6 +1006,8 @@ def run_pipeline(verbose: bool = True) -> dict:
         "evergreen_counts": evergreen_counts,
         "rejected_samples": rejected_samples,
         "archived_samples": archived_samples,
+        "scope_excluded_count": len(scope_excluded_samples),
+        "scope_excluded_samples": scope_excluded_samples,
         "snapshot": snapshot_diff,
         "gov24_down": gov24_down,
         "deal_available": len(deal_cards),
@@ -958,6 +1075,9 @@ def print_dry_run(pipeline_out: dict):
         for e in cards if e["gate"]["deadline"]["status"] == "urgent"
     )
     print("\n" + "=" * 70)
+    print(f"  소스 오염 제거(보훈/지역특화 사전 제외): {stats['scope_excluded_count']}건")
+    for r in stats["scope_excluded_samples"][:5]:
+        print(f"    - {r['서비스명']} (ID={r['서비스ID']}): {r['사유']}")
     print(f"  신규 정책: {new_count}건 (첫 실행={stats['snapshot'].get('is_first_run')})")
     print(f"  마감임박(30일 이내): {urgent_count}건")
     print(f"  gov24 훅 있음(승격 대상): {stats['pool_counts']}  /  훅 없음(상시, 보관): {stats['evergreen_counts']}")

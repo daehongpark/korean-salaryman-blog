@@ -49,8 +49,12 @@ GOOGLE_NEWS_FEEDS = {
 #   (2) CATEGORY_DATALAB_GROUPS(trend_crawler.py) 씨앗은 결과가 부족할 때만 보조로 쓴다.
 # "딜" 전용 검색 RSS (발행구조 Phase2, 2026-07-23 신설).
 # Phase3 scorecard.py의 "딜 레인" 입력으로 그대로 재사용한다(별도 쿼리 신설 금지 — 호출/쿼터 절약).
+# Phase3.6(박대홍 지시 2026-07-27): 검색어 1개뿐이라 후보 풀이 너무 작았음 → 4갈래로 분리.
 DEAL_SEARCH_FEEDS = [
-    "https://news.google.com/rss/search?q=(항공권 특가 OR 얼리버드 예매 OR 캐시백 이벤트 OR 사전예매 할인) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+    "https://news.google.com/rss/search?q=(항공권 특가 OR 얼리버드 예매 OR 여행 사전예매 할인) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+    "https://news.google.com/rss/search?q=(카드사 캐시백 OR 페이 캐시백 OR 카드 할인 이벤트) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+    "https://news.google.com/rss/search?q=(콘서트 예매 OR 축제 사전예매 OR 전시 할인) when:7d&hl=ko&gl=KR&ceid=KR:ko",
+    "https://news.google.com/rss/search?q=(통신사 프로모션 OR 구독 할인 OR 멤버십 혜택) when:7d&hl=ko&gl=KR&ceid=KR:ko",
 ]
 
 SEARCH_FEEDS = {
