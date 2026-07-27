@@ -551,6 +551,7 @@ def make_gov24_card(entry: dict, fields: dict, category: str, evergreen_fill: bo
         red_flags.append("실이득 금액 확인필요")
 
     source_url = item.get("상세조회URL") or ""
+    freshness_reason = entry.get("hook") or "상시 전용(신선도 훅 없음, 할당량 채움용)"
 
     return {
         "제목": item.get("서비스명", ""),
@@ -563,6 +564,7 @@ def make_gov24_card(entry: dict, fields: dict, category: str, evergreen_fill: bo
         "적격": eligible,
         "탈락조건": disqualifier,
         "마감": _format_deadline_label(gate["deadline"]),
+        "신선도근거": freshness_reason,
         "점수": score_gov24_candidate(item, gate, entry["is_new"], fields, restrictions, evergreen_fill),
         "레드플래그": red_flags,
         "출처URL": source_url,
@@ -581,6 +583,7 @@ def make_external_card(raw_item: dict, fields: dict, category: str, lane: str) -
     condition = fields.get("조건_소득자격") or condition_default
     disqualifier = ("해당없음(구매형 딜, 자격제한 없음)" if lane == "딜"
                      else "적격 조건 확인필요(원문 미분석, 뉴스 기반 후보)")
+    freshness_reason = "최근 딜 뉴스(7일 이내 검색 매칭)" if lane == "딜" else "최근 공고 뉴스(7일 이내 검색 매칭)"
 
     return {
         "제목": raw_item.get("title", ""),
@@ -593,6 +596,7 @@ def make_external_card(raw_item: dict, fields: dict, category: str, lane: str) -
         "적격": "⚠️확인필요" if lane == "정책" else "✅",
         "탈락조건": disqualifier,
         "마감": fields.get("마감") or "확인필요",
+        "신선도근거": freshness_reason,
         "점수": score_external_candidate(fields, bool(raw_item.get("link")), lane == "딜"),
         "레드플래그": red_flags,
         "출처URL": raw_item.get("link", ""),
@@ -766,12 +770,16 @@ def run_pipeline(verbose: bool = True) -> dict:
     deal_batch = deal_survivors[:10]
     deal_fields_by_idx = gemini_enrich_external_batch(deal_batch, "trending(딜)")
     deal_cards = []
+    deal_rejections = []  # Phase3.5: 딜 0건일 때 사유 추적용 (박대홍 지시 2026-07-27)
     for i, it in enumerate(deal_batch):
         fields = deal_fields_by_idx.get(i)
         if fields is None:
             # Gemini 응답 없음(장애) → 느슨 원칙으로 통과, 확인필요 처리
             fields = {"실이득_얼마": "확인필요", "조건_소득자격": "해당없음", "신청법": "확인필요", "세그먼트": "확인필요"}
         elif not fields.get("pass", True):
+            reason = f"뻔함/시의성없음/출처불명(GATE): {fields.get('reject_reason', '')}".strip(": ")
+            logger.info(f"딜 탈락({reason}): {it.get('title', '')[:40]}")
+            deal_rejections.append({"제목": it.get("title", ""), "사유": reason})
             continue
         if not _deal_has_real_info(fields):
             extracted = safe_call("deal_page_fetch", extract_deal_fields_from_page, it.get("link", "")) or {}
@@ -780,9 +788,12 @@ def run_pipeline(verbose: bool = True) -> dict:
                     fields[k] = extracted[k]
             if not _deal_has_real_info(fields):
                 logger.info(f"딜 탈락(정보공백, 원문 확인 불가): {it.get('title', '')[:40]}")
+                deal_rejections.append({"제목": it.get("title", ""), "사유": "정보공백(실이득/마감/조건 전부 확인불가, 원문 fetch도 실패)"})
                 continue
         deal_cards.append(make_external_card(it, fields, "trending", "딜"))
     deal_cards.sort(key=lambda c: c["점수"], reverse=True)
+    logger.info(f"딜 레인 집계: 원본수집 {len(deal_raw)}건 → 중복제거 {len(deal_survivors)}건 → "
+                f"배치대상 {len(deal_batch)}건 → 탈락 {len(deal_rejections)}건 → 최종카드 {len(deal_cards)}건")
 
     # ── 정책 뉴스(보조) — gov24로 못 채운 슬롯만, 위에서 선수집한 뉴스를 재사용 ──
     def news_fill(category: str, missing: int) -> list:
@@ -883,6 +894,9 @@ def run_pipeline(verbose: bool = True) -> dict:
         "snapshot": snapshot_diff,
         "gov24_down": gov24_down,
         "deal_available": len(deal_cards),
+        "deal_raw_count": len(deal_raw),
+        "deal_batch_count": len(deal_batch),
+        "deal_rejections": deal_rejections,
     }
     return {"result": result, "stats": stats, "all_gov24_entries": pool}
 
@@ -928,7 +942,7 @@ def print_dry_run(pipeline_out: dict):
         print(f"    조건:   {c['조건_소득자격']}")
         print(f"    신청법: {c['신청법']}")
         print(f"    적격: {c['적격']}   탈락조건: {c.get('탈락조건', '')}")
-        print(f"    마감: {c['마감']}   점수: {c['점수']}")
+        print(f"    마감: {c['마감']}   신선도근거: {c.get('신선도근거', '')}   점수: {c['점수']}")
         if c["레드플래그"]:
             print(f"    ⚠ 레드플래그: {', '.join(c['레드플래그'])}")
 
@@ -948,7 +962,10 @@ def print_dry_run(pipeline_out: dict):
     print(f"  마감임박(30일 이내): {urgent_count}건")
     print(f"  gov24 훅 있음(승격 대상): {stats['pool_counts']}  /  훅 없음(상시, 보관): {stats['evergreen_counts']}")
     print(f"  gov24 소스 상태: {'SOURCE_DOWN' if stats['gov24_down'] else 'OK'}")
-    print(f"  딜 레인 확보: {stats['deal_available']}건")
+    print(f"  딜 레인: 원본수집 {stats['deal_raw_count']}건 → 배치대상 {stats['deal_batch_count']}건 → "
+          f"최종카드 {stats['deal_available']}건 (탈락 {len(stats['deal_rejections'])}건)")
+    for r in stats["deal_rejections"]:
+        print(f"    - 탈락: {r['제목'][:40]} → {r['사유']}")
     print("=" * 70)
 
 
