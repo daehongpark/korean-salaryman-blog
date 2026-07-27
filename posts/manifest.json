@@ -44,10 +44,10 @@
       "구글번역"
     ],
     "created_at": "2026-07-27T07:39:00.307536",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-27T11:06:52.331Z",
-    "published_at": null,
+    "published_at": "2026-07-27T12:11:39.662Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260726_223858.png",
     "has_faq": true,
