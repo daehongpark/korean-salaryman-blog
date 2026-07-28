@@ -129,10 +129,10 @@
       "finance"
     ],
     "created_at": "2026-07-28T07:36:11.690029",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-28T01:17:42.865Z",
-    "published_at": null,
+    "published_at": "2026-07-28T01:53:14.112Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260727_223607.png",
     "has_faq": true,
