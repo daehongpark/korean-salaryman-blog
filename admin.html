@@ -423,6 +423,14 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .cand-btn-pub{background:var(--green-light);color:var(--green);}
 .cand-btn-sched{background:#ede9fe;color:#6d28d9;}
 .cand-btn-remove{background:var(--red-light);color:var(--red);}
+.cand-tray-status.error{color:var(--red);font-weight:600;}
+.cand-tray-status.generating{color:var(--point);font-weight:600;}
+.cand-batch-progress{margin:4px 0 12px;}
+.cand-batch-progress-bar{height:6px;background:var(--bg2);border-radius:4px;overflow:hidden;}
+.cand-batch-progress-fill{height:100%;background:var(--point);width:0%;transition:width 0.2s;}
+.cand-batch-progress-label{font-size:11px;color:var(--text3);margin-top:4px;}
+.cand-btn-retry{background:var(--yellow-light);color:var(--yellow);}
+.cand-btn-goto{background:var(--navy);color:var(--white);}
 </style>
 </head>
 <body>
@@ -733,7 +741,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="cand-tray" id="candTray" style="display:none;">
           <div class="cand-tray-head">
             <span class="cand-tray-title">✅ 선택됨 (<span id="candPickCount">0</span>)</span>
-            <button class="refresh-btn" style="padding:5px 10px;" onclick="clearPickedCandidates()">전체 해제</button>
+            <div style="display:flex;gap:8px;">
+              <button class="cand-btn-gen" style="padding:6px 12px;" onclick="generateAllPickedCandidates()">⚡ 일괄 생성</button>
+              <button class="refresh-btn" style="padding:5px 10px;" onclick="clearPickedCandidates()">전체 해제</button>
+            </div>
+          </div>
+          <div class="cand-batch-progress" id="candBatchProgress" style="display:none;">
+            <div class="cand-batch-progress-bar"><div class="cand-batch-progress-fill" id="candBatchProgressFill"></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;">
+              <span class="cand-batch-progress-label" id="candBatchProgressLabel"></span>
+              <button class="cand-btn-goto" id="candGotoDraftsBtn" style="display:none;padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;border:none;cursor:pointer;font-family:inherit;" onclick="gotoDraftPosts()">📋 글 관리(임시저장)에서 보기</button>
+            </div>
           </div>
           <div class="cand-tray-list" id="candTrayList"></div>
         </div>
@@ -2843,6 +2861,35 @@ function extractFieldsManually(text) {
 }
 
 // 네이버 변형: 단일 진실 소스(prompt_template.json + automation.finalize_article)로 라우팅
+// ── 히어로 썸네일 base64 업로드 (Phase4.1) ──────────────
+// /api/finalize-post가 파일시스템 대신 base64 PNG로 돌려주는 히어로 썸네일을
+// posts/thumbnails/에 커밋한다. insertImage()와 동일하게 ghPut() 헬퍼를 거치지 않고
+// 직접 PUT한다 — ghPut()은 content를 "UTF-8 텍스트"로 가정하고 btoa(encodeURIComponent(...))로
+// 다시 인코딩하기 때문에, 이미 base64인 PNG 바이트를 넘기면 이중 인코딩되어 깨진다.
+// 실패해도 throw하지 않고 false만 반환 — 썸네일은 부가 기능이라 실패해도 본문 저장은 계속되어야 한다.
+async function uploadHeroThumbnail(heroThumbnail) {
+  if (!heroThumbnail || !heroThumbnail.filename || !heroThumbnail.base64) return false;
+  try {
+    const res = await fetch(`${GH_API}/posts/thumbnails/${heroThumbnail.filename}`, {
+      method: 'PUT',
+      headers: ghHeaders(),
+      body: JSON.stringify({
+        message: `feat: hero thumbnail ${heroThumbnail.filename}`,
+        content: heroThumbnail.base64,
+        branch: GH_BRANCH
+      })
+    });
+    if (!res.ok) {
+      console.warn('[uploadHeroThumbnail] 실패:', await res.text().catch(() => ''));
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.warn('[uploadHeroThumbnail] 실패:', e);
+    return false;
+  }
+}
+
 async function convertNaverPost() {
   const content = document.getElementById('naverContent').value.trim();
   const category = document.getElementById('naverCategory').value;
@@ -2920,6 +2967,12 @@ async function convertNaverPost() {
 
     if (!finalized || !finalized.title || !finalized.content) {
       throw new Error('finalize 응답에 필수 필드 없음');
+    }
+
+    if (finData.hero_thumbnail) {
+      btn.textContent = '⏳ 썸네일 업로드 중...';
+      const uploaded = await uploadHeroThumbnail(finData.hero_thumbnail);
+      if (!uploaded) showToast('썸네일 업로드는 실패했지만 글은 정상 생성됐습니다.', 'warn');
     }
 
     _naverConverted = finalized;
@@ -3031,32 +3084,42 @@ async function generateCustomPost() {
     }
 
     const data = await res.json();
-    const text = (data.text || '').trim();
+    const parsed = parseGeneratedJson(data.text || '');
 
-    let cleanText = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
-    const m = cleanText.match(/\{[\s\S]*\}/);
-    if (m) cleanText = m[0];
+    // finalize-post로 이미지·HTML·SEO·JSON-LD 자동 조립 (naver_transform/후보 큐와 동일 인프라.
+    // 예전엔 이 단계 없이 raw Gemini 필드를 그대로 저장했었음 — Phase4.1에서 3경로 통일)
+    btn.textContent = '⏳ 이미지·HTML 조립 중...';
+    parsed.source = 'custom_request';
+    parsed.category = parsed.category || category;
+    parsed.keyword = parsed.keyword || keyword;
 
-    let parsed;
-    try {
-      parsed = JSON.parse(cleanText);
-    } catch (parseErr) {
-      const repaired = repairGeminiJson(cleanText);
-      try {
-        parsed = JSON.parse(repaired);
-      } catch (parseErr2) {
-        parsed = extractFieldsManually(cleanText);
-        if (!parsed || !parsed.title || !parsed.content) {
-          throw new Error('JSON 파싱 실패. 다시 시도해주세요.');
-        }
-        showToast('일부 필드 자동 복구됨. 미리보기 검토 필수.', 'warn');
-      }
+    const finRes = await fetch('/api/finalize-post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ article: parsed })
+    });
+    if (!finRes.ok) {
+      const err = await finRes.json().catch(() => ({}));
+      throw new Error('finalize 실패: ' + (err.error || err.detail || `HTTP ${finRes.status}`));
+    }
+    const finData = await finRes.json();
+    const finalized = finData.article;
+    if (!finalized || !finalized.title || !finalized.content) {
+      throw new Error('finalize 응답에 필수 필드 없음');
     }
 
-    _customGenerated = { ...parsed, category, keyword };
+    if (finData.hero_thumbnail) {
+      btn.textContent = '⏳ 썸네일 업로드 중...';
+      const uploaded = await uploadHeroThumbnail(finData.hero_thumbnail);
+      if (!uploaded) showToast('썸네일 업로드는 실패했지만 글은 정상 생성됐습니다.', 'warn');
+    }
 
+    _customGenerated = finalized;
+
+    const heroOK = !!finalized.hero_image;
+    const bodyCount = Array.isArray(finalized.body_images) ? finalized.body_images.length : 0;
     document.getElementById('customResultBody').textContent =
-      `[제목]\n${parsed.title}\n\n[요약]\n${parsed.summary || ''}\n\n[본문]\n${parsed.content}`;
+      `[제목]\n${finalized.title}\n\n[요약]\n${finalized.summary || ''}\n\n[이미지]\n히어로 ${heroOK ? '✓' : '✗'} · 본문 ${bodyCount}장\n\n[본문 미리보기 (앞 600자)]\n${(finalized.content_raw || '').slice(0, 600)}`;
     document.getElementById('customGenResult').style.display = 'block';
 
     showToast('생성 완료. 미리보기 확인 후 저장하세요.', 'success');
@@ -3082,19 +3145,8 @@ async function saveCustomDraft() {
     const ts = now.toISOString().replace(/[-:]/g,'').replace(/\..+/,'').replace('T','_').slice(0,15);
     const filename = `post_${ts.slice(0,8)}_${ts.slice(9,15)}.json`;
 
-    const postData = {
-      title: _customGenerated.title,
-      category: _customGenerated.category,
-      summary: _customGenerated.summary || '',
-      content: _customGenerated.content,
-      tags: _customGenerated.tags || [_customGenerated.keyword],
-      status: 'draft',
-      created_at: now.toISOString().slice(0,10),
-      source: 'custom_request',
-      keyword: _customGenerated.keyword,
-      faq: _customGenerated.faq || [],
-      references: _customGenerated.references || []
-    };
+    // 이미 finalize 단계에서 완성된 article — 상태만 draft로 강제
+    const postData = { ..._customGenerated, status: 'draft', source: 'custom_request' };
 
     const content = JSON.stringify(postData, null, 2);
     await ghPut(`${POSTS_PATH}/${filename}`, content, null, `feat: custom request: ${postData.title}`);
@@ -3813,6 +3865,14 @@ function renderPickedTray() {
     if (card._genState === 'published') {
       statusHtml = `<span class="cand-tray-status">✅ 발행됨</span>`;
       actionsHtml = `<button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">닫기</button>`;
+    } else if (card._genState === 'generating' || card._genState === 'queued') {
+      statusHtml = `<span class="cand-tray-status generating">${card._genState === 'queued' ? '⏳ 대기열' : '⚙️ 생성 중...'}</span>`;
+      actionsHtml = '';
+    } else if (card._genState === 'error') {
+      statusHtml = `<span class="cand-tray-status error">❌ 실패: ${escHtml(card._genError || '')}</span>`;
+      actionsHtml = `
+        <button class="cand-btn-retry" onclick="generateCandidatePost(${idx})">🔁 재시도</button>
+        <button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">해제</button>`;
     } else if (card._genFilename) {
       statusHtml = `<span class="cand-tray-status">📝 초안 저장됨 (${escHtml(card._genFilename)})</span>`;
       actionsHtml = `
@@ -3885,11 +3945,18 @@ function buildCandidateBenefitBlock(card) {
 </div>`;
 }
 
-async function generateCandidatePost(idx) {
+// 실제 생성 로직(조용함 — showLoading/showToast 없이 카드 상태만 갱신). 단일 클릭 생성과
+// 일괄 생성(백그라운드) 둘 다 이 함수를 공유한다. 실패해도 throw하지 않고 카드에 에러 상태만
+// 남긴다 — 배치 러너가 한 건 실패로 전체를 멈추지 않게 하기 위함(실패 격리).
+async function _generateCandidateCore(idx) {
   const card = _pickedCandidates.get(idx);
-  if (!card) return;
+  if (!card) return false;
 
-  showLoading(true);
+  card._genState = 'generating';
+  card._genError = null;
+  _pickedCandidates.set(idx, card);
+  renderCandidates();
+
   try {
     const genRes = await fetch('/api/generate-post', {
       method: 'POST',
@@ -3921,6 +3988,11 @@ async function generateCandidatePost(idx) {
       throw new Error('finalize 응답에 필수 필드 없음');
     }
 
+    if (finData.hero_thumbnail) {
+      const uploaded = await uploadHeroThumbnail(finData.hero_thumbnail);
+      if (!uploaded) console.warn(`[candidate ${idx}] 썸네일 업로드 실패 — draft는 계속 저장`);
+    }
+
     // 실이득 3줄 블록은 LLM 재량에 맡기지 않고 카드 원본 값 그대로 결정적으로 삽입
     finalized.content = buildCandidateBenefitBlock(card) + finalized.content;
     finalized.status = 'draft';
@@ -3936,18 +4008,111 @@ async function generateCandidatePost(idx) {
     card._genFilename = filename;
     card._genTitle = finalized.title;
     card._genState = 'draft';
+    card._genError = null;
     _pickedCandidates.set(idx, card);
-
     await markCandidateHandled(idx, '초안생성됨', filename);
-    await loadPosts();
     renderCandidates();
-    showToast('본문 생성 + draft 저장 완료. 즉시발행 또는 예약하세요.', 'success');
+    return true;
   } catch (e) {
-    console.error(e);
-    showToast('생성 실패: ' + e.message, 'error');
+    console.error(`[candidate ${idx}] 생성 실패:`, e);
+    card._genState = 'error';
+    card._genError = e.message;
+    _pickedCandidates.set(idx, card);
+    renderCandidates();
+    return false;
+  }
+}
+
+// 단일 카드 생성(트레이의 "본문 생성"/"재시도" 버튼) — 즉각적인 로딩 피드백을 위해
+// showLoading을 감싼다. 일괄 생성(generateAllPickedCandidates)은 이걸 쓰지 않고
+// _generateCandidateCore를 백그라운드로 직접 돌린다(전체 화면을 막지 않기 위해).
+async function generateCandidatePost(idx) {
+  showLoading(true);
+  try {
+    const ok = await _generateCandidateCore(idx);
+    if (ok) {
+      await loadPosts();
+      renderCandidates();
+      showToast('본문 생성 + draft 저장 완료. 즉시발행 또는 예약하세요.', 'success');
+    } else {
+      const card = _pickedCandidates.get(idx);
+      showToast('생성 실패: ' + (card && card._genError ? card._genError : ''), 'error');
+    }
   } finally {
     showLoading(false);
   }
+}
+
+// ── 일괄 생성(백그라운드, 동시 2건) ──────────────────────
+const CAND_BATCH_CONCURRENCY = 2;
+
+function updateBatchProgress(done, total, show) {
+  const box = document.getElementById('candBatchProgress');
+  const fill = document.getElementById('candBatchProgressFill');
+  const label = document.getElementById('candBatchProgressLabel');
+  if (!show) { box.style.display = 'none'; return; }
+  box.style.display = '';
+  fill.style.width = total > 0 ? `${Math.round((done / total) * 100)}%` : '0%';
+  label.textContent = `${total}개 중 ${done}개 완료`;
+}
+
+async function generateAllPickedCandidates() {
+  const targets = Array.from(_pickedCandidates.entries())
+    .filter(([, card]) => !card._genFilename && card._genState !== 'generating' && card._genState !== 'queued')
+    .map(([idx]) => idx);
+
+  if (targets.length === 0) {
+    showToast('일괄 생성할 카드가 없습니다 (이미 처리됐거나 진행 중)', 'warn');
+    return;
+  }
+
+  targets.forEach(idx => {
+    const card = _pickedCandidates.get(idx);
+    card._genState = 'queued';
+    card._genError = null;
+    _pickedCandidates.set(idx, card);
+  });
+  renderCandidates();
+  showToast(`${targets.length}건 일괄 생성 시작 (백그라운드, 화면을 계속 쓰셔도 됩니다)`, 'info');
+
+  const total = targets.length;
+  let done = 0;
+  document.getElementById('candGotoDraftsBtn').style.display = 'none';
+  updateBatchProgress(0, total, true);
+
+  let cursor = 0;
+  async function worker() {
+    while (cursor < targets.length) {
+      const idx = targets[cursor++];
+      await _generateCandidateCore(idx);
+      done++;
+      updateBatchProgress(done, total, true);
+    }
+  }
+  const workerCount = Math.min(CAND_BATCH_CONCURRENCY, targets.length);
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+
+  await loadPosts();
+  renderCandidates();
+
+  const failedCount = targets.filter(idx => {
+    const c = _pickedCandidates.get(idx);
+    return c && c._genState === 'error';
+  }).length;
+  const okCount = total - failedCount;
+  updateBatchProgress(done, total, true);
+  if (okCount > 0) document.getElementById('candGotoDraftsBtn').style.display = '';
+  showToast(
+    failedCount > 0
+      ? `일괄 생성 완료: ${okCount}/${total} 성공, ${failedCount}건 실패(재시도 가능)`
+      : `일괄 생성 완료: ${total}/${total} 성공`,
+    failedCount > 0 ? 'warn' : 'success'
+  );
+}
+
+function gotoDraftPosts() {
+  showView('posts', null);
+  setFilter('draft', document.getElementById('si-draft'));
 }
 
 async function publishCandidateNow(idx) {
@@ -3970,18 +4135,37 @@ function scheduleCandidatePost(idx) {
 }
 
 // ── 후보 카드 처리 상태를 candidates.json에 되써서, 다음 로드 때 같은 카드가 다시 픽되지 않게 한다 ──
+// 일괄 생성(동시 2건)이 candidates.json을 동시에 쓸 수 있어서, 쓰기 자체를 순차 큐로
+// 직렬화한다. 각 쓰기는 자기 차례가 됐을 때 원격에서 최신본을 다시 읽어(read-modify-write)
+// 다른 워커가 먼저 쓴 발행상태를 덮어쓰지 않게 한다.
+let _candidatesWriteQueue = Promise.resolve();
+
 async function markCandidateHandled(idx, statusLabel, filename) {
   if (!_candidatesData || !_candidatesData.cards[idx]) return;
+  // 로컬 미러도 즉시 갱신(카드 재렌더링이 바로 반영되게)
   _candidatesData.cards[idx].발행상태 = statusLabel;
   _candidatesData.cards[idx].발행파일 = filename;
-  try {
-    const content = JSON.stringify(_candidatesData, null, 2);
-    await ghPut(`${POSTS_PATH}/candidates.json`, content, _candidatesSha,
-      `chore: candidate 처리(${statusLabel}): ${_candidatesData.cards[idx].제목}`);
-  } catch (e) {
-    console.warn('candidates.json 되쓰기 실패 (글 저장 자체는 성공):', e);
-    showToast('글은 저장됐지만 candidates.json 상태 기록에 실패했습니다: ' + e.message, 'warn');
-  }
+  const cardTitle = _candidatesData.cards[idx].제목;
+
+  const run = async () => {
+    try {
+      const fresh = await ghGet(`${POSTS_PATH}/candidates.json`);
+      const freshRaw = decodeURIComponent(escape(atob(fresh.content.replace(/\n/g, ''))));
+      const freshData = JSON.parse(freshRaw);
+      if (freshData.cards[idx]) {
+        freshData.cards[idx].발행상태 = statusLabel;
+        freshData.cards[idx].발행파일 = filename;
+      }
+      const content = JSON.stringify(freshData, null, 2);
+      await ghPut(`${POSTS_PATH}/candidates.json`, content, fresh.sha,
+        `chore: candidate 처리(${statusLabel}): ${cardTitle}`);
+    } catch (e) {
+      console.warn('candidates.json 되쓰기 실패 (글 저장 자체는 성공):', e);
+      showToast('글은 저장됐지만 candidates.json 상태 기록에 실패했습니다: ' + e.message, 'warn');
+    }
+  };
+  _candidatesWriteQueue = _candidatesWriteQueue.then(run);
+  await _candidatesWriteQueue;
 }
 </script>
 </body>

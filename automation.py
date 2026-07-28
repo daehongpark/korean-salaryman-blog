@@ -4,6 +4,7 @@ import sys
 import json
 import time
 import base64
+import uuid
 import subprocess
 import requests
 from datetime import datetime
@@ -994,26 +995,13 @@ def _compose_thumbnail(base_img, title: str, category: str) -> "Image.Image":
     return canvas.convert("RGB")
 
 
-def get_hero_image(category: str, keyword: str, title: str) -> dict | None:
-    """
-    썸네일 이미지를 생성/저장하고 메타데이터를 반환합니다.
-    1) Unsplash 시도 → 2) Gemini 이미지 생성 폴백 → 3) 그라데이션 배경
-    
-    반환값:
-    {
-        "url":         "/posts/thumbnails/thumb_20260424_153000.png",
-        "alt":         "글 제목",
-        "credit":      "Unsplash 크레딧" 또는 "AI Generated",
-        "credit_link": "크레딧 링크",
-        "source":      "unsplash" | "gemini" | "gradient",
-    }
-    """
+def _build_hero_pil_image(category: str, keyword: str, title: str):
+    """썸네일 base 이미지 확보(Unsplash→Gemini→그라데이션 3단 폴백) + 텍스트 오버레이 합성까지.
+    디스크 저장은 하지 않는다 — get_hero_image(파일)과 build_hero_image_bytes(base64) 양쪽에서
+    공유하는 핵심 로직만 여기 둔다. 반환: (PIL.Image, credit_info dict) | None"""
     if not _ensure_pillow():
         print("   [썸네일] Pillow 설치 실패 → 이미지 생성 건너뜀")
         return None
-
-    # 저장 폴더 확보
-    THUMBNAILS_DIR.mkdir(parents=True, exist_ok=True)
 
     # 1. Unsplash 시도
     base_img, credit_info = _download_unsplash_image(category)
@@ -1035,6 +1023,31 @@ def get_hero_image(category: str, keyword: str, title: str) -> dict | None:
         print(f"   [썸네일] 합성 실패: {e}")
         return None
 
+    return final_img, credit_info
+
+
+def get_hero_image(category: str, keyword: str, title: str) -> dict | None:
+    """
+    썸네일 이미지를 생성해 posts/thumbnails/에 파일로 저장하고 메타데이터를 반환합니다.
+    (cron/automation.py 전용 — 로컬 디스크에 쓰고 이후 git commit으로 반영되는 경로에서만 쓴다.
+    Vercel 등 파일시스템이 휘발되는 환경은 build_hero_image_bytes()를 쓸 것.)
+
+    반환값:
+    {
+        "url":         "/posts/thumbnails/thumb_20260424_153000.png",
+        "alt":         "글 제목",
+        "credit":      "Unsplash 크레딧" 또는 "AI Generated",
+        "credit_link": "크레딧 링크",
+        "source":      "unsplash" | "gemini" | "gradient",
+    }
+    """
+    THUMBNAILS_DIR.mkdir(parents=True, exist_ok=True)
+
+    built = _build_hero_pil_image(category, keyword, title)
+    if built is None:
+        return None
+    final_img, credit_info = built
+
     # 저장
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename  = f"thumb_{timestamp}.png"
@@ -1054,6 +1067,39 @@ def get_hero_image(category: str, keyword: str, title: str) -> dict | None:
         "credit":      credit_info.get("credit", ""),
         "credit_link": credit_info.get("credit_link", ""),
         "source":      credit_info.get("source", ""),
+    }
+
+
+def build_hero_image_bytes(category: str, keyword: str, title: str) -> dict | None:
+    """get_hero_image와 동일한 합성 로직을 쓰되, 디스크에 쓰지 않고 PNG 바이트를 그대로 반환한다.
+    Vercel 서버리스처럼 파일시스템이 요청 간 휘발되는 환경(api/finalize-post.py)에서 사용 —
+    호출자가 png_bytes를 원격(GitHub Contents API 등)에 직접 커밋해야 meta['url']이 실제로 유효해진다.
+
+    반환값: {"png_bytes": bytes, "meta": {url, alt, credit, credit_link, source}} | None (전부 실패 시)
+    """
+    built = _build_hero_pil_image(category, keyword, title)
+    if built is None:
+        return None
+    final_img, credit_info = built
+
+    buf = io.BytesIO()
+    try:
+        final_img.save(buf, "PNG", optimize=True)
+    except Exception as e:
+        print(f"   [썸네일] PNG 인코딩 실패: {e}")
+        return None
+
+    filename = f"thumb_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}.png"
+    return {
+        "png_bytes": buf.getvalue(),
+        "filename": filename,
+        "meta": {
+            "url":         f"/posts/thumbnails/{filename}",
+            "alt":         title,
+            "credit":      credit_info.get("credit", ""),
+            "credit_link": credit_info.get("credit_link", ""),
+            "source":      credit_info.get("source", ""),
+        },
     }
 
 
@@ -1088,6 +1134,22 @@ def _fetch_unsplash_url(query: str) -> dict | None:
     except Exception as e:
         print(f"   [본문이미지] 가져오기 실패 ({query}): {e}")
         return None
+
+
+def estimate_body_image_count(raw_content: str) -> int:
+    """본문 '## ' 소제목 개수로 본문 이미지 몇 장이 적당한지 추정.
+    automation.py 자동생성 루프와 api/finalize-post.py(admin 생성 경로) 양쪽에서 공유."""
+    heading_count = sum(
+        1 for line in (raw_content or "").split("\n")
+        if line.strip().startswith("## ")
+    )
+    if heading_count <= 1:
+        return 0
+    if heading_count == 2:
+        return 1
+    if heading_count == 3:
+        return 2
+    return 3
 
 
 def get_body_images(category: str, count: int = 3) -> list:
@@ -2429,22 +2491,11 @@ def run_daily():
         hero_image = get_hero_image(item["category"], kw, title)
 
         raw_text = article.get("content", "")
-        heading_count = sum(
-            1 for line in raw_text.split("\n")
-            if line.strip().startswith("## ")
-        )
-        if heading_count <= 1:
-            target_img = 0
-        elif heading_count == 2:
-            target_img = 1
-        elif heading_count == 3:
-            target_img = 2
-        else:
-            target_img = 3
+        target_img = estimate_body_image_count(raw_text)
 
         body_images = []
         if target_img > 0:
-            print(f"   본문 이미지 {target_img}장 가져오는 중... (소제목 {heading_count}개 감지)")
+            print(f"   본문 이미지 {target_img}장 가져오는 중...")
             body_images = get_body_images(item["category"], target_img)
 
         # 저장 (랜덤 예약: 이번 슬롯 = success_count번째 / 총 target_count편)
