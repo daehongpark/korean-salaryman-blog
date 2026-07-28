@@ -374,6 +374,55 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
     padding: 10px 12px !important;
   }
 }
+
+/* ── 후보 큐 (Phase4) ───────────────────────────────── */
+.cand-summary-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.cand-summary-chip{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--text2);}
+.cand-summary-chip b{color:var(--navy);font-size:16px;font-family:'Noto Serif KR',serif;margin-right:4px;}
+.cand-summary-chip.deal b{color:var(--point);}
+.cand-group{margin-bottom:28px;}
+.cand-group-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.cand-group-title{font-size:14px;font-weight:700;color:var(--navy);letter-spacing:0.05em;}
+.cand-group-count{font-size:11px;font-weight:700;background:var(--bg2);color:var(--text3);padding:2px 8px;border-radius:10px;}
+.cand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+.cand-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;position:relative;transition:box-shadow 0.15s;}
+.cand-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.06);}
+.cand-card.picked{border-color:var(--point);box-shadow:0 0 0 2px var(--point-light);}
+.cand-card.handled{opacity:0.55;}
+.cand-card-title{font-size:14px;font-weight:700;color:var(--text1);line-height:1.45;}
+.cand-tag-row{display:flex;gap:6px;flex-wrap:wrap;}
+.cand-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--bg2);color:var(--text3);letter-spacing:0.03em;}
+.cand-tag.lane-deal{background:#fdeed6;color:var(--point);}
+.cand-tag.lane-policy{background:#e6edf7;color:var(--navy);}
+.cand-benefit-lines{font-size:12px;color:var(--text2);line-height:1.7;background:var(--bg);border-radius:8px;padding:10px 12px;}
+.cand-benefit-lines div{white-space:normal;word-break:keep-all;}
+.cand-elig-row{display:flex;align-items:flex-start;gap:6px;font-size:12px;}
+.cand-elig-badge{flex-shrink:0;font-weight:700;padding:2px 8px;border-radius:10px;}
+.cand-elig-badge.ok{background:var(--green-light);color:var(--green);}
+.cand-elig-badge.warn{background:var(--red-light);color:var(--red);}
+.cand-disqualifier{color:var(--text2);}
+.cand-disqualifier.warn{color:var(--red);font-weight:600;}
+.cand-meta-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3);}
+.cand-score{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--navy);}
+.cand-source-link{font-size:11px;color:var(--point);text-decoration:none;}
+.cand-source-link:hover{text-decoration:underline;}
+.cand-actions{display:flex;gap:8px;margin-top:4px;}
+.cand-pick-btn{flex:1;background:var(--navy);color:var(--white);border:none;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.cand-pick-btn:hover{background:var(--navy2);}
+.cand-pick-btn.picked{background:var(--point);}
+.cand-pick-btn:disabled{background:var(--bg2);color:var(--text3);cursor:not-allowed;}
+.cand-tray{position:sticky;top:56px;z-index:150;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);}
+.cand-tray-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.cand-tray-title{font-size:13px;font-weight:700;color:var(--navy);}
+.cand-tray-list{display:flex;flex-direction:column;gap:8px;}
+.cand-tray-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg);border-radius:8px;font-size:12px;flex-wrap:wrap;}
+.cand-tray-item-title{flex:1;min-width:160px;font-weight:600;color:var(--text1);}
+.cand-tray-status{font-size:11px;color:var(--text3);}
+.cand-tray-item button{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:inherit;}
+.cand-btn-gen{background:var(--navy);color:var(--white);}
+.cand-btn-pub{background:var(--green-light);color:var(--green);}
+.cand-btn-sched{background:#ede9fe;color:#6d28d9;}
+.cand-btn-remove{background:var(--red-light);color:var(--red);}
 </style>
 </head>
 <body>
@@ -444,6 +493,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         <div class="sidebar-item" id="si-adsense" onclick="showView('adsense',this)">
           <span class="si-icon">🎯</span> 에드센스 준비
           <span class="sidebar-count" id="cnt-adsense">—</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">발행구조</div>
+        <div class="sidebar-item" id="si-candidates" onclick="showView('candidates',this)">
+          <span class="si-icon">🗂️</span> 후보 큐
+          <span class="sidebar-count" id="cnt-candidates">0</span>
         </div>
       </div>
       <div class="sidebar-section">
@@ -660,6 +716,31 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
         </div>
 
       </div><!-- /view-adsense -->
+
+      <!-- ── 후보 큐 뷰 (Phase4) ── -->
+      <div id="view-candidates" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:8px;">CANDIDATE QUEUE · 후보 큐</div>
+            <h2 style="font-family:'Noto Serif KR',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px;">발행 후보 카드</h2>
+            <p style="font-size:13px;color:var(--text3);line-height:1.7;">posts/candidates.json의 오늘자 후보 카드. 픽한 카드만 본문 생성 → 발행/예약합니다.</p>
+          </div>
+          <button class="refresh-btn" onclick="loadCandidates()">🔄 새로고침</button>
+        </div>
+
+        <div class="cand-summary-bar" id="candSummaryBar"></div>
+
+        <div class="cand-tray" id="candTray" style="display:none;">
+          <div class="cand-tray-head">
+            <span class="cand-tray-title">✅ 선택됨 (<span id="candPickCount">0</span>)</span>
+            <button class="refresh-btn" style="padding:5px 10px;" onclick="clearPickedCandidates()">전체 해제</button>
+          </div>
+          <div class="cand-tray-list" id="candTrayList"></div>
+        </div>
+
+        <div id="candGroups"></div>
+        <div id="candEmpty" style="display:none;text-align:center;padding:60px 0;color:var(--text3);font-size:13px;">후보 카드가 없습니다. candidates.json을 확인하세요.</div>
+      </div><!-- /view-candidates -->
 
     </main>
   </div>
@@ -3047,10 +3128,13 @@ function showView(view, el) {
   document.getElementById('view-income').style.display  = view === 'income'  ? '' : 'none';
   const adsenseView = document.getElementById('view-adsense');
   if (adsenseView) adsenseView.style.display = view === 'adsense' ? '' : 'none';
+  const candView = document.getElementById('view-candidates');
+  if (candView) candView.style.display = view === 'candidates' ? '' : 'none';
   document.querySelectorAll('.sidebar-item').forEach(e => e.classList.remove('active'));
   if (el) el.classList.add('active');
   if (view === 'income') renderIncomeEditor();
   if (view === 'adsense') renderAdsenseChecklist();
+  if (view === 'candidates' && !_candidatesLoaded) loadCandidates();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -3577,6 +3661,328 @@ if (isLoggedIn) loadPosts();
     editor.addEventListener(evt, saveEditorRange);
   });
 })();
+
+// ═══════════════════════════════════════════════════════
+//  후보 큐 (Phase4) — posts/candidates.json 읽기·픽·발행 연결
+// ═══════════════════════════════════════════════════════
+let _candidatesData   = null;   // { date, cards: [...] } 원본
+let _candidatesSha    = null;
+let _candidatesLoaded = false;
+let _pickedCandidates = new Map(); // idx -> { ...card, _genFilename, _genTitle, _genState }
+
+const CAND_CATEGORY_LABEL = { trending: '🔥 실시간 이슈', money: '💰 정부 지원금/정책', realestate: '🏠 부동산/주거' };
+const CAND_CATEGORY_ORDER = ['trending', 'money', 'realestate'];
+
+async function loadCandidates() {
+  showLoading(true);
+  try {
+    const file = await ghGet(`${POSTS_PATH}/candidates.json`);
+    const raw = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
+    _candidatesData = JSON.parse(raw);
+    _candidatesSha = file.sha;
+  } catch (e) {
+    console.error(e);
+    _candidatesData = { date: '', cards: [] };
+    _candidatesSha = null;
+    if (e._status !== 404) showToast('후보 큐 로드 실패: ' + e.message, 'error');
+  } finally {
+    _candidatesLoaded = true;
+    _pickedCandidates.clear();
+    renderCandidates();
+    showLoading(false);
+  }
+}
+
+function candidateBenefitLinesHtml(c) {
+  const rows = [
+    ['실이득', c.실이득_얼마],
+    ['조건/자격', c.조건_소득자격],
+    ['신청법', c.신청법],
+  ].filter(([, v]) => v);
+  return rows.map(([label, v]) => `<div><b>${escHtml(label)}</b> — ${escHtml(v)}</div>`).join('');
+}
+
+function renderCandidates() {
+  const cards = (_candidatesData && _candidatesData.cards) || [];
+  const cntEl = document.getElementById('cnt-candidates');
+  if (cntEl) cntEl.textContent = cards.length;
+
+  // ── 요약 바 ──
+  const dealCount = cards.filter(c => c.레인 === '딜').length;
+  const byCat = {};
+  CAND_CATEGORY_ORDER.forEach(cat => byCat[cat] = cards.filter(c => c.카테고리 === cat).length);
+  document.getElementById('candSummaryBar').innerHTML = `
+    <div class="cand-summary-chip"><b>${cards.length}</b>전체 후보</div>
+    <div class="cand-summary-chip deal"><b>${dealCount}</b>딜 카드</div>
+    ${CAND_CATEGORY_ORDER.map(cat => `<div class="cand-summary-chip"><b>${byCat[cat]}</b>${CAND_CATEGORY_LABEL[cat]}</div>`).join('')}
+    ${_candidatesData && _candidatesData.date ? `<div class="cand-summary-chip" style="color:var(--text3);">기준일 ${escHtml(_candidatesData.date)}</div>` : ''}
+  `;
+
+  document.getElementById('candEmpty').style.display = cards.length === 0 ? '' : 'none';
+
+  const groupsEl = document.getElementById('candGroups');
+  groupsEl.innerHTML = CAND_CATEGORY_ORDER.map(cat => {
+    const catCards = cards
+      .map((c, idx) => ({ c, idx }))
+      .filter(({ c }) => c.카테고리 === cat);
+    if (catCards.length === 0) return '';
+    return `
+      <div class="cand-group">
+        <div class="cand-group-head">
+          <span class="cand-group-title">${CAND_CATEGORY_LABEL[cat] || cat}</span>
+          <span class="cand-group-count">${catCards.length}장</span>
+        </div>
+        <div class="cand-grid">
+          ${catCards.map(({ c, idx }) => renderCandidateCard(c, idx)).join('')}
+        </div>
+      </div>`;
+  }).join('');
+
+  renderPickedTray();
+}
+
+function renderCandidateCard(c, idx) {
+  const picked = _pickedCandidates.has(idx);
+  const handled = c.발행상태;
+  const eligOk = (c.적격 || '').startsWith('✅');
+  const laneClass = c.레인 === '딜' ? 'lane-deal' : 'lane-policy';
+  const sourceLink = c.출처URL ? `<a class="cand-source-link" href="${escHtml(c.출처URL)}" target="_blank" rel="noopener">출처 ↗</a>` : '<span style="color:var(--text3);">출처 없음</span>';
+
+  return `
+    <div class="cand-card ${picked ? 'picked' : ''} ${handled ? 'handled' : ''}">
+      <div class="cand-tag-row">
+        <span class="cand-tag ${laneClass}">${escHtml(c.레인 || '')}</span>
+        <span class="cand-tag">${escHtml(c.세그먼트 || '')}</span>
+      </div>
+      <div class="cand-card-title">${escHtml(c.제목 || '')}</div>
+      <div class="cand-benefit-lines">${candidateBenefitLinesHtml(c)}</div>
+      <div class="cand-elig-row">
+        <span class="cand-elig-badge ${eligOk ? 'ok' : 'warn'}">${escHtml(c.적격 || '')}</span>
+        <span class="cand-disqualifier ${eligOk ? '' : 'warn'}">${escHtml(c.탈락조건 || '')}</span>
+      </div>
+      <div class="cand-meta-row">
+        <span>${escHtml(c.마감 || '')} · ${escHtml(c.신선도근거 || '')}</span>
+        <span class="cand-score">${c.점수 != null ? c.점수.toFixed(2) : '—'}</span>
+      </div>
+      <div class="cand-meta-row">
+        ${sourceLink}
+      </div>
+      <div class="cand-actions">
+        ${handled
+          ? `<button class="cand-pick-btn" disabled>처리됨 · ${escHtml(handled)}</button>`
+          : `<button class="cand-pick-btn ${picked ? 'picked' : ''}" onclick="toggleCandidatePick(${idx})">${picked ? '✓ 픽됨' : '☆ 픽'}</button>`}
+      </div>
+    </div>`;
+}
+
+function toggleCandidatePick(idx) {
+  const card = _candidatesData.cards[idx];
+  if (!card) return;
+  if (_pickedCandidates.has(idx)) {
+    _pickedCandidates.delete(idx);
+  } else {
+    _pickedCandidates.set(idx, { ...card });
+  }
+  renderCandidates();
+}
+
+function removePickedCandidate(idx) {
+  _pickedCandidates.delete(idx);
+  renderCandidates();
+}
+
+function clearPickedCandidates() {
+  _pickedCandidates.clear();
+  renderCandidates();
+}
+
+function renderPickedTray() {
+  const tray = document.getElementById('candTray');
+  const list = document.getElementById('candTrayList');
+  document.getElementById('candPickCount').textContent = _pickedCandidates.size;
+
+  if (_pickedCandidates.size === 0) {
+    tray.style.display = 'none';
+    list.innerHTML = '';
+    return;
+  }
+  tray.style.display = '';
+  list.innerHTML = Array.from(_pickedCandidates.entries()).map(([idx, card]) => {
+    let statusHtml = '';
+    let actionsHtml = '';
+    if (card._genState === 'published') {
+      statusHtml = `<span class="cand-tray-status">✅ 발행됨</span>`;
+      actionsHtml = `<button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">닫기</button>`;
+    } else if (card._genFilename) {
+      statusHtml = `<span class="cand-tray-status">📝 초안 저장됨 (${escHtml(card._genFilename)})</span>`;
+      actionsHtml = `
+        <button class="cand-btn-pub" onclick="publishCandidateNow(${idx})">🚀 즉시발행</button>
+        <button class="cand-btn-sched" onclick="scheduleCandidatePost(${idx})">⏰ 예약</button>
+        <button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">닫기</button>`;
+    } else {
+      statusHtml = `<span class="cand-tray-status">대기 중</span>`;
+      actionsHtml = `
+        <button class="cand-btn-gen" onclick="generateCandidatePost(${idx})">✨ 본문 생성</button>
+        <button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">해제</button>`;
+    }
+    return `
+      <div class="cand-tray-item">
+        <span class="cand-tray-item-title">${escHtml(card.제목 || '')}</span>
+        ${statusHtml}
+        ${actionsHtml}
+      </div>`;
+  }).join('');
+}
+
+// ── 후보 카드 → 본문 생성 (naver_transform과 동일한 generate → finalize 2단계 재사용) ──
+function parseGeneratedJson(text) {
+  let cleanText = (text || '').trim().replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+  const m = cleanText.match(/\{[\s\S]*\}/);
+  if (m) cleanText = m[0];
+  try {
+    return JSON.parse(cleanText);
+  } catch (e1) {
+    const repaired = repairGeminiJson(cleanText);
+    try {
+      return JSON.parse(repaired);
+    } catch (e2) {
+      const manual = extractFieldsManually(cleanText);
+      if (!manual || !manual.title || !manual.content) {
+        throw new Error('JSON 파싱 실패. 다시 시도해주세요.');
+      }
+      return manual;
+    }
+  }
+}
+
+function buildCandidateContext(card) {
+  return [
+    `이 글은 아래 후보 카드 정보를 근거로 작성합니다. 카드에 적힌 금액·조건·마감일 등 사실관계는`,
+    `임의로 바꾸거나 과장하지 말고 본문에 정확히 반영하세요. 불확실한 부분("확인필요" 등)은`,
+    `추측해서 채우지 말고 "확인이 필요하다"는 식으로 정직하게 안내하세요.`,
+    ``,
+    `- 실이득: ${card.실이득_얼마 || '확인필요'}`,
+    `- 조건/자격: ${card.조건_소득자격 || '확인필요'}`,
+    `- 신청법: ${card.신청법 || '확인필요'}`,
+    `- 적격 판정: ${card.적격 || ''} (${card.탈락조건 || ''})`,
+    `- 마감: ${card.마감 || '확인필요'}`,
+    `- 출처: ${card.출처URL || '확인필요'}`,
+  ].join('\n');
+}
+
+function buildCandidateBenefitBlock(card) {
+  const eligClass = (card.적격 || '').startsWith('✅') ? '#2d6a4f' : '#c0392b';
+  const src = card.출처URL ? `<div style="margin-top:8px;"><a href="${escHtml(card.출처URL)}" target="_blank" rel="noopener" style="color:#c17f3e;font-size:12px;">출처 확인하기 ↗</a></div>` : '';
+  return `
+<div class="candidate-benefit-box" style="background:#f5ead8;border-left:4px solid #c17f3e;border-radius:10px;padding:18px 20px;margin:0 0 28px 0;">
+  <div style="font-weight:700;color:#1a2640;margin-bottom:10px;font-size:15px;">📌 핵심만 3줄 요약</div>
+  <div style="margin:4px 0;font-size:14px;color:#1a1a1a;"><b>실이득</b> — ${escHtml(card.실이득_얼마 || '확인필요')}</div>
+  <div style="margin:4px 0;font-size:14px;color:#1a1a1a;"><b>조건/자격</b> — ${escHtml(card.조건_소득자격 || '확인필요')}</div>
+  <div style="margin:4px 0;font-size:14px;color:#1a1a1a;"><b>신청법</b> — ${escHtml(card.신청법 || '확인필요')}</div>
+  <div style="margin-top:10px;font-size:12px;color:${eligClass};font-weight:600;">${escHtml(card.적격 || '')} ${escHtml(card.탈락조건 || '')}</div>
+  <div style="font-size:12px;color:#444;margin-top:2px;">마감: ${escHtml(card.마감 || '확인필요')}</div>
+  ${src}
+</div>`;
+}
+
+async function generateCandidatePost(idx) {
+  const card = _pickedCandidates.get(idx);
+  if (!card) return;
+
+  showLoading(true);
+  try {
+    const genRes = await fetch('/api/generate-post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ keyword: card.제목, category: card.카테고리, context: buildCandidateContext(card) })
+    });
+    if (!genRes.ok) {
+      const err = await genRes.json().catch(() => ({}));
+      throw new Error(err.error || err.detail || `HTTP ${genRes.status}`);
+    }
+    const genData = await genRes.json();
+    const parsed = parseGeneratedJson(genData.text || '');
+    parsed.category = parsed.category || card.카테고리;
+    parsed.source = 'candidate_queue';
+    parsed.keyword = card.제목;
+
+    const finRes = await fetch('/api/finalize-post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ article: parsed })
+    });
+    if (!finRes.ok) {
+      const err = await finRes.json().catch(() => ({}));
+      throw new Error('finalize 실패: ' + (err.error || err.detail || `HTTP ${finRes.status}`));
+    }
+    const finData = await finRes.json();
+    const finalized = finData.article;
+    if (!finalized || !finalized.title || !finalized.content) {
+      throw new Error('finalize 응답에 필수 필드 없음');
+    }
+
+    // 실이득 3줄 블록은 LLM 재량에 맡기지 않고 카드 원본 값 그대로 결정적으로 삽입
+    finalized.content = buildCandidateBenefitBlock(card) + finalized.content;
+    finalized.status = 'draft';
+    finalized.candidate_source_url = card.출처URL || '';
+
+    const now = new Date();
+    const ts = now.toISOString().replace(/[-:]/g, '').replace(/\..+/, '').replace('T', '_').slice(0, 15);
+    const filename = `post_${ts.slice(0, 8)}_${ts.slice(9, 15)}.json`;
+
+    await ghPut(`${POSTS_PATH}/${filename}`, JSON.stringify(finalized, null, 2), null, `feat: candidate queue: ${finalized.title}`);
+    await syncManifest('upsert', filename, finalized);
+
+    card._genFilename = filename;
+    card._genTitle = finalized.title;
+    card._genState = 'draft';
+    _pickedCandidates.set(idx, card);
+
+    await markCandidateHandled(idx, '초안생성됨', filename);
+    await loadPosts();
+    renderCandidates();
+    showToast('본문 생성 + draft 저장 완료. 즉시발행 또는 예약하세요.', 'success');
+  } catch (e) {
+    console.error(e);
+    showToast('생성 실패: ' + e.message, 'error');
+  } finally {
+    showLoading(false);
+  }
+}
+
+async function publishCandidateNow(idx) {
+  const card = _pickedCandidates.get(idx);
+  if (!card || !card._genFilename) return;
+  await toggleStatus(card._genFilename, 'published');
+  card._genState = 'published';
+  _pickedCandidates.set(idx, card);
+  await markCandidateHandled(idx, '발행됨', card._genFilename);
+  renderCandidates();
+}
+
+function scheduleCandidatePost(idx) {
+  const card = _pickedCandidates.get(idx);
+  if (!card || !card._genFilename) return;
+  // 예약 확정은 기존 scheduleModal/confirmSchedule 그대로 재사용.
+  // candidates.json의 발행상태는 즉시발행 경로만 확정적으로 갱신하고, 예약 완료 여부는
+  // 다음 새로고침 시 글 관리 탭(예약 발행)에서 별도 확인한다.
+  openScheduleModal(card._genFilename, card._genTitle || card.제목);
+}
+
+// ── 후보 카드 처리 상태를 candidates.json에 되써서, 다음 로드 때 같은 카드가 다시 픽되지 않게 한다 ──
+async function markCandidateHandled(idx, statusLabel, filename) {
+  if (!_candidatesData || !_candidatesData.cards[idx]) return;
+  _candidatesData.cards[idx].발행상태 = statusLabel;
+  _candidatesData.cards[idx].발행파일 = filename;
+  try {
+    const content = JSON.stringify(_candidatesData, null, 2);
+    await ghPut(`${POSTS_PATH}/candidates.json`, content, _candidatesSha,
+      `chore: candidate 처리(${statusLabel}): ${_candidatesData.cards[idx].제목}`);
+  } catch (e) {
+    console.warn('candidates.json 되쓰기 실패 (글 저장 자체는 성공):', e);
+    showToast('글은 저장됐지만 candidates.json 상태 기록에 실패했습니다: ' + e.message, 'warn');
+  }
+}
 </script>
 </body>
 </html>

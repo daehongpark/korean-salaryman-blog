@@ -503,6 +503,12 @@ def score_gov24_candidate(item: dict, gate: dict, is_new: bool, fields: dict,
             timeliness += (1 - days_since / 365) * 0.5  # 최대 +0.5, 미세조정용
         timeliness = round(timeliness, 2)
 
+    # Phase4 (박대홍 지시 2026-07-28): 저소득 전용(JA0201/JA0202만 해당, allow_low_income
+    # 완화로만 풀에 들어올 수 있는 항목)은 대상이 아닌 다수 독자에게는 시의성이 아무리 높아도
+    # 카드 최상단에 노출되면 안 된다. 완전 제외는 아니고 시의성 가점만 눌러서 정렬 후순위로 보낸다.
+    if gate["income"]["tier"] == "low_only":
+        timeliness = min(timeliness, 1.0)
+
     benefit_score = _benefit_score_generic(fields.get("실이득_얼마", ""))
     eligibility_score = {0: 5.0, 1: 3.0}.get(len(restrictions), 1.5)
 
@@ -849,7 +855,7 @@ def run_pipeline(verbose: bool = True) -> dict:
     for cat, need in ALLOCATION.items():
         if len(pool[cat]) < need:
             shortfall = need - len(pool[cat])
-            evergreen[cat].sort(key=lambda e: e["item"].get("조회수", 0), reverse=True)
+            evergreen[cat].sort(key=lambda e: e["item"].get("조회수") or 0, reverse=True)
             backfill = evergreen[cat][:shortfall]
             for e in backfill:
                 e["evergreen_fill"] = True
@@ -867,7 +873,7 @@ def run_pipeline(verbose: bool = True) -> dict:
                 continue
             run_seen_titles.add(title)
             survivors.append(e)
-        survivors.sort(key=lambda e: (e["evergreen_fill"], -e["item"].get("조회수", 0)))
+        survivors.sort(key=lambda e: (e["evergreen_fill"], -(e["item"].get("조회수") or 0)))
         batch = survivors[:10]
         fields_by_idx = gemini_enrich_gov24_batch([e["item"] for e in batch])
         for i, e in enumerate(batch):
