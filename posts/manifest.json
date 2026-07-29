@@ -487,10 +487,10 @@
       "ETF 투자"
     ],
     "created_at": "2026-07-29T07:41:17.152578",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-29T10:24:14.746Z",
-    "published_at": null,
+    "published_at": "2026-07-29T10:59:38.827Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260728_224114.png",
     "has_faq": true,
