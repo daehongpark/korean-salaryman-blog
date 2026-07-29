@@ -408,10 +408,10 @@
       "부업"
     ],
     "created_at": "2026-07-29T07:36:12.983572",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-29T01:05:55.435Z",
-    "published_at": null,
+    "published_at": "2026-07-29T01:45:25.287Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260728_223609.png",
     "has_faq": false,
