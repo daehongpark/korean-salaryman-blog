@@ -381,10 +381,10 @@
       "제미니"
     ],
     "created_at": "2026-07-29T07:38:41.695293",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-29T04:29:13.995Z",
-    "published_at": null,
+    "published_at": "2026-07-29T05:11:37.778Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260728_223839.png",
     "has_faq": true,
