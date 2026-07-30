@@ -3915,6 +3915,72 @@ function parseGeneratedJson(text) {
   }
 }
 
+// ── 픽 경로 생성 재시도 헬퍼 ─────────────────────────
+// 예전엔 /api/generate-post·finalize-post가 429(레이트리밋)/일시적 5xx/JSON 파싱 실패를
+// 내도 그 자리에서 바로 실패 처리해서, 사용자가 버튼을 두세 번 눌러야 했다. _ghRetry와
+// 같은 지수 백오프 패턴으로 재시도한다. 4xx(429 제외)는 재시도해도 소용없는 요청 자체의
+// 오류라 즉시 던진다.
+async function _apiRetry(fn, opts = {}) {
+  const maxAttempts = opts.maxAttempts || 3;
+  const baseDelay = opts.baseDelay || 2000;
+  let lastErr;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await fn();
+    } catch (e) {
+      lastErr = e;
+      const status = e._status || 0;
+      const isClientError = status >= 400 && status < 500 && status !== 429;
+      if (isClientError || attempt === maxAttempts) {
+        throw new Error(`${attempt}회 시도 후 실패 (사유: ${e.message})`);
+      }
+      const wait = Math.min(baseDelay * Math.pow(2, attempt - 1), 15000) + Math.random() * 500;
+      console.warn(`[apiRetry] ${attempt}/${maxAttempts} 실패 (${e.message}) → ${Math.round(wait)}ms 후 재시도`);
+      await new Promise(r => setTimeout(r, wait));
+    }
+  }
+  throw lastErr;
+}
+
+async function _fetchGeneratedPost(payload) {
+  const res = await fetch('/api/generate-post', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    const e = new Error(err.error || err.detail || `HTTP ${res.status}`);
+    e._status = res.status;
+    throw e;
+  }
+  return res.json();
+}
+
+async function _fetchFinalizePost(article) {
+  const res = await fetch('/api/finalize-post', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ article })
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    const e = new Error('finalize 실패: ' + (err.error || err.detail || `HTTP ${res.status}`));
+    e._status = res.status;
+    throw e;
+  }
+  return res.json();
+}
+
+// generate-post 호출 + JSON 파싱을 하나의 재시도 단위로 묶는다 — 파싱이 실패하면 같은
+// 깨진 텍스트를 다시 파싱해봤자 소용없으므로, 재시도할 때마다 Gemini를 처음부터 다시 부른다.
+async function _generatePostJsonWithRetry(payload) {
+  return _apiRetry(async () => {
+    const genData = await _fetchGeneratedPost(payload);
+    return parseGeneratedJson(genData.text || '');
+  });
+}
+
 function buildCandidateContext(card) {
   return [
     `이 글은 아래 후보 카드 정보를 근거로 작성합니다. 카드에 적힌 금액·조건·마감일 등 사실관계는`,
@@ -3958,31 +4024,14 @@ async function _generateCandidateCore(idx) {
   renderCandidates();
 
   try {
-    const genRes = await fetch('/api/generate-post', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ keyword: card.제목, category: card.카테고리, context: buildCandidateContext(card) })
+    const parsed = await _generatePostJsonWithRetry({
+      keyword: card.제목, category: card.카테고리, context: buildCandidateContext(card)
     });
-    if (!genRes.ok) {
-      const err = await genRes.json().catch(() => ({}));
-      throw new Error(err.error || err.detail || `HTTP ${genRes.status}`);
-    }
-    const genData = await genRes.json();
-    const parsed = parseGeneratedJson(genData.text || '');
     parsed.category = parsed.category || card.카테고리;
     parsed.source = 'candidate_queue';
     parsed.keyword = card.제목;
 
-    const finRes = await fetch('/api/finalize-post', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ article: parsed })
-    });
-    if (!finRes.ok) {
-      const err = await finRes.json().catch(() => ({}));
-      throw new Error('finalize 실패: ' + (err.error || err.detail || `HTTP ${finRes.status}`));
-    }
-    const finData = await finRes.json();
+    const finData = await _apiRetry(() => _fetchFinalizePost(parsed), { maxAttempts: 2 });
     const finalized = finData.article;
     if (!finalized || !finalized.title || !finalized.content) {
       throw new Error('finalize 응답에 필수 필드 없음');
@@ -4043,8 +4092,10 @@ async function generateCandidatePost(idx) {
   }
 }
 
-// ── 일괄 생성(백그라운드, 동시 2건) ──────────────────────
-const CAND_BATCH_CONCURRENCY = 2;
+// ── 일괄 생성(백그라운드, 동시 1건) ──────────────────────
+// 동시 2건은 Gemini 레이트리밋(429)을 유발해 실패/재시도를 늘렸다. 재시도 로직을 넣었어도
+// 애초에 레이트리밋을 덜 건드리는 게 더 안정적이라 속도보다 안정성을 우선해 1로 낮춘다.
+const CAND_BATCH_CONCURRENCY = 1;
 
 function updateBatchProgress(done, total, show) {
   const box = document.getElementById('candBatchProgress');
@@ -4135,7 +4186,8 @@ function scheduleCandidatePost(idx) {
 }
 
 // ── 후보 카드 처리 상태를 candidates.json에 되써서, 다음 로드 때 같은 카드가 다시 픽되지 않게 한다 ──
-// 일괄 생성(동시 2건)이 candidates.json을 동시에 쓸 수 있어서, 쓰기 자체를 순차 큐로
+// 일괄 생성 중 개별 카드 재시도 버튼을 같이 누르는 등으로 candidates.json을 동시에 쓸 수
+// 있어서, 쓰기 자체를 순차 큐로
 // 직렬화한다. 각 쓰기는 자기 차례가 됐을 때 원격에서 최신본을 다시 읽어(read-modify-write)
 // 다른 워커가 먼저 쓴 발행상태를 덮어쓰지 않게 한다.
 let _candidatesWriteQueue = Promise.resolve();

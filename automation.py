@@ -692,9 +692,17 @@ def _ensure_pillow():
 
 
 def _find_korean_font():
-    """시스템에서 한글 폰트를 찾아 경로를 반환."""
-    # Windows, Linux, Mac 순서대로 탐색
+    """한글 폰트 경로를 반환.
+
+    Vercel 서버리스(픽 경로/네이버 변형/직접 글 요청이 타는 build_hero_image_bytes)는
+    리눅스 컨테이너지만 시스템에 한글 폰트가 전혀 설치돼 있지 않다 — 예전엔 시스템 경로만
+    찾다가 여기서 전부 실패해 load_default()로 조용히 폴백했고, 그 결과 가운데 제목(항상
+    한글)이 □로 깨졌다. repo에 폰트를 번들해서 모든 환경(로컬 Windows, GitHub Actions,
+    Vercel)에서 동일한 폰트로 렌더링되게 한다 — 시스템 폰트는 그 다음 폴백으로만 남긴다.
+    """
+    repo_font = Path(__file__).parent / "assets" / "fonts" / "NanumGothic-Bold.ttf"
     candidates = [
+        str(repo_font),
         # Windows
         "C:/Windows/Fonts/malgun.ttf",       # 맑은 고딕
         "C:/Windows/Fonts/malgunbd.ttf",     # 맑은 고딕 Bold
@@ -713,6 +721,7 @@ def _find_korean_font():
     for path in candidates:
         if Path(path).exists():
             return path
+    print("   [경고] 번들 폰트(assets/fonts/NanumGothic-Bold.ttf)도, 시스템 폰트도 찾을 수 없음")
     return None
 
 
@@ -1690,13 +1699,33 @@ def _build_updated_badge(iso_date: str) -> str:
     )
 
 
+def _is_blank_cell(v) -> bool:
+    """표 셀 값이 사실상 빈칸인지 판정 (None/공백/자리표시자)."""
+    s = "" if v is None else str(v).strip()
+    return s == "" or s in ("확인필요", "-", "N/A", "n/a", "없음")
+
+
 def _build_comparison_html(table) -> str:
-    """비교표 HTML. {headers: [...], rows: [[...], [...]]} 구조."""
+    """비교표 HTML. {headers: [...], rows: [[...], [...]]} 구조.
+    데이터가 실제로 채워진 행이 하나도 없으면(전부 빈칸) 표 자체를 넣지 않는다 —
+    흰 빈칸 표가 발행되는 것을 방지."""
     if not table or not isinstance(table, dict):
         return ""
     headers = table.get("headers") or []
     rows    = table.get("rows") or []
     if not headers or not rows:
+        return ""
+    if all(_is_blank_cell(h) for h in headers):
+        return ""
+
+    rows = [row for row in rows if isinstance(row, list) and row]
+    if not rows:
+        return ""
+
+    # 첫 칸(항목명)은 채워져 있어도 비교값 칸이 전부 빈칸/자리표시자면 표에 담을 실제
+    # 데이터가 없다는 뜻 — 흰 빈칸투성이 표를 발행하느니 표 블록 자체를 넣지 않는다.
+    value_cells = [c for row in rows for c in row[1:]]
+    if value_cells and all(_is_blank_cell(c) for c in value_cells):
         return ""
 
     th_html = "".join(
@@ -1875,6 +1904,10 @@ def _build_dynamic_chart_html(category: str, content: str) -> str:
     if not chart_type or len(data) < 2:
         return ""
 
+    # Chart.js는 <script defer>로 로드되어 문서 파싱 완료 후에야 전역 Chart가 생긴다.
+    # 이 인라인 스크립트는 본문 파싱 중(즉시) 실행되므로 최초 실행 시점엔 항상 Chart가
+    # undefined다 — 예전엔 그 자리에서 그냥 return해버려 캔버스가 영원히 빈 채로 남았다
+    # (_build_chart_html의 setTimeout 재시도 패턴과 동일하게 맞춘다).
     chart_html = (
         '<div class="post-chart-wrapper" style="margin:24px 0;padding:16px;background:#fafbfc;border-radius:8px;">'
         f'<h3 style="margin-top:0;font-size:16px;color:#1a2640;">📊 {title}</h3>'
@@ -1882,9 +1915,8 @@ def _build_dynamic_chart_html(category: str, content: str) -> str:
         f'<canvas id="{chart_id}"></canvas>'
         '</div></div>'
         '<script>(function(){'
-        'if (typeof Chart === "undefined") return;'
-        f'var ctx = document.getElementById("{chart_id}");'
-        'if (!ctx) return;'
+        f'function init(){{if(typeof Chart==="undefined"){{setTimeout(init,100);return;}}'
+        f'var ctx=document.getElementById("{chart_id}");if(!ctx)return;'
         f'new Chart(ctx, {{type:"{chart_type}",'
         f'data:{{labels:{json.dumps(labels, ensure_ascii=False)},'
         f'datasets:[{{label:"{title}",data:{json.dumps(data)},'
@@ -1892,7 +1924,8 @@ def _build_dynamic_chart_html(category: str, content: str) -> str:
         'borderColor:"#1a2640",borderWidth:1}]},'
         'options:{responsive:true,maintainAspectRatio:false,'
         'plugins:{legend:{display:false}},'
-        'scales:{y:{beginAtZero:true}}}});'
+        'scales:{y:{beginAtZero:true}}}});}'
+        'if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}'
         '})();</script>'
     )
     return chart_html

@@ -45,6 +45,8 @@ ${original_text}
     tldr: ["3줄 요약 첫번째", "두번째", "세번째"],
     target_audience: "이 글은 ___을 위한 글입니다",
     content: "도입부 + ## H2 4~5개 본문",
+    comparison_table: { headers: ["항목", "A", "B"], rows: [["조건", "..", ".."]] },
+    steps: [{ title: "1단계 제목", desc: "한 문장 부연" }],
     summary: "2문장 핵심 요약 (각 70자 이내)",
     tags: [keyword, category, "직장인"],
     faq: [
@@ -82,7 +84,9 @@ ${original_text}
     `[글 분량] 본문 ${template.common_rules.content_length}자 (공백 제외)`,
     ``,
     `[출력 형식 - 반드시 아래 JSON만 출력 (코드블록/설명/인사말 금지)]`,
-    JSON.stringify(outputSchema, null, 2)
+    JSON.stringify(outputSchema, null, 2),
+    ``,
+    `* comparison_table과 steps는 둘 다 채워도 되고, 하나만 의미 있으면 다른 하나는 빈 객체/빈 배열로 두어도 됩니다.`
   ].join('\n');
 }
 
