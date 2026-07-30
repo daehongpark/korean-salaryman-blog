@@ -287,10 +287,10 @@
       "GitHub Copilot"
     ],
     "created_at": "2026-07-30T07:37:40.577845",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-30T06:20:15.446Z",
-    "published_at": null,
+    "published_at": "2026-07-30T07:27:39.187Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260729_223737.png",
     "has_faq": true,
