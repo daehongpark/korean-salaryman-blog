@@ -27,7 +27,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 81.0,
+    "seo_score": 81,
     "monthly_search": 10
   },
   {
@@ -54,7 +54,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -128,10 +128,10 @@
       "ETF 추천"
     ],
     "created_at": "2026-07-31T07:34:37.024112",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-07-31T00:30:29.223Z",
-    "published_at": null,
+    "published_at": "2026-07-31T02:31:11.651Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260730_223433.png",
     "has_faq": true,
