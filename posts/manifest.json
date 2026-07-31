@@ -385,7 +385,8 @@
     "candidate_source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPazFCZ2w3cnVKZHl3OEFPdDdDbEIxSDk3QlF5RHU5UmVQaHJpWWFXTmphTDdMU3ZmS3ptRGVPSGd2UDNzQ2g1TGNPWjBDQ2hlbjg2c050TVFwd0hWRUJmZ3ZFWmkyYUJwanN2U3prbU9hWjFGQWxOdmxuM1dnaFZSbWJOYXU2cl80MWo2Q1hraTI?oc=5",
     "filename": "post_20260731_060139.json",
     "scheduled_at": "2026-07-31T12:30:00.000Z",
-    "published_at": "2026-07-31T13:11:13.932Z"
+    "published_at": "2026-07-31T13:11:13.932Z",
+    "slug": "코레일SR-통합-KTX-20-할인-기차-자주-타면-주목하세요"
   },
   {
     "filename": "post_20260730_223948.json",
@@ -416,7 +417,8 @@
     "has_steps": true,
     "has_references": true,
     "seo_score": 81,
-    "monthly_search": 10
+    "monthly_search": 10,
+    "slug": "AI-음성-받아쓰기-도구-비교-직장인이라면-이것부터-확인하세요"
   },
   {
     "filename": "post_20260730_223827.json",
