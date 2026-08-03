@@ -1351,13 +1351,9 @@ def build_prompt(category: str, keyword: str, seo_meta: dict | None = None, tren
         "5. EEAT: 1인칭 경험으로 경험성, 정확한 정보로 신뢰성.\n"
     )
     # ── 콘텐츠 각도 가드 (박대홍 피드백 — 입문 설명글 금지) ──
-    angle_guard_block = (
-        "\n[콘텐츠 각도 — 반드시 준수]\n"
-        "1. 입문자용 개념 설명 글 금지. 독자는 이미 기본을 아는 직장인이다.\n"
-        "2. 개념 정의로 글을 시작하지 말 것. '~란 무엇인가', '~가 뭔가요'식 섹션 금지.\n"
-        "3. 비교(A vs B), 큐레이션(용도별 추천), 최신 동향, 실전 전략 각도를 우선한다.\n"
-        "4. '기초', '입문', '처음 시작' 같은 초보 프레임 대신, 바로 실전·선택·전략으로 들어갈 것.\n"
-    )
+    # 단일 진실 소스: prompt_template.json["angle_guard"]. 픽 경로(api/generate-post.js)도
+    # 같은 값을 읽어서 두 경로의 가드가 어긋나지 않게 한다.
+    angle_guard_block = T.get("angle_guard", "")
 
     # 자료조사 블록은 본문 작성 지시 앞에 prepend (가장 먼저 참고하도록)
     final_prompt = research_block + rendered if research_block else rendered

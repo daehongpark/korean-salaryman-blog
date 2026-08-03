@@ -10,11 +10,36 @@ async function loadTemplate() {
   return _template;
 }
 
+// automation.py의 "최근 5편 같은 카테고리 format 회피" 로직과 동일한 기준(단일 진실 소스는
+// prompt_template.json의 category_intents[category].format_pool). 픽 경로는 이 로테이션이
+// 없어서 같은 카테고리면 매번 정확히 같은 format_directive를 받아 골격이 획일화됐었다.
+async function pickFormat(category, categoryIntent) {
+  const pool = categoryIntent.format_pool || [categoryIntent.primary_format || 'guide'];
+  try {
+    const manifestPath = path.join(process.cwd(), 'posts', 'manifest.json');
+    const raw = await fs.readFile(manifestPath, 'utf-8');
+    const manifest = JSON.parse(raw);
+    const sameCat = manifest.filter((p) => p.category === category).slice(0, 5);
+    const recentFormats = new Set();
+    for (const p of sameCat) {
+      if (p.has_steps && !p.has_comparison) recentFormats.add('step_by_step');
+      else if (p.has_comparison && !p.has_steps) recentFormats.add('comparison');
+    }
+    const available = pool.filter((f) => !recentFormats.has(f));
+    const choices = available.length ? available : pool;
+    return choices[Math.floor(Math.random() * choices.length)];
+  } catch (e) {
+    // manifest를 못 읽어도(로컬/최초 배포 등) 생성 자체는 막지 않는다.
+    return categoryIntent.primary_format || pool[0];
+  }
+}
+
 function buildPrompt(template, params) {
-  const { keyword, category, context, mode, original_text } = params;
+  const { keyword, category, context, mode, original_text, primaryFormat } = params;
   const today = new Date().toISOString().slice(0, 10);
   const categoryIntent = template.category_intents[category] || template.category_intents.trending;
-  const formatDirective = template.format_directives[categoryIntent.primary_format] || template.format_directives.guide;
+  const chosenFormat = primaryFormat || categoryIntent.primary_format;
+  const formatDirective = template.format_directives[chosenFormat] || template.format_directives.guide;
 
   const contextBlock = context ? `\n[박대홍님이 추가로 지시한 글의 방향]\n${context}\n` : '';
 
@@ -42,7 +67,7 @@ ${original_text}
     title: "제목 (28~38자)",
     category: category,
     keyword: keyword,
-    tldr: ["3줄 요약 첫번째", "두번째", "세번째"],
+    tldr: ["핵심 답변 1", "핵심 답변 2"],
     target_audience: "이 글은 ___을 위한 글입니다",
     content: "도입부 + ## H2 4~5개 본문",
     comparison_table: { headers: ["항목", "A", "B"], rows: [["조건", "..", ".."]] },
@@ -51,10 +76,7 @@ ${original_text}
     tags: [keyword, category, "직장인"],
     faq: [
       { q: "질문1", a: "답변1" },
-      { q: "질문2", a: "답변2" },
-      { q: "질문3", a: "답변3" },
-      { q: "질문4", a: "답변4" },
-      { q: "질문5", a: "답변5" }
+      { q: "질문2", a: "답변2" }
     ],
     references: [{ label: "공식 사이트", url: "https://..." }],
     chart: {
@@ -86,7 +108,8 @@ ${original_text}
     `[출력 형식 - 반드시 아래 JSON만 출력 (코드블록/설명/인사말 금지)]`,
     JSON.stringify(outputSchema, null, 2),
     ``,
-    `* comparison_table과 steps는 둘 다 채워도 되고, 하나만 의미 있으면 다른 하나는 빈 객체/빈 배열로 두어도 됩니다.`
+    `* comparison_table과 steps는 둘 다 채워도 되고, 하나만 의미 있으면 다른 하나는 빈 객체/빈 배열로 두어도 됩니다.`,
+    template.angle_guard || ''
   ].join('\n');
 }
 
@@ -117,12 +140,15 @@ export default async function handler(req, res) {
     const template = await loadTemplate();
     // naver_transform 모드에서 keyword 미지정시 category로 폴백 (스키마 일관성 유지)
     const effectiveKeyword = keyword || category;
+    const categoryIntent = template.category_intents[category] || template.category_intents.trending;
+    const primaryFormat = await pickFormat(category, categoryIntent);
     const prompt = buildPrompt(template, {
       keyword: effectiveKeyword,
       category,
       context,
       mode,
-      original_text
+      original_text,
+      primaryFormat
     });
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
