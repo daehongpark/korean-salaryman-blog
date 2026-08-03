@@ -1,0 +1,18 @@
+# 배포 전체(정적 페이지 + 함수)에서 제외해도 안전한 것만 여기 둔다.
+# posts/, p/ 는 여기서 절대 제외하지 않는다 — 사이트가 실제로 서빙하는
+# 정적 콘텐츠(글 JSON/이미지/썸네일, 사전 렌더링된 /p/*.html)라서
+# .vercelignore로 빼면 라이브 사이트가 깨진다. finalize-post.py 함수
+# 번들에서만 빼려면 vercel.json의 functions.*.excludeFiles를 쓴다.
+
+__pycache__/
+*.py[cod]
+
+# 아무 곳에서도 링크되지 않는 레거시 페이지
+_archive_legacy/
+
+# 문서/GitHub Actions 설정 — 배포물에 포함될 필요 없음
+*.md
+.github/
+
+# 일회성 점검 스크립트
+_env_check.py

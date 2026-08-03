@@ -1,0 +1,16 @@
+# ────────────────────────────────────────
+# api/finalize-post.py 전용 의존성 (Vercel Python 함수)
+#
+# 루트 requirements.txt와 별도로 관리한다 — 이 함수는 automation.py의
+# finalize_article 경로만 타므로 트렌드 크롤러(pandas/pytrends/lxml/
+# beautifulsoup4) 등 무거운 패키지는 필요 없다. 그 패키지들이 227MB 중
+# 대부분을 차지해 Vercel 서버리스 함수 번들 크기 한도(225MB)를 초과시켰다.
+#
+# Vercel은 함수 엔트리포인트에 가장 가까운 requirements.txt를 찾아 쓰므로
+# api/ 아래에 이 파일이 있으면 루트 requirements.txt 대신 이걸 설치한다.
+# 루트 requirements.txt는 GitHub Actions 크론 스크립트(trend_crawler 등)
+# 전용으로 그대로 둔다.
+# ────────────────────────────────────────
+requests>=2.31.0
+python-dotenv>=1.0.0
+Pillow>=10.0.0

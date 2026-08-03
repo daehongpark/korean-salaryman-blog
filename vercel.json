@@ -3,7 +3,9 @@
   "trailingSlash": false,
   "functions": {
     "api/finalize-post.py": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "includeFiles": "assets/fonts/**",
+      "excludeFiles": "{posts/**,p/**,_archive_legacy/**,.github/**,*.md,*.html,sitemap.xml,robots.txt,ads.txt,og-image.png,trend_crawler.py,trend_pipeline.py,gov24_client.py,policy_crawler.py,threads_publisher.py,scorecard.py,generate_static_posts.py,generate_sitemap.py,_env_check.py,requirements.txt}"
     }
   },
   "redirects": [
