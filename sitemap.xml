@@ -5,2257 +5,2251 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <url>
-    <loc>https://koreansalaryman.com/</loc>
+    <loc>https://www.koreansalaryman.com/</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/blog.html</loc>
+    <loc>https://www.koreansalaryman.com/blog</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/archive.html</loc>
+    <loc>https://www.koreansalaryman.com/archive</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/about.html</loc>
+    <loc>https://www.koreansalaryman.com/about</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/income.html</loc>
+    <loc>https://www.koreansalaryman.com/income</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/challenge.html</loc>
+    <loc>https://www.koreansalaryman.com/challenge</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/class.html</loc>
+    <loc>https://www.koreansalaryman.com/class</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/contact.html</loc>
+    <loc>https://www.koreansalaryman.com/contact</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/privacy.html</loc>
+    <loc>https://www.koreansalaryman.com/privacy</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/terms.html</loc>
+    <loc>https://www.koreansalaryman.com/terms</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-money.html</loc>
+    <loc>https://www.koreansalaryman.com/category-money</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-ai.html</loc>
+    <loc>https://www.koreansalaryman.com/category-ai</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-startup.html</loc>
+    <loc>https://www.koreansalaryman.com/category-finance</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-finance.html</loc>
+    <loc>https://www.koreansalaryman.com/category-realestate</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-realestate.html</loc>
+    <loc>https://www.koreansalaryman.com/category-trending</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-trending.html</loc>
+    <loc>https://www.koreansalaryman.com/category-book</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/category-book.html</loc>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표일-시간-직장인-투자-언제-움직일까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표일-시간-직장인-투자-언제-움직일까</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/TIGER-vs-KODEX-직장인-ETF-투자-뭘-고를지-고민이라면.html</loc>
+    <loc>https://www.koreansalaryman.com/p/TIGER-vs-KODEX-직장인-ETF-투자-뭘-고를지-고민이라면</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/환율-변동성-달러-투자-전략-직장인도-이렇게-시작하죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/환율-변동성-달러-투자-전략-직장인도-이렇게-시작하죠</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/DC형-DB형-차이-월급쟁이-저의-솔직한-선택-기준.html</loc>
+    <loc>https://www.koreansalaryman.com/p/DC형-DB형-차이-월급쟁이-저의-솔직한-선택-기준</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-반도체-섹터-동향-직장인-어디에-투자할까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-반도체-섹터-동향-직장인-어디에-투자할까요</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-종합소득세-매년-놓치는-환급액-찾는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-종합소득세-매년-놓치는-환급액-찾는-법</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전기차-캐즘-현황-직장인-투자자에게-지금-기회일까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전기차-캐즘-현황-직장인-투자자에게-지금-기회일까요</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2차전지-산업-흐름-직장인-투자-어떻게-볼까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2차전지-산업-흐름-직장인-투자-어떻게-볼까요</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/연금저축-갈아타기-이젠-미루지-마세요-월급쟁이-필독.html</loc>
+    <loc>https://www.koreansalaryman.com/p/연금저축-갈아타기-이젠-미루지-마세요-월급쟁이-필독</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표일-직장인-투자에-득일까-실일까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표일-직장인-투자에-득일까-실일까</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-보고서-작성-최강-AI-시간-30분-아낀-비결.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-보고서-작성-최강-AI-시간-30분-아낀-비결</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/코레일SR-통합-KTX-20-할인-기차-자주-타면-주목하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/코레일SR-통합-KTX-20-할인-기차-자주-타면-주목하세요</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-음성-받아쓰기-도구-비교-직장인이라면-이것부터-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-음성-받아쓰기-도구-비교-직장인이라면-이것부터-확인하세요</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-코딩어시스턴트-AI-뭘-골라야-할까-써본-경험-비교.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-코딩어시스턴트-AI-뭘-골라야-할까-써본-경험-비교</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/美-빅테크-2026년-투자-흐름-직장인이-알아야-할-변화.html</loc>
+    <loc>https://www.koreansalaryman.com/p/美-빅테크-2026년-투자-흐름-직장인이-알아야-할-변화</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/경제-뉴스-직장인-해석법-나한테-진짜-중요한-3가지는.html</loc>
+    <loc>https://www.koreansalaryman.com/p/경제-뉴스-직장인-해석법-나한테-진짜-중요한-3가지는</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월배당-ETF-직장인-월급-외-현금흐름-만드는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월배당-ETF-직장인-월급-외-현금흐름-만드는-법</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/근로자녀장려금-맞벌이-직장인이-놓치면-아쉬운-330만원.html</loc>
+    <loc>https://www.koreansalaryman.com/p/근로자녀장려금-맞벌이-직장인이-놓치면-아쉬운-330만원</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/7월-막바지-연중-최대-항공-할인-소식에-제가-멈칫한-이유.html</loc>
+    <loc>https://www.koreansalaryman.com/p/7월-막바지-연중-최대-항공-할인-소식에-제가-멈칫한-이유</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/인플레이션-시대-자산관리-월급쟁이-제가-먼저-해봤습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/인플레이션-시대-자산관리-월급쟁이-제가-먼저-해봤습니다</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/나스닥100-ETF-직장인이라면-이것부터-보세요-2026년-7월.html</loc>
+    <loc>https://www.koreansalaryman.com/p/나스닥100-ETF-직장인이라면-이것부터-보세요-2026년-7월</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-업무-효율-용도별-최강-AI-정리로-30분-아끼는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-업무-효율-용도별-최강-AI-정리로-30분-아끼는-법</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-금-투자-놓치기-쉬운-진짜-돈-되는-방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-금-투자-놓치기-쉬운-진짜-돈-되는-방법</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월급쟁이-재테크-우선순위-정리-후배가-물어보길래-제-경험-담아봤어요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월급쟁이-재테크-우선순위-정리-후배가-물어보길래-제-경험-담아봤어요</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국민내일배움카드-직장인도-5년간-최대-500만원-지원받는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국민내일배움카드-직장인도-5년간-최대-500만원-지원받는-법</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전세-보증료-최대-40만원-지원-직장인이라면-꼭-챙기세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전세-보증료-최대-40만원-지원-직장인이라면-꼭-챙기세요</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/숨어있는-내-돈-근로자녀장려금-놓치지-마세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/숨어있는-내-돈-근로자녀장려금-놓치지-마세요</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전세보증금반환보증-보증료-최대-40만원-지원받는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전세보증금반환보증-보증료-최대-40만원-지원받는-법</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/실적-없이-7-할인-KB페이-바로할인-직장인-시선으로-따져봤습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/실적-없이-7-할인-KB페이-바로할인-직장인-시선으로-따져봤습니다</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/요즘-왜-방산주에-관심이-쏠릴까-직장인-투자-고민과-배경.html</loc>
+    <loc>https://www.koreansalaryman.com/p/요즘-왜-방산주에-관심이-쏠릴까-직장인-투자-고민과-배경</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월급쟁이도-해볼-만한-요즘-뜨는-투자-테마-솔직-분석.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월급쟁이도-해볼-만한-요즘-뜨는-투자-테마-솔직-분석</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/청년도약계좌-수익률-솔직히-이-정도는-알아야죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/청년도약계좌-수익률-솔직히-이-정도는-알아야죠</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/긴-문서-요약-AI-비교-직장인에게-진짜-도움되는-선택은.html</loc>
+    <loc>https://www.koreansalaryman.com/p/긴-문서-요약-AI-비교-직장인에게-진짜-도움되는-선택은</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/Cursor-AI-써보니-코딩-작업-30분은-줄었죠-직장인-AI-부조종사-활용법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/Cursor-AI-써보니-코딩-작업-30분은-줄었죠-직장인-AI-부조종사-활용법</loc>
     <lastmod>2026-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/마감임박-농촌-학자금대출-오늘-놓치면-끝-직장인이-봐야-할-것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/마감임박-농촌-학자금대출-오늘-놓치면-끝-직장인이-봐야-할-것</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/퇴직연금-운용-방법-저도-해보니-이대로가-낫더라구요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/퇴직연금-운용-방법-저도-해보니-이대로가-낫더라구요</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/1억-모으기-현실-전략-월-200만원-직장인도-가능할까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/1억-모으기-현실-전략-월-200만원-직장인도-가능할까요</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/리츠-투자-직장인-월급으로-건물주-되는-현실적인-방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/리츠-투자-직장인-월급으로-건물주-되는-현실적인-방법</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-비상금-마련-전략-이렇게-준비하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-비상금-마련-전략-이렇게-준비하세요</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/원달러-환율-계산-직장인-재테크-놓치면-손해-보는-3가지-함정.html</loc>
+    <loc>https://www.koreansalaryman.com/p/원달러-환율-계산-직장인-재테크-놓치면-손해-보는-3가지-함정</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월급-통장-쪼개기-저도-헤매다-찾은-진짜-방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월급-통장-쪼개기-저도-헤매다-찾은-진짜-방법</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/엉터리-번역은-그만-번역-품질-좋은-AI-비교해봤습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/엉터리-번역은-그만-번역-품질-좋은-AI-비교해봤습니다</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-보고서-작성-최강-AI-진짜-생산성-오를까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-보고서-작성-최강-AI-진짜-생산성-오를까</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-고금리-적금-금리보다-중요한-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-고금리-적금-금리보다-중요한-3가지</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-영상-편집-도구-비교-직장인-업무-시간-확-줄이는-솔직한-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-영상-편집-도구-비교-직장인-업무-시간-확-줄이는-솔직한-후기</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-바이오-섹터-트렌드-직장인-투자-이렇게-시작하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-바이오-섹터-트렌드-직장인-투자-이렇게-시작하세요</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-발표자료-디자인-도구-비교-어떤-게-내-업무에-딱-맞을까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-발표자료-디자인-도구-비교-어떤-게-내-업무에-딱-맞을까</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/Zapier-활용방법-직장인-칼퇴-위한-자동화-솔직-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/Zapier-활용방법-직장인-칼퇴-위한-자동화-솔직-후기</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/최신-AI-에이전트-도구-직장인-업무-자동화-어디까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/최신-AI-에이전트-도구-직장인-업무-자동화-어디까지</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-동결-결정-직장인-투자-포트폴리오-이렇게-바꾸세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-동결-결정-직장인-투자-포트폴리오-이렇게-바꾸세요</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-AI-검색-서비스-비교-제가-써보니-이렇습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-AI-검색-서비스-비교-제가-써보니-이렇습니다</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/환율이-내-월급에-미치는-영향-직장인이-알아야-할-모든-것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/환율이-내-월급에-미치는-영향-직장인이-알아야-할-모든-것</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/Perplexity-AI-써봤더니-자료조사-1시간이-10분으로-줄었어요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/Perplexity-AI-써봤더니-자료조사-1시간이-10분으로-줄었어요</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/글로벌-금리-흐름-읽기-직장인-투자-기준을-잡는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/글로벌-금리-흐름-읽기-직장인-투자-기준을-잡는-법</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/한국은행-기준금리-우리-월급엔-어떤-영향을-줄까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/한국은행-기준금리-우리-월급엔-어떤-영향을-줄까요</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/파킹통장-금리-비교-속지-마세요-숨겨진-조건과-세금까지-솔직히-말합니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/파킹통장-금리-비교-속지-마세요-숨겨진-조건과-세금까지-솔직히-말합니다</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-전망-인하-vs-장기화-직장인-투자-방향.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-전망-인하-vs-장기화-직장인-투자-방향</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리인상-가능성-내-월급-통장은-괜찮을까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리인상-가능성-내-월급-통장은-괜찮을까</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/n8n-자동화로-퇴근-후-1시간-번-직장인-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/n8n-자동화로-퇴근-후-1시간-번-직장인-후기</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/Claude-vs-ChatGPT-코딩-비교-30분-아끼는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/Claude-vs-ChatGPT-코딩-비교-30분-아끼는-법</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/무주택-직장인-주목-내-집-마련-꿈-정부-정책으로-현실-만드는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/무주택-직장인-주목-내-집-마련-꿈-정부-정책으로-현실-만드는-법</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/놓치지-마세요-직장인-생활비-부담-줄여주는-정부-지원금-딱-5가지-확인법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/놓치지-마세요-직장인-생활비-부담-줄여주는-정부-지원금-딱-5가지-확인법</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/ISA-계좌-뜻-월급쟁이-재테크-이걸로-시작하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/ISA-계좌-뜻-월급쟁이-재테크-이걸로-시작하세요</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국제유가-급등-직장인-투자-포트폴리오-이렇게-점검해요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국제유가-급등-직장인-투자-포트폴리오-이렇게-점검해요</loc>
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/수도권-분양-단지-정리-내-집-마련-위한-실전-가이드.html</loc>
+    <loc>https://www.koreansalaryman.com/p/수도권-분양-단지-정리-내-집-마련-위한-실전-가이드</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/경기도-입주-물량-이슈-직장인-전월세-시장-이렇게-바꿉니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/경기도-입주-물량-이슈-직장인-전월세-시장-이렇게-바꿉니다</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/행복주택-공고-직장인-놓치기-쉬운-자격과-신청-팁.html</loc>
+    <loc>https://www.koreansalaryman.com/p/행복주택-공고-직장인-놓치기-쉬운-자격과-신청-팁</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/시총-하위-기업-투자-강화된-상장-유지-기준-이걸-모르고-가면-안-됩니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/시총-하위-기업-투자-강화된-상장-유지-기준-이걸-모르고-가면-안-됩니다</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/외국인-관광객-증가-수혜주-K-뷰티헬스케어-투자-직장인-매수-판단법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/외국인-관광객-증가-수혜주-K-뷰티헬스케어-투자-직장인-매수-판단법</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/경기-침체에도-흔들림-없는-투자처-불황에-강한-필수소비재-종목-분석.html</loc>
+    <loc>https://www.koreansalaryman.com/p/경기-침체에도-흔들림-없는-투자처-불황에-강한-필수소비재-종목-분석</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/청년창업사관학교-요식업-직장인이-꼭-알아야-할-것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/청년창업사관학교-요식업-직장인이-꼭-알아야-할-것</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/DSR-규제-계산-직장인-대출-한도-줄이는-함정-피하기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/DSR-규제-계산-직장인-대출-한도-줄이는-함정-피하기</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/DC형-DB형-차이-연금-선택-후회-없이-고르려면.html</loc>
+    <loc>https://www.koreansalaryman.com/p/DC형-DB형-차이-연금-선택-후회-없이-고르려면</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/중소형주-투자-변동성-장세-속-직장인-기회-포착법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/중소형주-투자-변동성-장세-속-직장인-기회-포착법</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-퇴직급여계산-1인-사업자-전환-전-뭘-따져봐야-할까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-퇴직급여계산-1인-사업자-전환-전-뭘-따져봐야-할까요</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표-직장인에게-지금-중요한-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표-직장인에게-지금-중요한-3가지</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/역세권청년주택-월세-걱정-줄이고-내-집-꿈까지-현실-조언.html</loc>
+    <loc>https://www.koreansalaryman.com/p/역세권청년주택-월세-걱정-줄이고-내-집-꿈까지-현실-조언</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표일-직장인-투자-흐름-읽는-핵심-신호등.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표일-직장인-투자-흐름-읽는-핵심-신호등</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월배당-ETF-직장인-월급날-말고-매달-돈-버는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월배당-ETF-직장인-월급날-말고-매달-돈-버는-법</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/육아휴직-1년-6개월-부부가-함께-쓰면-급여가-달라집니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/육아휴직-1년-6개월-부부가-함께-쓰면-급여가-달라집니다</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/최저임금-인상-시대-월급-외-소득-늘릴-현실적인-방법-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/최저임금-인상-시대-월급-외-소득-늘릴-현실적인-방법-3가지</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-도입-소프트웨어보다-하드웨어-비즈니스-전략-변화-읽기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-도입-소프트웨어보다-하드웨어-비즈니스-전략-변화-읽기</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/성과급-법제화-진짜-내-월급-오를까요-직장인-솔직-분석.html</loc>
+    <loc>https://www.koreansalaryman.com/p/성과급-법제화-진짜-내-월급-오를까요-직장인-솔직-분석</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/깃허브-보안-강화-AI-개발자-계정-보호-딱-3가지-팁.html</loc>
+    <loc>https://www.koreansalaryman.com/p/깃허브-보안-강화-AI-개발자-계정-보호-딱-3가지-팁</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/경제-뉴스-직장인이라면-이-3가지-관점으로-해석하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/경제-뉴스-직장인이라면-이-3가지-관점으로-해석하세요</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/지방-미분양-현황-직장인에게-득일까-독일까-속지-않는-비교-분석.html</loc>
+    <loc>https://www.koreansalaryman.com/p/지방-미분양-현황-직장인에게-득일까-독일까-속지-않는-비교-분석</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/부동산-취득세-계산-내-집-마련-전-꼭-봐야-할-것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/부동산-취득세-계산-내-집-마련-전-꼭-봐야-할-것</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/생성형-AI-문서-휴머나이저로-티-안-나게-전문가처럼-만드는-비결.html</loc>
+    <loc>https://www.koreansalaryman.com/p/생성형-AI-문서-휴머나이저로-티-안-나게-전문가처럼-만드는-비결</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/경기행복주택-직장인이-놓치면-아쉬운-진짜-이야기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/경기행복주택-직장인이-놓치면-아쉬운-진짜-이야기</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/코드-리뷰-AI-도구-비교-뭘-골라야-내-일에-딱-맞을까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/코드-리뷰-AI-도구-비교-뭘-골라야-내-일에-딱-맞을까</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/챗GPT-최신-모델-활용법-업무-난제-AI-사고력으로-넘는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/챗GPT-최신-모델-활용법-업무-난제-AI-사고력으로-넘는-법</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/고유가-시대-직장인-가계-부담-줄일-피해지원금-신청부터-자격까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/고유가-시대-직장인-가계-부담-줄일-피해지원금-신청부터-자격까지</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-해외여행-필수-체크-뎅기열-예방-수칙과-휴가-건강하게-즐기는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-해외여행-필수-체크-뎅기열-예방-수칙과-휴가-건강하게-즐기는-법</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표일정-직장인-투자자가-꼭-알아야-할-것들.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표일정-직장인-투자자가-꼭-알아야-할-것들</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/소상공인-정책자금-대환대출-직장인도-알아야-할-이유.html</loc>
+    <loc>https://www.koreansalaryman.com/p/소상공인-정책자금-대환대출-직장인도-알아야-할-이유</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-통근-좋은-지역-후회-없이-고르는-5가지-기준.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-통근-좋은-지역-후회-없이-고르는-5가지-기준</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-원달러-환율-전망-직장인-투자-이렇게-준비하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-원달러-환율-전망-직장인-투자-이렇게-준비하세요</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/점심시간-10분-투자-직장인-허리-디스크-예방-초간단-스트레칭-루틴-제가-고른-딱-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/점심시간-10분-투자-직장인-허리-디스크-예방-초간단-스트레칭-루틴-제가-고른-딱-3가지</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/분양가상한제-단지-찾는-법-숨은-기회-놓치지-않는-5단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/분양가상한제-단지-찾는-법-숨은-기회-놓치지-않는-5단계</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월세-보증금-반환-직장인이라면-이렇게-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월세-보증금-반환-직장인이라면-이렇게-확인하세요</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/워라밸-사수-직장인-만성피로와-당뇨-술-야식만-줄여도-혈당-관리-시작.html</loc>
+    <loc>https://www.koreansalaryman.com/p/워라밸-사수-직장인-만성피로와-당뇨-술-야식만-줄여도-혈당-관리-시작</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/LH청년전세임대주택-2026-직장인-월세-부담-줄이는-현실적-선택.html</loc>
+    <loc>https://www.koreansalaryman.com/p/LH청년전세임대주택-2026-직장인-월세-부담-줄이는-현실적-선택</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-공무원-연봉-인상률-내-월급엔-어떤-영향.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-공무원-연봉-인상률-내-월급엔-어떤-영향</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-깡통전세-확인법-5단계로-내-보증금-지키기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-깡통전세-확인법-5단계로-내-보증금-지키기</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-자율주행-우리-회사-물류를-바꿀까-효율화-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-자율주행-우리-회사-물류를-바꿀까-효율화-전략</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-반도체-투자-붐-직장인이-놓치면-아쉬울-HBM-투자-기회.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-반도체-투자-붐-직장인이-놓치면-아쉬울-HBM-투자-기회</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국민은행-주담대-한도-축소-내-집-마련-꿈-가진-직장인-대출-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국민은행-주담대-한도-축소-내-집-마련-꿈-가진-직장인-대출-전략</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2년-안에-노벨상급-AI-오픈AI-책임자가-본-미래와-직장인-커리어-반전-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2년-안에-노벨상급-AI-오픈AI-책임자가-본-미래와-직장인-커리어-반전-전략</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-건강검진-콜레스테롤-혈관-청소-음식-4가지-추천.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-건강검진-콜레스테롤-혈관-청소-음식-4가지-추천</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/성남-신혼희망타운-내-집-마련-현실적인-선택지일까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/성남-신혼희망타운-내-집-마련-현실적인-선택지일까요</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/한국은행-기준금리-발표일-직장인이라면-이것부터-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/한국은행-기준금리-발표일-직장인이라면-이것부터-보세요</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/서울-전세난-시대-30대-직장인-내-집-마련-전략-다시-짤-때.html</loc>
+    <loc>https://www.koreansalaryman.com/p/서울-전세난-시대-30대-직장인-내-집-마련-전략-다시-짤-때</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-부업-아이템-찾기-시행착오-덜-겪는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-부업-아이템-찾기-시행착오-덜-겪는-법</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-인하-시그널-월급쟁이-투자-시계는-빨라진다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-인하-시그널-월급쟁이-투자-시계는-빨라진다</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-인상-시기-월급쟁이-투자-방향-저는-이렇게-봅니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-인상-시기-월급쟁이-투자-방향-저는-이렇게-봅니다</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-시대-토크노믹스와-토성비로-똑똑하게-일하기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-시대-토크노믹스와-토성비로-똑똑하게-일하기</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-잇몸-염증-간헐적-단식으로-잡는-법-제가-해보니-이렇더라구요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-잇몸-염증-간헐적-단식으로-잡는-법-제가-해보니-이렇더라구요</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월-16만원-우리-지역-정부-지원금-8월부터-달라져요-놓치면-아깝죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월-16만원-우리-지역-정부-지원금-8월부터-달라져요-놓치면-아깝죠</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표일-7월-직장인이-놓치지-말아야-할-시장-시나리오.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표일-7월-직장인이-놓치지-말아야-할-시장-시나리오</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/움직이는-인공지능-우리-팀-로봇-AI-도입-미래-업무-핵심-비결.html</loc>
+    <loc>https://www.koreansalaryman.com/p/움직이는-인공지능-우리-팀-로봇-AI-도입-미래-업무-핵심-비결</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-당뇨-관리-발부터-챙겨야-하는-진짜-이유와-자가진단법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-당뇨-관리-발부터-챙겨야-하는-진짜-이유와-자가진단법</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/40대-직장인-31kg-감량-성공-비결-매일-같은-식단으로-다이어트-루틴-만드는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/40대-직장인-31kg-감량-성공-비결-매일-같은-식단으로-다이어트-루틴-만드는-법</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/ISA-계좌-직장인이라면-이것부터-꼭-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/ISA-계좌-직장인이라면-이것부터-꼭-확인하세요</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-검색-서비스-비교-직장인-업무-효율-30분-단축-솔직-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-검색-서비스-비교-직장인-업무-효율-30분-단축-솔직-후기</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/KT-6조-투자-선언-직장인-업무-환경과-AI-준비-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/KT-6조-투자-선언-직장인-업무-환경과-AI-준비-전략</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/LTV-DTI-차이-이-두-가지만-알면-대출-한도가-확-달라져요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/LTV-DTI-차이-이-두-가지만-알면-대출-한도가-확-달라져요</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/고환율-시대-직장인-월급-외-달러-자산-관리-진짜-도움-되는-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/고환율-시대-직장인-월급-외-달러-자산-관리-진짜-도움-되는-3가지</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/신혼부부-정책대출-비교-복잡해도-우리-부부에게-맞는-건-딱-하나.html</loc>
+    <loc>https://www.koreansalaryman.com/p/신혼부부-정책대출-비교-복잡해도-우리-부부에게-맞는-건-딱-하나</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-부업-안걸리는법-회사-몰래-성공하는-사업-전환-팁.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-부업-안걸리는법-회사-몰래-성공하는-사업-전환-팁</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/혹시-나도-청년-암-환자-급증-직장인이-놓치면-안-될-증상과-예방.html</loc>
+    <loc>https://www.koreansalaryman.com/p/혹시-나도-청년-암-환자-급증-직장인이-놓치면-안-될-증상과-예방</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/건강보험-환급금-조회-저도-몰랐던-숨은-돈-찾는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/건강보험-환급금-조회-저도-몰랐던-숨은-돈-찾는-법</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/앉아있는-시간-줄이기-직장인-하체-5분-루틴으로-근감소증-막기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/앉아있는-시간-줄이기-직장인-하체-5분-루틴으로-근감소증-막기</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-시대-리더십-변화-우리-대표님-이-역량은-꼭-알아야죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-시대-리더십-변화-우리-대표님-이-역량은-꼭-알아야죠</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국민내일배움카드-사용처-저처럼-헤매지-말고-이걸-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국민내일배움카드-사용처-저처럼-헤매지-말고-이걸-보세요</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/임산부-에너지바우처-직장인도-받는지-신청-전-확인할-것들.html</loc>
+    <loc>https://www.koreansalaryman.com/p/임산부-에너지바우처-직장인도-받는지-신청-전-확인할-것들</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/아영이네-행복주택-직장인이-꼭-알아야-할-진짜-조건과-신청-팁.html</loc>
+    <loc>https://www.koreansalaryman.com/p/아영이네-행복주택-직장인이-꼭-알아야-할-진짜-조건과-신청-팁</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/대구LH전세임대-직장인이라면-꼭-알아야-할-자격과-꼼수들.html</loc>
+    <loc>https://www.koreansalaryman.com/p/대구LH전세임대-직장인이라면-꼭-알아야-할-자격과-꼼수들</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/긴-문서-요약-AI-비교-퇴근-시간-지켜줄-똑똑한-도구는.html</loc>
+    <loc>https://www.koreansalaryman.com/p/긴-문서-요약-AI-비교-퇴근-시간-지켜줄-똑똑한-도구는</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-부업-1인-사업으로-키울-때-현실-조언-세금-등록-포함.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-부업-1인-사업으로-키울-때-현실-조언-세금-등록-포함</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/중소기업-직장인-주목-우리-회사-복지-정부-지원으로-더-좋아질-수-있다-숨은-혜택-찾아내기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/중소기업-직장인-주목-우리-회사-복지-정부-지원으로-더-좋아질-수-있다-숨은-혜택-찾아내기</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전월세-사기-막는-등기부등본-보는-법-이걸-몰랐네요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전월세-사기-막는-등기부등본-보는-법-이걸-몰랐네요</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/외환보유액-감소-원화-약세-속-직장인-자산-방어-환테크-시작점.html</loc>
+    <loc>https://www.koreansalaryman.com/p/외환보유액-감소-원화-약세-속-직장인-자산-방어-환테크-시작점</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국민연금-리밸런싱-재개-내-포트폴리오-영향과-대응법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국민연금-리밸런싱-재개-내-포트폴리오-영향과-대응법</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/역전세-비상-직장인-집주인을-위한-현실-대응법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/역전세-비상-직장인-집주인을-위한-현실-대응법</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리인상-발표일-앞둔-월급쟁이-투자-포트폴리오-이렇게.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리인상-발표일-앞둔-월급쟁이-투자-포트폴리오-이렇게</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/집-팔-때-양도세-비과세-요건-이-5가지부터-따져봐요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/집-팔-때-양도세-비과세-요건-이-5가지부터-따져봐요</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/혹시-나도-직장-여성-침묵의-암-늦기-전-꼭-볼-체크리스트.html</loc>
+    <loc>https://www.koreansalaryman.com/p/혹시-나도-직장-여성-침묵의-암-늦기-전-꼭-볼-체크리스트</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/역세권청년주택-월세-걱정-덜-직장인-위한-솔직-정리.html</loc>
+    <loc>https://www.koreansalaryman.com/p/역세권청년주택-월세-걱정-덜-직장인-위한-솔직-정리</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/내집마련-자금계획-직장인이-놓치면-아쉬울-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/내집마련-자금계획-직장인이-놓치면-아쉬울-5가지</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/다리-저림-직장-남성-주목-근육량과-하지불안증후군-예방-운동.html</loc>
+    <loc>https://www.koreansalaryman.com/p/다리-저림-직장-남성-주목-근육량과-하지불안증후군-예방-운동</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/경기도-청년창업지원금-월급쟁이도-사업-시작할-수-있을까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/경기도-청년창업지원금-월급쟁이도-사업-시작할-수-있을까요</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/빚투-강제청산-현실화-직장인-대출-투자-전-확인할-것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/빚투-강제청산-현실화-직장인-대출-투자-전-확인할-것</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-수도권-분양-단지-정리-후회-없이-고르는-체크리스트.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-수도권-분양-단지-정리-후회-없이-고르는-체크리스트</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-시대-전력-폭증에-투자하는-법-직장인-간접-투자-이것부터-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-시대-전력-폭증에-투자하는-법-직장인-간접-투자-이것부터-보세요</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-대상포진-72시간-골든타임-면역력-비상-대처와-예방.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-대상포진-72시간-골든타임-면역력-비상-대처와-예방</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/엔화-약세-달러-강세-시대-월급쟁이-환율-투자-전략-다시-봐야죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/엔화-약세-달러-강세-시대-월급쟁이-환율-투자-전략-다시-봐야죠</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/코스닥-4-급등락-변동성-시장-직장인-투자-원칙-세우기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/코스닥-4-급등락-변동성-시장-직장인-투자-원칙-세우기</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전세보증금-반환-확약서-대출-연장-필수-뜯어보니-챙길-것-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전세보증금-반환-확약서-대출-연장-필수-뜯어보니-챙길-것-3가지</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/100억-부자들이-테슬라-팔고-갈아탄-곳은-슈퍼리치-자산-배분-엿보기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/100억-부자들이-테슬라-팔고-갈아탄-곳은-슈퍼리치-자산-배분-엿보기</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-식단-혁명-통곡물-하루-90g으로-유방암-위험-낮추는-똑똑한-식사법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-식단-혁명-통곡물-하루-90g으로-유방암-위험-낮추는-똑똑한-식사법</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/공실고금리-시대-직장인-부동산-투자-리스크-관리법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/공실고금리-시대-직장인-부동산-투자-리스크-관리법</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-AI코딩도구비교-개발-실력-없어도-본전-뽑는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-AI코딩도구비교-개발-실력-없어도-본전-뽑는-법</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/성인-홍역-비상-직장인-건강-위협-지금-챙길-예방-수칙.html</loc>
+    <loc>https://www.koreansalaryman.com/p/성인-홍역-비상-직장인-건강-위협-지금-챙길-예방-수칙</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/간이과세자-세금계산서-부업에서-사업-넘어갈-때-필수-지식.html</loc>
+    <loc>https://www.koreansalaryman.com/p/간이과세자-세금계산서-부업에서-사업-넘어갈-때-필수-지식</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/혹시-나도-젊은-관절염-어깨-통증-방치했다간-큰일나요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/혹시-나도-젊은-관절염-어깨-통증-방치했다간-큰일나요</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/실패에도-멈추지-않는-AI-시스템-강화학습으로-업무-연속성-높이는-방법-제가-깨달은-것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/실패에도-멈추지-않는-AI-시스템-강화학습으로-업무-연속성-높이는-방법-제가-깨달은-것</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/내-통신비-매달-줄이는-법-감면-대상과-신청.html</loc>
+    <loc>https://www.koreansalaryman.com/p/내-통신비-매달-줄이는-법-감면-대상과-신청</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-시대-직장인-불안-줄이는-역량-개발-지도-저의-경험담과-실제-로드맵.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-시대-직장인-불안-줄이는-역량-개발-지도-저의-경험담과-실제-로드맵</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/아침-수영-직장인-불안감과-체지방-감소에-진짜-도움-될까요-제가-직접-해보니.html</loc>
+    <loc>https://www.koreansalaryman.com/p/아침-수영-직장인-불안감과-체지방-감소에-진짜-도움-될까요-제가-직접-해보니</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국세청홈택스-근로장려금-직장인도-놓치지-마세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국세청홈택스-근로장려금-직장인도-놓치지-마세요</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/환율-1500원대-직장인-해외-투자와-자산-관리-전략은.html</loc>
+    <loc>https://www.koreansalaryman.com/p/환율-1500원대-직장인-해외-투자와-자산-관리-전략은</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/업무-생산성-2배-AI-모델-울산경제-전환에서-배우는-실전-선택법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/업무-생산성-2배-AI-모델-울산경제-전환에서-배우는-실전-선택법</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/성과급-법제화-직장인-월급에-진짜-무슨-일-생길까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/성과급-법제화-직장인-월급에-진짜-무슨-일-생길까요</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표-월급쟁이-투자에-진짜-영향-있을까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표-월급쟁이-투자에-진짜-영향-있을까요</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전세-보증금-반환보증-모르면-놓치는-진짜-안전장치.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전세-보증금-반환보증-모르면-놓치는-진짜-안전장치</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/커피-대신-이것-간-전문의가-추천하는-직장인-지방간-개선-식단-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/커피-대신-이것-간-전문의가-추천하는-직장인-지방간-개선-식단-5가지</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/40대부터-젊은-뇌-프로젝트-직장인-맞춤-운동법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/40대부터-젊은-뇌-프로젝트-직장인-맞춤-운동법</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-시대-로봇-자동화-우리-회사-맞춤-시나리오-짜는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-시대-로봇-자동화-우리-회사-맞춤-시나리오-짜는-법</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/사업-전환-직장인-일반과세자-기준-제대로-아는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/사업-전환-직장인-일반과세자-기준-제대로-아는-법</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/청년도약계좌-중도인출-해지-전-꼭-알아야-할-손해.html</loc>
+    <loc>https://www.koreansalaryman.com/p/청년도약계좌-중도인출-해지-전-꼭-알아야-할-손해</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/소상공인-정책자금-대환대출-직장인도-가능할까-저금리-갈아타기-솔직-가이드.html</loc>
+    <loc>https://www.koreansalaryman.com/p/소상공인-정책자금-대환대출-직장인도-가능할까-저금리-갈아타기-솔직-가이드</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/한국은행-기준금리-발표일-직장인-투자-이렇게-준비하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/한국은행-기준금리-발표일-직장인-투자-이렇게-준비하세요</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/청년내일채움공제-신청하는법-놓치면-아쉬운-이유.html</loc>
+    <loc>https://www.koreansalaryman.com/p/청년내일채움공제-신청하는법-놓치면-아쉬운-이유</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/LH청년전세임대주택-직장인-전세-보증금-부담-줄이는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/LH청년전세임대주택-직장인-전세-보증금-부담-줄이는-법</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/몰라서-놓치면-후회-직장인-2024년-복지-2026년-내-집-마련-혜택.html</loc>
+    <loc>https://www.koreansalaryman.com/p/몰라서-놓치면-후회-직장인-2024년-복지-2026년-내-집-마련-혜택</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-부업-사업자등록번호-왜-고민할까요-현직자가-알려드립니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-부업-사업자등록번호-왜-고민할까요-현직자가-알려드립니다</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-전환AX-시대-공공-AI-사업-지원센터-활용-직장인-성공-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-전환AX-시대-공공-AI-사업-지원센터-활용-직장인-성공-전략</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/MSCI-선진국-지수-불발-월급쟁이-투자-전략-이렇게-바꾸세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/MSCI-선진국-지수-불발-월급쟁이-투자-전략-이렇게-바꾸세요</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/나잇살은-옛말-뱃살-빼고-활력-되찾는-직장인-맞춤-운동-루틴.html</loc>
+    <loc>https://www.koreansalaryman.com/p/나잇살은-옛말-뱃살-빼고-활력-되찾는-직장인-맞춤-운동-루틴</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/내-전세금-지키는-법-사기-수법-피하는-직장인-필승-예방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/내-전세금-지키는-법-사기-수법-피하는-직장인-필승-예방법</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/분양가상한제-단지-찾는-법-직장인이-꼭-알아둘-몇-가지-함정.html</loc>
+    <loc>https://www.koreansalaryman.com/p/분양가상한제-단지-찾는-법-직장인이-꼭-알아둘-몇-가지-함정</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/청년월세지원-조건-놓치면-아쉬운-월-20만원-받기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/청년월세지원-조건-놓치면-아쉬운-월-20만원-받기</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-부업-금지-맘-졸이지-말고-1인-사업-시작하는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-부업-금지-맘-졸이지-말고-1인-사업-시작하는-법</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월-5만원으로-10년-뒤-1800만원-디딤씨앗통장-직장인-자녀-재테크-솔직-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월-5만원으로-10년-뒤-1800만원-디딤씨앗통장-직장인-자녀-재테크-솔직-후기</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-건강-혹시-나도-내-몸의-노화-속도-젊게-유지하는-생활-습관-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-건강-혹시-나도-내-몸의-노화-속도-젊게-유지하는-생활-습관-5가지</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/긴급복지지원제도-조건-직장인도-가능할까-핵심-정리.html</loc>
+    <loc>https://www.koreansalaryman.com/p/긴급복지지원제도-조건-직장인도-가능할까-핵심-정리</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/더운-날-불-없이도-근사한-한-끼-전자레인지로-만드는-직장인-초간단-건강-식사.html</loc>
+    <loc>https://www.koreansalaryman.com/p/더운-날-불-없이도-근사한-한-끼-전자레인지로-만드는-직장인-초간단-건강-식사</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/지방-미분양-현황-직장인에게-위험-의외의-기회일-수도-있습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/지방-미분양-현황-직장인에게-위험-의외의-기회일-수도-있습니다</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/잦은-깜빡거림-직장인-건망증-단순-노화-아닌-위험-신호.html</loc>
+    <loc>https://www.koreansalaryman.com/p/잦은-깜빡거림-직장인-건망증-단순-노화-아닌-위험-신호</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전세-vs-월세-비교-직장인-월급으로-후회-없는-선택하는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전세-vs-월세-비교-직장인-월급으로-후회-없는-선택하는-법</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-발표시간-직장인-투자에-결정적인-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-발표시간-직장인-투자에-결정적인-3가지</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-가계대출-6조-증가-현명하게-관리하는-3가지-방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-가계대출-6조-증가-현명하게-관리하는-3가지-방법</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/전입신고-확정일자-놓치면-내-보증금-큰일-납니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/전입신고-확정일자-놓치면-내-보증금-큰일-납니다</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/반도체-호재-지역-동탄-직장인-내-집-마련-전략-분석.html</loc>
+    <loc>https://www.koreansalaryman.com/p/반도체-호재-지역-동탄-직장인-내-집-마련-전략-분석</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/데이터분석-AI-도구-비교-직장인-엑셀-지옥-탈출-솔직-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/데이터분석-AI-도구-비교-직장인-엑셀-지옥-탈출-솔직-후기</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/수원-신혼희망타운-그냥-좋다고만-하면-놓치는-이것.html</loc>
+    <loc>https://www.koreansalaryman.com/p/수원-신혼희망타운-그냥-좋다고만-하면-놓치는-이것</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-슈퍼컴퓨터가-여는-아세안-시장-국내-기업의-해외-진출-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-슈퍼컴퓨터가-여는-아세안-시장-국내-기업의-해외-진출-전략</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/콜레스테롤-걱정-아침-달걀-직장인이-건강하게-먹는-3가지-팁.html</loc>
+    <loc>https://www.koreansalaryman.com/p/콜레스테롤-걱정-아침-달걀-직장인이-건강하게-먹는-3가지-팁</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/근로장려금대상자-직장인도-놓치면-손해-보는-조건과-신청법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/근로장려금대상자-직장인도-놓치면-손해-보는-조건과-신청법</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/대구LH전세임대-직장인이라면-이것부터-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/대구LH전세임대-직장인이라면-이것부터-확인하세요</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/번역품질-좋은-AI-비교-직장인-업무용-이-셋이-답이네요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/번역품질-좋은-AI-비교-직장인-업무용-이-셋이-답이네요</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/은퇴-후-빚더미-피하려면-60대-연체-급증-직장인-자산관리-지금-당장.html</loc>
+    <loc>https://www.koreansalaryman.com/p/은퇴-후-빚더미-피하려면-60대-연체-급증-직장인-자산관리-지금-당장</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/행복주택-신청-직장인이-놓치는-자격과-진짜-입주-노하우.html</loc>
+    <loc>https://www.koreansalaryman.com/p/행복주택-신청-직장인이-놓치는-자격과-진짜-입주-노하우</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/점심시간-건강한-선택-직장인-식단-속-경고-라벨-식품-피하는-노하우.html</loc>
+    <loc>https://www.koreansalaryman.com/p/점심시간-건강한-선택-직장인-식단-속-경고-라벨-식품-피하는-노하우</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/1인-사업자-전환-전-퇴직급여계산-이렇게-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/1인-사업자-전환-전-퇴직급여계산-이렇게-확인하세요</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-G3-전략-내-비즈니스에-던지는-질문.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-G3-전략-내-비즈니스에-던지는-질문</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리인상-발표일-매번-흔들리는-직장인-투자-이렇게-해보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리인상-발표일-매번-흔들리는-직장인-투자-이렇게-해보세요</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리-동결-연내-인상-시사-직장인-투자-포트폴리오-점검-필수.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리-동결-연내-인상-시사-직장인-투자-포트폴리오-점검-필수</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-부업-추천-월급-넘어서-1인-사업으로-키우는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-부업-추천-월급-넘어서-1인-사업으로-키우는-법</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/스페이스X-투자-열풍-ETF로-뛰어들었다면-꼭-점검할-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/스페이스X-투자-열풍-ETF로-뛰어들었다면-꼭-점검할-3가지</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/종합소득세-신고-확인-방법-저처럼-헤매지-마세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/종합소득세-신고-확인-방법-저처럼-헤매지-마세요</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/고유가-시대-직장인-유류비-절약-최대-60만원-정부지원금-받는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/고유가-시대-직장인-유류비-절약-최대-60만원-정부지원금-받는-법</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-시대-지역-경제-활성화-AI-창업-기회-포착-전략-직장인도-잡을-기회.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-시대-지역-경제-활성화-AI-창업-기회-포착-전략-직장인도-잡을-기회</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-연금저축계산기-제가-써보니-알아야-할-3가지-핵심.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-연금저축계산기-제가-써보니-알아야-할-3가지-핵심</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-미국-금리-그래프-월급쟁이-투자-지금-뭘-봐야-할까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-미국-금리-그래프-월급쟁이-투자-지금-뭘-봐야-할까</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-월급-사수-2026년-세액공제-뜻-제대로-알고-연말정산-승리하는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-월급-사수-2026년-세액공제-뜻-제대로-알고-연말정산-승리하는-법</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/Perplexity-AI-직장인-정보-검색-30분-아낀-비결.html</loc>
+    <loc>https://www.koreansalaryman.com/p/Perplexity-AI-직장인-정보-검색-30분-아낀-비결</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-베트남-AI-법규-우리-기업은-뭐부터-준비할까요-제-솔직한-생각.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-베트남-AI-법규-우리-기업은-뭐부터-준비할까요-제-솔직한-생각</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-혼인세액공제-신혼부부-월급-100만원-더-버는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-혼인세액공제-신혼부부-월급-100만원-더-버는-법</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-주식-팔아-서울-아파트-직장인-부동산-투자-이-판단이-맞을까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-주식-팔아-서울-아파트-직장인-부동산-투자-이-판단이-맞을까요</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-역전세-대응법-전세금-지키는-직장인-5단계-체크리스트.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-역전세-대응법-전세금-지키는-직장인-5단계-체크리스트</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-신생아-특공-민영주택-청약-우리-아이-덕분에-내-집-마련-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-신생아-특공-민영주택-청약-우리-아이-덕분에-내-집-마련-전략</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-이직로그-팝업-직장인-놓치면-아쉬운-3가지-정보.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-이직로그-팝업-직장인-놓치면-아쉬운-3가지-정보</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-대사증후군-집에서-잡는-3가지-근력-운동-루틴-유산소만으로는-부족.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-대사증후군-집에서-잡는-3가지-근력-운동-루틴-유산소만으로는-부족</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-전세보증금-반환-확약서-직장인이라면-꼭-챙겨야-할-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-전세보증금-반환-확약서-직장인이라면-꼭-챙겨야-할-3가지</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-직장인-식단-건강식-속-혈당-폭탄-의외의-방해꾼-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-직장인-식단-건강식-속-혈당-폭탄-의외의-방해꾼-5가지</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-경기도-청년창업지원금-직장인도-받을-수-있을까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-경기도-청년창업지원금-직장인도-받을-수-있을까요</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/숨겨진-내장지방-혹시-나도-직장인-인지기능-저하-막는-식단-운동-루틴.html</loc>
+    <loc>https://www.koreansalaryman.com/p/숨겨진-내장지방-혹시-나도-직장인-인지기능-저하-막는-식단-운동-루틴</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-건강보험료-폭탄-피하기-내-돈-아끼는-절약-꿀팁-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-건강보험료-폭탄-피하기-내-돈-아끼는-절약-꿀팁-3가지</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-미국-금리-동결-직장인-투자-방향-전환할-때입니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-미국-금리-동결-직장인-투자-방향-전환할-때입니다</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-경제-불확실성-시대-직장인-자산-지키는-비상금-관리-전략-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-경제-불확실성-시대-직장인-자산-지키는-비상금-관리-전략-5가지</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-AI로-회의록-자동-정리-직장인-업무-시간-30분-아끼는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-AI로-회의록-자동-정리-직장인-업무-시간-30분-아끼는-법</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/국세청홈택스-근로장려금-2026-직장인-신청-전-꼭-확인할-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/국세청홈택스-근로장려금-2026-직장인-신청-전-꼭-확인할-5가지</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년디딤돌대출-직장인-자격과-신청-3단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년디딤돌대출-직장인-자격과-신청-3단계</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-코스피-급락과-네-마녀의-날-직장인-투자자-3가지-대응법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-코스피-급락과-네-마녀의-날-직장인-투자자-3가지-대응법</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-공공분양-사전청약-직장인-자격부터-신청까지-핵심-정리.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-공공분양-사전청약-직장인-자격부터-신청까지-핵심-정리</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-원전-르네상스-이슈-직장인-투자-시-3가지-확인점.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-원전-르네상스-이슈-직장인-투자-시-3가지-확인점</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/환율-1500원-시대-직장인-해외-투자와-자산-방어-5가지-전략-2026.html</loc>
+    <loc>https://www.koreansalaryman.com/p/환율-1500원-시대-직장인-해외-투자와-자산-방어-5가지-전략-2026</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-버팀목전세자금대출-연장-이-5가지-놓치면-손해죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-버팀목전세자금대출-연장-이-5가지-놓치면-손해죠</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/강원도-직장인-청약통장-해지-러시-2026년-청약-전략-다시-점검할-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/강원도-직장인-청약통장-해지-러시-2026년-청약-전략-다시-점검할-5가지</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-직장인-ChatGPT-업무-효율-높인-제-3가지-사용법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-직장인-ChatGPT-업무-효율-높인-제-3가지-사용법</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-숨어있는-정부-지원금-직장인-깜깜이-지원금-5단계-찾는-꿀팁-알림-활용법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-숨어있는-정부-지원금-직장인-깜깜이-지원금-5단계-찾는-꿀팁-알림-활용법</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-간이과세자-부가세신고-직장인-부업-놓치는-것-없도록.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-간이과세자-부가세신고-직장인-부업-놓치는-것-없도록</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-월급-통장-쪼개기-직장인-푼돈-모아-목돈-만드는-5단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-월급-통장-쪼개기-직장인-푼돈-모아-목돈-만드는-5단계</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-AI-회의-통역-활용-7년차-직장인이-써보니-이-3가지가-핵심.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-AI-회의-통역-활용-7년차-직장인이-써보니-이-3가지가-핵심</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-피곤한-직장인이라면-뇌-노화-가속-막는-수면-습관-자가진단부터-개선까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-피곤한-직장인이라면-뇌-노화-가속-막는-수면-습관-자가진단부터-개선까지</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-한국은행-기준금리-전망-직장인-투자-이렇게-바뀝니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-한국은행-기준금리-전망-직장인-투자-이렇게-바뀝니다</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-일반과세자-기준-직장인-사업-전환-전에-이것부터-알았죠.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-일반과세자-기준-직장인-사업-전환-전에-이것부터-알았죠</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-2030-직장인-월세-부담-줄이고-자산-모으는-3가지-방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-2030-직장인-월세-부담-줄이고-자산-모으는-3가지-방법</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-고환율-시대-직장인-해외-자산-관리와-환테크-전략-5단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-고환율-시대-직장인-해외-자산-관리와-환테크-전략-5단계</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-30대-직장인-청약-내집마련-3가지-필승-전략.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-30대-직장인-청약-내집마련-3가지-필승-전략</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/퇴근-후-야식-유혹-직장인-다이어트-간식-5가지-2026-현명한-선택.html</loc>
+    <loc>https://www.koreansalaryman.com/p/퇴근-후-야식-유혹-직장인-다이어트-간식-5가지-2026-현명한-선택</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-통신사-멤버십-100-활용-직장인-월급-외-혜택-찾는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-통신사-멤버십-100-활용-직장인-월급-외-혜택-찾는-법</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-글로벌-금리-흐름-읽기-직장인-투자-3가지-핵심-판단.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-글로벌-금리-흐름-읽기-직장인-투자-3가지-핵심-판단</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-주4일제-공약-직장인에게-현실은-어떨까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-주4일제-공약-직장인에게-현실은-어떨까요</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/ISA-계좌-뜻-2026년-직장인이-세금-아끼는-만능-통장-활용법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/ISA-계좌-뜻-2026년-직장인이-세금-아끼는-만능-통장-활용법</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-역세권청년주택-직장인-조건-따져보니-신청부터-입주까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-역세권청년주택-직장인-조건-따져보니-신청부터-입주까지</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/중소기업-취업청년-소득세-감면-2026년-꼭-챙길-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/중소기업-취업청년-소득세-감면-2026년-꼭-챙길-5가지</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/프롬프트-엔지니어링-기초-2026년-직장인-업무-5단계-혁신-비법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/프롬프트-엔지니어링-기초-2026년-직장인-업무-5단계-혁신-비법</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-6월-현재-원달러-환율은-직장인-투자-관점에서.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-6월-현재-원달러-환율은-직장인-투자-관점에서</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-계양-신혼희망타운-직장인-조건부터-솔직-후기까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-계양-신혼희망타운-직장인-조건부터-솔직-후기까지</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-청년월세-특별지원-월-20만원-받기-3단계-가이드.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-청년월세-특별지원-월-20만원-받기-3단계-가이드</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-미국-금리-발표일-6월-직장인-투자-방향은.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-미국-금리-발표일-6월-직장인-투자-방향은</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/Perplexity-AI-검색-시간-반으로-줄인-직장인-사용법-2026.html</loc>
+    <loc>https://www.koreansalaryman.com/p/Perplexity-AI-검색-시간-반으로-줄인-직장인-사용법-2026</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-미국-금리-발표일-직장인-투자-어떤-시나리오-준비할까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-미국-금리-발표일-직장인-투자-어떤-시나리오-준비할까요</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-서울신혼부부전세대출-헷갈리는-조건-제대로-정리했습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-서울신혼부부전세대출-헷갈리는-조건-제대로-정리했습니다</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-디딤돌대출-금리-직장인-주택-마련-꼭-볼-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-디딤돌대출-금리-직장인-주택-마련-꼭-볼-5가지</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-행복주택-신청-직장인도-월세-부담-줄이는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-행복주택-신청-직장인도-월세-부담-줄이는-법</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-부업-추천-5가지-1인-사업-전환-이렇게-시작하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-부업-추천-5가지-1인-사업-전환-이렇게-시작하세요</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-취득세-계산-방법-놓치면-아쉬울-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-취득세-계산-방법-놓치면-아쉬울-5가지</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-개인사업자-통장-추천-직장인-부업러가-헤맨-길.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-개인사업자-통장-추천-직장인-부업러가-헤맨-길</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년도약계좌-중도인출-진짜-혜택-유지할-수-있을까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년도약계좌-중도인출-진짜-혜택-유지할-수-있을까요</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-1인-사업자-육아지원금-직장인-부업-전환-전-꼭-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-1인-사업자-육아지원금-직장인-부업-전환-전-꼭-보세요</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-미국-금리-발표일-직장인-투자-이렇게-움직이세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-미국-금리-발표일-직장인-투자-이렇게-움직이세요</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-연말정산-변경점-직장인에게-중요한-3가지-변화.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-연말정산-변경점-직장인에게-중요한-3가지-변화</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-n8n-사용법-한국어-직장인-업무-자동화-3단계면-충분해요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-n8n-사용법-한국어-직장인-업무-자동화-3단계면-충분해요</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-에너지바우처-신청-직장인도-받을-수-있을까-제가-알아봤습니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-에너지바우처-신청-직장인도-받을-수-있을까-제가-알아봤습니다</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-5월-미국-금리-발표-직장인-투자-대응-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-5월-미국-금리-발표-직장인-투자-대응-3가지</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-연봉인상률-내-월급-얼마나-오를까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-연봉인상률-내-월급-얼마나-오를까요</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-파킹통장-비교-직장인이-꼭-알아야-할-금리-선택-기준.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-파킹통장-비교-직장인이-꼭-알아야-할-금리-선택-기준</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-IRP-가입-조건-직장인이라면-이것부터-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-IRP-가입-조건-직장인이라면-이것부터-확인하세요</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-AI로-부업하는-법-직장인이-월-50만원-버는-진짜-비결.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-AI로-부업하는-법-직장인이-월-50만원-버는-진짜-비결</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-엑셀-자동화-삽질-줄이고-칼퇴하는-진짜-방법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-엑셀-자동화-삽질-줄이고-칼퇴하는-진짜-방법</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-전세보증금-반환-확약서-직장인이-꼭-챙겨야-할-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-전세보증금-반환-확약서-직장인이-꼭-챙겨야-할-5가지</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년창업사관학교-지원-조건과-신청-3단계-방법-직장인도-가능.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년창업사관학교-지원-조건과-신청-3단계-방법-직장인도-가능</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년내일채움공제-신청-및-조건-이거-진짜-알짜-혜택인가.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년내일채움공제-신청-및-조건-이거-진짜-알짜-혜택인가</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-복지로-사용법-직장인청년-놓치지-않을-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-복지로-사용법-직장인청년-놓치지-않을-5가지</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-MAKE-사용방법-가격-단순-반복-업무-자동화-3단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-MAKE-사용방법-가격-단순-반복-업무-자동화-3단계</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-ISA-계좌-비교-직장인-월급-어디에-묻어야-세금-덜-낼까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-ISA-계좌-비교-직장인-월급-어디에-묻어야-세금-덜-낼까</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-자녀장려금-받는-법-직장인도-놓치면-후회할-3단계-가이드.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-자녀장려금-받는-법-직장인도-놓치면-후회할-3단계-가이드</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-예비창업패키지-신청-자격요건-정보-한눈에-담았다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-예비창업패키지-신청-자격요건-정보-한눈에-담았다</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-미국-금리-인상-시기-직장인-투자-이렇게-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-미국-금리-인상-시기-직장인-투자-이렇게-보세요</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI로-보고서-작성-2026년-직장인-필수-3가지-도구-비교.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI로-보고서-작성-2026년-직장인-필수-3가지-도구-비교</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-경기도-청년창업지원금-직장인도-가능할까요-솔직한-신청-3단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-경기도-청년창업지원금-직장인도-가능할까요-솔직한-신청-3단계</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-AI-이미지-생성-무료-직장인-똑똑하게-쓰는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-AI-이미지-생성-무료-직장인-똑똑하게-쓰는-법</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI챗봇비교2026-직장인-업무-어떤-챗봇이-진짜일까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI챗봇비교2026-직장인-업무-어떤-챗봇이-진짜일까</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-간이과세자-부가세신고-직장인도-놓치면-손해-보는-것들.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-간이과세자-부가세신고-직장인도-놓치면-손해-보는-것들</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-퇴직급여계산-1인-사업-전환-전-5가지-확인사항.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-퇴직급여계산-1인-사업-전환-전-5가지-확인사항</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/미국-금리인하-가능성-2026년-직장인-투자-시계는.html</loc>
+    <loc>https://www.koreansalaryman.com/p/미국-금리인하-가능성-2026년-직장인-투자-시계는</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-중소기업-취업청년-소득세-감면-혜택-놓치지-않는-5단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-중소기업-취업청년-소득세-감면-혜택-놓치지-않는-5단계</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-원달러-환율-전망-월급쟁이-투자-어떻게-해야-할까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-원달러-환율-전망-월급쟁이-투자-어떻게-해야-할까요</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-이직로그-왜-쓰고-어떻게-남겨야-할까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-이직로그-왜-쓰고-어떻게-남겨야-할까요</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-고금리-적금-솔직히-이-3가지-꼭-확인하세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-고금리-적금-솔직히-이-3가지-꼭-확인하세요</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-계양-신혼희망타운-내-집-마련-현실-솔직-비교.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-계양-신혼희망타운-내-집-마련-현실-솔직-비교</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-신혼부부-정책-지원금-직장인이라면-이것부터-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-신혼부부-정책-지원금-직장인이라면-이것부터-보세요</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-평균-연봉-인상률-내-월급은-괜찮을까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-평균-연봉-인상률-내-월급은-괜찮을까요</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-Gemini-한국어-사용법-일잘러-되는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-Gemini-한국어-사용법-일잘러-되는-법</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-정부24-신청-직장인이-놓치지-않을-5단계-노하우.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-정부24-신청-직장인이-놓치지-않을-5단계-노하우</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-5월-종합소득세-신고방법-직장인-부업-1인-사업자-첫-신고-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-5월-종합소득세-신고방법-직장인-부업-1인-사업자-첫-신고-후기</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년월세-특별지원-직장인-월-20만원-지원-조건함정까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년월세-특별지원-직장인-월-20만원-지원-조건함정까지</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-국세청-홈택스-근로장려금-직장인이라면-꼭-챙길-5단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-국세청-홈택스-근로장려금-직장인이라면-꼭-챙길-5단계</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/한국은행-기준금리-발표일-2026-월급쟁이-투자-계획-세우기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/한국은행-기준금리-발표일-2026-월급쟁이-투자-계획-세우기</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-유연근무-나도-해당될까-직장인이-꼭-알아야-할-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-유연근무-나도-해당될까-직장인이-꼭-알아야-할-3가지</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-n8n-업무자동화-직장인도-코딩-없이-시작하는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-n8n-업무자동화-직장인도-코딩-없이-시작하는-법</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-소상공인-정책자금-직장인도-가능할까요-신청부터-활용까지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-소상공인-정책자금-직장인도-가능할까요-신청부터-활용까지</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-미국-금리-발표일-월급쟁이-투자-흔들리지-않는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-미국-금리-발표일-월급쟁이-투자-흔들리지-않는-법</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-디딤돌대출-계산기-내집마련-전에-꼭-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-디딤돌대출-계산기-내집마련-전에-꼭-보세요</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-n8n-사용법-한국어-노코드-자동화-직장인도-쉽게-써보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-n8n-사용법-한국어-노코드-자동화-직장인도-쉽게-써보세요</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-Zapier-활용방법-월-5시간-아끼는-자동화-3단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-Zapier-활용방법-월-5시간-아끼는-자동화-3단계</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-유연근무제-뜻과-유형-직장인이라면-꼭-알아두세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-유연근무제-뜻과-유형-직장인이라면-꼭-알아두세요</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-행복주택-공고-직장인이라면-이것부터-보세요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-행복주택-공고-직장인이라면-이것부터-보세요</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-Cursor-AI-코딩-3가지-핵심-질문과-솔직-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-Cursor-AI-코딩-3가지-핵심-질문과-솔직-후기</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-Perplexity-AI로-검색-시간-확-줄이는-법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-Perplexity-AI로-검색-시간-확-줄이는-법</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/청년내일채움공제-2026-5가지-핵심-체크리스트로-실수-없이-신청하기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/청년내일채움공제-2026-5가지-핵심-체크리스트로-실수-없이-신청하기</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-직장인-세액공제-뜻-월급-지키는-3가지-핵심-소득공제와-비교.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-직장인-세액공제-뜻-월급-지키는-3가지-핵심-소득공제와-비교</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-ChatGPT-5-사용법-직장인-업무-생산성-확-올리는-노하우.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-ChatGPT-5-사용법-직장인-업무-생산성-확-올리는-노하우</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-연금저축계산기-월급쟁이-세금-혜택-3단계-활용법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-연금저축계산기-월급쟁이-세금-혜택-3단계-활용법</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-미국-금리-동결-이제-어떻게-움직일까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-미국-금리-동결-이제-어떻게-움직일까</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-Claude-vs-ChatGPT-비교-직장인-업무에-어디-쓸까요.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-Claude-vs-ChatGPT-비교-직장인-업무에-어디-쓸까요</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-n8n-npm-설치방법-자동화-첫걸음.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-n8n-npm-설치방법-자동화-첫걸음</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/공공분양-자격-2026년-직장인이-놓치면-후회할-3가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/공공분양-자격-2026년-직장인이-놓치면-후회할-3가지</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-사업소득-절세-간이-일반-1인-사업자-시작-전-꼭-알아볼-5가지.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-사업소득-절세-간이-일반-1인-사업자-시작-전-꼭-알아볼-5가지</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-주택청약-1순위-조건-납입-횟수-헤매다-겨우-찾은-완벽-정리.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-주택청약-1순위-조건-납입-횟수-헤매다-겨우-찾은-완벽-정리</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-1인-사업자-비용처리-항목-절세-시작-종소세-신고-전-확인.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-1인-사업자-비용처리-항목-절세-시작-종소세-신고-전-확인</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/근로장려금-신청자격-확인-방법-2026년-최신-기준으로-꼼꼼하게.html</loc>
+    <loc>https://www.koreansalaryman.com/p/근로장려금-신청자격-확인-방법-2026년-최신-기준으로-꼼꼼하게</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-사업자등록-후-4대보험-2026년-가이드.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-사업자등록-후-4대보험-2026년-가이드</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-새-정책-시행-직장인-자산-어떻게-바뀔까요-대응법.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-새-정책-시행-직장인-자산-어떻게-바뀔까요-대응법</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-에너지바우처대상-직장인-청년-신청-자격-3단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-에너지바우처대상-직장인-청년-신청-자격-3단계</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년미래적금VS청년도약계좌-똑똑하게-고르는-3가지-기준.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년미래적금VS청년도약계좌-똑똑하게-고르는-3가지-기준</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/CLAUDEVSCHATGPT비교-2026년-직장인-업무-AI-뭘-골라야-할까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/CLAUDEVSCHATGPT비교-2026년-직장인-업무-AI-뭘-골라야-할까</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/AI-챗봇-비교-2026-직장인-업무-생산성-높이는-5가지-도구-솔직-후기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/AI-챗봇-비교-2026-직장인-업무-생산성-높이는-5가지-도구-솔직-후기</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-청년-전월세-보증금-대출-조건부터-신청까지-3단계.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-청년-전월세-보증금-대출-조건부터-신청까지-3단계</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년도-SP500ETF-추천-5년-후-부자-되는-길-바로-여기.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년도-SP500ETF-추천-5년-후-부자-되는-길-바로-여기</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/SP500-ETF-2026년-월급쟁이-첫-투자는-이걸로-갑니다.html</loc>
+    <loc>https://www.koreansalaryman.com/p/SP500-ETF-2026년-월급쟁이-첫-투자는-이걸로-갑니다</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/직장인-사업자등록-가능-2026년-부업에서-사업-전환-3단계-가이드.html</loc>
+    <loc>https://www.koreansalaryman.com/p/직장인-사업자등록-가능-2026년-부업에서-사업-전환-3단계-가이드</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026년-직장인-사업자등록-후-4대보험-어떻게-변할까.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026년-직장인-사업자등록-후-4대보험-어떻게-변할까</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/SP500ETF추천2026-직장인-위한-3가지-핵심-전략과-최적-포트폴리오.html</loc>
+    <loc>https://www.koreansalaryman.com/p/SP500ETF추천2026-직장인-위한-3가지-핵심-전략과-최적-포트폴리오</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/2026-청년-월세-지원-월-최대-20만원-받는-5단계-완벽-가이드-5월-최신.html</loc>
+    <loc>https://www.koreansalaryman.com/p/2026-청년-월세-지원-월-최대-20만원-받는-5단계-완벽-가이드-5월-최신</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://koreansalaryman.com/p/월급만으로는-답-없는-시대-직장인이-지금-당장-부동산-투자를-고민해야-하는-이유.html</loc>
+    <loc>https://www.koreansalaryman.com/p/월급만으로는-답-없는-시대-직장인이-지금-당장-부동산-투자를-고민해야-하는-이유</loc>
     <lastmod>2026-04-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

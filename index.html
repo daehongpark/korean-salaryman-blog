@@ -11,20 +11,20 @@
 <meta name="keywords" content="직장인 부업, 블로그 대행, 에드센스 수익, 정부 지원금, AI 도구 활용, 초기 사업자, 직장인 재테크, 부동산 주거, 경제적 자유, N잡러, 책 추천, 블로그 수익화">
 <meta name="author" content="박대홍">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://koreansalaryman.com/">
+<link rel="canonical" href="https://www.koreansalaryman.com/">
 
 <!-- ── Open Graph (SNS 공유) ── -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="직장인 수익일기">
 <meta property="og:title" content="직장인 수익일기 — 월급 외 수익 만드는 재테크·부업 정보">
 <meta property="og:description" content="재테크·부업·정부지원금·부동산·AI까지. 직장인이 월급 외 수익을 만드는 실전 정보를 매일 새롭게 정리합니다.">
-<meta property="og:url" content="https://koreansalaryman.com/">
+<meta property="og:url" content="https://www.koreansalaryman.com/">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://koreansalaryman.com/og-image.png">
+<meta property="og:image" content="https://www.koreansalaryman.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="직장인 수익일기 — 월급 외 수익 만드는 재테크·부업 정보">
-<meta name="twitter:image" content="https://koreansalaryman.com/og-image.png">
+<meta name="twitter:image" content="https://www.koreansalaryman.com/og-image.png">
 
 <!-- ── Twitter Card ── -->
 <meta name="twitter:card" content="summary_large_image">
@@ -899,7 +899,7 @@ function readTime(text) {
 
 // ── 글 이동 ──
 function goToPost(slug) {
-  window.location.href = `/p/${encodeURIComponent(slug)}.html`;
+  window.location.href = `/p/${encodeURIComponent(slug)}`;
 }
 
 // ── 카테고리 메타 데이터 (7개 영문 키 시스템) ──
@@ -945,7 +945,7 @@ function renderPosts(posts, cat) {
       const _bnMeta = CAT_META[bannerPost.category];
       const _bnLabel = _bnMeta ? _bnMeta.label : (bannerPost.category || 'FEATURED');
       html += `
-        <a href="/p/${encodeURIComponent(bannerPost.slug || bannerPost.filename.replace(/\.json$/,''))}.html" class="story-banner" id="story">
+        <a href="/p/${encodeURIComponent(bannerPost.slug || bannerPost.filename.replace(/\.json$/,''))}" class="story-banner" id="story">
           <div class="story-banner-glow"></div>
           <div class="story-tag">✦ ${_bnLabel}</div>
           <h2>${bannerPost.title}</h2>
@@ -1002,7 +1002,7 @@ function renderPosts(posts, cat) {
     const _label = (_meta && _meta.label) || (p.category || '');
     const summary = p.summary ? p.summary.slice(0, 60) + '...' : '';
     html += `
-      <a class="post-card" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
+      <a class="post-card" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}">
         <div class="post-body">
           <span class="post-cat-badge">${_label}</span>
           <h3>${p.title||''}</h3>

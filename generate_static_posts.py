@@ -27,7 +27,7 @@ MANIFEST_PATH = os.path.join(ROOT, "posts", "manifest.json")
 POSTS_DIR = os.path.join(ROOT, "posts")
 OUT_DIR = os.path.join(ROOT, "p")
 ARCHIVE_PATH = os.path.join(ROOT, "archive.html")
-SITE = "https://koreansalaryman.com"
+SITE = "https://www.koreansalaryman.com"
 
 # 카테고리 표시 라벨 (index/blog 푸터와 동일 순서·라벨)
 CATEGORY_LABELS = [
@@ -144,7 +144,7 @@ fetch('./posts/manifest.json')
         relBox.innerHTML = '<p style="font-size:13px;color:var(--text3);">관련 글이 없습니다.</p>';
       } else {
         relBox.innerHTML = related.map(p => `
-          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
+          <a class="rel-item" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}">
             <div class="rel-dot"></div>
             <div>
               <div class="rel-title">${p.title}</div>
@@ -167,7 +167,9 @@ def build_page(template, post, filename, slug, manifest_entry):
     content = post.get("content") or ""
 
     # 주소는 슬러그 기반 (HTML 안에서는 한글 URL 그대로 — 가독성·공유 우선)
-    page_url = "%s/p/%s.html" % (SITE, slug)
+    # vercel.json의 cleanUrls:true가 .html → 무확장 URL로 308 리다이렉트시키므로,
+    # canonical/og:url은 리다이렉트 없이 바로 200이 되는 무확장 최종 주소를 가리켜야 한다.
+    page_url = "%s/p/%s" % (SITE, slug)
 
     # ── pageTitle / pageDesc (post.html JS 로직과 동일) ──
     page_title = post.get("seo_title") or ("%s | 직장인 수익일기" % title)
@@ -230,12 +232,12 @@ def build_page(template, post, filename, slug, manifest_entry):
         "author": {
             "@type": "Person",
             "name": "박대홍",
-            "url": "https://koreansalaryman.com/about.html",
+            "url": "https://www.koreansalaryman.com/about",
         },
         "publisher": {
             "@type": "Organization",
             "name": "직장인 수익일기",
-            "url": "https://koreansalaryman.com",
+            "url": "https://www.koreansalaryman.com",
         },
         "keywords": ", ".join(tags),
         "articleSection": category,
@@ -322,11 +324,14 @@ def build_page(template, post, filename, slug, manifest_entry):
     init_js = STATIC_INIT % {"filename": filename, "category": esc_attr(category)}
     doc = doc[:mi] + init_js + doc[si:]
 
-    # 14) 상대경로 → 절대경로 (정적본은 /p/ 하위라 상대경로 깨짐)
+    # 14) 상대경로 → 절대경로 + 무확장 (정적본은 /p/ 하위라 상대경로 깨지고,
+    # cleanUrls가 .html을 308로 벗겨내므로 애초에 무확장으로 내보낸다)
     rel_pages = ["index.html", "blog.html", "about.html", "class.html",
                  "challenge.html", "income.html", "privacy.html", "terms.html"]
     for page in rel_pages:
-        doc = doc.replace('href="%s' % page, 'href="/%s' % page)
+        clean = page[:-5]  # "blog.html" -> "blog"
+        target = "" if clean == "index" else clean  # index.html -> "/" (홈)
+        doc = doc.replace('href="%s' % page, 'href="/%s' % target)
     # fetch 경로 절대화 (작은따옴표/큰따옴표/백틱 모두)
     doc = doc.replace("fetch('./posts/", "fetch('/posts/")
     doc = doc.replace('fetch("./posts/', 'fetch("/posts/')
@@ -345,10 +350,10 @@ ARCHIVE_TEMPLATE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>전체 글 보기 | 직장인 수익일기</title>
 <meta name="description" content="직장인 수익일기의 모든 글을 카테고리별로 한눈에. 부업·재테크·투자·정부지원금·AI 활용까지 전체 글 목록.">
-<link rel="canonical" href="https://koreansalaryman.com/archive.html">
+<link rel="canonical" href="https://www.koreansalaryman.com/archive">
 <meta property="og:title" content="전체 글 보기 | 직장인 수익일기">
 <meta property="og:description" content="직장인 수익일기의 모든 글을 카테고리별로 모았습니다.">
-<meta property="og:url" content="https://koreansalaryman.com/archive.html">
+<meta property="og:url" content="https://www.koreansalaryman.com/archive">
 <meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -381,11 +386,11 @@ footer{background:var(--navy3);color:#cfd4dc;padding:40px 24px;font-size:13px;ma
 <body>
 <header>
   <div class="hdr-in">
-    <a href="/index.html" class="logo-kr">직장인 <span>수익일기</span></a>
+    <a href="/" class="logo-kr">직장인 <span>수익일기</span></a>
     <nav class="hdr-nav">
-      <a href="/index.html">홈</a>
-      <a href="/blog.html">블로그</a>
-      <a href="/archive.html">전체 글</a>
+      <a href="/">홈</a>
+      <a href="/blog">블로그</a>
+      <a href="/archive">전체 글</a>
     </nav>
   </div>
 </header>
@@ -397,7 +402,7 @@ __BODY__
 <footer>
   <div class="ft-in">
     <span>&copy; 2026 직장인 수익일기 · 박대홍</span>
-    <span><a href="/index.html">홈</a> · <a href="/blog.html">블로그</a> · <a href="/about.html">소개</a> · koreansalaryman.com</span>
+    <span><a href="/">홈</a> · <a href="/blog">블로그</a> · <a href="/about">소개</a> · koreansalaryman.com</span>
   </div>
 </footer>
 </body>
@@ -431,7 +436,7 @@ def generate_archive(manifest):
             title = esc_text(it.get("title") or "(제목 없음)")
             date = esc_text(format_date_kr(it.get("created_at") or ""))
             rows.append(
-                '      <li><a href="/p/%s.html">%s</a><span class="post-date">%s</span></li>'
+                '      <li><a href="/p/%s">%s</a><span class="post-date">%s</span></li>'
                 % (esc_attr(slug), title, date)
             )
             total_links += 1
@@ -497,7 +502,7 @@ def main():
             # 옛 /p/post_xxx.html 자리에 새 슬러그로 보내는 리다이렉트 stub
             old_pid = filename[:-5] if filename.endswith(".json") else filename
             if old_pid != out_slug:
-                stub_html = STUB % {"new_url": "/p/%s.html" % out_slug}
+                stub_html = STUB % {"new_url": "/p/%s" % out_slug}
                 with open(os.path.join(OUT_DIR, old_pid + ".html"), "w", encoding="utf-8") as f:
                     f.write(stub_html)
                 stubs += 1

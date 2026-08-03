@@ -5,4 +5,4 @@ Allow: /
 Disallow: /admin.html
 
 # 사이트맵 위치 안내
-Sitemap: https://koreansalaryman.com/sitemap.xml
+Sitemap: https://www.koreansalaryman.com/sitemap.xml

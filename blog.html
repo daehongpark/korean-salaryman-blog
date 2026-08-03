@@ -11,23 +11,23 @@
 <meta name="keywords" content="직장인 블로그, 부업 블로그, 재테크 블로그, 자기계발 블로그, 블로그 수익화, N잡, 경제적 자유">
 <meta name="author" content="박대홍">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link id="canonical" rel="canonical" href="https://koreansalaryman.com/blog.html">
+<link id="canonical" rel="canonical" href="https://www.koreansalaryman.com/blog">
 
 <!-- ── Open Graph ── -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="직장인 수익일기">
 <meta id="og-title" property="og:title" content="블로그 — 직장인 수익일기">
 <meta id="og-desc" property="og:description" content="직장인 부업, 재테크, 블로그 수익화 전 분야 실전 경험 모음">
-<meta property="og:url" content="https://koreansalaryman.com/blog.html">
+<meta property="og:url" content="https://www.koreansalaryman.com/blog">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://koreansalaryman.com/og-image.png">
+<meta property="og:image" content="https://www.koreansalaryman.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <!-- ── Twitter Card ── -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="블로그 — 직장인 수익일기">
-<meta name="twitter:image" content="https://koreansalaryman.com/og-image.png">
+<meta name="twitter:image" content="https://www.koreansalaryman.com/og-image.png">
 
 <!-- ── 검색엔진 인증 ── -->
 <meta name="google-site-verification" content="1P5W0PRuRHTv3TV43XU5YSGBQR1V76lyAZF1wxjKpLI">
@@ -534,7 +534,7 @@ function renderPosts(){
       ? `<span class="seo-badge" title="SEO 점수">⚡ ${Math.round(p.seo_score)}</span>` : '';
     
     html += `
-      <a class="post-card" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}.html">
+      <a class="post-card" href="/p/${encodeURIComponent(p.slug || p.filename.replace(/\.json$/,''))}">
         <div class="post-thumb-box">
           ${thumbnail 
             ? `<img src="${escapeHtml(thumbnail)}" alt="${escapeHtml(p.title||'')}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">

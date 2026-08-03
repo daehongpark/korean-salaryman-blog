@@ -12,35 +12,37 @@ from pathlib import Path
 from datetime import datetime
 
 # ── 설정 ──────────────────────────────────────────────
-BASE_URL   = "https://koreansalaryman.com"
+# 실제 서빙 호스트는 www (apex koreansalaryman.com은 307로 www로 리다이렉트됨) —
+# sitemap/canonical이 apex를 가리키면 모든 URL이 apex→www 307 홉을 더 거치게 된다.
+BASE_URL   = "https://www.koreansalaryman.com"
 SCRIPT_DIR = Path(__file__).parent
 BLOG_DIR   = SCRIPT_DIR.parent / "korean-salaryman-blog"
 MANIFEST   = BLOG_DIR / "posts" / "manifest.json"
 OUTPUT     = BLOG_DIR / "sitemap.xml"
 
-# 고정 페이지 (priority, changefreq)
+# 고정 페이지 (priority, changefreq) — cleanUrls가 .html을 308로 벗겨내므로 무확장으로.
 STATIC_PAGES = [
-    ("",               "1.0",  "daily"),
-    ("blog.html",      "0.95", "daily"),
-    ("archive.html",   "0.9",  "daily"),
-    ("about.html",     "0.8",  "monthly"),
-    ("income.html",    "0.9",  "weekly"),
-    ("challenge.html", "0.9",  "weekly"),
-    ("class.html",     "0.8",  "monthly"),
-    ("contact.html",   "0.6",  "monthly"),
-    ("privacy.html",   "0.4",  "yearly"),
-    ("terms.html",     "0.4",  "yearly"),
+    ("",          "1.0",  "daily"),
+    ("blog",      "0.95", "daily"),
+    ("archive",   "0.9",  "daily"),
+    ("about",     "0.8",  "monthly"),
+    ("income",    "0.9",  "weekly"),
+    ("challenge", "0.9",  "weekly"),
+    ("class",     "0.8",  "monthly"),
+    ("contact",   "0.6",  "monthly"),
+    ("privacy",   "0.4",  "yearly"),
+    ("terms",     "0.4",  "yearly"),
 ]
 
-# 7개 카테고리 페이지 (영문 키 기반)
+# 카테고리 페이지 (영문 키 기반) — startup은 발행 중단해 sitemap에서 제외
+# (페이지 자체는 기존 글이 있어 유지, 새 글이 없을 뿐이라 노출 우선순위에서만 뺀다).
 CATEGORY_PAGES = [
-    "category-money.html",
-    "category-ai.html",
-    "category-startup.html",
-    "category-finance.html",
-    "category-realestate.html",
-    "category-trending.html",
-    "category-book.html",
+    "category-money",
+    "category-ai",
+    "category-finance",
+    "category-realestate",
+    "category-trending",
+    "category-book",
 ]
 
 
@@ -82,7 +84,7 @@ def generate_sitemap():
                     continue
                 date = (post.get("created_at") or today)[:10]
                 slug = post.get("slug")
-                loc  = f"{BASE_URL}/p/{slug}.html" if slug else f"{BASE_URL}/p/{filename.replace('.json', '.html')}"
+                loc  = f"{BASE_URL}/p/{slug}" if slug else f"{BASE_URL}/p/{filename.replace('.json', '')}"
                 urls.append(f"""  <url>
     <loc>{loc}</loc>
     <lastmod>{date}</lastmod>

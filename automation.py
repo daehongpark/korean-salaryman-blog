@@ -2128,7 +2128,7 @@ def finalize_article(article: dict, hero_image: dict | None = None, body_images:
             "publisher":      {
                 "@type": "Organization",
                 "name":  "직장인 수익일기",
-                "logo":  {"@type": "ImageObject", "url": "https://koreansalaryman.com/og-image.png"}
+                "logo":  {"@type": "ImageObject", "url": "https://www.koreansalaryman.com/og-image.png"}
             },
             "datePublished":  article.get("created_at", ""),
         },
@@ -2136,7 +2136,7 @@ def finalize_article(article: dict, hero_image: dict | None = None, body_images:
     if hero_image:
         article["jsonld"]["article"]["image"] = (
             hero_image["url"] if hero_image["url"].startswith("http")
-            else f"https://koreansalaryman.com{hero_image['url']}"
+            else f"https://www.koreansalaryman.com{hero_image['url']}"
         )
 
     if article.get("faq"):
