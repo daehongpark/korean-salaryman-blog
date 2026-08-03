@@ -25,7 +25,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -82,7 +82,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -131,10 +131,10 @@
       "재테크"
     ],
     "created_at": "2026-08-03T07:34:10.186418",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-03T01:04:38.377Z",
-    "published_at": null,
+    "published_at": "2026-08-03T04:57:09.374Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260802_223405.png",
     "has_faq": true,
