@@ -43,10 +43,10 @@
       "신용관리"
     ],
     "created_at": "2026-08-03T07:37:52.919460",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-03T11:18:00.667Z",
-    "published_at": null,
+    "published_at": "2026-08-03T11:53:16.563Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260802_223750.png",
     "has_faq": true,
