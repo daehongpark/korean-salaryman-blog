@@ -14,10 +14,10 @@
       "AI 도구 추천"
     ],
     "created_at": "2026-08-03T07:40:08.371320",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-03T11:56:33.048Z",
-    "published_at": null,
+    "published_at": "2026-08-03T14:16:23.456Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260802_224004.png",
     "has_faq": true,
