@@ -227,10 +227,10 @@
       "홈택스"
     ],
     "created_at": "2026-08-04T07:38:08.842700",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-04T10:11:45.503Z",
-    "published_at": null,
+    "published_at": "2026-08-04T11:00:49.478Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260803_223807.png",
     "has_faq": true,
