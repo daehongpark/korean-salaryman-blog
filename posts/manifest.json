@@ -28,7 +28,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 91.0,
+    "seo_score": 91,
     "monthly_search": 10
   },
   {
@@ -85,7 +85,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 137.0,
+    "seo_score": 137,
     "monthly_search": 1220
   },
   {
@@ -133,10 +133,10 @@
       "글로벌 안보"
     ],
     "created_at": "2026-08-04T07:34:40.861092",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-04T02:17:46.410Z",
-    "published_at": null,
+    "published_at": "2026-08-04T02:47:43.917Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260803_223438.png",
     "has_faq": true,
