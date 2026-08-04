@@ -431,6 +431,20 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .cand-batch-progress-label{font-size:11px;color:var(--text3);margin-top:4px;}
 .cand-btn-retry{background:var(--yellow-light);color:var(--yellow);}
 .cand-btn-goto{background:var(--navy);color:var(--white);}
+.cand-status-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.cand-status-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.cand-status-badge.st-unhandled{background:var(--bg2);color:var(--text3);}
+.cand-status-badge.st-draft{background:#ede9fe;color:#6d28d9;}
+.cand-status-badge.st-scheduled{background:#fef3c7;color:#b45309;}
+.cand-status-badge.st-published{background:var(--green-light);color:var(--green);}
+.cand-age-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--bg2);color:var(--text3);white-space:nowrap;}
+.cand-age-badge.fresh{background:#e6edf7;color:var(--navy);}
+.cand-age-badge.stale{background:var(--red-light);color:var(--red);}
+.cand-card.stale{background:var(--bg);}
+.cand-subgroup-head{display:flex;align-items:center;gap:8px;margin:4px 0 10px;}
+.cand-subgroup-title{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:0.03em;}
+.cand-subgroup-title.fresh{color:var(--point);}
+.cand-subgroup-count{font-size:10px;font-weight:700;background:var(--bg2);color:var(--text3);padding:1px 7px;border-radius:9px;}
 </style>
 </head>
 <body>
@@ -731,7 +745,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
           <div>
             <div style="font-size:11px;font-weight:700;color:var(--point);letter-spacing:0.15em;margin-bottom:8px;">CANDIDATE QUEUE · 후보 큐</div>
             <h2 style="font-family:'Noto Serif KR',serif;font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px;">발행 후보 카드</h2>
-            <p style="font-size:13px;color:var(--text3);line-height:1.7;">posts/candidates.json의 오늘자 후보 카드. 픽한 카드만 본문 생성 → 발행/예약합니다.</p>
+            <p style="font-size:13px;color:var(--text3);line-height:1.7;">posts/candidates.json의 후보 카드 큐(신규 + 미사용 이월분). 픽한 카드만 본문 생성 → 발행/예약합니다.</p>
           </div>
           <button class="refresh-btn" onclick="loadCandidates()">🔄 새로고침</button>
         </div>
@@ -1830,6 +1844,7 @@ async function _bulkStatusChange(newStatus) {
 
 // ── 예약 발행 ───────────────────────────────────────
 let _scheduleTargetFilename = null;
+let _scheduleTargetCandidateIdx = null; // 후보 큐에서 연 예약이면 idx, 글 관리에서 열었으면 null
 
 function formatScheduledKST(isoString) {
   if (!isoString) return '';
@@ -1846,8 +1861,9 @@ function formatScheduledKST(isoString) {
   }
 }
 
-function openScheduleModal(filename, title) {
+function openScheduleModal(filename, title, candidateIdx = null) {
   _scheduleTargetFilename = filename;
+  _scheduleTargetCandidateIdx = candidateIdx;
   document.getElementById('scheduleTitle').textContent = title;
 
   // 오늘 날짜 기본
@@ -1940,6 +1956,8 @@ async function confirmSchedule() {
 
   const scheduledAt = target.toISOString();
 
+  const candidateIdx = _scheduleTargetCandidateIdx;
+
   showLoading(true);
   try {
     const filename = _scheduleTargetFilename;
@@ -1978,9 +1996,23 @@ async function confirmSchedule() {
       applyFilters();
     }
 
+    // 후보 큐에서 연 예약이면, candidates.json에도 예약 상태·날짜를 되써서
+    // 카드 뱃지가 '⏰예약됨(날짜)'로 바로 반영되게 한다.
+    if (candidateIdx !== null) {
+      const pickedCard = _pickedCandidates.get(candidateIdx);
+      if (pickedCard) {
+        pickedCard._genState = 'scheduled';
+        pickedCard._genScheduledLabel = `${date} ${time}`;
+        _pickedCandidates.set(candidateIdx, pickedCard);
+      }
+      await markCandidateHandled(candidateIdx, `예약됨(${date})`, filename);
+      renderCandidates();
+    }
+
     showToast(`예약 완료: ${date} ${time} KST에 발행됩니다`, 'success');
     closeModal('scheduleModal');
     _scheduleTargetFilename = null;
+    _scheduleTargetCandidateIdx = null;
     // loadPosts 호출 제거 (메모리 이미 업데이트)
   } catch (e) {
     console.error(e);
@@ -3724,6 +3756,48 @@ let _pickedCandidates = new Map(); // idx -> { ...card, _genFilename, _genTitle,
 
 const CAND_CATEGORY_LABEL = { trending: '🔥 실시간 이슈', money: '💰 정부 지원금/정책', realestate: '🏠 부동산/주거' };
 const CAND_CATEGORY_ORDER = ['trending', 'money', 'realestate'];
+const CAND_ARCHIVE_DAYS = 7; // scorecard.py CARD_ARCHIVE_DAYS와 맞춤 — 이 기간 지나면 "묵은 카드"
+
+// 오늘(KST) 기준 YYYY-MM-DD — candidates.json의 수집일 필드와 같은 형식으로 비교하기 위함
+function candTodayStr() {
+  const d = new Date();
+  const kst = new Date(d.getTime() + (9 * 60 - d.getTimezoneOffset()) * 60000);
+  return kst.toISOString().slice(0, 10);
+}
+
+function candAgeDays(c) {
+  if (!c.수집일) return null;
+  const collected = new Date(c.수집일 + 'T00:00:00+09:00');
+  if (isNaN(collected)) return null;
+  const today = new Date(candTodayStr() + 'T00:00:00+09:00');
+  return Math.round((today - collected) / 86400000);
+}
+
+function candAgeBadgeHtml(c) {
+  const age = candAgeDays(c);
+  if (age === null) return '';
+  const label = age <= 0 ? '오늘 수집' : `${age}일 전 수집`;
+  // 처리된 카드는 오래돼도 "정리 대상"이 아니므로 붉은 stale 색은 미처리 카드에만 준다.
+  const cls = age <= 0 ? 'fresh' : (age > CAND_ARCHIVE_DAYS && !c.발행상태 ? 'stale' : '');
+  return `<span class="cand-age-badge ${cls}">${label}</span>`;
+}
+
+function candIsStale(c) {
+  const age = candAgeDays(c);
+  return age !== null && age > CAND_ARCHIVE_DAYS && !c.발행상태;
+}
+
+// 카드 상태(⚪미처리/📝초안생성됨/⏰예약됨/✅발행됨) 뱃지 — candidates.json의 발행상태 필드를
+// 그대로 라벨로 쓰지 않고 여기서 분류하는 건, '예약됨(YYYY-MM-DD)'처럼 날짜가 붙어도
+// 색 분류가 흔들리지 않게 하기 위함.
+function candStatusInfo(c) {
+  const s = c.발행상태 || '';
+  if (!s) return { label: '⚪ 미처리', cls: 'st-unhandled' };
+  if (s.startsWith('예약됨')) return { label: `⏰ ${s}`, cls: 'st-scheduled' };
+  if (s.startsWith('발행')) return { label: `✅ ${s}`, cls: 'st-published' };
+  if (s.startsWith('초안')) return { label: `📝 ${s}`, cls: 'st-draft' };
+  return { label: s, cls: 'st-draft' };
+}
 
 async function loadCandidates() {
   showLoading(true);
@@ -3772,21 +3846,39 @@ function renderCandidates() {
 
   document.getElementById('candEmpty').style.display = cards.length === 0 ? '' : 'none';
 
+  // ── 오늘 새로 온 카드 vs 이전 미사용 카드 구분 ──
+  // scorecard.py 병합 로직이 이미 배열을 "오늘 신규 → 이월(최신순)" 순서로 저장해 두므로,
+  // 여기서는 수집일이 오늘자 기준일과 같은지만 보고 두 그룹으로 나눠 소제목만 붙인다.
+  const todayStr = (_candidatesData && _candidatesData.date) || candTodayStr();
+  const isFresh = (c) => c.수집일 ? c.수집일 === todayStr : true; // 수집일 없는 옛 데이터는 신규 취급
+
   const groupsEl = document.getElementById('candGroups');
   groupsEl.innerHTML = CAND_CATEGORY_ORDER.map(cat => {
     const catCards = cards
       .map((c, idx) => ({ c, idx }))
       .filter(({ c }) => c.카테고리 === cat);
     if (catCards.length === 0) return '';
+
+    const freshCards = catCards.filter(({ c }) => isFresh(c));
+    const oldCards = catCards.filter(({ c }) => !isFresh(c));
+
+    const subgroupHtml = (title, list, cls) => list.length === 0 ? '' : `
+        <div class="cand-subgroup-head">
+          <span class="cand-subgroup-title ${cls}">${title}</span>
+          <span class="cand-subgroup-count">${list.length}장</span>
+        </div>
+        <div class="cand-grid">
+          ${list.map(({ c, idx }) => renderCandidateCard(c, idx)).join('')}
+        </div>`;
+
     return `
       <div class="cand-group">
         <div class="cand-group-head">
           <span class="cand-group-title">${CAND_CATEGORY_LABEL[cat] || cat}</span>
           <span class="cand-group-count">${catCards.length}장</span>
         </div>
-        <div class="cand-grid">
-          ${catCards.map(({ c, idx }) => renderCandidateCard(c, idx)).join('')}
-        </div>
+        ${subgroupHtml('🆕 오늘 새로 온 카드', freshCards, 'fresh')}
+        ${subgroupHtml('이전에 수집된 카드', oldCards, '')}
       </div>`;
   }).join('');
 
@@ -3796,12 +3888,18 @@ function renderCandidates() {
 function renderCandidateCard(c, idx) {
   const picked = _pickedCandidates.has(idx);
   const handled = c.발행상태;
+  const stale = candIsStale(c);
+  const statusInfo = candStatusInfo(c);
   const eligOk = (c.적격 || '').startsWith('✅');
   const laneClass = c.레인 === '딜' ? 'lane-deal' : 'lane-policy';
   const sourceLink = c.출처URL ? `<a class="cand-source-link" href="${escHtml(c.출처URL)}" target="_blank" rel="noopener">출처 ↗</a>` : '<span style="color:var(--text3);">출처 없음</span>';
 
   return `
-    <div class="cand-card ${picked ? 'picked' : ''} ${handled ? 'handled' : ''}">
+    <div class="cand-card ${picked ? 'picked' : ''} ${handled ? 'handled' : ''} ${stale ? 'stale' : ''}">
+      <div class="cand-status-row">
+        <span class="cand-status-badge ${statusInfo.cls}">${escHtml(statusInfo.label)}</span>
+        ${candAgeBadgeHtml(c)}
+      </div>
       <div class="cand-tag-row">
         <span class="cand-tag ${laneClass}">${escHtml(c.레인 || '')}</span>
         <span class="cand-tag">${escHtml(c.세그먼트 || '')}</span>
@@ -3821,7 +3919,7 @@ function renderCandidateCard(c, idx) {
       </div>
       <div class="cand-actions">
         ${handled
-          ? `<button class="cand-pick-btn" disabled>처리됨 · ${escHtml(handled)}</button>`
+          ? `<button class="cand-pick-btn" disabled>처리됨</button>`
           : `<button class="cand-pick-btn ${picked ? 'picked' : ''}" onclick="toggleCandidatePick(${idx})">${picked ? '✓ 픽됨' : '☆ 픽'}</button>`}
       </div>
     </div>`;
@@ -3864,6 +3962,9 @@ function renderPickedTray() {
     let actionsHtml = '';
     if (card._genState === 'published') {
       statusHtml = `<span class="cand-tray-status">✅ 발행됨</span>`;
+      actionsHtml = `<button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">닫기</button>`;
+    } else if (card._genState === 'scheduled') {
+      statusHtml = `<span class="cand-tray-status">⏰ 예약됨 (${escHtml(card._genScheduledLabel || '')})</span>`;
       actionsHtml = `<button class="cand-btn-remove" onclick="removePickedCandidate(${idx})">닫기</button>`;
     } else if (card._genState === 'generating' || card._genState === 'queued') {
       statusHtml = `<span class="cand-tray-status generating">${card._genState === 'queued' ? '⏳ 대기열' : '⚙️ 생성 중...'}</span>`;
@@ -4180,9 +4281,8 @@ function scheduleCandidatePost(idx) {
   const card = _pickedCandidates.get(idx);
   if (!card || !card._genFilename) return;
   // 예약 확정은 기존 scheduleModal/confirmSchedule 그대로 재사용.
-  // candidates.json의 발행상태는 즉시발행 경로만 확정적으로 갱신하고, 예약 완료 여부는
-  // 다음 새로고침 시 글 관리 탭(예약 발행)에서 별도 확인한다.
-  openScheduleModal(card._genFilename, card._genTitle || card.제목);
+  // confirmSchedule이 candidateIdx를 받으면 candidates.json에 '예약됨(날짜)' 상태를 되쓴다.
+  openScheduleModal(card._genFilename, card._genTitle || card.제목, idx);
 }
 
 // ── 후보 카드 처리 상태를 candidates.json에 되써서, 다음 로드 때 같은 카드가 다시 픽되지 않게 한다 ──

@@ -1034,6 +1034,92 @@ def save_candidates(result: dict) -> None:
 
 
 # ═══════════════════════════════════════════════════════
+#  후보 큐 병합/정리 (박대홍 지시 2026-08-04)
+# ═══════════════════════════════════════════════════════
+# 예전엔 매일 pipeline이 뽑은 카드로 candidates.json을 통째로 덮어써서, 어제 안 쓴 카드가
+# 오늘 새 카드에 밀려 그냥 사라졌다. 이제부턴 기존 파일의 "미사용" 카드를 새 카드와
+# 병합하고, 마감이 지났거나 너무 오래된 것만 정리한다 — admin 후보 큐가 하루치 스냅샷이
+# 아니라 누적 큐로 동작하게.
+CARD_ARCHIVE_DAYS = 7          # 이 기간 지나도 안 쓴 카드는 "묵은 카드"(큐 하단, admin에서 회색 표시)
+CARD_PURGE_DAYS = 14           # 미사용 카드 자동 제거 기준
+CARD_HANDLED_PURGE_DAYS = 30   # 처리(초안/예약/발행)된 카드도 이 기간 지나면 정리(무한 누적 방지)
+
+
+def _candidate_key(card: dict) -> str:
+    """카드 동일성 판별 키. gov24 카드는 서비스ID, 뉴스/딜 카드는 출처URL(제목 폴백)로 구분."""
+    return card.get("서비스ID") or card.get("출처URL") or card.get("제목") or ""
+
+
+def _days_since(date_str: str, today: date) -> int | None:
+    try:
+        d = datetime.strptime(date_str, "%Y-%m-%d").date()
+        return (today - d).days
+    except (TypeError, ValueError):
+        return None
+
+
+def merge_with_existing_queue(new_result: dict) -> dict:
+    """오늘 새로 뽑힌 카드를 기존 candidates.json의 미사용 카드와 병합해 반환.
+
+    - 새 카드에는 수집일(오늘)을 찍고, 항상 각 카테고리 배열의 앞쪽에 온다
+      (admin 렌더링이 배열 순서를 그대로 보존하므로, 신규 카드가 자연히 위에 노출됨).
+    - 기존 카드 중 오늘 다시 뽑힌 것(동일 키)은 오늘 버전으로 대체해 중복을 막는다.
+    - 마감이 지난 카드는 신규/기존 가리지 않고 제거한다(gov24_client.parse_deadline 재사용).
+    - 이월된 카드는 수집일 기준 최신순으로 정렬해, 신규 카드 바로 아래 → 오래된 카드
+      순서로 자연스럽게 이어지게 한다.
+    """
+    today_str = new_result["date"]
+    today = datetime.strptime(today_str, "%Y-%m-%d").date()
+
+    new_cards = new_result["cards"]
+    for c in new_cards:
+        c.setdefault("수집일", today_str)
+
+    prior_cards = []
+    if CANDIDATES_PATH.exists():
+        try:
+            prior = json.loads(CANDIDATES_PATH.read_text(encoding="utf-8"))
+            prior_cards = prior.get("cards", [])
+            # 이 기능 배포 전에 저장된 카드는 수집일이 없다 — 그 파일의 기준일(date)로
+            # 소급 추정해서, 나이 계산이 첫 실행부터 바로 동작하게 한다.
+            prior_date = prior.get("date", "")
+            if prior_date:
+                for c in prior_cards:
+                    c.setdefault("수집일", prior_date)
+        except Exception as e:
+            logger.warning(f"기존 candidates.json 로드 실패, 병합 없이 진행: {e}")
+
+    new_keys = {_candidate_key(c) for c in new_cards}
+
+    carried = []
+    dropped_expired = 0
+    dropped_stale = 0
+    for c in prior_cards:
+        if _candidate_key(c) in new_keys:
+            continue  # 오늘 새 버전으로 대체됨
+
+        deadline = gov24_client.parse_deadline(c.get("마감"), today=today)
+        if deadline["status"] == "expired":
+            dropped_expired += 1
+            continue
+
+        age = _days_since(c.get("수집일", ""), today)
+        limit = CARD_HANDLED_PURGE_DAYS if c.get("발행상태") else CARD_PURGE_DAYS
+        if age is not None and age > limit:
+            dropped_stale += 1
+            continue
+
+        carried.append(c)
+
+    carried.sort(key=lambda c: c.get("수집일", ""), reverse=True)
+
+    logger.info(f"큐 병합: 신규 {len(new_cards)}장 + 이월 {len(carried)}장 "
+                f"(제거: 마감지남 {dropped_expired}장, 오래됨 {dropped_stale}장)")
+
+    return {"date": today_str, "cards": new_cards + carried}
+
+
+# ═══════════════════════════════════════════════════════
 #  검증/dry-run 콘솔 출력
 # ═══════════════════════════════════════════════════════
 
@@ -1099,4 +1185,4 @@ if __name__ == "__main__":
     print_step0_contract_check()
     out = run_pipeline()
     print_dry_run(out)
-    save_candidates(out["result"])
+    save_candidates(merge_with_existing_queue(out["result"]))
