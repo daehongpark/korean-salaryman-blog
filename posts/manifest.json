@@ -283,10 +283,10 @@
       "재테크"
     ],
     "created_at": "2026-08-04T07:35:54.927054",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-04T05:14:51.249Z",
-    "published_at": null,
+    "published_at": "2026-08-04T05:39:16.233Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260803_223552.png",
     "has_faq": true,
