@@ -198,10 +198,10 @@
       "Perplexity"
     ],
     "created_at": "2026-08-04T07:39:20.184486",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-04T12:19:15.306Z",
-    "published_at": null,
+    "published_at": "2026-08-04T13:13:33.305Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260803_223916.png",
     "has_faq": true,
