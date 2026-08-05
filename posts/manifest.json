@@ -132,10 +132,10 @@
       "헬스케어 투자"
     ],
     "created_at": "2026-08-05T07:34:40.762613",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-05T00:28:28.349Z",
-    "published_at": null,
+    "published_at": "2026-08-05T01:43:58.268Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260804_223436.png",
     "has_faq": true,
