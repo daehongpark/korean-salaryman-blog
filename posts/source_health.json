@@ -2,77 +2,77 @@
   "gov24_bulk": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:43.884769+09:00"
+    "last_checked": "2026-08-05T09:58:04.017821+09:00"
   },
   "gemini_api": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:55.899115+09:00"
+    "last_checked": "2026-08-05T09:58:17.860285+09:00"
   },
   "deal_feed": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:50.411271+09:00"
+    "last_checked": "2026-08-05T09:58:10.497340+09:00"
   },
   "gov24_detail": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:58.586190+09:00"
+    "last_checked": "2026-08-05T09:58:21.025451+09:00"
   },
   "news:trending:보건복지부": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:01:58.898339+09:00"
+    "last_checked": "2026-08-05T09:57:01.054066+09:00"
   },
   "news:trending:여성가족부": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:01:59.080592+09:00"
+    "last_checked": "2026-08-05T09:57:01.303626+09:00"
   },
   "news:trending:저출산고령사회위": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:01:59.349919+09:00"
+    "last_checked": "2026-08-05T09:57:01.545184+09:00"
   },
   "news:money:국세청": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:01:59.616434+09:00"
+    "last_checked": "2026-08-05T09:57:01.827211+09:00"
   },
   "news:money:고용노동부": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:00.016542+09:00"
+    "last_checked": "2026-08-05T09:57:02.282060+09:00"
   },
   "news:money:금융위": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:00.250472+09:00"
+    "last_checked": "2026-08-05T09:57:02.579263+09:00"
   },
   "news:money:기획재정부": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:00.462900+09:00"
+    "last_checked": "2026-08-05T09:57:02.840446+09:00"
   },
   "news:money:지원금뉴스": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:00.916373+09:00"
+    "last_checked": "2026-08-05T09:57:03.362043+09:00"
   },
   "news:realestate:국토교통부": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:01.127005+09:00"
+    "last_checked": "2026-08-05T09:57:03.621442+09:00"
   },
   "news:realestate:금융위": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:01.326341+09:00"
+    "last_checked": "2026-08-05T09:57:03.892142+09:00"
   },
   "news:realestate:부동산뉴스": {
     "consecutive_fail": 0,
     "last_status": "OK",
-    "last_checked": "2026-08-04T10:02:01.758407+09:00"
+    "last_checked": "2026-08-05T09:57:04.377355+09:00"
   },
   "deal_page_fetch": {
     "consecutive_fail": 0,
