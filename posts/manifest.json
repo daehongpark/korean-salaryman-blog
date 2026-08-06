@@ -288,10 +288,10 @@
       "목돈모으기"
     ],
     "created_at": "2026-08-06T07:40:36.322429",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-06T03:40:51.103Z",
-    "published_at": null,
+    "published_at": "2026-08-06T04:56:47.482Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260805_224033.png",
     "has_faq": true,
