@@ -260,10 +260,10 @@
       "사내 AI 정책"
     ],
     "created_at": "2026-08-06T07:41:50.659711",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-06T06:13:12.934Z",
-    "published_at": null,
+    "published_at": "2026-08-06T07:35:25.787Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260805_224147.png",
     "has_faq": true,
