@@ -44,10 +44,10 @@
       "배당주 투자"
     ],
     "created_at": "2026-08-07T07:40:24.410512",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-07T09:50:01.618Z",
-    "published_at": null,
+    "published_at": "2026-08-07T10:25:52.573Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260806_224023.png",
     "has_faq": true,
