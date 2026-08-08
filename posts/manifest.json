@@ -16,10 +16,10 @@
       "AI 활용"
     ],
     "created_at": "2026-08-08T07:39:08.794956",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-08T12:00:07.090Z",
-    "published_at": null,
+    "published_at": "2026-08-08T12:27:11.175Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260807_223908.png",
     "has_faq": true,
