@@ -134,10 +134,10 @@
       "CMA"
     ],
     "created_at": "2026-08-08T07:34:20.184952",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-08T00:39:02.241Z",
-    "published_at": null,
+    "published_at": "2026-08-08T00:56:38.022Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260807_223417.png",
     "has_faq": true,
