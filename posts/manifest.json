@@ -47,10 +47,10 @@
       "Claude"
     ],
     "created_at": "2026-08-08T07:37:53.374370",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-08T10:18:55.409Z",
-    "published_at": null,
+    "published_at": "2026-08-08T10:57:38.523Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260807_223752.png",
     "has_faq": true,
