@@ -68,10 +68,10 @@
       "직장인"
     ],
     "created_at": "2026-08-09T07:40:37.644860",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-09T08:04:55.547Z",
-    "published_at": null,
+    "published_at": "2026-08-09T08:30:34.967Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260808_224035.png",
     "has_faq": true,
