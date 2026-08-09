@@ -99,10 +99,10 @@
       "연금저축"
     ],
     "created_at": "2026-08-09T07:35:34.768966",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-09T04:16:15.204Z",
-    "published_at": null,
+    "published_at": "2026-08-09T04:43:09.849Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260808_223533.png",
     "has_faq": true,
