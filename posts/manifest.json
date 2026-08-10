@@ -25,7 +25,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 1360
   },
   {
@@ -83,7 +83,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -99,10 +99,10 @@
       "부업"
     ],
     "created_at": "2026-08-10T07:37:01.731841",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-10T03:15:11.961Z",
-    "published_at": null,
+    "published_at": "2026-08-10T03:21:57.495Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260809_223658.png",
     "has_faq": false,
@@ -110,7 +110,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 10
   },
   {
@@ -129,10 +129,10 @@
       "finance"
     ],
     "created_at": "2026-08-10T07:35:45.257438",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-10T01:43:19.650Z",
-    "published_at": null,
+    "published_at": "2026-08-10T03:21:57.495Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260809_223542.png",
     "has_faq": true,
@@ -140,7 +140,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 990
   },
   {
