@@ -44,10 +44,10 @@
       "경제전망"
     ],
     "created_at": "2026-08-10T07:39:17.140457",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-10T10:51:08.580Z",
-    "published_at": null,
+    "published_at": "2026-08-10T10:58:22.041Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260809_223915.png",
     "has_faq": true,
