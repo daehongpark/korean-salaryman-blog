@@ -132,10 +132,10 @@
       "소비 통제"
     ],
     "created_at": "2026-08-11T07:34:25.532543",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-11T01:40:34.096Z",
-    "published_at": null,
+    "published_at": "2026-08-11T03:18:11.394Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260810_223421.png",
     "has_faq": true,
