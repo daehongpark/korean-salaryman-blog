@@ -28,6 +28,7 @@ import json
 import logging
 import math
 import os
+import random
 import re
 import sys
 import time
@@ -852,16 +853,22 @@ def run_pipeline(verbose: bool = True) -> dict:
                     pool[cat].append(e)
 
     # ── 훅 있는 후보로도 배분에 못 미치면, 그때만 상시 프로그램으로 명시적으로 채운다 ──
+    #    조회수 상위 30건(품질 하한선) 안에서, 오늘 날짜를 시드로 shortfall개를 뽑는다.
+    #    고정 top-2가 매일 그대로 반복 노출되던 문제를 막기 위함(박대홍 지시 2026-08-11) —
+    #    같은 날 여러 번 돌려도 결과는 같고, 날짜가 바뀌면 다른 조합이 나온다.
+    today_str = datetime.now(KST).strftime("%Y-%m-%d")
     for cat, need in ALLOCATION.items():
         if len(pool[cat]) < need:
             shortfall = need - len(pool[cat])
             evergreen[cat].sort(key=lambda e: e["item"].get("조회수") or 0, reverse=True)
-            backfill = evergreen[cat][:shortfall]
+            top_pool = evergreen[cat][:30]
+            rng = random.Random(f"{today_str}:{cat}")
+            backfill = rng.sample(top_pool, min(shortfall, len(top_pool)))
             for e in backfill:
                 e["evergreen_fill"] = True
             pool[cat].extend(backfill)
             if backfill:
-                logger.warning(f"{cat}: 훅 있는 후보 미달 → 상시 프로그램 {len(backfill)}건 명시적 보충(카드에 '상시' 표기)")
+                logger.warning(f"{cat}: 훅 있는 후보 미달 → 상시 프로그램 {len(backfill)}건 명시적 보충(카드에 '상시' 표기, 날짜 시드 로테이션)")
 
     # 중복 가드 적용 + 정렬용 상위 10건만 Gemini 배치 (훅 있는 후보 우선, evergreen 백필은 뒤로)
     all_gov24_cards = []
