@@ -3799,13 +3799,20 @@ function candStatusInfo(c) {
   return { label: s, cls: 'st-draft' };
 }
 
+// 후보 큐 "읽기"는 GitHub API(60/hr 익명 버킷을 다른 기능과 공유) 대신
+// 배포된 정적 경로에서 읽는다. 상태 되쓰기(markCandidateHandled 등)는
+// sha가 필요해서 계속 ghGet/ghPut을 쓴다 — 여긴 화면 표시용 읽기 전용.
 async function loadCandidates() {
   showLoading(true);
   try {
-    const file = await ghGet(`${POSTS_PATH}/candidates.json`);
-    const raw = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
-    _candidatesData = JSON.parse(raw);
-    _candidatesSha = file.sha;
+    const res = await fetch(`https://www.koreansalaryman.com/${POSTS_PATH}/candidates.json?t=${Date.now()}`);
+    if (!res.ok) {
+      const err = new Error(`후보 큐 조회 실패: HTTP ${res.status}`);
+      err._status = res.status;
+      throw err;
+    }
+    _candidatesData = await res.json();
+    _candidatesSha = null;
   } catch (e) {
     console.error(e);
     _candidatesData = { date: '', cards: [] };
