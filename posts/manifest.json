@@ -271,10 +271,10 @@
       "개발 생산성"
     ],
     "created_at": "2026-08-13T07:37:25.239598",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-13T06:31:56.183Z",
-    "published_at": null,
+    "published_at": "2026-08-13T06:55:00.712Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260812_223724.png",
     "has_faq": true,
