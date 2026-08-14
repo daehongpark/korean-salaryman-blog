@@ -84,7 +84,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -131,10 +131,10 @@
       "투자 전략"
     ],
     "created_at": "2026-08-14T07:34:22.194887",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-14T02:06:45.055Z",
-    "published_at": null,
+    "published_at": "2026-08-14T03:33:44.125Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260813_223419.png",
     "has_faq": true,
