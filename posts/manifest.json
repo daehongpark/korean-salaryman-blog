@@ -102,10 +102,10 @@
       "ISA"
     ],
     "created_at": "2026-08-14T07:35:30.307868",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-14T03:34:59.970Z",
-    "published_at": null,
+    "published_at": "2026-08-14T05:24:43.284Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260813_223528.png",
     "has_faq": true,
