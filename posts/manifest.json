@@ -105,10 +105,10 @@
       "보이스루"
     ],
     "created_at": "2026-08-15T07:35:31.601944",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-15T05:00:51.144Z",
-    "published_at": null,
+    "published_at": "2026-08-15T05:16:42.199Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260814_223530.png",
     "has_faq": true,
