@@ -14,10 +14,10 @@
       "프롬프트"
     ],
     "created_at": "2026-08-15T07:39:14.347656",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-15T12:47:22.392Z",
-    "published_at": null,
+    "published_at": "2026-08-15T13:05:20.135Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260814_223913.png",
     "has_faq": true,
