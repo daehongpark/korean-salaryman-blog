@@ -43,10 +43,10 @@
       "ETF 추천"
     ],
     "created_at": "2026-08-15T07:38:02.887156",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-15T09:20:28.519Z",
-    "published_at": null,
+    "published_at": "2026-08-15T09:47:18.158Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260814_223759.png",
     "has_faq": true,
