@@ -69,10 +69,10 @@
       "생산성"
     ],
     "created_at": "2026-08-16T07:38:20.257920",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-16T07:32:25.105Z",
-    "published_at": null,
+    "published_at": "2026-08-16T07:51:21.902Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260815_223817.png",
     "has_faq": true,
