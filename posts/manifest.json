@@ -102,10 +102,10 @@
       "부업"
     ],
     "created_at": "2026-08-17T07:36:14.301960",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-17T04:07:43.632Z",
-    "published_at": null,
+    "published_at": "2026-08-17T04:09:00.088Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260816_223611.png",
     "has_faq": false,
