@@ -43,10 +43,10 @@
       "우라늄"
     ],
     "created_at": "2026-08-18T07:39:12.697301",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-18T10:27:17.432Z",
-    "published_at": null,
+    "published_at": "2026-08-18T10:52:58.950Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260817_223911.png",
     "has_faq": true,
