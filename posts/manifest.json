@@ -102,10 +102,10 @@
       "생산성"
     ],
     "created_at": "2026-08-18T07:36:38.701976",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-18T03:57:54.350Z",
-    "published_at": null,
+    "published_at": "2026-08-18T04:03:53.264Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260817_223636.png",
     "has_faq": true,
