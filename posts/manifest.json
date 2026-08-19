@@ -114,7 +114,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -132,10 +132,10 @@
       "업무 효율"
     ],
     "created_at": "2026-08-19T07:34:54.229687",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-19T01:44:36.940Z",
-    "published_at": null,
+    "published_at": "2026-08-19T02:12:05.709Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260818_223451.png",
     "has_faq": true,
@@ -143,7 +143,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 91.0,
+    "seo_score": 91,
     "monthly_search": 10
   },
   {
