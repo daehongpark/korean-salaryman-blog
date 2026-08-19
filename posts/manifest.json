@@ -13,10 +13,10 @@
       "CMA"
     ],
     "created_at": "2026-08-19T07:42:17.942710",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-19T13:04:06.839Z",
-    "published_at": null,
+    "published_at": "2026-08-19T13:23:01.072Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260818_224215.png",
     "has_faq": true,
