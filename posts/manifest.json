@@ -41,10 +41,10 @@
       "재테크 초보"
     ],
     "created_at": "2026-08-19T07:38:33.021373",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-19T11:15:17.659Z",
-    "published_at": null,
+    "published_at": "2026-08-19T11:16:08.412Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260818_223831.png",
     "has_faq": true,
