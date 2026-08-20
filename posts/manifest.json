@@ -69,10 +69,10 @@
       "친환경에너지투자"
     ],
     "created_at": "2026-08-20T07:37:30.438669",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-20T07:28:14.274Z",
-    "published_at": null,
+    "published_at": "2026-08-20T08:02:37.226Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260819_223729.png",
     "has_faq": true,
