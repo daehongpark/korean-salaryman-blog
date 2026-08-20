@@ -40,10 +40,10 @@
       "보고서 작성"
     ],
     "created_at": "2026-08-20T07:38:41.280782",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-20T10:03:31.480Z",
-    "published_at": null,
+    "published_at": "2026-08-20T10:23:52.243Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260819_223838.png",
     "has_faq": true,
