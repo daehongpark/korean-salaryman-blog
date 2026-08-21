@@ -14,10 +14,10 @@
       "생산성 향상"
     ],
     "created_at": "2026-08-21T07:39:12.326099",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-21T14:11:56.462Z",
-    "published_at": null,
+    "published_at": "2026-08-21T15:00:19.479Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260820_223910.png",
     "has_faq": true,
