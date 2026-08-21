@@ -43,10 +43,10 @@
       "재테크 팁"
     ],
     "created_at": "2026-08-21T07:37:58.487529",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-21T09:47:40.688Z",
-    "published_at": null,
+    "published_at": "2026-08-21T09:57:49.508Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260820_223757.png",
     "has_faq": true,
