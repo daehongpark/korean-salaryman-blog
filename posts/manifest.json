@@ -130,10 +130,10 @@
       "사내 AI"
     ],
     "created_at": "2026-08-22T07:35:43.630547",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-22T01:19:35.239Z",
-    "published_at": null,
+    "published_at": "2026-08-22T02:09:22.506Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260821_223540.png",
     "has_faq": true,
@@ -141,7 +141,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 84.0,
+    "seo_score": 84,
     "monthly_search": 10
   },
   {
