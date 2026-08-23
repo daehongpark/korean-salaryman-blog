@@ -75,10 +75,10 @@
       "안전자산"
     ],
     "created_at": "2026-08-23T07:38:46.503153",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-23T07:35:11.246Z",
-    "published_at": null,
+    "published_at": "2026-08-23T07:53:55.587Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260822_223843.png",
     "has_faq": true,
