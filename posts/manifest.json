@@ -69,10 +69,10 @@
       "금융 상식"
     ],
     "created_at": "2026-08-24T07:37:41.335499",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-24T08:09:03.925Z",
-    "published_at": null,
+    "published_at": "2026-08-24T08:09:27.246Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260823_223739.png",
     "has_faq": true,
