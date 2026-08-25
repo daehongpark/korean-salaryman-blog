@@ -13,10 +13,10 @@
       "Claude"
     ],
     "created_at": "2026-08-25T07:42:13.175612",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-25T14:09:45.276Z",
-    "published_at": null,
+    "published_at": "2026-08-25T14:11:51.964Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260824_224210.png",
     "has_faq": true,
