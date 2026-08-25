@@ -111,7 +111,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 99.0,
+    "seo_score": 99,
     "monthly_search": 10
   },
   {
@@ -128,10 +128,10 @@
       "신용등급"
     ],
     "created_at": "2026-08-25T07:34:38.069370",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-25T00:27:50.945Z",
-    "published_at": null,
+    "published_at": "2026-08-25T00:42:04.322Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260824_223435.png",
     "has_faq": true,
