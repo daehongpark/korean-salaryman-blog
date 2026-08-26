@@ -12,10 +12,10 @@
       "부업"
     ],
     "created_at": "2026-08-26T07:48:04.674168",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-26T13:55:24.477Z",
-    "published_at": null,
+    "published_at": "2026-08-26T14:35:01.904Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260825_224802.png",
     "has_faq": false,
