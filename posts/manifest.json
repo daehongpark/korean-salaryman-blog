@@ -134,10 +134,10 @@
       "업무 자동화"
     ],
     "created_at": "2026-08-29T07:34:24.578949",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-29T01:44:02.906Z",
-    "published_at": null,
+    "published_at": "2026-08-29T04:13:48.295Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260828_223421.png",
     "has_faq": true,
