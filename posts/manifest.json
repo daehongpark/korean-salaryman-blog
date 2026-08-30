@@ -83,7 +83,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -114,7 +114,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -131,10 +131,10 @@
       "미국주식"
     ],
     "created_at": "2026-08-30T07:34:24.075479",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-30T01:43:27.878Z",
-    "published_at": null,
+    "published_at": "2026-08-30T02:31:54.772Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260829_223421.png",
     "has_faq": true,
@@ -142,7 +142,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 137.0,
+    "seo_score": 137,
     "monthly_search": 680
   },
   {
