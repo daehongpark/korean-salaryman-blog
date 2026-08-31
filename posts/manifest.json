@@ -84,7 +84,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -134,10 +134,10 @@
       "경제 분석"
     ],
     "created_at": "2026-08-31T07:35:03.775608",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-08-31T01:45:29.631Z",
-    "published_at": null,
+    "published_at": "2026-08-31T02:25:43.436Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260830_223500.png",
     "has_faq": true,
