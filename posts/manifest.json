@@ -102,10 +102,10 @@
       "구글번역"
     ],
     "created_at": "2026-09-02T07:36:48.329362",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-02T03:40:28.668Z",
-    "published_at": null,
+    "published_at": "2026-09-02T06:02:44.155Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260901_223645.png",
     "has_faq": true,
