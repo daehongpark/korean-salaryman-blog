@@ -14,10 +14,10 @@
       "재테크 시작"
     ],
     "created_at": "2026-09-02T07:42:36.633771",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-02T13:15:56.135Z",
-    "published_at": null,
+    "published_at": "2026-09-02T15:38:41.463Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260901_224235.png",
     "has_faq": true,
