@@ -91,10 +91,10 @@
       "재테크"
     ],
     "created_at": "2026-09-03T07:35:54.671123",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-03T04:02:49.779Z",
-    "published_at": null,
+    "published_at": "2026-09-03T07:16:35.612Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260902_223552.png",
     "has_faq": true,
