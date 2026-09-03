@@ -18,7 +18,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -119,10 +119,10 @@
       "자료조사"
     ],
     "created_at": "2026-09-03T07:34:42.323956",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-03T01:01:02.830Z",
-    "published_at": null,
+    "published_at": "2026-09-03T02:07:36.146Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260902_223440.png",
     "has_faq": true,
