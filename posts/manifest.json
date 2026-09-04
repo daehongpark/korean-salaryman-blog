@@ -95,10 +95,10 @@
       "생산성 향상"
     ],
     "created_at": "2026-09-04T07:35:59.214911",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-04T03:41:56.806Z",
-    "published_at": null,
+    "published_at": "2026-09-04T07:19:17.981Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260903_223556.png",
     "has_faq": true,
