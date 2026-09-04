@@ -106,7 +106,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 1660
   },
   {
@@ -125,10 +125,10 @@
       "포트폴리오"
     ],
     "created_at": "2026-09-04T07:34:42.835403",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-04T00:55:50.262Z",
-    "published_at": null,
+    "published_at": "2026-09-04T02:04:43.708Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260903_223440.png",
     "has_faq": true,
