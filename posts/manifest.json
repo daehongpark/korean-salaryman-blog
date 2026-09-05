@@ -15,10 +15,10 @@
       "초보 투자"
     ],
     "created_at": "2026-09-05T07:41:21.265662",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-05T12:22:43.631Z",
-    "published_at": null,
+    "published_at": "2026-09-05T13:56:01.519Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260904_224120.png",
     "has_faq": true,
