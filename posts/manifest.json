@@ -79,7 +79,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 10
   },
   {
@@ -96,10 +96,10 @@
       "안전자산"
     ],
     "created_at": "2026-09-05T07:37:30.742352",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-05T04:28:49.991Z",
-    "published_at": null,
+    "published_at": "2026-09-05T07:00:16.544Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260904_223728.png",
     "has_faq": true,
@@ -125,10 +125,10 @@
       "이자소득세"
     ],
     "created_at": "2026-09-05T07:35:06.268524",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-05T02:26:01.527Z",
-    "published_at": null,
+    "published_at": "2026-09-05T07:00:16.544Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260904_223503.png",
     "has_faq": true,
