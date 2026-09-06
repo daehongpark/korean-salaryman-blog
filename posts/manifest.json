@@ -56,7 +56,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 91.0,
+    "seo_score": 91,
     "monthly_search": 10
   },
   {
@@ -102,10 +102,10 @@
       "생산성향상"
     ],
     "created_at": "2026-09-06T07:36:06.608838",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-06T04:36:05.592Z",
-    "published_at": null,
+    "published_at": "2026-09-06T04:54:06.782Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260905_223604.png",
     "has_faq": true,
@@ -113,7 +113,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -130,10 +130,10 @@
       "노코드"
     ],
     "created_at": "2026-09-06T07:34:50.212880",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-06T02:03:07.561Z",
-    "published_at": null,
+    "published_at": "2026-09-06T04:54:06.782Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260905_223446.png",
     "has_faq": true,
