@@ -74,10 +74,10 @@
       "투자 방법"
     ],
     "created_at": "2026-09-06T07:37:17.813587",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-06T07:32:25.473Z",
-    "published_at": null,
+    "published_at": "2026-09-06T09:03:31.126Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260905_223714.png",
     "has_faq": true,
