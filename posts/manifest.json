@@ -25,7 +25,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 84.0,
+    "seo_score": 84,
     "monthly_search": 10
   },
   {
@@ -106,10 +106,10 @@
       "업무 자동화"
     ],
     "created_at": "2026-09-09T07:36:20.968509",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-09T05:10:05.775Z",
-    "published_at": null,
+    "published_at": "2026-09-09T06:11:43.485Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260908_223618.png",
     "has_faq": true,
@@ -117,7 +117,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -133,10 +133,10 @@
       "부업"
     ],
     "created_at": "2026-09-09T07:35:08.662400",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-09T01:37:47.683Z",
-    "published_at": null,
+    "published_at": "2026-09-09T06:11:43.485Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260908_223506.png",
     "has_faq": false,
