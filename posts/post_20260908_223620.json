@@ -217,5 +217,8 @@
     }
   },
   "scheduled_at": "2026-09-09T05:10:05.775Z",
-  "published_at": "2026-09-09T06:11:43.485Z"
+  "published_at": "2026-09-09T06:11:43.485Z",
+  "thread_published": true,
+  "thread_url": "https://www.threads.com/@njob_blogosu/post/DdDyAwulSN5",
+  "thread_published_at": "2026-09-09T17:00:25+09:00"
 }
