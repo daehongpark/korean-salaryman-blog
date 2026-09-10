@@ -23,7 +23,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 97.0,
+    "seo_score": 97,
     "monthly_search": 10
   },
   {
@@ -123,10 +123,10 @@
       "금융"
     ],
     "created_at": "2026-09-10T07:37:24.756588",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-10T00:57:27.590Z",
-    "published_at": null,
+    "published_at": "2026-09-10T01:13:49.398Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260909_223721.png",
     "has_faq": true,
