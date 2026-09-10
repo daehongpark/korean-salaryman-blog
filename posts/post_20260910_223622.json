@@ -1,0 +1,214 @@
+{
+  "title": "MAKE로 퇴근 시간 지키는 직장인 자동화 시나리오",
+  "category": "ai",
+  "keyword": "MAKE",
+  "tldr": [
+    "MAKE(Make.com)는 다양한 웹 서비스를 연결해 업무를 자동으로 처리하는 워크플로우 자동화 플랫폼입니다.",
+    "직장인이라면 반복적인 데이터 수집, 보고서 정리, 알림 전송 등 단순 업무를 MAKE로 자동화해 시간을 아낄 수 있습니다.",
+    "구글 시트-Gmail-슬랙 연동 시나리오처럼 여러 앱을 시각적으로 연결해 복잡한 자동화도 쉽게 만들 수 있습니다.",
+    "Zapier 등 다른 툴과 비교해 MAKE는 시각적 워크플로우와 저렴한 비용이 장점이지만, 초기 학습 시간이 필요할 수 있습니다.",
+    "MAKE는 무료 플랜부터 시작할 수 있으며, 주 1~2시간 이상 반복되는 업무가 있다면 충분히 시도해볼 가치가 있습니다."
+  ],
+  "target_audience": "이 글은 반복되는 업무를 줄이고 싶고, AI 도구를 활용해 생산성을 높이려는 직장인을 위한 글입니다.",
+  "content": "<div class=\"post-updated\" style=\"text-align:right;font-size:12px;color:#999;margin:0 0 12px;\">📅 2026.09.11 업데이트</div><aside class=\"post-tldr\" style=\"background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;\"><div style=\"font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;\">한눈에 보기</div><ul style=\"margin:0;padding-left:20px;color:#1a2640;font-size:15px;\"><li style=\"margin:6px 0;line-height:1.6;\">MAKE(Make.com)는 다양한 웹 서비스를 연결해 업무를 자동으로 처리하는 워크플로우 자동화 플랫폼입니다.</li><li style=\"margin:6px 0;line-height:1.6;\">직장인이라면 반복적인 데이터 수집, 보고서 정리, 알림 전송 등 단순 업무를 MAKE로 자동화해 시간을 아낄 수 있습니다.</li><li style=\"margin:6px 0;line-height:1.6;\">구글 시트-Gmail-슬랙 연동 시나리오처럼 여러 앱을 시각적으로 연결해 복잡한 자동화도 쉽게 만들 수 있습니다.</li><li style=\"margin:6px 0;line-height:1.6;\">Zapier 등 다른 툴과 비교해 MAKE는 시각적 워크플로우와 저렴한 비용이 장점이지만, 초기 학습 시간이 필요할 수 있습니다.</li><li style=\"margin:6px 0;line-height:1.6;\">MAKE는 무료 플랜부터 시작할 수 있으며, 주 1~2시간 이상 반복되는 업무가 있다면 충분히 시도해볼 가치가 있습니다.</li></ul></aside><div class=\"post-audience\" style=\"font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;\">👤 이 글은 반복되는 업무를 줄이고 싶고, AI 도구를 활용해 생산성을 높이려는 직장인을 위한 글입니다.</div><p>며칠 전 후배가 퇴근길에 저한테 물었습니다. “선배, 혹시 매일 아침 특정 사이트 새 글 자동으로 받아서 요약하는 방법 아세요?” 순간 저도 모르게 고개를 끄덕였죠. 저도 작년까지는 일일이 들어가서 확인하고, 손으로 옮기고, 그러다 중요한 내용을 놓치기도 했거든요. 야근도 밥 먹듯이 했고요. 그러다 우연히 MAKE라는 걸 알게 됐고, 업무 자동화가 남의 이야기가 아니라는 걸 깨달았습니다. MAKE는 사실 특별한 기술 없이도, 지긋지긋한 반복 업무를 알아서 처리하게 만드는 디지털 비서 같은 존재거든요. 잘만 쓰면 퇴근 후 개인 시간을 지키는 데 정말 큰 도움이 됩니다.</p>\n<figure style=\"margin:32px 0 24px;\"><img src=\"/posts/thumbnails/thumb_20260910_223620.png\" alt=\"MAKE로 퇴근 시간 지키는 직장인 자동화 시나리오\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@iprefermike\" target=\"_blank\" style=\"color:#888;\">Mike Cox</a> on Unsplash</figcaption></figure>\n<h2>업무 자동화, 혹시 남의 이야기 같았나요?</h2>\n<p>저도 그랬습니다. 회사에서 매일 비슷한 일을 반복하고 있었죠. 예를 들어, 특정 키워드가 포함된 이메일 첨부파일을 다운로드해서 특정 폴더에 옮기고, 그 파일 내용을 요약해서 동료들에게 슬랙으로 공유하는 일 같은 거요. 매일 30분씩 투자해도 한 달이면 거의 10시간이 사라지는 겁니다. 이건 정말 비효율적이죠. 처음에는 '어쩔 수 없지' 했어요. 원래 직장 생활이 이런 거다 싶었죠. 그러다 문득 이런 생각이 들었습니다. '이걸 누가 대신 해주면 얼마나 좋을까?' 그게 제가 MAKE를 처음 찾아보게 된 계기입니다. 제가 찾던 건 단순히 매크로를 돌리는 걸 넘어, 여러 프로그램을 알아서 연결해주는 그런 똑똑한 도구였어요. 시간 아끼는 게 중요했거든요.</p>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1784308992120-d88dc8bd7ccc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODkwNzk3ODF8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Human-like robot faces displayed in a modern exhibition\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@halyzia\" target=\"_blank\" style=\"color:#888;\">Shruti Singh</a> on Unsplash</figcaption></figure>\n<h2>MAKE, 그래서 정확히 뭔가요? (feat. 디지털 비서)</h2>\n<p>MAKE(Make.com)는 웹 기반의 자동화 플랫폼입니다. 쉽게 말해, 서로 다른 수많은 앱이나 서비스를 연결해서 사용자가 원하는 대로 워크플로우를 만드는 도구죠. 예를 들어, 구글 시트에 새 줄이 추가되면, 그 내용을 가져와서 자동으로 이메일을 보내고, 동시에 슬랙 채널에 알림을 띄우는 식입니다. 이 모든 과정이 코딩 없이 시각적인 블록 조립 방식으로 이루어져요. 그냥 순서대로 연결만 하면 됩니다. 그래서 '디지털 비서'라는 말이 잘 어울리는 거죠. 2026년 현재 기준으로 MAKE는 1,500개 이상의 앱과 서비스를 지원한다고 공식 자료에서 밝히고 있습니다. 상상할 수 있는 거의 모든 서비스가 다 연결된다는 뜻입니다. 이 정도면 웬만한 반복 업무는 거의 다 자동화할 수 있다는 결론이죠.</p>\n<blockquote>포인트: 결국 여러 웹 서비스를 서로 연결해서 알아서 일하게 만드는 도구예요. 코딩 없이요.</blockquote>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1788835363012-bcac6ca7a8f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODkwNzk3ODF8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"A smartphone screen displaying a chat interface with a virtual keyboard on black\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@thephotoandfocus\" target=\"_blank\" style=\"color:#888;\">MARCO</a> on Unsplash</figcaption></figure>\n<h2>직장인이라면 이렇게 써보세요 (제가 직접 해본 시나리오)</h2>\n<p>MAKE는 생각보다 다양한 방식으로 직장인의 업무에 적용될 수 있습니다. 제가 직접 해봤던 시나리오 두 가지를 소개해 드릴게요. 첫 번째는 '보고서 데이터 자동 수집 및 공유'입니다. 저는 주간 보고서 작성을 위해 특정 웹사이트에서 매출 데이터를 주기적으로 가져와야 했습니다. 이걸 매주 수요일 오전에 수동으로 하는 게 꽤 귀찮았죠.</p>\n<p>[실전 사용 예시 1: 보고서 데이터 자동 수집 및 공유]</p>\n<p>1.  트리거 설정: 특정 웹사이트의 RSS 피드를 모니터링하거나, 구글 스프레드시트에 새 데이터가 추가되는 것을 트리거로 설정합니다.</p>\n<p>2.  데이터 가공: MAKE의 모듈을 이용해 수집된 데이터를 필요한 형식으로 가공합니다. 예를 들어, 특정 컬럼만 추출하거나, 숫자형으로 변환하는 식이죠.</p>\n<p>3.  보고서 업데이트: 가공된 데이터를 기존 구글 스프레드시트 보고서의 새 시트로 자동 추가하거나, 특정 셀에 업데이트합니다.</p>\n<p>4.  알림 전송: 데이터 업데이트가 완료되면, 팀 슬랙 채널에 '주간 매출 데이터 업데이트 완료!'라는 알림을 보냅니다.</p>\n<p>이 시나리오 덕분에 매주 1시간 정도의 단순 반복 업무를 줄일 수 있었습니다. 제가 작년에 이걸 세팅하고 나서, 점심시간에 보고서 데이터를 확인하러 들어가는 일은 완전히 사라졌습니다. 두 번째는 '이메일 첨부파일 자동 저장 및 알림'입니다. 거래처에서 매일 수십 통의 이메일이 오는데, 그중에 특정 유형의 첨부파일(예: `.xlsx` 파일)만 받아서 클라우드 폴더에 저장하고, 저장될 때마다 저에게 알림을 주는 시나리오입니다. 일일이 메일을 확인해서 다운로드하는 시간을 확실히 줄여줬죠.</p>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1640459958548-56c1c6717a40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODkwNzk3ODJ8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"a close up of a stock chart on a computer screen\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@aedrian\" target=\"_blank\" style=\"color:#888;\">Aedrian Salazar</a> on Unsplash</figcaption></figure>\n<h2>다른 자동화 툴이랑 뭐가 다를까요? (MAKE의 진짜 매력과 함정)</h2>\n<p>MAKE 외에도 Zapier, n8n 같은 다른 자동화 툴들이 있습니다. 저도 처음엔 뭐가 좋은지 몰라서 다 찾아봤어요. Zapier는 사용하기가 정말 직관적이고 쉽다는 장점이 있어요. 처음 쓰는 사람도 금방 익숙해질 수 있죠. 반면 MAKE는 Zapier보다 훨씬 더 시각적인 워크플로우를 제공합니다. 마치 레고 블록을 조립하듯이 여러 모듈을 연결해서 흐름을 만드는 방식이거든요. 이런 시각적 구조 덕분에 복잡한 시나리오도 한눈에 파악하기 쉽다는 매력이 있습니다. 그리고 결정적으로, MAKE는 같은 기능을 Zapier보다 저렴한 비용으로 사용할 수 있는 경우가 많아요. 특히 처리하는 '오퍼레이션' 수에 따라 비용이 달라지는데, MAKE의 오퍼레이션 당 단가가 보통 더 낮은 편입니다. 저처럼 월급쟁이 직장인에게는 비용도 중요하잖아요. 하지만 MAKE에도 함정은 있습니다. 처음 접하는 사람은 시각적 워크플로우가 오히려 복잡하게 느껴질 수도 있어요. 또, 한글 자료나 커뮤니티가 Zapier에 비해 상대적으로 적은 편이라, 막혔을 때 해결책을 찾는 데 시간이 더 걸릴 수도 있습니다. 초반에 시행착오가 좀 필요하죠.</p>\n<h2>결국 MAKE, 누구에게 필요할까요?</h2>\n<p>MAKE는 모든 직장인에게 필요한 도구는 아닐 겁니다. 하지만 특정 상황에 놓인 분들에게는 정말 '게임 체인저'가 될 수 있다고 생각합니다. 만약 여러분이 매일 똑같은 이메일을 보내거나, 특정 데이터를 수집하고 붙여 넣는 일을 주 1~2시간 이상 반복하고 있다면, MAKE는 분명 시간을 아껴줄 겁니다. 특히 여러 클라우드 서비스(구글 드라이브, 드롭박스, 슬랙, 노션 등)를 업무에 많이 활용하는 직장인이라면 MAKE의 진가를 느낄 수 있을 겁니다. 무료 플랜부터 시작할 수 있으니, 가장 귀찮다고 생각하는 단순 반복 업무 하나를 정해서 한번 시도해보는 걸 추천합니다. 저도 처음엔 '이런 게 되겠어?' 했지만, 막상 해보니 별거 아니더라고요. 처음 며칠은 설정하는 데 시간을 써야겠지만, 그 이후로 계속해서 시간을 돌려받는다고 생각하면 충분히 투자할 가치가 있습니다. 꾸준히 시도하면 언젠가 여러분의 업무 방식도 달라져 있을 거예요. 진짜입니다.</p><section class=\"post-steps\" style=\"margin:36px 0 24px;\"><h2 style=\"margin-bottom:14px;\">차근차근 따라가 보세요</h2><ol style=\"list-style:none;padding:0;margin:0;\"><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">1</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">1단계: MAKE 계정 만들기 및 시나리오 시작</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">Make.com(https://www.make.com)에 접속해 무료 계정을 만듭니다. 대시보드에서 'Create a new scenario'를 클릭해 자동화 워크플로우를 시작합니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">2</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">2단계: 트리거(Trigger) 모듈 연결 및 설정</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">워크플로우의 시작점이 될 앱(예: Google Sheets)을 선택하고, 어떤 이벤트가 발생했을 때 작동할지 트리거를 설정합니다. (예: '새로운 행이 추가될 때').</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">3</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">3단계: 액션(Action) 모듈 추가 및 데이터 매핑</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">트리거 발생 후 수행할 다음 동작(예: Gmail로 이메일 보내기)을 위한 앱을 선택하고, 이전 단계에서 가져온 데이터를 활용하여 내용을 구성합니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">4</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">4단계: 추가 액션 또는 필터/라우터 활용</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">필요에 따라 슬랙 알림 보내기, 파일 저장하기 등 추가 액션을 연결하거나, 특정 조건에 따라 워크플로우를 분기하는 필터나 라우터를 추가해 복잡성을 높일 수 있습니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">5</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">5단계: 시나리오 활성화 및 모니터링</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">모든 설정이 끝나면 시나리오를 'ON'으로 전환하여 자동화를 시작합니다. 대시보드에서 실행 기록을 확인하며 정상 작동 여부를 모니터링합니다.</div></div></li></ol></section>\n\n<section class=\"faq-section\" style=\"margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;\">\n<h2 style=\"margin-top:0;\">독자들이 많이 물어보는 거</h2>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. MAKE를 사용하려면 코딩 지식이 필수인가요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 아닙니다. MAKE는 시각적인 워크플로우 빌더를 제공하기 때문에 코딩 지식 없이도 드래그 앤 드롭 방식으로 시나리오를 만들 수 있습니다. 저도 코딩을 전혀 모르는 상태로 시작했습니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. MAKE와 Zapier는 어떤 차이가 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. MAKE는 Zapier보다 더 시각적이고 섬세한 워크플로우 설계가 가능하며, 일반적으로 오퍼레이션당 비용이 더 저렴한 편입니다. 반면 Zapier는 매우 직관적이고 사용자 친화적인 인터페이스가 장점입니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. MAKE 무료 플랜으로 어느 정도까지 사용할 수 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. MAKE 무료 플랜은 제한된 수의 오퍼레이션(작업 실행 횟수)과 시나리오를 제공합니다. 단순하거나 적은 양의 반복 업무를 자동화하는 데 충분하며, 작은 업무를 시도해보고 가능성을 확인하기에 좋습니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. MAKE로 어떤 종류의 업무를 자동화할 수 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 이메일 첨부파일 자동 저장, 특정 키워드 뉴스 모니터링 후 알림, 구글 시트 데이터 기반 보고서 자동 생성, SNS 게시물 예약 발행, 고객 문의 자동 응답 등 다양한 웹 서비스 연동이 필요한 반복 업무를 자동화할 수 있습니다.</p></div>\n</section>\n<section class=\"post-references\" style=\"margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;\"><h2 style=\"margin-top:0;margin-bottom:10px;font-size:18px;\">참고자료</h2><ul style=\"margin:0;padding-left:20px;\"><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://www.make.com\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Make.com 공식 웹사이트</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://zapier.com\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Zapier 공식 웹사이트</a></li></ul><div style=\"margin-top:10px;font-size:12px;color:#888;\">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section>",
+  "steps": [
+    {
+      "title": "1단계: MAKE 계정 만들기 및 시나리오 시작",
+      "desc": "Make.com(https://www.make.com)에 접속해 무료 계정을 만듭니다. 대시보드에서 'Create a new scenario'를 클릭해 자동화 워크플로우를 시작합니다."
+    },
+    {
+      "title": "2단계: 트리거(Trigger) 모듈 연결 및 설정",
+      "desc": "워크플로우의 시작점이 될 앱(예: Google Sheets)을 선택하고, 어떤 이벤트가 발생했을 때 작동할지 트리거를 설정합니다. (예: '새로운 행이 추가될 때')."
+    },
+    {
+      "title": "3단계: 액션(Action) 모듈 추가 및 데이터 매핑",
+      "desc": "트리거 발생 후 수행할 다음 동작(예: Gmail로 이메일 보내기)을 위한 앱을 선택하고, 이전 단계에서 가져온 데이터를 활용하여 내용을 구성합니다."
+    },
+    {
+      "title": "4단계: 추가 액션 또는 필터/라우터 활용",
+      "desc": "필요에 따라 슬랙 알림 보내기, 파일 저장하기 등 추가 액션을 연결하거나, 특정 조건에 따라 워크플로우를 분기하는 필터나 라우터를 추가해 복잡성을 높일 수 있습니다."
+    },
+    {
+      "title": "5단계: 시나리오 활성화 및 모니터링",
+      "desc": "모든 설정이 끝나면 시나리오를 'ON'으로 전환하여 자동화를 시작합니다. 대시보드에서 실행 기록을 확인하며 정상 작동 여부를 모니터링합니다."
+    }
+  ],
+  "summary": "MAKE(Make.com)는 코딩 없이 다양한 앱을 연결해 직장인의 반복 업무를 자동으로 처리해주는 워크플로우 자동화 플랫폼입니다. 제가 직접 경험한 데이터 수집 및 이메일 첨부파일 처리처럼, 단순 반복 업무에 시간을 많이 쓰는 직장인이라면 무료 플랜부터 시작해 업무 효율을 크게 높일 수 있습니다.",
+  "tags": [
+    "MAKE",
+    "ai",
+    "직장인",
+    "업무자동화",
+    "생산성"
+  ],
+  "faq": [
+    {
+      "q": "MAKE를 사용하려면 코딩 지식이 필수인가요?",
+      "a": "아닙니다. MAKE는 시각적인 워크플로우 빌더를 제공하기 때문에 코딩 지식 없이도 드래그 앤 드롭 방식으로 시나리오를 만들 수 있습니다. 저도 코딩을 전혀 모르는 상태로 시작했습니다."
+    },
+    {
+      "q": "MAKE와 Zapier는 어떤 차이가 있나요?",
+      "a": "MAKE는 Zapier보다 더 시각적이고 섬세한 워크플로우 설계가 가능하며, 일반적으로 오퍼레이션당 비용이 더 저렴한 편입니다. 반면 Zapier는 매우 직관적이고 사용자 친화적인 인터페이스가 장점입니다."
+    },
+    {
+      "q": "MAKE 무료 플랜으로 어느 정도까지 사용할 수 있나요?",
+      "a": "MAKE 무료 플랜은 제한된 수의 오퍼레이션(작업 실행 횟수)과 시나리오를 제공합니다. 단순하거나 적은 양의 반복 업무를 자동화하는 데 충분하며, 작은 업무를 시도해보고 가능성을 확인하기에 좋습니다."
+    },
+    {
+      "q": "MAKE로 어떤 종류의 업무를 자동화할 수 있나요?",
+      "a": "이메일 첨부파일 자동 저장, 특정 키워드 뉴스 모니터링 후 알림, 구글 시트 데이터 기반 보고서 자동 생성, SNS 게시물 예약 발행, 고객 문의 자동 응답 등 다양한 웹 서비스 연동이 필요한 반복 업무를 자동화할 수 있습니다."
+    }
+  ],
+  "references": [
+    {
+      "label": "Make.com 공식 웹사이트",
+      "url": "https://www.make.com"
+    },
+    {
+      "label": "Zapier 공식 웹사이트",
+      "url": "https://zapier.com"
+    }
+  ],
+  "seo_analysis": {
+    "score": 73.0,
+    "monthly_total": 4740,
+    "competition": "낮음"
+  },
+  "created_at": "2026-09-11T07:36:22.257503",
+  "status": "scheduled",
+  "source": "auto",
+  "content_raw": "며칠 전 후배가 퇴근길에 저한테 물었습니다. “선배, 혹시 매일 아침 특정 사이트 새 글 자동으로 받아서 요약하는 방법 아세요?” 순간 저도 모르게 고개를 끄덕였죠. 저도 작년까지는 일일이 들어가서 확인하고, 손으로 옮기고, 그러다 중요한 내용을 놓치기도 했거든요. 야근도 밥 먹듯이 했고요. 그러다 우연히 MAKE라는 걸 알게 됐고, 업무 자동화가 남의 이야기가 아니라는 걸 깨달았습니다. MAKE는 사실 특별한 기술 없이도, 지긋지긋한 반복 업무를 알아서 처리하게 만드는 디지털 비서 같은 존재거든요. 잘만 쓰면 퇴근 후 개인 시간을 지키는 데 정말 큰 도움이 됩니다.\n\n## 업무 자동화, 혹시 남의 이야기 같았나요?\n\n저도 그랬습니다. 회사에서 매일 비슷한 일을 반복하고 있었죠. 예를 들어, 특정 키워드가 포함된 이메일 첨부파일을 다운로드해서 특정 폴더에 옮기고, 그 파일 내용을 요약해서 동료들에게 슬랙으로 공유하는 일 같은 거요. 매일 30분씩 투자해도 한 달이면 거의 10시간이 사라지는 겁니다. 이건 정말 비효율적이죠. 처음에는 '어쩔 수 없지' 했어요. 원래 직장 생활이 이런 거다 싶었죠. 그러다 문득 이런 생각이 들었습니다. '이걸 누가 대신 해주면 얼마나 좋을까?' 그게 제가 MAKE를 처음 찾아보게 된 계기입니다. 제가 찾던 건 단순히 매크로를 돌리는 걸 넘어, 여러 프로그램을 알아서 연결해주는 그런 똑똑한 도구였어요. 시간 아끼는 게 중요했거든요.\n\n## MAKE, 그래서 정확히 뭔가요? (feat. 디지털 비서)\n\nMAKE(Make.com)는 웹 기반의 자동화 플랫폼입니다. 쉽게 말해, 서로 다른 수많은 앱이나 서비스를 연결해서 사용자가 원하는 대로 워크플로우를 만드는 도구죠. 예를 들어, 구글 시트에 새 줄이 추가되면, 그 내용을 가져와서 자동으로 이메일을 보내고, 동시에 슬랙 채널에 알림을 띄우는 식입니다. 이 모든 과정이 코딩 없이 시각적인 블록 조립 방식으로 이루어져요. 그냥 순서대로 연결만 하면 됩니다. 그래서 '디지털 비서'라는 말이 잘 어울리는 거죠. 2026년 현재 기준으로 MAKE는 1,500개 이상의 앱과 서비스를 지원한다고 공식 자료에서 밝히고 있습니다. 상상할 수 있는 거의 모든 서비스가 다 연결된다는 뜻입니다. 이 정도면 웬만한 반복 업무는 거의 다 자동화할 수 있다는 결론이죠.\n> 포인트: 결국 여러 웹 서비스를 서로 연결해서 알아서 일하게 만드는 도구예요. 코딩 없이요.\n\n## 직장인이라면 이렇게 써보세요 (제가 직접 해본 시나리오)\n\nMAKE는 생각보다 다양한 방식으로 직장인의 업무에 적용될 수 있습니다. 제가 직접 해봤던 시나리오 두 가지를 소개해 드릴게요. 첫 번째는 '보고서 데이터 자동 수집 및 공유'입니다. 저는 주간 보고서 작성을 위해 특정 웹사이트에서 매출 데이터를 주기적으로 가져와야 했습니다. 이걸 매주 수요일 오전에 수동으로 하는 게 꽤 귀찮았죠.\n\n[실전 사용 예시 1: 보고서 데이터 자동 수집 및 공유]\n\n1.  트리거 설정: 특정 웹사이트의 RSS 피드를 모니터링하거나, 구글 스프레드시트에 새 데이터가 추가되는 것을 트리거로 설정합니다.\n2.  데이터 가공: MAKE의 모듈을 이용해 수집된 데이터를 필요한 형식으로 가공합니다. 예를 들어, 특정 컬럼만 추출하거나, 숫자형으로 변환하는 식이죠.\n3.  보고서 업데이트: 가공된 데이터를 기존 구글 스프레드시트 보고서의 새 시트로 자동 추가하거나, 특정 셀에 업데이트합니다.\n4.  알림 전송: 데이터 업데이트가 완료되면, 팀 슬랙 채널에 '주간 매출 데이터 업데이트 완료!'라는 알림을 보냅니다.\n\n이 시나리오 덕분에 매주 1시간 정도의 단순 반복 업무를 줄일 수 있었습니다. 제가 작년에 이걸 세팅하고 나서, 점심시간에 보고서 데이터를 확인하러 들어가는 일은 완전히 사라졌습니다. 두 번째는 '이메일 첨부파일 자동 저장 및 알림'입니다. 거래처에서 매일 수십 통의 이메일이 오는데, 그중에 특정 유형의 첨부파일(예: `.xlsx` 파일)만 받아서 클라우드 폴더에 저장하고, 저장될 때마다 저에게 알림을 주는 시나리오입니다. 일일이 메일을 확인해서 다운로드하는 시간을 확실히 줄여줬죠.\n\n## 다른 자동화 툴이랑 뭐가 다를까요? (MAKE의 진짜 매력과 함정)\n\nMAKE 외에도 Zapier, n8n 같은 다른 자동화 툴들이 있습니다. 저도 처음엔 뭐가 좋은지 몰라서 다 찾아봤어요. Zapier는 사용하기가 정말 직관적이고 쉽다는 장점이 있어요. 처음 쓰는 사람도 금방 익숙해질 수 있죠. 반면 MAKE는 Zapier보다 훨씬 더 시각적인 워크플로우를 제공합니다. 마치 레고 블록을 조립하듯이 여러 모듈을 연결해서 흐름을 만드는 방식이거든요. 이런 시각적 구조 덕분에 복잡한 시나리오도 한눈에 파악하기 쉽다는 매력이 있습니다. 그리고 결정적으로, MAKE는 같은 기능을 Zapier보다 저렴한 비용으로 사용할 수 있는 경우가 많아요. 특히 처리하는 '오퍼레이션' 수에 따라 비용이 달라지는데, MAKE의 오퍼레이션 당 단가가 보통 더 낮은 편입니다. 저처럼 월급쟁이 직장인에게는 비용도 중요하잖아요. 하지만 MAKE에도 함정은 있습니다. 처음 접하는 사람은 시각적 워크플로우가 오히려 복잡하게 느껴질 수도 있어요. 또, 한글 자료나 커뮤니티가 Zapier에 비해 상대적으로 적은 편이라, 막혔을 때 해결책을 찾는 데 시간이 더 걸릴 수도 있습니다. 초반에 시행착오가 좀 필요하죠.\n\n## 결국 MAKE, 누구에게 필요할까요?\n\nMAKE는 모든 직장인에게 필요한 도구는 아닐 겁니다. 하지만 특정 상황에 놓인 분들에게는 정말 '게임 체인저'가 될 수 있다고 생각합니다. 만약 여러분이 매일 똑같은 이메일을 보내거나, 특정 데이터를 수집하고 붙여 넣는 일을 주 1~2시간 이상 반복하고 있다면, MAKE는 분명 시간을 아껴줄 겁니다. 특히 여러 클라우드 서비스(구글 드라이브, 드롭박스, 슬랙, 노션 등)를 업무에 많이 활용하는 직장인이라면 MAKE의 진가를 느낄 수 있을 겁니다. 무료 플랜부터 시작할 수 있으니, 가장 귀찮다고 생각하는 단순 반복 업무 하나를 정해서 한번 시도해보는 걸 추천합니다. 저도 처음엔 '이런 게 되겠어?' 했지만, 막상 해보니 별거 아니더라고요. 처음 며칠은 설정하는 데 시간을 써야겠지만, 그 이후로 계속해서 시간을 돌려받는다고 생각하면 충분히 투자할 가치가 있습니다. 꾸준히 시도하면 언젠가 여러분의 업무 방식도 달라져 있을 거예요. 진짜입니다.",
+  "hero_image": {
+    "url": "/posts/thumbnails/thumb_20260910_223620.png",
+    "alt": "MAKE로 퇴근 시간 지키는 직장인 자동화 시나리오",
+    "credit": "Mike Cox",
+    "credit_link": "https://unsplash.com/@iprefermike",
+    "source": "unsplash"
+  },
+  "body_images": [
+    {
+      "url": "https://images.unsplash.com/photo-1784308992120-d88dc8bd7ccc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODkwNzk3ODF8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "Human-like robot faces displayed in a modern exhibition",
+      "credit": "Shruti Singh",
+      "credit_link": "https://unsplash.com/@halyzia",
+      "source": "unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1788835363012-bcac6ca7a8f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODkwNzk3ODF8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "A smartphone screen displaying a chat interface with a virtual keyboard on black",
+      "credit": "MARCO",
+      "credit_link": "https://unsplash.com/@thephotoandfocus",
+      "source": "unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1640459958548-56c1c6717a40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODkwNzk3ODJ8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "a close up of a stock chart on a computer screen",
+      "credit": "Aedrian Salazar",
+      "credit_link": "https://unsplash.com/@aedrian",
+      "source": "unsplash"
+    }
+  ],
+  "seo_title": "MAKE로 퇴근 시간 지키는 직장인 자동화 시나리오 | 직장인 수익일기",
+  "seo_description": "MAKE(Make.com)는 코딩 없이 다양한 앱을 연결해 직장인의 반복 업무를 자동으로 처리해주는 워크플로우 자동화 플랫폼입니다. 제가 직접 경험한 데이터 수집 및 이메일 첨부파일 처리처럼, 단순 반복 업무에 시간을 많이 쓰는 직장인이라면 무료 플랜 | 직장인 수익일기",
+  "seo_keywords": "MAKE, ai, ai 추천, MAKE 방법, 직장인 부업, 직장인 수익일기, 직장인, 업무자동화, 생산성",
+  "jsonld": {
+    "article": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "MAKE로 퇴근 시간 지키는 직장인 자동화 시나리오",
+      "description": "MAKE(Make.com)는 코딩 없이 다양한 앱을 연결해 직장인의 반복 업무를 자동으로 처리해주는 워크플로우 자동화 플랫폼입니다. 제가 직접 경험한 데이터 수집 및 이메일 첨부파일 처리처럼, 단순 반복 업무에 시간을 많이 쓰는 직장인이라면 무료 플랜",
+      "keywords": "MAKE, ai, ai 추천, MAKE 방법, 직장인 부업, 직장인 수익일기, 직장인, 업무자동화, 생산성",
+      "articleSection": "ai",
+      "author": {
+        "@type": "Person",
+        "name": "박대홍"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "직장인 수익일기",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.koreansalaryman.com/og-image.png"
+        }
+      },
+      "datePublished": "2026-09-11T07:36:22.257503",
+      "image": "https://www.koreansalaryman.com/posts/thumbnails/thumb_20260910_223620.png"
+    },
+    "faq": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "MAKE를 사용하려면 코딩 지식이 필수인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아닙니다. MAKE는 시각적인 워크플로우 빌더를 제공하기 때문에 코딩 지식 없이도 드래그 앤 드롭 방식으로 시나리오를 만들 수 있습니다. 저도 코딩을 전혀 모르는 상태로 시작했습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MAKE와 Zapier는 어떤 차이가 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MAKE는 Zapier보다 더 시각적이고 섬세한 워크플로우 설계가 가능하며, 일반적으로 오퍼레이션당 비용이 더 저렴한 편입니다. 반면 Zapier는 매우 직관적이고 사용자 친화적인 인터페이스가 장점입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MAKE 무료 플랜으로 어느 정도까지 사용할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MAKE 무료 플랜은 제한된 수의 오퍼레이션(작업 실행 횟수)과 시나리오를 제공합니다. 단순하거나 적은 양의 반복 업무를 자동화하는 데 충분하며, 작은 업무를 시도해보고 가능성을 확인하기에 좋습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MAKE로 어떤 종류의 업무를 자동화할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "이메일 첨부파일 자동 저장, 특정 키워드 뉴스 모니터링 후 알림, 구글 시트 데이터 기반 보고서 자동 생성, SNS 게시물 예약 발행, 고객 문의 자동 응답 등 다양한 웹 서비스 연동이 필요한 반복 업무를 자동화할 수 있습니다."
+          }
+        }
+      ]
+    },
+    "howto": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "MAKE로 퇴근 시간 지키는 직장인 자동화 시나리오",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "1단계: MAKE 계정 만들기 및 시나리오 시작",
+          "text": "Make.com(https://www.make.com)에 접속해 무료 계정을 만듭니다. 대시보드에서 'Create a new scenario'를 클릭해 자동화 워크플로우를 시작합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "2단계: 트리거(Trigger) 모듈 연결 및 설정",
+          "text": "워크플로우의 시작점이 될 앱(예: Google Sheets)을 선택하고, 어떤 이벤트가 발생했을 때 작동할지 트리거를 설정합니다. (예: '새로운 행이 추가될 때')."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "3단계: 액션(Action) 모듈 추가 및 데이터 매핑",
+          "text": "트리거 발생 후 수행할 다음 동작(예: Gmail로 이메일 보내기)을 위한 앱을 선택하고, 이전 단계에서 가져온 데이터를 활용하여 내용을 구성합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "4단계: 추가 액션 또는 필터/라우터 활용",
+          "text": "필요에 따라 슬랙 알림 보내기, 파일 저장하기 등 추가 액션을 연결하거나, 특정 조건에 따라 워크플로우를 분기하는 필터나 라우터를 추가해 복잡성을 높일 수 있습니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "5단계: 시나리오 활성화 및 모니터링",
+          "text": "모든 설정이 끝나면 시나리오를 'ON'으로 전환하여 자동화를 시작합니다. 대시보드에서 실행 기록을 확인하며 정상 작동 여부를 모니터링합니다."
+        }
+      ]
+    }
+  },
+  "scheduled_at": "2026-09-11T03:20:11.255Z"
+}
