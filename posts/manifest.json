@@ -14,10 +14,10 @@
       "월급쟁이 재테크"
     ],
     "created_at": "2026-09-12T07:41:13.208004",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-12T12:05:27.929Z",
-    "published_at": null,
+    "published_at": "2026-09-12T14:15:09.581Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260911_224111.png",
     "has_faq": true,
