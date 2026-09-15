@@ -14,10 +14,10 @@
       "비상금 통장"
     ],
     "created_at": "2026-09-15T07:48:51.785971",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-15T12:41:59.212Z",
-    "published_at": null,
+    "published_at": "2026-09-15T16:01:48.520Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260914_224850.png",
     "has_faq": true,
