@@ -26,7 +26,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -81,7 +81,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 91.0,
+    "seo_score": 91,
     "monthly_search": 10
   },
   {
@@ -100,10 +100,10 @@
       "NPU"
     ],
     "created_at": "2026-09-16T07:35:50.283562",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-16T05:14:41.324Z",
-    "published_at": null,
+    "published_at": "2026-09-16T05:29:18.404Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260915_223548.png",
     "has_faq": true,
@@ -128,10 +128,10 @@
       "금리 인상 대비"
     ],
     "created_at": "2026-09-16T07:34:33.286840",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-16T00:56:51.828Z",
-    "published_at": null,
+    "published_at": "2026-09-16T05:29:18.404Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260915_223430.png",
     "has_faq": true,
@@ -139,7 +139,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 117.0,
+    "seo_score": 117,
     "monthly_search": 10
   },
   {
