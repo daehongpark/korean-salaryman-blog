@@ -134,10 +134,10 @@
       "노타"
     ],
     "created_at": "2026-09-18T07:36:01.889107",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-18T00:57:11.595Z",
-    "published_at": null,
+    "published_at": "2026-09-18T02:16:04.985Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260917_223559.png",
     "has_faq": true,
@@ -145,7 +145,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
