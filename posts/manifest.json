@@ -47,10 +47,10 @@
       "튜링"
     ],
     "created_at": "2026-09-18T07:39:29.013000",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-18T09:39:21.348Z",
-    "published_at": null,
+    "published_at": "2026-09-18T12:29:56.405Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260917_223925.png",
     "has_faq": true,
