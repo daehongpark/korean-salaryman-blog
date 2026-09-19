@@ -53,7 +53,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 80.0,
+    "seo_score": 80,
     "monthly_search": 1580
   },
   {
@@ -129,10 +129,10 @@
       "자산운용"
     ],
     "created_at": "2026-09-19T07:34:42.003849",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-19T00:55:43.722Z",
-    "published_at": null,
+    "published_at": "2026-09-19T02:18:39.065Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260918_223439.png",
     "has_faq": true,
