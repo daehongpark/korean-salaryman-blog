@@ -54,7 +54,8 @@
     "has_steps": true,
     "has_references": true,
     "seo_score": 80,
-    "monthly_search": 1580
+    "monthly_search": 1580,
+    "slug": "ANTHROPIC-CLAUDE-SUB-월-2만-원-아깝지-않던-이유"
   },
   {
     "filename": "post_20260918_223712.json",
@@ -82,7 +83,8 @@
     "has_steps": false,
     "has_references": true,
     "seo_score": 83.2,
-    "monthly_search": null
+    "monthly_search": null,
+    "slug": "Perplexity-vs-Gemini-검색-비교-직장인-업무-AI-뭘-골라야-할까"
   },
   {
     "filename": "post_20260918_223556.json",
