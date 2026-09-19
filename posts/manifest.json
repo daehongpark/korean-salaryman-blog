@@ -98,10 +98,10 @@
       "이자 절감"
     ],
     "created_at": "2026-09-19T07:35:56.883028",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-19T03:44:37.502Z",
-    "published_at": null,
+    "published_at": "2026-09-19T07:26:11.907Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260918_223555.png",
     "has_faq": true,
