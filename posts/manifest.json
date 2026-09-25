@@ -23,7 +23,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 97.0,
+    "seo_score": 97,
     "monthly_search": 10
   },
   {
@@ -53,7 +53,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 81.0,
+    "seo_score": 81,
     "monthly_search": 10
   },
   {
@@ -131,10 +131,10 @@
       "유전자 편집"
     ],
     "created_at": "2026-09-25T07:34:49.855113",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-25T00:42:25.626Z",
-    "published_at": null,
+    "published_at": "2026-09-25T02:34:56.769Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260924_223448.png",
     "has_faq": true,
