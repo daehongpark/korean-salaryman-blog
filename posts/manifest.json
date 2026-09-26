@@ -101,10 +101,10 @@
       "부업"
     ],
     "created_at": "2026-09-26T07:37:04.930400",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-26T04:21:33.173Z",
-    "published_at": null,
+    "published_at": "2026-09-26T05:13:11.466Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260925_223702.png",
     "has_faq": false,
@@ -112,7 +112,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -128,10 +128,10 @@
       "부업"
     ],
     "created_at": "2026-09-26T07:35:51.458804",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-26T01:09:05.084Z",
-    "published_at": null,
+    "published_at": "2026-09-26T05:13:11.466Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260925_223549.png",
     "has_faq": false,
