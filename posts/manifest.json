@@ -24,7 +24,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -51,7 +51,7 @@
     "has_comparison": false,
     "has_steps": false,
     "has_references": false,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -69,10 +69,10 @@
       "투자 전략"
     ],
     "created_at": "2026-09-27T07:37:24.522817",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-27T06:48:09.483Z",
-    "published_at": null,
+    "published_at": "2026-09-27T07:20:55.179Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260926_223722.png",
     "has_faq": true,
@@ -97,10 +97,10 @@
       "목돈마련"
     ],
     "created_at": "2026-09-27T07:36:12.249429",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-27T03:43:51.342Z",
-    "published_at": null,
+    "published_at": "2026-09-27T07:20:55.179Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260926_223609.png",
     "has_faq": true,
@@ -108,7 +108,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 105.0,
+    "seo_score": 105,
     "monthly_search": 5200
   },
   {
@@ -125,10 +125,10 @@
       "직장인 재테크"
     ],
     "created_at": "2026-09-27T07:35:05.833021",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-27T02:17:03.241Z",
-    "published_at": null,
+    "published_at": "2026-09-27T07:20:55.179Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260926_223503.png",
     "has_faq": true,
