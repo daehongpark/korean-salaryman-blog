@@ -81,7 +81,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 73.0,
+    "seo_score": 73,
     "monthly_search": 4430
   },
   {
@@ -124,10 +124,10 @@
       "부업"
     ],
     "created_at": "2026-09-29T07:36:54.367045",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-09-29T00:52:32.518Z",
-    "published_at": null,
+    "published_at": "2026-09-29T02:07:03.009Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20260928_223652.png",
     "has_faq": false,
