@@ -82,7 +82,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -100,10 +100,10 @@
       "미국주식"
     ],
     "created_at": "2026-10-10T07:36:14.524003",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-10T03:52:06.807Z",
-    "published_at": null,
+    "published_at": "2026-10-10T06:06:21.692Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261009_223613.png",
     "has_faq": true,
@@ -111,7 +111,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 122.0,
+    "seo_score": 122,
     "monthly_search": 440
   },
   {
@@ -128,10 +128,10 @@
       "돈 관리"
     ],
     "created_at": "2026-10-10T07:35:03.540928",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-10T02:18:30.310Z",
-    "published_at": null,
+    "published_at": "2026-10-10T06:06:21.692Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261009_223500.png",
     "has_faq": true,
