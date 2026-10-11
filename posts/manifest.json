@@ -15,10 +15,10 @@
       "자산 배분"
     ],
     "created_at": "2026-10-11T07:41:51.637169",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-11T12:43:12.122Z",
-    "published_at": null,
+    "published_at": "2026-10-11T16:41:13.497Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261010_224149.png",
     "has_faq": true,
