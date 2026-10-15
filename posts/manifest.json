@@ -18,10 +18,10 @@
       "리밸런싱"
     ],
     "created_at": "2026-10-15T07:41:00.497702",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-15T14:10:53.808Z",
-    "published_at": null,
+    "published_at": "2026-10-15T17:34:42.731Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261014_224058.png",
     "has_faq": true,
