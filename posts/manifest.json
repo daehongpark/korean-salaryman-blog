@@ -91,7 +91,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -122,7 +122,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -138,10 +138,10 @@
       "부업"
     ],
     "created_at": "2026-10-15T07:34:53.103572",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-15T00:57:13.158Z",
-    "published_at": null,
+    "published_at": "2026-10-15T02:25:35.344Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261014_223450.png",
     "has_faq": false,
