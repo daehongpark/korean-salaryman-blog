@@ -15,10 +15,10 @@
       "Perplexity AI"
     ],
     "created_at": "2026-10-17T07:40:59.576525",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-17T13:54:28.435Z",
-    "published_at": null,
+    "published_at": "2026-10-17T16:32:05.659Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261016_224058.png",
     "has_faq": true,
