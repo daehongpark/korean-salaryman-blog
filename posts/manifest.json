@@ -70,10 +70,10 @@
       "부업"
     ],
     "created_at": "2026-10-17T07:38:41.727502",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-17T07:13:29.992Z",
-    "published_at": null,
+    "published_at": "2026-10-17T09:31:24.236Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261016_223839.png",
     "has_faq": false,
