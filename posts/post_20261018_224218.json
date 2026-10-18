@@ -1,0 +1,209 @@
+{
+  "title": "회사 보안 지키며 AI 쓰는 법, 제가 직접 해보니 이렇더라구요",
+  "category": "ai",
+  "keyword": "회사보안지키며AI쓰는법",
+  "tldr": [
+    "업무용 AI 사용 전 반드시 회사 내부 정보보호 및 AI 활용 정책을 확인해야 합니다.",
+    "기밀, 개인정보 등 민감한 회사 데이터는 AI에 입력하기 전에 철저히 비식별화해야 해요.",
+    "공식적으로 승인된 유료 또는 사내 구축 AI 도구를 우선 사용하고, 무료 툴 사용은 신중해야 합니다.",
+    "AI가 생성한 내용은 항상 검토하고 사실 확인을 거쳐야 하며, 맹신은 금물입니다."
+  ],
+  "target_audience": "이 글은 업무에 AI를 활용하고 싶지만 회사 보안 때문에 망설이는 직장인을 위한 글입니다.",
+  "content": "<div class=\"post-updated\" style=\"text-align:right;font-size:12px;color:#999;margin:0 0 12px;\">📅 2026.10.19 업데이트</div><aside class=\"post-tldr\" style=\"background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;\"><div style=\"font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;\">한눈에 보기</div><ul style=\"margin:0;padding-left:20px;color:#1a2640;font-size:15px;\"><li style=\"margin:6px 0;line-height:1.6;\">업무용 AI 사용 전 반드시 회사 내부 정보보호 및 AI 활용 정책을 확인해야 합니다.</li><li style=\"margin:6px 0;line-height:1.6;\">기밀, 개인정보 등 민감한 회사 데이터는 AI에 입력하기 전에 철저히 비식별화해야 해요.</li><li style=\"margin:6px 0;line-height:1.6;\">공식적으로 승인된 유료 또는 사내 구축 AI 도구를 우선 사용하고, 무료 툴 사용은 신중해야 합니다.</li><li style=\"margin:6px 0;line-height:1.6;\">AI가 생성한 내용은 항상 검토하고 사실 확인을 거쳐야 하며, 맹신은 금물입니다.</li></ul></aside><div class=\"post-audience\" style=\"font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;\">👤 이 글은 업무에 AI를 활용하고 싶지만 회사 보안 때문에 망설이는 직장인을 위한 글입니다.</div><p>지난주 후배가 갑자기 물어보더군요. \"선배, 요즘 AI로 업무한다고 하던데, 회사 보안은 어떻게 지켜요?\" 저도 처음엔 막연히 조심해야 한다고만 생각했지, 구체적인 방법을 몰라서 한참 헤맸습니다. AI가 분명 업무 시간을 줄여주고 결과물을 좋게 만들어주는 건 맞거든요. 하지만 회사 기밀이나 개인정보가 혹시라도 새어나갈까 봐 불안한 마음이 드는 것도 사실입니다. 이런 고민을 하는 분들이 저 말고도 많을 거예요. 결론부터 말하면, 몇 가지 원칙만 지키면 회사 보안을 지키면서 AI를 충분히 잘 쓸 수 있습니다.</p>\n<figure style=\"margin:32px 0 24px;\"><img src=\"/posts/thumbnails/thumb_20261018_224216.png\" alt=\"회사 보안 지키며 AI 쓰는 법, 제가 직접 해보니 이렇더라구요\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@dkomow\" target=\"_blank\" style=\"color:#888;\">Daniil Komov</a> on Unsplash</figcaption></figure>\n<h2>AI, 써보니 좋았는데 회사가 신경 쓰였죠</h2>\n<p>저는 원래 새로운 기술에 관심이 많습니다. 작년에 챗GPT가 처음 나왔을 때부터 업무에 어떻게든 써먹으려고 이것저것 시도해봤어요. 기획안 초안을 쓰거나, 복잡한 데이터를 요약하거나, 아이디어를 얻는 데 정말 유용하더라구요. 하루에 1시간 넘게 걸리던 작업이 10~20분으로 줄어들 때도 있었습니다. 진짜 신세계였어요.</p>\n<p>근데 마냥 좋다고만 생각했던 건 아니에요. 어느 날 기획안에 들어갈 법률 용어를 물어보다가 문득 이런 생각이 들었습니다. '내가 지금 회사 기밀이 담긴 정보를 AI에 그대로 입력하는 건 아닐까?' 회사의 영업 전략이나 고객 정보 같은 민감한 내용이 혹시라도 학습 데이터로 쓰여서 외부에 노출될 수도 있다는 불안감이 엄습했죠. 동료들 중에는 실제로 중요한 보고서 내용을 통째로 붙여 넣고 요약해달라고 하는 경우도 있었습니다. 저는 그때부터 좀 조심해야겠다고 느꼈어요.</p>\n<blockquote>포인트: AI는 분명 좋지만, 회사 정보 유출 위험은 항상 생각해야 합니다. 제가 그랬습니다.</blockquote>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1762242298589-582f5f6c3fb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTIzNjMzMzh8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"Laptop screen displaying lines of code\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@mrw0rld\" target=\"_blank\" style=\"color:#888;\">Ilnur</a> on Unsplash</figcaption></figure>\n<h2>회사 정보, AI에 넘어가면 진짜 큰일 납니다</h2>\n<p>AI를 사용할 때 가장 중요한 건 '데이터'입니다. AI는 우리가 입력하는 데이터를 학습해서 답변을 만들어내거든요. 문제는 우리가 입력한 데이터가 어떻게 처리되고, 어디에 저장되며, 다른 사람들에게 노출될 가능성은 없는지 일반 사용자는 알기 어렵다는 겁니다. 대부분의 무료 AI 서비스는 사용자의 데이터를 학습에 활용할 수 있다는 약관을 가지고 있어요. 즉, 회사 기밀이나 개인정보를 AI에 입력하는 순간, 그 정보는 AI 개발사의 서버 어딘가에 저장되고, 잠재적으로는 다른 사용자에게 유사한 질문의 답변으로 제시될 수도 있다는 얘기죠.</p>\n<p>특히 개인정보보호법이 엄격한 우리나라에서는 한 번의 실수로도 심각한 법적 문제에 휘말릴 수 있습니다. 제 친구 회사 동료는 고객 정보가 포함된 파일을 AI에 넣고 분석했다가, 회사가 감사에 걸려 억대 과징금을 물 뻔한 아찔한 경험도 있었다고 해요. 다행히 실제 유출까진 안 가서 넘어갔지만, 그 후로 AI 사용 규정이 훨씬 엄격해졌다고 합니다. 내부에서 유출된 정보는 외부 유출보다 더 치명적일 수 있거든요. 정보 유출 사고 한 번으로 회사의 신뢰도가 땅에 떨어지고, 주가에도 악영향을 줄 수 있다는 걸 잊으면 안 됩니다.</p>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1786539861520-6e91dc64a958?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTIzNjMzMzh8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"A yellow robotic arm with black joints and a mechanical hand\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@enchantedtools\" target=\"_blank\" style=\"color:#888;\">Enchanted Tools</a> on Unsplash</figcaption></figure>\n<h2>보안 문제 없이 AI 쓰는 실전 원칙들</h2>\n<p>그럼 어떻게 해야 안전하게 AI를 쓸 수 있을까요? 제가 찾아보고 직접 적용하면서 깨달은 몇 가지 원칙이 있습니다. 제일 중요한 건 '우리 회사의 IT 정책'을 먼저 확인하는 거예요. 요즘은 대부분의 회사가 AI 사용 가이드라인을 만들고 있습니다. 어떤 툴을 허용하는지, 어떤 정보는 절대 입력하면 안 되는지 명시해두는 거죠. 만약 가이드라인이 없다면, IT 부서나 정보보안팀에 직접 물어보는 게 가장 확실합니다. 괜히 혼자 판단했다가 나중에 문제 생기면 저만 곤란해지거든요.</p>\n<p>두 번째는 '민감 정보는 철저히 비식별화'하는 겁니다. 개인 식별이 가능한 정보(이름, 주민번호, 연락처 등)나 회사 내부 기밀 문서(경영 전략, 신제품 정보, 미공개 재무 자료 등)는 AI에 그대로 입력하면 안 돼요. 예를 들어, 고객 데이터를 분석하고 싶다면, 이름이나 연락처 같은 개인 식별 정보를 모두 삭제하거나 가명 처리하는 거죠. 계약서 초안을 만들 때도 핵심 내용만 넣고, 구체적인 당사자 정보나 금액은 비워두고 나중에 제가 직접 채워 넣는 식으로 쓰고 있습니다. 이 과정이 조금 번거롭긴 해도, 안전을 위한 최소한의 장치라고 생각합니다.</p>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1618986919307-ed52427d0bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTIzNjMzMzh8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"a close up of a cell phone's display screen\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@brett_jordan\" target=\"_blank\" style=\"color:#888;\">Brett Jordan</a> on Unsplash</figcaption></figure>\n<h2>안전하게 AI 쓸 수 있는 도구와 회사 정책</h2>\n<p>요즘은 기업용으로 특화된 AI 솔루션들이 많이 나오고 있습니다. 이런 솔루션들은 기업의 데이터를 학습에 사용하지 않고, 보안 기준이 높아서 훨씬 안심하고 쓸 수 있죠. 예를 들어, 챗GPT 엔터프라이즈 버전이나 마이크로소프트 코파일럿 같은 것들이 있습니다. 저희 회사도 최근에 이런 기업용 솔루션 도입을 검토 중이더라구요. 비용이 들긴 하지만, 정보 유출 리스크를 감수하는 것보다는 훨씬 낫다고 봅니다. 저는 이런 기업용 솔루션을 쓸 수 있다면 최우선으로 고려하는 게 좋다고 생각해요.</p>\n<p>만약 회사에서 아직 기업용 AI 솔루션을 도입하지 않았다면, IT 부서와 협의해서 특정 AI 도구만 사용하도록 정책을 정할 수도 있습니다. 예를 들어, 특정 회사 내부망에서만 접속 가능한 프라이빗 LLM(거대 언어 모델)을 구축하는 경우도 있습니다. 이런 경우에는 일반적인 웹 기반 AI 서비스보다 훨씬 보안성이 높아요. 제가 작년에 알아봤을 때, 작은 스타트업 중에도 자체적으로 오픈소스 LLM을 가져다가 내부망에 설치해서 쓰는 곳도 있더라구요. 외부 인터넷 연결 없이 내부 데이터만으로 학습시키면 훨씬 안전한 거죠.</p>\n<h2>이런 경우엔 AI 쓰기 전에 다시 생각해봐야 해요</h2>\n<p>AI가 아무리 좋아도 만능은 아닙니다. 저는 AI를 쓸 때 항상 '이 정보가 만약 외부에 공개되어도 괜찮을까?'를 먼저 자문합니다. 만약 대답이 '아니오'라면, AI에 입력하는 걸 다시 한번 고민해봐야 합니다. 특히 제가 경험했던 것 중에 '정확성' 문제도 있습니다. AI가 그럴싸한 답변을 내놓지만, 사실과 다른 내용이 섞여 있는 경우가 종종 있어요. 특히 법률, 의료, 금융처럼 정확성이 생명인 분야에서는 AI의 답변을 맹신하면 안 됩니다. 저도 AI가 제안한 법률 용어를 그대로 썼다가 선배한테 지적받은 적이 있거든요.</p>\n<p>그리고 아무리 보안이 강화된 기업용 AI 솔루션이라도, 결국 '사람의 실수'가 가장 큰 함정입니다. 비식별화 과정을 제대로 거치지 않거나, 실수로 민감한 정보를 입력하는 일이 생길 수 있어요. '괜찮겠지'하는 안일한 마음이 가장 위험한 거죠. AI는 우리의 업무를 도와주는 보조 도구일 뿐, 최종 책임은 항상 우리에게 있다는 것을 명심해야 합니다. 저는 AI가 알려준 정보는 항상 공식 자료나 전문가 의견을 통해 한 번 더 확인하는 습관을 들이려고 노력합니다. 안전하게 잘 쓰는 게 진짜 똑똑하게 쓰는 방법이라고 생각해요.</p><section class=\"post-steps\" style=\"margin:36px 0 24px;\"><h2 style=\"margin-bottom:14px;\">신청 흐름 정리</h2><ol style=\"list-style:none;padding:0;margin:0;\"><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">1</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">1단계: 회사 AI 활용 정책 확인하기</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">가장 먼저 회사 내부의 정보보호 또는 AI 활용 가이드라인을 확인하고, 없으면 IT/정보보안팀에 문의하여 허용되는 AI 도구와 금지되는 정보 유형을 파악해야 합니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">2</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">2단계: 민감 정보 비식별화 및 익명 처리</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">개인정보(이름, 연락처, 주민번호 등)나 회사 기밀 정보(미공개 재무, 전략, 고객사명 등)를 AI에 입력하기 전에 반드시 삭제하거나 가명 처리하여 식별 불가능하게 만드세요.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">3</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">3단계: 승인된 AI 도구 우선 사용</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">회사가 공식적으로 도입했거나 사용을 승인한 유료 기업용 AI 솔루션(예: ChatGPT Enterprise, Microsoft Copilot)을 우선적으로 사용하고, 무료/개인용 툴은 지양합니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">4</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">4단계: AI 생성 내용 신중하게 검토 및 검증</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">AI가 생성한 모든 답변이나 자료는 그대로 사용하지 말고, 반드시 사실 여부와 정확성을 직접 검토하고 공식 자료나 전문가 의견으로 교차 검증해야 합니다.</div></div></li></ol></section>\n\n<section class=\"faq-section\" style=\"margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;\">\n<h2 style=\"margin-top:0;\">자주 묻는 질문</h2>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. 회사에서 AI 사용을 아예 막는다면 어떻게 해야 하나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 회사의 정책을 따르는 것이 최우선입니다. 만약 AI 사용이 전면 금지된다면, 공식적인 절차를 통해 개선을 제안하거나, 개인적으로 학습용으로만 사용하고 회사 업무에는 직접 적용하지 않아야 합니다. 규정 위반 시 큰 불이익이 있을 수 있어요.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. 무료 AI 툴은 절대 쓰면 안 되나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 절대 안 된다고 할 수는 없지만, 매우 신중해야 합니다. 민감한 정보가 전혀 포함되지 않은 일반적인 내용(예: 영어 문법 교정, 일반 상식 질문)에만 제한적으로 사용하고, 회사 내부 정보와 관련된 작업에는 가급적 사용하지 않는 것이 좋습니다. 저도 무료 툴은 조심해서 쓰고 있어요.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. 어떤 정보를 '민감 정보'로 봐야 할까요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 민감 정보는 개인정보(이름, 주민번호, 연락처, 건강 정보 등)와 회사 기밀 정보(영업 비밀, 미공개 사업 계획, 핵심 기술 정보, 비공개 고객사 리스트 등)를 모두 포함합니다. 외부로 유출될 경우 개인이나 회사에 피해를 줄 수 있는 모든 정보가 민감 정보라고 생각하면 됩니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. AI를 활용한 업무 자동화도 보안 문제가 있을까요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 네, 자동화 과정에서도 보안 문제가 발생할 수 있습니다. 예를 들어, AI가 특정 데이터를 자동으로 처리하게 설정했을 때, 이 데이터가 외부에 노출되거나 잘못 처리될 위험이 있습니다. 자동화 시스템을 구축하기 전에는 데이터 흐름과 보안 취약점을 철저히 분석하고, IT 부서의 승인을 받아야 합니다.</p></div>\n</section>\n<section class=\"post-references\" style=\"margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;\"><h2 style=\"margin-top:0;margin-bottom:10px;font-size:18px;\">근거 자료</h2><ul style=\"margin:0;padding-left:20px;\"><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://www.pipc.go.kr\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">개인정보보호위원회</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://www.msit.go.kr\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">과학기술정보통신부</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://www.kisa.or.kr\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">한국인터넷진흥원 (KISA)</a></li></ul><div style=\"margin-top:10px;font-size:12px;color:#888;\">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section>",
+  "steps": [
+    {
+      "title": "1단계: 회사 AI 활용 정책 확인하기",
+      "desc": "가장 먼저 회사 내부의 정보보호 또는 AI 활용 가이드라인을 확인하고, 없으면 IT/정보보안팀에 문의하여 허용되는 AI 도구와 금지되는 정보 유형을 파악해야 합니다."
+    },
+    {
+      "title": "2단계: 민감 정보 비식별화 및 익명 처리",
+      "desc": "개인정보(이름, 연락처, 주민번호 등)나 회사 기밀 정보(미공개 재무, 전략, 고객사명 등)를 AI에 입력하기 전에 반드시 삭제하거나 가명 처리하여 식별 불가능하게 만드세요."
+    },
+    {
+      "title": "3단계: 승인된 AI 도구 우선 사용",
+      "desc": "회사가 공식적으로 도입했거나 사용을 승인한 유료 기업용 AI 솔루션(예: ChatGPT Enterprise, Microsoft Copilot)을 우선적으로 사용하고, 무료/개인용 툴은 지양합니다."
+    },
+    {
+      "title": "4단계: AI 생성 내용 신중하게 검토 및 검증",
+      "desc": "AI가 생성한 모든 답변이나 자료는 그대로 사용하지 말고, 반드시 사실 여부와 정확성을 직접 검토하고 공식 자료나 전문가 의견으로 교차 검증해야 합니다."
+    }
+  ],
+  "summary": "회사 보안을 지키며 AI를 업무에 활용하려면, 먼저 회사 정책을 확인하고 민감 정보는 철저히 비식별화해야 합니다. 승인된 기업용 AI 도구를 사용하고, AI의 답변은 항상 검토하고 검증하는 습관을 들이는 것이 중요합니다.",
+  "tags": [
+    "회사보안지키며AI쓰는법",
+    "ai",
+    "직장인",
+    "정보보안",
+    "업무효율",
+    "개인정보보호",
+    "기업AI"
+  ],
+  "faq": [
+    {
+      "q": "회사에서 AI 사용을 아예 막는다면 어떻게 해야 하나요?",
+      "a": "회사의 정책을 따르는 것이 최우선입니다. 만약 AI 사용이 전면 금지된다면, 공식적인 절차를 통해 개선을 제안하거나, 개인적으로 학습용으로만 사용하고 회사 업무에는 직접 적용하지 않아야 합니다. 규정 위반 시 큰 불이익이 있을 수 있어요."
+    },
+    {
+      "q": "무료 AI 툴은 절대 쓰면 안 되나요?",
+      "a": "절대 안 된다고 할 수는 없지만, 매우 신중해야 합니다. 민감한 정보가 전혀 포함되지 않은 일반적인 내용(예: 영어 문법 교정, 일반 상식 질문)에만 제한적으로 사용하고, 회사 내부 정보와 관련된 작업에는 가급적 사용하지 않는 것이 좋습니다. 저도 무료 툴은 조심해서 쓰고 있어요."
+    },
+    {
+      "q": "어떤 정보를 '민감 정보'로 봐야 할까요?",
+      "a": "민감 정보는 개인정보(이름, 주민번호, 연락처, 건강 정보 등)와 회사 기밀 정보(영업 비밀, 미공개 사업 계획, 핵심 기술 정보, 비공개 고객사 리스트 등)를 모두 포함합니다. 외부로 유출될 경우 개인이나 회사에 피해를 줄 수 있는 모든 정보가 민감 정보라고 생각하면 됩니다."
+    },
+    {
+      "q": "AI를 활용한 업무 자동화도 보안 문제가 있을까요?",
+      "a": "네, 자동화 과정에서도 보안 문제가 발생할 수 있습니다. 예를 들어, AI가 특정 데이터를 자동으로 처리하게 설정했을 때, 이 데이터가 외부에 노출되거나 잘못 처리될 위험이 있습니다. 자동화 시스템을 구축하기 전에는 데이터 흐름과 보안 취약점을 철저히 분석하고, IT 부서의 승인을 받아야 합니다."
+    }
+  ],
+  "references": [
+    {
+      "label": "개인정보보호위원회",
+      "url": "https://www.pipc.go.kr"
+    },
+    {
+      "label": "과학기술정보통신부",
+      "url": "https://www.msit.go.kr"
+    },
+    {
+      "label": "한국인터넷진흥원 (KISA)",
+      "url": "https://www.kisa.or.kr"
+    }
+  ],
+  "seo_analysis": {
+    "score": 90.0,
+    "monthly_total": 10,
+    "competition": "낮음"
+  },
+  "created_at": "2026-10-19T07:42:18.704455",
+  "status": "scheduled",
+  "source": "auto",
+  "content_raw": "지난주 후배가 갑자기 물어보더군요. \"선배, 요즘 AI로 업무한다고 하던데, 회사 보안은 어떻게 지켜요?\" 저도 처음엔 막연히 조심해야 한다고만 생각했지, 구체적인 방법을 몰라서 한참 헤맸습니다. AI가 분명 업무 시간을 줄여주고 결과물을 좋게 만들어주는 건 맞거든요. 하지만 회사 기밀이나 개인정보가 혹시라도 새어나갈까 봐 불안한 마음이 드는 것도 사실입니다. 이런 고민을 하는 분들이 저 말고도 많을 거예요. 결론부터 말하면, 몇 가지 원칙만 지키면 회사 보안을 지키면서 AI를 충분히 잘 쓸 수 있습니다.\n\n## AI, 써보니 좋았는데 회사가 신경 쓰였죠\n\n저는 원래 새로운 기술에 관심이 많습니다. 작년에 챗GPT가 처음 나왔을 때부터 업무에 어떻게든 써먹으려고 이것저것 시도해봤어요. 기획안 초안을 쓰거나, 복잡한 데이터를 요약하거나, 아이디어를 얻는 데 정말 유용하더라구요. 하루에 1시간 넘게 걸리던 작업이 10~20분으로 줄어들 때도 있었습니다. 진짜 신세계였어요.\n\n근데 마냥 좋다고만 생각했던 건 아니에요. 어느 날 기획안에 들어갈 법률 용어를 물어보다가 문득 이런 생각이 들었습니다. '내가 지금 회사 기밀이 담긴 정보를 AI에 그대로 입력하는 건 아닐까?' 회사의 영업 전략이나 고객 정보 같은 민감한 내용이 혹시라도 학습 데이터로 쓰여서 외부에 노출될 수도 있다는 불안감이 엄습했죠. 동료들 중에는 실제로 중요한 보고서 내용을 통째로 붙여 넣고 요약해달라고 하는 경우도 있었습니다. 저는 그때부터 좀 조심해야겠다고 느꼈어요.\n\n> 포인트: AI는 분명 좋지만, 회사 정보 유출 위험은 항상 생각해야 합니다. 제가 그랬습니다.\n\n## 회사 정보, AI에 넘어가면 진짜 큰일 납니다\n\nAI를 사용할 때 가장 중요한 건 '데이터'입니다. AI는 우리가 입력하는 데이터를 학습해서 답변을 만들어내거든요. 문제는 우리가 입력한 데이터가 어떻게 처리되고, 어디에 저장되며, 다른 사람들에게 노출될 가능성은 없는지 일반 사용자는 알기 어렵다는 겁니다. 대부분의 무료 AI 서비스는 사용자의 데이터를 학습에 활용할 수 있다는 약관을 가지고 있어요. 즉, 회사 기밀이나 개인정보를 AI에 입력하는 순간, 그 정보는 AI 개발사의 서버 어딘가에 저장되고, 잠재적으로는 다른 사용자에게 유사한 질문의 답변으로 제시될 수도 있다는 얘기죠.\n\n특히 개인정보보호법이 엄격한 우리나라에서는 한 번의 실수로도 심각한 법적 문제에 휘말릴 수 있습니다. 제 친구 회사 동료는 고객 정보가 포함된 파일을 AI에 넣고 분석했다가, 회사가 감사에 걸려 억대 과징금을 물 뻔한 아찔한 경험도 있었다고 해요. 다행히 실제 유출까진 안 가서 넘어갔지만, 그 후로 AI 사용 규정이 훨씬 엄격해졌다고 합니다. 내부에서 유출된 정보는 외부 유출보다 더 치명적일 수 있거든요. 정보 유출 사고 한 번으로 회사의 신뢰도가 땅에 떨어지고, 주가에도 악영향을 줄 수 있다는 걸 잊으면 안 됩니다.\n\n## 보안 문제 없이 AI 쓰는 실전 원칙들\n\n그럼 어떻게 해야 안전하게 AI를 쓸 수 있을까요? 제가 찾아보고 직접 적용하면서 깨달은 몇 가지 원칙이 있습니다. 제일 중요한 건 '우리 회사의 IT 정책'을 먼저 확인하는 거예요. 요즘은 대부분의 회사가 AI 사용 가이드라인을 만들고 있습니다. 어떤 툴을 허용하는지, 어떤 정보는 절대 입력하면 안 되는지 명시해두는 거죠. 만약 가이드라인이 없다면, IT 부서나 정보보안팀에 직접 물어보는 게 가장 확실합니다. 괜히 혼자 판단했다가 나중에 문제 생기면 저만 곤란해지거든요.\n\n두 번째는 '민감 정보는 철저히 비식별화'하는 겁니다. 개인 식별이 가능한 정보(이름, 주민번호, 연락처 등)나 회사 내부 기밀 문서(경영 전략, 신제품 정보, 미공개 재무 자료 등)는 AI에 그대로 입력하면 안 돼요. 예를 들어, 고객 데이터를 분석하고 싶다면, 이름이나 연락처 같은 개인 식별 정보를 모두 삭제하거나 가명 처리하는 거죠. 계약서 초안을 만들 때도 핵심 내용만 넣고, 구체적인 당사자 정보나 금액은 비워두고 나중에 제가 직접 채워 넣는 식으로 쓰고 있습니다. 이 과정이 조금 번거롭긴 해도, 안전을 위한 최소한의 장치라고 생각합니다.\n\n## 안전하게 AI 쓸 수 있는 도구와 회사 정책\n\n요즘은 기업용으로 특화된 AI 솔루션들이 많이 나오고 있습니다. 이런 솔루션들은 기업의 데이터를 학습에 사용하지 않고, 보안 기준이 높아서 훨씬 안심하고 쓸 수 있죠. 예를 들어, 챗GPT 엔터프라이즈 버전이나 마이크로소프트 코파일럿 같은 것들이 있습니다. 저희 회사도 최근에 이런 기업용 솔루션 도입을 검토 중이더라구요. 비용이 들긴 하지만, 정보 유출 리스크를 감수하는 것보다는 훨씬 낫다고 봅니다. 저는 이런 기업용 솔루션을 쓸 수 있다면 최우선으로 고려하는 게 좋다고 생각해요.\n\n만약 회사에서 아직 기업용 AI 솔루션을 도입하지 않았다면, IT 부서와 협의해서 특정 AI 도구만 사용하도록 정책을 정할 수도 있습니다. 예를 들어, 특정 회사 내부망에서만 접속 가능한 프라이빗 LLM(거대 언어 모델)을 구축하는 경우도 있습니다. 이런 경우에는 일반적인 웹 기반 AI 서비스보다 훨씬 보안성이 높아요. 제가 작년에 알아봤을 때, 작은 스타트업 중에도 자체적으로 오픈소스 LLM을 가져다가 내부망에 설치해서 쓰는 곳도 있더라구요. 외부 인터넷 연결 없이 내부 데이터만으로 학습시키면 훨씬 안전한 거죠.\n\n## 이런 경우엔 AI 쓰기 전에 다시 생각해봐야 해요\n\nAI가 아무리 좋아도 만능은 아닙니다. 저는 AI를 쓸 때 항상 '이 정보가 만약 외부에 공개되어도 괜찮을까?'를 먼저 자문합니다. 만약 대답이 '아니오'라면, AI에 입력하는 걸 다시 한번 고민해봐야 합니다. 특히 제가 경험했던 것 중에 '정확성' 문제도 있습니다. AI가 그럴싸한 답변을 내놓지만, 사실과 다른 내용이 섞여 있는 경우가 종종 있어요. 특히 법률, 의료, 금융처럼 정확성이 생명인 분야에서는 AI의 답변을 맹신하면 안 됩니다. 저도 AI가 제안한 법률 용어를 그대로 썼다가 선배한테 지적받은 적이 있거든요.\n\n그리고 아무리 보안이 강화된 기업용 AI 솔루션이라도, 결국 '사람의 실수'가 가장 큰 함정입니다. 비식별화 과정을 제대로 거치지 않거나, 실수로 민감한 정보를 입력하는 일이 생길 수 있어요. '괜찮겠지'하는 안일한 마음이 가장 위험한 거죠. AI는 우리의 업무를 도와주는 보조 도구일 뿐, 최종 책임은 항상 우리에게 있다는 것을 명심해야 합니다. 저는 AI가 알려준 정보는 항상 공식 자료나 전문가 의견을 통해 한 번 더 확인하는 습관을 들이려고 노력합니다. 안전하게 잘 쓰는 게 진짜 똑똑하게 쓰는 방법이라고 생각해요.",
+  "hero_image": {
+    "url": "/posts/thumbnails/thumb_20261018_224216.png",
+    "alt": "회사 보안 지키며 AI 쓰는 법, 제가 직접 해보니 이렇더라구요",
+    "credit": "Daniil Komov",
+    "credit_link": "https://unsplash.com/@dkomow",
+    "source": "unsplash"
+  },
+  "body_images": [
+    {
+      "url": "https://images.unsplash.com/photo-1762242298589-582f5f6c3fb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTIzNjMzMzh8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "Laptop screen displaying lines of code",
+      "credit": "Ilnur",
+      "credit_link": "https://unsplash.com/@mrw0rld",
+      "source": "unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1786539861520-6e91dc64a958?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTIzNjMzMzh8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "A yellow robotic arm with black joints and a mechanical hand",
+      "credit": "Enchanted Tools",
+      "credit_link": "https://unsplash.com/@enchantedtools",
+      "source": "unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1618986919307-ed52427d0bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTIzNjMzMzh8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "a close up of a cell phone's display screen",
+      "credit": "Brett Jordan",
+      "credit_link": "https://unsplash.com/@brett_jordan",
+      "source": "unsplash"
+    }
+  ],
+  "seo_title": "회사 보안 지키며 AI 쓰는 법, 제가 직접 해보니 이렇더라구요 | 직장인 수익일기",
+  "seo_description": "회사 보안을 지키며 AI를 업무에 활용하려면, 먼저 회사 정책을 확인하고 민감 정보는 철저히 비식별화해야 합니다. 승인된 기업용 AI 도구를 사용하고, AI의 답변은 항상 검토하고 검증하는 습관을 들이는 것이 중요합니다. | 직장인 수익일기",
+  "seo_keywords": "회사보안지키며AI쓰는법, ai, ai 추천, 회사보안지키며AI쓰는법 방법, 직장인 부업, 직장인 수익일기, 직장인, 정보보안, 업무효율, 개인정보보호, 기업AI",
+  "jsonld": {
+    "article": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "회사 보안 지키며 AI 쓰는 법, 제가 직접 해보니 이렇더라구요",
+      "description": "회사 보안을 지키며 AI를 업무에 활용하려면, 먼저 회사 정책을 확인하고 민감 정보는 철저히 비식별화해야 합니다. 승인된 기업용 AI 도구를 사용하고, AI의 답변은 항상 검토하고 검증하는 습관을 들이는 것이 중요합니다.",
+      "keywords": "회사보안지키며AI쓰는법, ai, ai 추천, 회사보안지키며AI쓰는법 방법, 직장인 부업, 직장인 수익일기, 직장인, 정보보안, 업무효율, 개인정보보호, 기업AI",
+      "articleSection": "ai",
+      "author": {
+        "@type": "Person",
+        "name": "박대홍"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "직장인 수익일기",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.koreansalaryman.com/og-image.png"
+        }
+      },
+      "datePublished": "2026-10-19T07:42:18.704455",
+      "image": "https://www.koreansalaryman.com/posts/thumbnails/thumb_20261018_224216.png"
+    },
+    "faq": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "회사에서 AI 사용을 아예 막는다면 어떻게 해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "회사의 정책을 따르는 것이 최우선입니다. 만약 AI 사용이 전면 금지된다면, 공식적인 절차를 통해 개선을 제안하거나, 개인적으로 학습용으로만 사용하고 회사 업무에는 직접 적용하지 않아야 합니다. 규정 위반 시 큰 불이익이 있을 수 있어요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "무료 AI 툴은 절대 쓰면 안 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "절대 안 된다고 할 수는 없지만, 매우 신중해야 합니다. 민감한 정보가 전혀 포함되지 않은 일반적인 내용(예: 영어 문법 교정, 일반 상식 질문)에만 제한적으로 사용하고, 회사 내부 정보와 관련된 작업에는 가급적 사용하지 않는 것이 좋습니다. 저도 무료 툴은 조심해서 쓰고 있어요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 정보를 '민감 정보'로 봐야 할까요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "민감 정보는 개인정보(이름, 주민번호, 연락처, 건강 정보 등)와 회사 기밀 정보(영업 비밀, 미공개 사업 계획, 핵심 기술 정보, 비공개 고객사 리스트 등)를 모두 포함합니다. 외부로 유출될 경우 개인이나 회사에 피해를 줄 수 있는 모든 정보가 민감 정보라고 생각하면 됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI를 활용한 업무 자동화도 보안 문제가 있을까요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 자동화 과정에서도 보안 문제가 발생할 수 있습니다. 예를 들어, AI가 특정 데이터를 자동으로 처리하게 설정했을 때, 이 데이터가 외부에 노출되거나 잘못 처리될 위험이 있습니다. 자동화 시스템을 구축하기 전에는 데이터 흐름과 보안 취약점을 철저히 분석하고, IT 부서의 승인을 받아야 합니다."
+          }
+        }
+      ]
+    },
+    "howto": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "회사 보안 지키며 AI 쓰는 법, 제가 직접 해보니 이렇더라구요",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "1단계: 회사 AI 활용 정책 확인하기",
+          "text": "가장 먼저 회사 내부의 정보보호 또는 AI 활용 가이드라인을 확인하고, 없으면 IT/정보보안팀에 문의하여 허용되는 AI 도구와 금지되는 정보 유형을 파악해야 합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "2단계: 민감 정보 비식별화 및 익명 처리",
+          "text": "개인정보(이름, 연락처, 주민번호 등)나 회사 기밀 정보(미공개 재무, 전략, 고객사명 등)를 AI에 입력하기 전에 반드시 삭제하거나 가명 처리하여 식별 불가능하게 만드세요."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "3단계: 승인된 AI 도구 우선 사용",
+          "text": "회사가 공식적으로 도입했거나 사용을 승인한 유료 기업용 AI 솔루션(예: ChatGPT Enterprise, Microsoft Copilot)을 우선적으로 사용하고, 무료/개인용 툴은 지양합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "4단계: AI 생성 내용 신중하게 검토 및 검증",
+          "text": "AI가 생성한 모든 답변이나 자료는 그대로 사용하지 말고, 반드시 사실 여부와 정확성을 직접 검토하고 공식 자료나 전문가 의견으로 교차 검증해야 합니다."
+        }
+      ]
+    }
+  },
+  "scheduled_at": "2026-10-19T10:43:38.675Z"
+}
