@@ -72,10 +72,10 @@
       "장기투자"
     ],
     "created_at": "2026-10-19T07:41:11.789870",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-19T07:25:39.122Z",
-    "published_at": null,
+    "published_at": "2026-10-19T10:33:55.810Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261018_224109.png",
     "has_faq": true,
