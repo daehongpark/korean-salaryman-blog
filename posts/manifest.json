@@ -13,10 +13,10 @@
       "생산성"
     ],
     "created_at": "2026-10-20T07:48:06.743670",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-20T13:33:04.243Z",
-    "published_at": null,
+    "published_at": "2026-10-20T15:28:41.518Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261019_224804.png",
     "has_faq": true,
