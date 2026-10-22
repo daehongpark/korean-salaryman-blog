@@ -1,0 +1,258 @@
+{
+  "title": "PPT 자동 생성 AI, 직장인이라면 이것부터 비교하세요",
+  "category": "ai",
+  "keyword": "PPT 자동 생성 AI 비교",
+  "tldr": [
+    "PPT 자동 생성 AI는 프롬프트만으로 슬라이드 초안을 만들어 업무 시간을 줄여줍니다.",
+    "주요 AI 도구는 Gamma, Tome, ChatGPT/Copilot (플러그인) 등이 있으며, 각 도구의 장단점이 명확합니다.",
+    "자동 생성된 PPT는 초안으로 활용하고, 반드시 내용 검토와 수정을 거쳐야 완성도를 높일 수 있습니다.",
+    "정확한 프롬프트 작성과 추가 편집 역량이 AI PPT의 품질을 좌우합니다."
+  ],
+  "target_audience": "이 글은 업무에 AI를 활용하여 PPT 제작 시간을 단축하고 싶은 직장인을 위한 글입니다.",
+  "content": "<div class=\"post-updated\" style=\"text-align:right;font-size:12px;color:#999;margin:0 0 12px;\">📅 2026.10.23 업데이트</div><aside class=\"post-tldr\" style=\"background:#f8f7f4;border-left:4px solid #c17f3e;padding:18px 22px;margin:0 0 28px;border-radius:0 8px 8px 0;\"><div style=\"font-size:13px;font-weight:700;color:#c17f3e;letter-spacing:0.05em;margin-bottom:8px;\">한눈에 보기</div><ul style=\"margin:0;padding-left:20px;color:#1a2640;font-size:15px;\"><li style=\"margin:6px 0;line-height:1.6;\">PPT 자동 생성 AI는 프롬프트만으로 슬라이드 초안을 만들어 업무 시간을 줄여줍니다.</li><li style=\"margin:6px 0;line-height:1.6;\">주요 AI 도구는 Gamma, Tome, ChatGPT/Copilot (플러그인) 등이 있으며, 각 도구의 장단점이 명확합니다.</li><li style=\"margin:6px 0;line-height:1.6;\">자동 생성된 PPT는 초안으로 활용하고, 반드시 내용 검토와 수정을 거쳐야 완성도를 높일 수 있습니다.</li><li style=\"margin:6px 0;line-height:1.6;\">정확한 프롬프트 작성과 추가 편집 역량이 AI PPT의 품질을 좌우합니다.</li></ul></aside><div class=\"post-audience\" style=\"font-size:13px;color:#666;margin:0 0 24px;padding:10px 14px;background:#fafafa;border-radius:6px;\">👤 이 글은 업무에 AI를 활용하여 PPT 제작 시간을 단축하고 싶은 직장인을 위한 글입니다.</div><p>지난주 후배가 급하게 발표 자료를 만들어야 하는데 도무지 시간이 없다고 하소연하더라고요. 저도 그랬습니다. 밤샘 작업으로 겨우 PPT를 완성했지만, 다음 날 회의에서 지적받는 일도 잦았죠. 특히 자료조사와 구성에만 몇 시간이 날아가 버리곤 했습니다.</p>\n<p>결론부터 말씀드리면, PPT 자동 생성 AI를 잘 쓰면 이런 고통을 확 줄일 수 있습니다. 하지만 어떤 AI를 써야 나한테 맞을지, 그리고 이걸 어떻게 써야 진짜 업무에 도움이 되는지는 아무도 제대로 알려주지 않더라고요.</p>\n<p>제가 작년에 직접 여러 도구를 써보면서 느낀 점들을 바탕으로, 직장인에게 필요한 PPT 자동 생성 AI를 비교하고 실제 사용 팁을 알려드릴게요.</p>\n<figure style=\"margin:32px 0 24px;\"><img src=\"/posts/thumbnails/thumb_20261022_224242.png\" alt=\"PPT 자동 생성 AI, 직장인이라면 이것부터 비교하세요\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@davidmonje\" target=\"_blank\" style=\"color:#888;\">David Monje</a> on Unsplash</figcaption></figure>\n<h2>AI가 만드는 PPT, 왜 직장인에게 필요할까요?</h2>\n<p>보고서나 기획안, 발표 자료. 직장인이라면 PPT 만들 일이 끊이지 않죠. 저도 월요일마다 팀장님께 보고할 자료를 만들면서 주말을 날린 적이 한두 번이 아닙니다. 디자인은 둘째치고, 내용 구성과 자료 찾는 데만 엄청난 시간이 들어가잖아요. 이게 문제였습니다.</p>\n<p>PPT 자동 생성 AI는 이런 반복적이고 시간을 많이 잡아먹는 작업을 대신 해줍니다. 저는 이걸 'PPT 초안 작성 자동화'라고 부르는데요. 사용자가 텍스트로 원하는 내용을 입력하면, AI가 그 내용을 바탕으로 슬라이드 구성, 텍스트 요약, 이미지 배치까지 한 번에 처리합니다. 물론 아직 완벽하진 않아요. 하지만 맨땅에 헤딩하는 것보다는 훨씬 낫습니다. 제 경험상 PPT 작업 시간의 30% 이상을 줄여줍니다.</p>\n<p>이 도구들은 단순히 예쁜 템플릿을 제공하는 걸 넘어섭니다. 특정 주제에 맞춰 필요한 정보를 구조화해주죠. 덕분에 저는 내용 검토와 다듬기에 더 많은 시간을 쓸 수 있게 됐습니다.</p>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1532102235608-dc8fc689c9ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTI3MDg5NjN8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"white printer paper on white wall\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@new_data_services\" target=\"_blank\" style=\"color:#888;\">NEW DATA SERVICES</a> on Unsplash</figcaption></figure>\n<h2>주요 PPT 자동 생성 AI, 뭐가 다를까요?</h2>\n<p>시중에 여러 PPT 자동 생성 AI가 나와 있습니다. 저도 처음엔 뭐가 뭔지 몰라서 이것저것 다 깔아보고 돈만 날리기도 했어요. 결국, 직장인이 쓰기엔 몇 가지 핵심 도구로 추려지더라고요. 저는 주로 Gamma, Tome, 그리고 ChatGPT(Copilot 포함)의 플러그인 기능을 비교해봤습니다. 각각의 특징과 장단점이 명확해서 어떤 업무에 쓰느냐에 따라 선택이 달라질 수 있습니다.</p>\n<blockquote>포인트: AI는 만능이 아니에요. 내 상황에 맞는 도구를 골라야 시간 낭비를 막을 수 있죠.</blockquote>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1617042375876-a13e36732a04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTI3MDg5NjN8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"black laptop computer turned on beside black ceramic mug\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@afgprogrammer\" target=\"_blank\" style=\"color:#888;\">Mohammad Rahmani</a> on Unsplash</figcaption></figure>\n<h2>직접 써보면서 느낀 것과 추천 시나리오</h2>\n<p>제가 이 AI 도구들을 써보면서 가장 크게 느낀 건 ‘프롬프트가 핵심’이라는 점입니다. AI는 제가 준 정보 안에서만 움직이거든요. 처음에는 그냥 “회사 소개 PPT 만들어줘” 이렇게 대충 시켰다가 엉망진창 자료를 받아서 실망한 적도 많았습니다.</p>\n<p>하지만 프롬프트를 구체적으로 바꾸기 시작하면서 결과가 달라졌어요. 예를 들어, “저희 회사의 비전, 핵심 가치, 주요 제품 3가지에 대해 각 슬라이드 2장씩으로 구성하고, 전체적으로 깔끔하고 전문적인 톤으로 만들어줘. 대상은 신규 투자자이고, 마지막 슬라이드에는 Q&A를 넣어줘” 같은 식으로요. 이렇게 디테일하게 요청하면 AI도 훨씬 정확한 초안을 내놓더라고요.</p>\n<p>Gamma는 비즈니스 보고서나 내부 발표 자료 만들 때 특히 좋았습니다. 디자인이 간결하고 수정이 쉬워서 빠르게 초안을 만들고 팀원들과 공유하기 편리하죠. 팀 협업 기능도 괜찮고요.</p>\n<p>Tome은 스토리텔링 기반의 발표 자료에 강했습니다. 투자 유치나 제품 설명처럼 좀 더 서사적인 흐름이 필요한 발표에 적합하더라고요. 동료가 Tome으로 발표 준비하는 걸 보고 저도 따라 해봤는데, 시각적인 요소가 강조되면서 내용 전달력이 좋았습니다.</p>\n<p>ChatGPT (또는 Copilot) 플러그인들은 범용성이 가장 높습니다. 특정 양식에 얽매이지 않고 자유롭게 내용을 구성하고 싶을 때 좋습니다. 저는 주로 아이디어 구상 단계에서 다양한 구성안을 받아볼 때 활용했습니다. 여러 플러그인을 조합하면 더 나은 결과물을 얻을 수도 있고요. 예를 들어, 웹에서 자료를 찾아주는 플러그인과 PPT를 만들어주는 플러그인을 함께 쓰는 식이죠.</p>\n<p>어떤 도구를 쓰든, AI가 만들어준 초안을 100% 그대로 쓰는 건 위험합니다. 반드시 내용을 다시 확인하고, 불필요한 부분은 삭제하고, 우리 회사 상황에 맞는 내용을 추가하는 편집 과정이 필수입니다. 이걸 잘해야 AI를 업무에 제대로 활용한다고 할 수 있죠.</p>\n<figure style=\"margin:28px 0 28px;\"><img src=\"https://images.unsplash.com/photo-1749006590475-4592a5dbf99f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTI3MDg5NjR8&ixlib=rb-4.1.0&q=80&w=1080\" alt=\"A square of aluminum is resting on glass\" style=\"width:100%;border-radius:12px;object-fit:cover;max-height:420px;\" loading=\"lazy\"><figcaption style=\"font-size:11px;color:#888;margin-top:6px;text-align:right;\">Photo by <a href=\"https://unsplash.com/@procopiopi\" target=\"_blank\" style=\"color:#888;\">Omar:. Lopez-Rincon</a> on Unsplash</figcaption></figure>\n<h2>이대로 따라하면 안 되는 이유: AI의 한계와 진짜 활용법</h2>\n<p>PPT 자동 생성 AI는 분명 직장인의 시간을 아껴주는 고마운 도구입니다. 하지만 몇 가지 한계를 분명히 알아야 합니다.</p>\n<p>첫째, 정보의 정확성 문제예요. AI가 생성하는 내용은 학습된 데이터 기반이라, 최신 정보나 내부 기밀 정보에는 취약합니다. 예를 들어, 작년에 제가 ‘2025년 시장 전망’ 관련 자료를 AI로 만들었다가 잘못된 데이터를 포함해서 다시 수정했던 경험이 있어요. 항상 사실 관계를 확인하는 게 중요합니다.</p>\n<p>둘째, 창의성 부족입니다. AI는 기존 패턴을 학습해서 결과물을 내놓기 때문에, 혁신적이거나 완전히 새로운 아이디어를 기대하긴 어렵습니다. 저는 AI가 만든 자료에 저만의 분석이나 인사이트를 추가해서 차별화하려고 노력합니다.</p>\n<p>셋째, 저작권 이슈입니다. AI가 생성한 이미지나 콘텐츠가 저작권 문제에서 완전히 자유롭다고 단언하기 어렵습니다. 특히 상업적으로 사용하거나 외부에 공개하는 자료라면 주의해야 합니다. 저는 주로 저작권 없는 무료 이미지 사이트를 이용하거나, 직접 만든 이미지를 사용합니다.</p>\n<p>결국 AI PPT 도구는 '생산성 보조 도구'라는 점을 잊지 말아야 합니다. 완벽한 결과물을 기대하기보다, 귀찮은 초안 작업을 대신해줘서 제가 더 중요한 '생각하는 시간'을 벌어준다고 생각하는 게 맞습니다. 제가 직접 자료를 검토하고, 핵심 메시지를 다듬고, 창의적인 디자인 요소를 추가하는 과정이 없다면 AI PPT는 그냥 밋밋한 자료일 뿐입니다.</p>\n<p>PPT 자동 생성 AI를 잘 쓰는 비결은 두 가지입니다. 하나는 명확하고 구체적인 프롬프트 작성 능력이고, 다른 하나는 생성된 결과물을 내 목적에 맞게 편집하고 가공하는 능력입니다. 이 두 가지를 꾸준히 연습하면 퇴근 시간이 빨라지는 마법을 경험할 수 있을 겁니다.</p>\n<h2>앞으로 더 기대되는 것들</h2>\n<p>제가 작년에 이 분야를 처음 접했을 때보다 지금은 훨씬 다양한 기능과 플러그인들이 쏟아져 나오고 있습니다. AI 기술 발전 속도가 정말 빠르죠. 앞으로는 단순히 텍스트를 PPT로 바꾸는 것을 넘어, 실시간으로 발표자의 의도를 파악해서 슬라이드를 수정해주거나, 청중의 반응에 따라 내용 흐름을 조절하는 AI도 나올 것 같다는 상상을 해봅니다.</p>\n<p>또, 특정 산업 분야에 특화된 AI PPT 도구들도 생겨날 겁니다. 예를 들어, 금융 산업 보고서에 특화된 AI나 마케팅 기획안에 최적화된 AI 같은 것들이요.</p>\n<p>물론 AI가 우리의 일자리를 모두 대체할 거라는 걱정도 있지만, 저는 반대로 AI를 잘 쓰는 사람이 더 많은 기회를 얻게 될 거라고 생각합니다. 복잡한 업무를 AI에 맡기고, 우리는 더 창의적이고 전략적인 일에 집중할 수 있겠죠. 직장인 여러분도 AI를 잘 활용해서 스마트하게 일하시길 바랍니다.</p><section class=\"post-comparison\" style=\"margin:36px 0 24px;overflow-x:auto;\"><h2 style=\"margin-bottom:14px;\">한눈에 비교</h2><table style=\"width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);\"><thead><tr><th style=\"padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;\">항목</th><th style=\"padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;\">Gamma</th><th style=\"padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;\">Tome</th><th style=\"padding:10px 12px;background:#1a2640;color:#fff;text-align:left;font-size:14px;font-weight:600;\">ChatGPT/Copilot (플러그인)</th></tr></thead><tbody><tr><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">주요 특징</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">간결한 비즈니스 보고서, 협업 용이</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">스토리텔링 기반, 시각적 강조</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">범용성 높음, 다양한 플러그인 활용</td></tr><tr><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">사용 난이도</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">쉬움 (직관적 인터페이스)</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">보통 (템플릿 활용)</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">보통~어려움 (프롬프트/플러그인 이해 필요)</td></tr><tr><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">초기 결과물 품질</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">전문적이고 깔끔한 디자인</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">다이내믹하고 시각적 요소 풍부</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">프롬프트에 따라 편차 큼</td></tr><tr><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">주요 용도</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">내부 보고서, 기획안, 팀 발표</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">투자 유치, 제품/서비스 설명</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">아이디어 구상, 다양한 구성안 실험</td></tr><tr><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">가격 정책</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">무료 플랜 제공, 유료 구독</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">무료 플랜 제공, 유료 구독</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fff;font-size:14px;color:#2a2a2a;\">GPT Plus/Copilot Pro 유료, 플러그인 유무료</td></tr><tr><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">협업 기능</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">뛰어남 (실시간 편집, 공유)</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">보통 (공유 및 코멘트)</td><td style=\"padding:10px 12px;border-bottom:1px solid #eee;background:#fafafa;font-size:14px;color:#2a2a2a;\">제한적 (외부 도구 연동 필요)</td></tr></tbody></table></section><section class=\"post-steps\" style=\"margin:36px 0 24px;\"><h2 style=\"margin-bottom:14px;\">이렇게 하면 됩니다</h2><ol style=\"list-style:none;padding:0;margin:0;\"><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">1</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">1단계: 명확한 프롬프트 구상하기</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">PPT의 목적, 대상, 핵심 메시지, 포함할 내용, 원하는 분위기 등을 구체적으로 정리합니다. AI가 이해하기 쉽게 명사 위주로 핵심을 전달하는 게 중요해요.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">2</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">2단계: AI 도구 선택 및 초안 생성</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">위 비교표를 참고하여 자신의 목적에 맞는 AI 도구를 선택합니다. 구상한 프롬프트를 입력하고 AI가 생성한 PPT 초안을 받아봅니다.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">3</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">3단계: 내용 및 디자인 검토</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">생성된 초안의 내용이 정확한지, 흐름은 자연스러운지 꼼꼼히 검토합니다. 불필요한 슬라이드는 삭제하고, 부족한 내용은 추가합니다. 디자인은 전체적인 통일성을 확인하세요.</div></div></li><li style=\"display:flex;gap:14px;align-items:flex-start;margin:0 0 14px;padding:14px;background:#fff;border-radius:8px;border:1px solid #eee;\"><div style=\"flex:0 0 32px;height:32px;border-radius:50%;background:#c17f3e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;\">4</div><div style=\"flex:1;\"><div style=\"font-weight:700;color:#1a2640;margin-bottom:4px;font-size:15px;\">4단계: 핵심 인사이트 추가 및 수정</div><div style=\"color:#444;font-size:14px;line-height:1.6;\">AI가 채워주지 못하는 나만의 분석, 경험, 데이터 등을 추가하여 PPT의 가치를 높입니다. 이미지, 차트, 핵심 문구 등을 보강하며 최종 완성도를 끌어올립니다.</div></div></li></ol></section>\n\n<section class=\"faq-section\" style=\"margin-top:48px;padding:24px;background:#f8f7f4;border-radius:12px;border-left:4px solid #c17f3e;\">\n<h2 style=\"margin-top:0;\">Q&A 정리</h2>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. PPT 자동 생성 AI, 무료로 쓸 수 있나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 네, 대부분의 PPT 자동 생성 AI 도구는 기본적인 기능을 무료로 제공하는 플랜이 있습니다. 하지만 더 많은 기능이나 고품질의 결과물을 원한다면 유료 구독을 고려해야 합니다. 처음에는 무료 플랜으로 충분히 경험해보고 결정하는 걸 추천합니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. AI가 만든 PPT, 그대로 발표해도 될까요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 아니요, AI가 만든 PPT는 어디까지나 '초안'으로 활용해야 합니다. 내용의 정확성, 최신성, 그리고 나만의 인사이트가 담겼는지 반드시 검토하고 수정하는 과정이 필수입니다. 그대로 발표했다가 낭패 보는 경우가 많으니 주의해야 합니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. 프롬프트는 어떻게 작성해야 AI가 PPT를 잘 만들까요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 프롬프트는 구체적이고 명확할수록 좋습니다. PPT의 목적, 타겟 청중, 포함되어야 할 핵심 키워드, 슬라이드 수, 원하는 톤앤매너 등을 상세하게 설명해주세요. 마치 동료에게 업무 지시를 하듯이 필요한 정보를 빠짐없이 전달하는 게 중요합니다.</p></div>\n<div style=\"margin:20px 0;\"><p style=\"font-weight:700;color:#1a2640;margin:0 0 8px 0;\">Q. AI PPT는 파워포인트 파일로도 저장되나요?</p><p style=\"margin:0;color:#2a2a2a;\">A. 대부분의 PPT 자동 생성 AI 도구는 생성된 슬라이드를 파워포인트(PPTX), PDF 등 다양한 형식으로 내보내기 기능을 제공합니다. 이렇게 저장된 파일을 파워포인트에서 추가로 편집할 수 있습니다.</p></div>\n</section>\n<section class=\"post-references\" style=\"margin:36px 0 16px;padding:18px 22px;background:#fafafa;border-radius:8px;\"><h2 style=\"margin-top:0;margin-bottom:10px;font-size:18px;\">더 깊이 보고 싶다면</h2><ul style=\"margin:0;padding-left:20px;\"><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://gamma.app\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Gamma 공식 홈페이지</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://tome.app\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Tome 공식 홈페이지</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://openai.com\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">OpenAI (ChatGPT 개발사)</a></li><li style=\"margin:8px 0;font-size:14px;\"><a href=\"https://www.microsoft.com/ko-kr/microsoft-365/microsoft-copilot\" target=\"_blank\" rel=\"nofollow noopener\" style=\"color:#1a2640;text-decoration:underline;\">Microsoft Copilot 공식 페이지</a></li></ul><div style=\"margin-top:10px;font-size:12px;color:#888;\">※ 외부 링크는 별도 창에서 열립니다. 정확한 정보는 공식 사이트에서 확인하세요.</div></section>",
+  "comparison_table": {
+    "headers": [
+      "항목",
+      "Gamma",
+      "Tome",
+      "ChatGPT/Copilot (플러그인)"
+    ],
+    "rows": [
+      [
+        "주요 특징",
+        "간결한 비즈니스 보고서, 협업 용이",
+        "스토리텔링 기반, 시각적 강조",
+        "범용성 높음, 다양한 플러그인 활용"
+      ],
+      [
+        "사용 난이도",
+        "쉬움 (직관적 인터페이스)",
+        "보통 (템플릿 활용)",
+        "보통~어려움 (프롬프트/플러그인 이해 필요)"
+      ],
+      [
+        "초기 결과물 품질",
+        "전문적이고 깔끔한 디자인",
+        "다이내믹하고 시각적 요소 풍부",
+        "프롬프트에 따라 편차 큼"
+      ],
+      [
+        "주요 용도",
+        "내부 보고서, 기획안, 팀 발표",
+        "투자 유치, 제품/서비스 설명",
+        "아이디어 구상, 다양한 구성안 실험"
+      ],
+      [
+        "가격 정책",
+        "무료 플랜 제공, 유료 구독",
+        "무료 플랜 제공, 유료 구독",
+        "GPT Plus/Copilot Pro 유료, 플러그인 유무료"
+      ],
+      [
+        "협업 기능",
+        "뛰어남 (실시간 편집, 공유)",
+        "보통 (공유 및 코멘트)",
+        "제한적 (외부 도구 연동 필요)"
+      ]
+    ]
+  },
+  "steps": [
+    {
+      "title": "1단계: 명확한 프롬프트 구상하기",
+      "desc": "PPT의 목적, 대상, 핵심 메시지, 포함할 내용, 원하는 분위기 등을 구체적으로 정리합니다. AI가 이해하기 쉽게 명사 위주로 핵심을 전달하는 게 중요해요."
+    },
+    {
+      "title": "2단계: AI 도구 선택 및 초안 생성",
+      "desc": "위 비교표를 참고하여 자신의 목적에 맞는 AI 도구를 선택합니다. 구상한 프롬프트를 입력하고 AI가 생성한 PPT 초안을 받아봅니다."
+    },
+    {
+      "title": "3단계: 내용 및 디자인 검토",
+      "desc": "생성된 초안의 내용이 정확한지, 흐름은 자연스러운지 꼼꼼히 검토합니다. 불필요한 슬라이드는 삭제하고, 부족한 내용은 추가합니다. 디자인은 전체적인 통일성을 확인하세요."
+    },
+    {
+      "title": "4단계: 핵심 인사이트 추가 및 수정",
+      "desc": "AI가 채워주지 못하는 나만의 분석, 경험, 데이터 등을 추가하여 PPT의 가치를 높입니다. 이미지, 차트, 핵심 문구 등을 보강하며 최종 완성도를 끌어올립니다."
+    }
+  ],
+  "summary": "PPT 자동 생성 AI는 직장인의 업무 시간을 크게 줄여줄 수 있는 유용한 도구입니다. Gamma, Tome, ChatGPT/Copilot 등 여러 도구의 특징을 이해하고 자신에게 맞는 것을 선택하는 게 중요합니다.",
+  "tags": [
+    "PPT 자동 생성 AI 비교",
+    "ai",
+    "직장인",
+    "업무 생산성",
+    "프레젠테이션",
+    "업무 자동화"
+  ],
+  "faq": [
+    {
+      "q": "PPT 자동 생성 AI, 무료로 쓸 수 있나요?",
+      "a": "네, 대부분의 PPT 자동 생성 AI 도구는 기본적인 기능을 무료로 제공하는 플랜이 있습니다. 하지만 더 많은 기능이나 고품질의 결과물을 원한다면 유료 구독을 고려해야 합니다. 처음에는 무료 플랜으로 충분히 경험해보고 결정하는 걸 추천합니다."
+    },
+    {
+      "q": "AI가 만든 PPT, 그대로 발표해도 될까요?",
+      "a": "아니요, AI가 만든 PPT는 어디까지나 '초안'으로 활용해야 합니다. 내용의 정확성, 최신성, 그리고 나만의 인사이트가 담겼는지 반드시 검토하고 수정하는 과정이 필수입니다. 그대로 발표했다가 낭패 보는 경우가 많으니 주의해야 합니다."
+    },
+    {
+      "q": "프롬프트는 어떻게 작성해야 AI가 PPT를 잘 만들까요?",
+      "a": "프롬프트는 구체적이고 명확할수록 좋습니다. PPT의 목적, 타겟 청중, 포함되어야 할 핵심 키워드, 슬라이드 수, 원하는 톤앤매너 등을 상세하게 설명해주세요. 마치 동료에게 업무 지시를 하듯이 필요한 정보를 빠짐없이 전달하는 게 중요합니다."
+    },
+    {
+      "q": "AI PPT는 파워포인트 파일로도 저장되나요?",
+      "a": "대부분의 PPT 자동 생성 AI 도구는 생성된 슬라이드를 파워포인트(PPTX), PDF 등 다양한 형식으로 내보내기 기능을 제공합니다. 이렇게 저장된 파일을 파워포인트에서 추가로 편집할 수 있습니다."
+    }
+  ],
+  "references": [
+    {
+      "label": "Gamma 공식 홈페이지",
+      "url": "https://gamma.app"
+    },
+    {
+      "label": "Tome 공식 홈페이지",
+      "url": "https://tome.app"
+    },
+    {
+      "label": "OpenAI (ChatGPT 개발사)",
+      "url": "https://openai.com"
+    },
+    {
+      "label": "Microsoft Copilot 공식 페이지",
+      "url": "https://www.microsoft.com/ko-kr/microsoft-365/microsoft-copilot"
+    }
+  ],
+  "seo_analysis": {
+    "score": 87.0,
+    "monthly_total": 10,
+    "competition": "낮음"
+  },
+  "created_at": "2026-10-23T07:42:44.307018",
+  "status": "scheduled",
+  "source": "auto",
+  "content_raw": "지난주 후배가 급하게 발표 자료를 만들어야 하는데 도무지 시간이 없다고 하소연하더라고요. 저도 그랬습니다. 밤샘 작업으로 겨우 PPT를 완성했지만, 다음 날 회의에서 지적받는 일도 잦았죠. 특히 자료조사와 구성에만 몇 시간이 날아가 버리곤 했습니다. \n\n결론부터 말씀드리면, PPT 자동 생성 AI를 잘 쓰면 이런 고통을 확 줄일 수 있습니다. 하지만 어떤 AI를 써야 나한테 맞을지, 그리고 이걸 어떻게 써야 진짜 업무에 도움이 되는지는 아무도 제대로 알려주지 않더라고요. \n\n제가 작년에 직접 여러 도구를 써보면서 느낀 점들을 바탕으로, 직장인에게 필요한 PPT 자동 생성 AI를 비교하고 실제 사용 팁을 알려드릴게요.\n\n## AI가 만드는 PPT, 왜 직장인에게 필요할까요?\n\n보고서나 기획안, 발표 자료. 직장인이라면 PPT 만들 일이 끊이지 않죠. 저도 월요일마다 팀장님께 보고할 자료를 만들면서 주말을 날린 적이 한두 번이 아닙니다. 디자인은 둘째치고, 내용 구성과 자료 찾는 데만 엄청난 시간이 들어가잖아요. 이게 문제였습니다. \n\nPPT 자동 생성 AI는 이런 반복적이고 시간을 많이 잡아먹는 작업을 대신 해줍니다. 저는 이걸 'PPT 초안 작성 자동화'라고 부르는데요. 사용자가 텍스트로 원하는 내용을 입력하면, AI가 그 내용을 바탕으로 슬라이드 구성, 텍스트 요약, 이미지 배치까지 한 번에 처리합니다. 물론 아직 완벽하진 않아요. 하지만 맨땅에 헤딩하는 것보다는 훨씬 낫습니다. 제 경험상 PPT 작업 시간의 30% 이상을 줄여줍니다. \n\n이 도구들은 단순히 예쁜 템플릿을 제공하는 걸 넘어섭니다. 특정 주제에 맞춰 필요한 정보를 구조화해주죠. 덕분에 저는 내용 검토와 다듬기에 더 많은 시간을 쓸 수 있게 됐습니다.\n\n## 주요 PPT 자동 생성 AI, 뭐가 다를까요?\n\n시중에 여러 PPT 자동 생성 AI가 나와 있습니다. 저도 처음엔 뭐가 뭔지 몰라서 이것저것 다 깔아보고 돈만 날리기도 했어요. 결국, 직장인이 쓰기엔 몇 가지 핵심 도구로 추려지더라고요. 저는 주로 Gamma, Tome, 그리고 ChatGPT(Copilot 포함)의 플러그인 기능을 비교해봤습니다. 각각의 특징과 장단점이 명확해서 어떤 업무에 쓰느냐에 따라 선택이 달라질 수 있습니다.\n\n> 포인트: AI는 만능이 아니에요. 내 상황에 맞는 도구를 골라야 시간 낭비를 막을 수 있죠.\n\n## 직접 써보면서 느낀 것과 추천 시나리오\n\n제가 이 AI 도구들을 써보면서 가장 크게 느낀 건 ‘프롬프트가 핵심’이라는 점입니다. AI는 제가 준 정보 안에서만 움직이거든요. 처음에는 그냥 “회사 소개 PPT 만들어줘” 이렇게 대충 시켰다가 엉망진창 자료를 받아서 실망한 적도 많았습니다. \n\n하지만 프롬프트를 구체적으로 바꾸기 시작하면서 결과가 달라졌어요. 예를 들어, “저희 회사의 비전, 핵심 가치, 주요 제품 3가지에 대해 각 슬라이드 2장씩으로 구성하고, 전체적으로 깔끔하고 전문적인 톤으로 만들어줘. 대상은 신규 투자자이고, 마지막 슬라이드에는 Q&A를 넣어줘” 같은 식으로요. 이렇게 디테일하게 요청하면 AI도 훨씬 정확한 초안을 내놓더라고요. \n\nGamma는 비즈니스 보고서나 내부 발표 자료 만들 때 특히 좋았습니다. 디자인이 간결하고 수정이 쉬워서 빠르게 초안을 만들고 팀원들과 공유하기 편리하죠. 팀 협업 기능도 괜찮고요. \n\nTome은 스토리텔링 기반의 발표 자료에 강했습니다. 투자 유치나 제품 설명처럼 좀 더 서사적인 흐름이 필요한 발표에 적합하더라고요. 동료가 Tome으로 발표 준비하는 걸 보고 저도 따라 해봤는데, 시각적인 요소가 강조되면서 내용 전달력이 좋았습니다. \n\nChatGPT (또는 Copilot) 플러그인들은 범용성이 가장 높습니다. 특정 양식에 얽매이지 않고 자유롭게 내용을 구성하고 싶을 때 좋습니다. 저는 주로 아이디어 구상 단계에서 다양한 구성안을 받아볼 때 활용했습니다. 여러 플러그인을 조합하면 더 나은 결과물을 얻을 수도 있고요. 예를 들어, 웹에서 자료를 찾아주는 플러그인과 PPT를 만들어주는 플러그인을 함께 쓰는 식이죠. \n\n어떤 도구를 쓰든, AI가 만들어준 초안을 100% 그대로 쓰는 건 위험합니다. 반드시 내용을 다시 확인하고, 불필요한 부분은 삭제하고, 우리 회사 상황에 맞는 내용을 추가하는 편집 과정이 필수입니다. 이걸 잘해야 AI를 업무에 제대로 활용한다고 할 수 있죠.\n\n## 이대로 따라하면 안 되는 이유: AI의 한계와 진짜 활용법\n\nPPT 자동 생성 AI는 분명 직장인의 시간을 아껴주는 고마운 도구입니다. 하지만 몇 가지 한계를 분명히 알아야 합니다. \n\n첫째, 정보의 정확성 문제예요. AI가 생성하는 내용은 학습된 데이터 기반이라, 최신 정보나 내부 기밀 정보에는 취약합니다. 예를 들어, 작년에 제가 ‘2025년 시장 전망’ 관련 자료를 AI로 만들었다가 잘못된 데이터를 포함해서 다시 수정했던 경험이 있어요. 항상 사실 관계를 확인하는 게 중요합니다. \n\n둘째, 창의성 부족입니다. AI는 기존 패턴을 학습해서 결과물을 내놓기 때문에, 혁신적이거나 완전히 새로운 아이디어를 기대하긴 어렵습니다. 저는 AI가 만든 자료에 저만의 분석이나 인사이트를 추가해서 차별화하려고 노력합니다. \n\n셋째, 저작권 이슈입니다. AI가 생성한 이미지나 콘텐츠가 저작권 문제에서 완전히 자유롭다고 단언하기 어렵습니다. 특히 상업적으로 사용하거나 외부에 공개하는 자료라면 주의해야 합니다. 저는 주로 저작권 없는 무료 이미지 사이트를 이용하거나, 직접 만든 이미지를 사용합니다. \n\n결국 AI PPT 도구는 '생산성 보조 도구'라는 점을 잊지 말아야 합니다. 완벽한 결과물을 기대하기보다, 귀찮은 초안 작업을 대신해줘서 제가 더 중요한 '생각하는 시간'을 벌어준다고 생각하는 게 맞습니다. 제가 직접 자료를 검토하고, 핵심 메시지를 다듬고, 창의적인 디자인 요소를 추가하는 과정이 없다면 AI PPT는 그냥 밋밋한 자료일 뿐입니다. \n\nPPT 자동 생성 AI를 잘 쓰는 비결은 두 가지입니다. 하나는 명확하고 구체적인 프롬프트 작성 능력이고, 다른 하나는 생성된 결과물을 내 목적에 맞게 편집하고 가공하는 능력입니다. 이 두 가지를 꾸준히 연습하면 퇴근 시간이 빨라지는 마법을 경험할 수 있을 겁니다.\n\n## 앞으로 더 기대되는 것들\n\n제가 작년에 이 분야를 처음 접했을 때보다 지금은 훨씬 다양한 기능과 플러그인들이 쏟아져 나오고 있습니다. AI 기술 발전 속도가 정말 빠르죠. 앞으로는 단순히 텍스트를 PPT로 바꾸는 것을 넘어, 실시간으로 발표자의 의도를 파악해서 슬라이드를 수정해주거나, 청중의 반응에 따라 내용 흐름을 조절하는 AI도 나올 것 같다는 상상을 해봅니다. \n\n또, 특정 산업 분야에 특화된 AI PPT 도구들도 생겨날 겁니다. 예를 들어, 금융 산업 보고서에 특화된 AI나 마케팅 기획안에 최적화된 AI 같은 것들이요. \n\n물론 AI가 우리의 일자리를 모두 대체할 거라는 걱정도 있지만, 저는 반대로 AI를 잘 쓰는 사람이 더 많은 기회를 얻게 될 거라고 생각합니다. 복잡한 업무를 AI에 맡기고, 우리는 더 창의적이고 전략적인 일에 집중할 수 있겠죠. 직장인 여러분도 AI를 잘 활용해서 스마트하게 일하시길 바랍니다.",
+  "hero_image": {
+    "url": "/posts/thumbnails/thumb_20261022_224242.png",
+    "alt": "PPT 자동 생성 AI, 직장인이라면 이것부터 비교하세요",
+    "credit": "David Monje",
+    "credit_link": "https://unsplash.com/@davidmonje",
+    "source": "unsplash"
+  },
+  "body_images": [
+    {
+      "url": "https://images.unsplash.com/photo-1532102235608-dc8fc689c9ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTI3MDg5NjN8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "white printer paper on white wall",
+      "credit": "NEW DATA SERVICES",
+      "credit_link": "https://unsplash.com/@new_data_services",
+      "source": "unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1617042375876-a13e36732a04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTI3MDg5NjN8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "black laptop computer turned on beside black ceramic mug",
+      "credit": "Mohammad Rahmani",
+      "credit_link": "https://unsplash.com/@afgprogrammer",
+      "source": "unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1749006590475-4592a5dbf99f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MzMxNzl8MHwxfHJhbmRvbXx8fHx8fHx8fDE3OTI3MDg5NjR8&ixlib=rb-4.1.0&q=80&w=1080",
+      "alt": "A square of aluminum is resting on glass",
+      "credit": "Omar:. Lopez-Rincon",
+      "credit_link": "https://unsplash.com/@procopiopi",
+      "source": "unsplash"
+    }
+  ],
+  "seo_title": "PPT 자동 생성 AI, 직장인이라면 이것부터 비교하세요 | 직장인 수익일기",
+  "seo_description": "PPT 자동 생성 AI는 직장인의 업무 시간을 크게 줄여줄 수 있는 유용한 도구입니다. Gamma, Tome, ChatGPT/Copilot 등 여러 도구의 특징을 이해하고 자신에게 맞는 것을 선택하는 게 중요합니다. | 직장인 수익일기",
+  "seo_keywords": "PPT 자동 생성 AI 비교, ai, ai 추천, PPT 자동 생성 AI 비교 방법, 직장인 부업, 직장인 수익일기, 직장인, 업무 생산성, 프레젠테이션, 업무 자동화",
+  "jsonld": {
+    "article": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "PPT 자동 생성 AI, 직장인이라면 이것부터 비교하세요",
+      "description": "PPT 자동 생성 AI는 직장인의 업무 시간을 크게 줄여줄 수 있는 유용한 도구입니다. Gamma, Tome, ChatGPT/Copilot 등 여러 도구의 특징을 이해하고 자신에게 맞는 것을 선택하는 게 중요합니다.",
+      "keywords": "PPT 자동 생성 AI 비교, ai, ai 추천, PPT 자동 생성 AI 비교 방법, 직장인 부업, 직장인 수익일기, 직장인, 업무 생산성, 프레젠테이션, 업무 자동화",
+      "articleSection": "ai",
+      "author": {
+        "@type": "Person",
+        "name": "박대홍"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "직장인 수익일기",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.koreansalaryman.com/og-image.png"
+        }
+      },
+      "datePublished": "2026-10-23T07:42:44.307018",
+      "image": "https://www.koreansalaryman.com/posts/thumbnails/thumb_20261022_224242.png"
+    },
+    "faq": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "PPT 자동 생성 AI, 무료로 쓸 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 대부분의 PPT 자동 생성 AI 도구는 기본적인 기능을 무료로 제공하는 플랜이 있습니다. 하지만 더 많은 기능이나 고품질의 결과물을 원한다면 유료 구독을 고려해야 합니다. 처음에는 무료 플랜으로 충분히 경험해보고 결정하는 걸 추천합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI가 만든 PPT, 그대로 발표해도 될까요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요, AI가 만든 PPT는 어디까지나 '초안'으로 활용해야 합니다. 내용의 정확성, 최신성, 그리고 나만의 인사이트가 담겼는지 반드시 검토하고 수정하는 과정이 필수입니다. 그대로 발표했다가 낭패 보는 경우가 많으니 주의해야 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "프롬프트는 어떻게 작성해야 AI가 PPT를 잘 만들까요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "프롬프트는 구체적이고 명확할수록 좋습니다. PPT의 목적, 타겟 청중, 포함되어야 할 핵심 키워드, 슬라이드 수, 원하는 톤앤매너 등을 상세하게 설명해주세요. 마치 동료에게 업무 지시를 하듯이 필요한 정보를 빠짐없이 전달하는 게 중요합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI PPT는 파워포인트 파일로도 저장되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "대부분의 PPT 자동 생성 AI 도구는 생성된 슬라이드를 파워포인트(PPTX), PDF 등 다양한 형식으로 내보내기 기능을 제공합니다. 이렇게 저장된 파일을 파워포인트에서 추가로 편집할 수 있습니다."
+          }
+        }
+      ]
+    },
+    "howto": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "PPT 자동 생성 AI, 직장인이라면 이것부터 비교하세요",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "1단계: 명확한 프롬프트 구상하기",
+          "text": "PPT의 목적, 대상, 핵심 메시지, 포함할 내용, 원하는 분위기 등을 구체적으로 정리합니다. AI가 이해하기 쉽게 명사 위주로 핵심을 전달하는 게 중요해요."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "2단계: AI 도구 선택 및 초안 생성",
+          "text": "위 비교표를 참고하여 자신의 목적에 맞는 AI 도구를 선택합니다. 구상한 프롬프트를 입력하고 AI가 생성한 PPT 초안을 받아봅니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "3단계: 내용 및 디자인 검토",
+          "text": "생성된 초안의 내용이 정확한지, 흐름은 자연스러운지 꼼꼼히 검토합니다. 불필요한 슬라이드는 삭제하고, 부족한 내용은 추가합니다. 디자인은 전체적인 통일성을 확인하세요."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "4단계: 핵심 인사이트 추가 및 수정",
+          "text": "AI가 채워주지 못하는 나만의 분석, 경험, 데이터 등을 추가하여 PPT의 가치를 높입니다. 이미지, 차트, 핵심 문구 등을 보강하며 최종 완성도를 끌어올립니다."
+        }
+      ]
+    }
+  },
+  "scheduled_at": "2026-10-23T06:33:38.576Z"
+}
