@@ -27,7 +27,7 @@
     "has_comparison": true,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 77.0,
+    "seo_score": 77,
     "monthly_search": null
   },
   {
@@ -55,7 +55,7 @@
     "has_comparison": false,
     "has_steps": true,
     "has_references": true,
-    "seo_score": 91.0,
+    "seo_score": 91,
     "monthly_search": null
   },
   {
@@ -131,10 +131,10 @@
       "재테크 초보"
     ],
     "created_at": "2026-10-22T07:34:55.321024",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-22T01:35:12.003Z",
-    "published_at": null,
+    "published_at": "2026-10-22T02:31:59.824Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261021_223452.png",
     "has_faq": true,
