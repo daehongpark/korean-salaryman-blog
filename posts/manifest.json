@@ -14,10 +14,10 @@
       "환율투자"
     ],
     "created_at": "2026-10-23T07:45:00.138669",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-23T12:24:20.402Z",
-    "published_at": null,
+    "published_at": "2026-10-23T15:15:21.085Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261022_224458.png",
     "has_faq": true,
