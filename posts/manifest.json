@@ -24,7 +24,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 79.0,
+    "seo_score": 79,
     "monthly_search": 10
   },
   {
@@ -110,7 +110,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 87.0,
+    "seo_score": 87,
     "monthly_search": 10
   },
   {
@@ -129,10 +129,10 @@
       "환테크"
     ],
     "created_at": "2026-10-26T07:37:01.239657",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-26T00:27:28.498Z",
-    "published_at": null,
+    "published_at": "2026-10-26T00:51:54.547Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261025_223658.png",
     "has_faq": true,
