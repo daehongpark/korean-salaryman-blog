@@ -130,10 +130,10 @@
       "월급쟁이 부자"
     ],
     "created_at": "2026-10-31T07:34:32.498427",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-10-31T00:24:12.549Z",
-    "published_at": null,
+    "published_at": "2026-10-31T02:34:11.048Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261030_223429.png",
     "has_faq": true,
