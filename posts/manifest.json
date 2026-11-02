@@ -58,7 +58,7 @@
     "has_comparison": true,
     "has_steps": false,
     "has_references": true,
-    "seo_score": 89.0,
+    "seo_score": 89,
     "monthly_search": 10
   },
   {
@@ -138,10 +138,10 @@
       "ETF 투자"
     ],
     "created_at": "2026-11-02T07:35:04.799370",
-    "status": "scheduled",
+    "status": "published",
     "source": "auto",
     "scheduled_at": "2026-11-02T02:35:43.477Z",
-    "published_at": null,
+    "published_at": "2026-11-02T02:38:02.544Z",
     "has_image": true,
     "thumbnail": "/posts/thumbnails/thumb_20261101_223502.png",
     "has_faq": true,
